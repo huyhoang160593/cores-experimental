@@ -1,0 +1,89 @@
+mupen64plus-libretro-nx @ 98c1b0d877542b01314b3b04272282ba223b65b3 (cores-experimental's mupen64plus_next pin): core option
+mupen64plus-BufferSwapMode (OnVIUpdate default = the old hard-coded bsOnVerticalInterrupt | OnVIOriginChange | OnBufferUpdate),
+replacing the fixed value in custom/GLideN64/mupenplus/Config_mupenplus.cpp. ai-22 (N64 Debug), 2026-10-17, for the Zero 28's
+58.3 VI/s under per-VI presents (user: "Do it now"). Per-game GLideN64.custom.ini overrides still apply after it.
+
+diff --git a/custom/GLideN64/mupenplus/Config_mupenplus.cpp b/custom/GLideN64/mupenplus/Config_mupenplus.cpp
+index fb51f34..a4c447f 100644
+--- a/custom/GLideN64/mupenplus/Config_mupenplus.cpp
++++ b/custom/GLideN64/mupenplus/Config_mupenplus.cpp
+@@ -170,8 +170,8 @@ extern "C" void Config_LoadConfig()
+ 	config.frameBufferEmulation.copyToRDRAM = EnableCopyColorToRDRAM;
+ 	config.frameBufferEmulation.copyFromRDRAM = EnableCopyColorFromRDRAM;
+ 
+-	// TODO: Make this a Core options or maybe only default to bsOnVerticalInterrupt on Android with Thr Renderer
+-	config.frameBufferEmulation.bufferSwapMode = Config::bsOnVerticalInterrupt;
++	// spruce: core option mupen64plus-BufferSwapMode (default 0 = bsOnVerticalInterrupt, the old fixed value)
++	config.frameBufferEmulation.bufferSwapMode = BufferSwapModeOpt;
+ 
+ #ifdef HAVE_OPENGLES2
+ 	config.generalEmulation.enableFragmentDepthWrite = 0;
+diff --git a/custom/mupen64plus-next_common.h b/custom/mupen64plus-next_common.h
+index 1ce8b90..16b363d 100644
+--- a/custom/mupen64plus-next_common.h
++++ b/custom/mupen64plus-next_common.h
+@@ -103,6 +103,7 @@ extern uint32_t EnableInaccurateTextureCoordinates;
+ extern uint32_t enableNativeResTexrects;
+ extern uint32_t enableLegacyBlending;
+ extern uint32_t EnableCopyColorToRDRAM;
++extern uint32_t BufferSwapModeOpt;
+ extern uint32_t EnableCopyColorFromRDRAM;
+ extern uint32_t EnableCopyDepthToRDRAM;
+ extern uint32_t AspectRatio;
+diff --git a/libretro/libretro.c b/libretro/libretro.c
+index 7665666..957e7d8 100644
+--- a/libretro/libretro.c
++++ b/libretro/libretro.c
+@@ -176,6 +176,7 @@ uint32_t EnableInaccurateTextureCoordinates = 0;
+ uint32_t enableNativeResTexrects = 0;
+ uint32_t enableLegacyBlending = 0;
+ uint32_t EnableCopyColorToRDRAM = 0;
++uint32_t BufferSwapModeOpt = 0;
+ uint32_t EnableCopyColorFromRDRAM = 0;
+ uint32_t EnableCopyDepthToRDRAM = 0;
+ uint32_t AspectRatio = 0;
+@@ -1146,6 +1147,18 @@ static void update_variables(bool startup)
+              EnableCopyColorToRDRAM = 0;
+        }
+ 
++       var.key = CORE_NAME "-BufferSwapMode";
++       var.value = NULL;
++       if (environ_cb(RETRO_ENVIRONMENT_GET_VARIABLE, &var) && var.value)
++       {
++          if (!strcmp(var.value, "OnBufferUpdate"))
++             BufferSwapModeOpt = 2; // bsOnColorImageChange
++          else if (!strcmp(var.value, "OnVIOriginChange"))
++             BufferSwapModeOpt = 1; // bsOnVIOriginChange
++          else
++             BufferSwapModeOpt = 0; // bsOnVerticalInterrupt
++       }
++
+        var.key = CORE_NAME "-EnableCopyColorFromRDRAM";
+        var.value = NULL;
+        if (environ_cb(RETRO_ENVIRONMENT_GET_VARIABLE, &var) && var.value)
+diff --git a/libretro/libretro_core_options.h b/libretro/libretro_core_options.h
+index fb39aa9..fb53a39 100644
+--- a/libretro/libretro_core_options.h
++++ b/libretro/libretro_core_options.h
+@@ -361,6 +361,21 @@ struct retro_core_option_v2_definition option_defs_us[] = {
+         "Sync"
+ #endif // HAVE_OPENGLES2
+     },
++    {
++        CORE_NAME "-BufferSwapMode",
++        "Buffer swap mode",
++        NULL,
++        "(GLN64) When a frame is presented: on every VI, when the game moves the VI origin, or when the frame buffer changes. Fewer presents can help slow GPUs. Restart to apply.",
++        "When a frame is presented: on every VI, when the game moves the VI origin, or when the frame buffer changes. Fewer presents can help slow GPUs. Restart to apply.",
++        "gliden64",
++        {
++            {"OnVIUpdate", "On VI update call"},
++            {"OnVIOriginChange", "On VI origin change"},
++            {"OnBufferUpdate", "On buffer update"},
++            { NULL, NULL },
++        },
++        "OnVIUpdate"
++    },
+     {
+         CORE_NAME "-EnableCopyColorFromRDRAM",
+         "Enable color buffer copy from RDRAM",
