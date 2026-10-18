@@ -1729,7 +1729,14 @@
         "output_path": "dist/unix/mupen64plus_next_libretro.so",
         "source_dir": "libretro-mupen64plus_next",
         "source_key": "mupen64plus_next",
-        "submodules": false
+        "submodules": false,
+        "overlays": {
+          "arm64": [
+            {
+              "patch": "patches/mupen64plus_next/buffer-swap-mode.patch"
+            }
+          ]
+        }
       },
       "metadata": {
         "artifact_name": "mupen64plus_next_libretro.info",
