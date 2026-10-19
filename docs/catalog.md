@@ -70,6 +70,11 @@ under `metadata/`).
 **`known_good`**: an earlier `source`, `build` and `metadata` that worked. CI
 builds it when the current commit fails; nothing else uses it.
 
+**`shipped`**: what spruceOS ships from this recipe, which [AUDIT.md](../AUDIT.md)
+compares each nightly with: `spruceos` (the spruceOS commit), `variant` (the
+build whose artifact ships, as `plan` names it), `files` (`{card path: sha256}`)
+and a `note`. The build does not use it.
+
 ## Adding a core
 
 1. Add an entry, starting from a core with the same driver. `check` reports

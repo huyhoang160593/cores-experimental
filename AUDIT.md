@@ -9,9 +9,9 @@ the v4.5.4 stable release.
 - The 30 recipes in [`manifests/standalone-builds.json`](manifests/standalone-builds.json) that have a
   `shipped` record (`main`; the shipped records are unchanged since 67aa677, and libboost_filesystem's card path is fixed in 46cb1d5 and 62c3a84). The other 9 recipes
   have no `shipped` record: spruce doesn't ship what they build.
-- No core from [`manifests/core-builds.json`](manifests/core-builds.json). That catalog has no `shipped`
-  records: none of its builds is recorded as shipping in spruce. A recipe joins this log when it gains a
-  `shipped` record.
+- The cores in [`manifests/core-builds.json`](manifests/core-builds.json) that have a `shipped` record: so far
+  `ffmpeg` (`RetroArch/.retroarch/cores64/ffmpeg_libretro.so`, recorded before any nightly carries it). A recipe
+  joins this log when it gains a `shipped` record.
 
 ## Method
 

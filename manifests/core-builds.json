@@ -632,6 +632,14 @@
       "metadata": {
         "artifact_name": "ffmpeg_libretro.info",
         "source_path": "/libretro-super/dist/info/ffmpeg_libretro.info"
+      },
+      "shipped": {
+        "spruceos": "fac0c9424",
+        "note": "local spruceOS branch feat/ffmpeg-generic-core on Development 364b3fac2, not pushed yet: replaces the PowerVR-only GL core d4996d5e, which Mali boards cannot load; checked playing video and audio on a TrimUI Brick (PowerVR) and an RG35XX SP (Mali)",
+        "variant": "release-arm64-generic-stripped",
+        "files": {
+          "RetroArch/.retroarch/cores64/ffmpeg_libretro.so": "40ffebe8fc055794bcc6a3d0e72e93a5e4731fd132c7e55093b27b5040f8d057"
+        }
       }
     },
     "flycast": {
