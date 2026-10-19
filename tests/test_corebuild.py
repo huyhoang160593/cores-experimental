@@ -197,6 +197,23 @@ class KnownGoodTest(unittest.TestCase):
         self.assertIsNone(known_good(Repo().cores["np2kai"]))
 
 
+class ShippedTest(unittest.TestCase):
+    def setUp(self):
+        self.repo = Repo()
+        self.spec = self.repo.cores["np2kai"]
+        self.spec["shipped"] = {"spruceos": "fac0c9424", "variant": "release-arm64-generic-stripped",
+                                "files": {"RetroArch/.retroarch/cores64/np2kai_libretro.so": "a" * 64}}
+
+    def test_a_shipped_record_is_checked(self):
+        self.assertEqual(self.repo.check(), [])
+        self.spec["shipped"].update(spruceos="Development", variant="release-x86-generic",
+                                    files={"/mnt/SDCARD/np2kai_libretro.so": "abc"})
+        problems = " | ".join(self.repo.check())
+        for text in ("shipped.spruceos must be a commit id", "shipped.variant 'release-x86-generic' names no targeted arch",
+                     "not a card-relative path", "sha256 must be 64 hex digits"):
+            self.assertIn(text, problems)
+
+
 def record(core, name, arch, boards, status="usable", sha="a" * 64, reproducible=None, profile="max", suffix=""):
     return {
         "core": core, "status": status, "source": {"commit": "c" * 40},

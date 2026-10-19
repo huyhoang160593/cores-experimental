@@ -11,6 +11,8 @@ ARCHES = ("arm64", "armhf")
 DRIVERS = ("libretro-super", "direct-make", "direct-cmake", "direct-cargo")
 CORE_ID = re.compile(r"^[a-z0-9][a-z0-9_]*$")
 COMMIT = re.compile(r"^[0-9a-f]{40}$")
+SHORT_COMMIT = re.compile(r"^[0-9a-f]{7,40}$")
+SHA256 = re.compile(r"^[0-9a-f]{64}$")
 TEMPLATE = re.compile(r"\{commit:(\d+)\}")
 
 
@@ -91,7 +93,27 @@ class Repo:
             if previous["source"]["commit"] == spec["source"]["commit"]:
                 problems.append("known_good repeats the current commit")
             problems += ["known_good: " + p for p in self._check_recipe(previous)]
+        if "shipped" in spec:
+            problems += self._check_shipped(spec)
         return problems + self._check_recipe(spec)
+
+    @staticmethod
+    def _check_shipped(spec: dict) -> list[str]:
+        """The record of what spruceOS ships from this recipe (AUDIT.md compares nightlies with it)."""
+        shipped, problems = spec["shipped"], []
+        if not SHORT_COMMIT.match(shipped.get("spruceos", "")):
+            problems.append("shipped.spruceos must be a commit id")
+        variant = shipped.get("variant", "")
+        if not any(f"-{arch}-" in variant for arch in spec["targets"]):
+            problems.append(f"shipped.variant {variant!r} names no targeted arch")
+        if not shipped.get("files"):
+            problems.append("shipped.files is empty")
+        for path, digest in shipped.get("files", {}).items():
+            if path.startswith("/") or ".." in path.split("/"):
+                problems.append(f"shipped file {path}: not a card-relative path")
+            if not SHA256.match(digest):
+                problems.append(f"shipped file {path}: sha256 must be 64 hex digits")
+        return problems
 
     def _check_recipe(self, spec: dict) -> list[str]:
         problems = []
