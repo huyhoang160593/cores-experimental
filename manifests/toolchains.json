@@ -224,7 +224,13 @@
     },
     "standalone-azahar": {
       "image": "cores-standalone-azahar:v1",
+      "image_id": "sha256:f8828af75e52330d016c944a02e6d322063feda2b0354f1f71dbba999aa77adc",
       "host_cc": "aarch64-linux-gnu",
+      "archive": {
+        "name": "cores-standalone-azahar-v1.tar.gz",
+        "sha256": "ae92137734bb6a404a2996903133eaa8a83885fb2eda2d5c53bdb62e62e62ba7",
+        "size": 247797730
+      },
       "dockerfile": "Dockerfile.standalone.azahar"
     }
   }
