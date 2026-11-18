@@ -221,6 +221,11 @@
         "size": 803551514
       },
       "dockerfile": "Dockerfile.standalone.miyoomini"
+    },
+    "standalone-azahar": {
+      "image": "cores-standalone-azahar:v1",
+      "host_cc": "aarch64-linux-gnu",
+      "dockerfile": "Dockerfile.standalone.azahar"
     }
   }
 }

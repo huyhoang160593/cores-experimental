@@ -70,6 +70,7 @@ from pinned parts (`Dockerfile.standalone.<name>`, loaded by `manifests/toolchai
 | `standalone-yabasanshiro-pgo` | `yabasanshiro-arm64-pgo`, `yabasanshiro-libretro`, `flycast-libretro-t3` | `standalone-yabasanshiro` plus Arm's GNU Toolchain 10.3-2021.07, a generic sysroot (its glibc 2.33, Khronos GLES headers, a stub libGLESv2) and the two builds' PGO profiles ([Saturn](#saturn-builds-spruceos-455)) |
 | `standalone-mini` | `pcsx_rearmed-mini`, `scummvm-mini` | the armhf base (Ubuntu 24.04) with steward-fu's Onion toolchain (GCC 8.3, glibc 2.28) |
 | `standalone-miyoomini` | `vtree-mini` | `aemiii91/miyoomini-toolchain`, by the digest its `latest` tag has had since 2026-01-20 |
+| `standalone-azahar` | `azahar-libretro` | ArkOS's Debian trixie build chroot as an amd64 cross toolchain: the dated image and snapshot.debian.org of 2026-10-27, clang 19, and trixie's arm64 glibc, libstdc++ and binutils |
 
 The arm64 base is Ubuntu 20.04, whose archive no longer changes, so a package list
 pins its versions. Libraries a wrapper built from source inside its image are built
@@ -117,6 +118,7 @@ Built against spruceOS `73bb91a19` (2026-10-11); "match" is byte for byte.
 | `mupen64plus-standalone` | would replace all of `Emu/N64/mupen64plus/` | built (2026-10-16); a new build, not shipped yet |
 | `flycast-libretro-t3` | `RetroArch/.retroarch/cores64/flycast_libretro.so` of spruceOS `d3f48c1cf` (4.5.5, Development) | match |
 | `vtree-arm64`, `vtree-a30`, `vtree-mini` | `App/FileManagement/vtree.*`, `lib-A30/` | match |
+| `azahar-libretro` | `RetroArch/.retroarch/cores64/azahar_libretro.so` of spruceOS `7592638d0` | not built yet: needs the `standalone-azahar` image |
 | `pcsx_rearmed-arm64`, `-a30`, `-mini` | `Emu/PS/pcsx_64`, `pcsx_a30`, `pcsx_mini`, the `libSDL-1.2.so.0` copies | match |
 | `moonlight` | `App/Moonlight/.../moonlight` and 32 libraries | match |
 | `bigpemu` | `Emu/JAGUAR/bigpemu/` (134 files, gl4es included) | match |

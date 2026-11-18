@@ -1,0 +1,23 @@
+# cores-standalone-azahar v1: the Debian trixie chroot of christianhaitian/rk3566_core_builds@e76af81 scripts/azahar.sh
+# (clang 19.1.7 (3+b1), GCC 14.2.0-19's libstdc++ and crt files, glibc 2.41) as an amd64 cross toolchain,
+# from the dated image and snapshot.debian.org of 2026-10-27, two days before the build spruce ships.
+FROM debian:trixie-20261027-slim@sha256:f6b08b09a05725f9431502d3b5714f5c4576e82c1a84fa1debe0c24a7e0c3ec4
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN rm -f /etc/apt/sources.list.d/debian.sources && \
+    printf '%s\n' \
+      'deb [check-valid-until=no] http://snapshot.debian.org/archive/debian/20261027T000000Z trixie main' \
+      'deb [check-valid-until=no] http://snapshot.debian.org/archive/debian-security/20261027T000000Z trixie-security main' \
+      > /etc/apt/sources.list && \
+    dpkg --add-architecture arm64 && \
+    apt-get -o Acquire::Retries=5 update && \
+    apt-get install -y --no-install-recommends \
+      ca-certificates git python3 gzip \
+      cmake=3.31.6-2 ninja-build=1.12.1-1 \
+      clang-19=1:19.1.7-3+b1 binutils-aarch64-linux-gnu=2.44-3 \
+      libc6-dev:arm64=2.41-12+deb13u4 libgcc-14-dev:arm64=14.2.0-19 libstdc++-14-dev:arm64=14.2.0-19 && \
+    rm -rf /var/lib/apt/lists/* && \
+    test -x /usr/bin/clang-19 && test -f /usr/lib/gcc/aarch64-linux-gnu/14/crtbeginS.o
+
+RUN dpkg -l > /apt-manifest.txt

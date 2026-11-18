@@ -3926,6 +3926,159 @@
           "vtree.mini": "ba485885b53e033db2540f37e039687c0023c531aab136d7003d1a8c049f213f"
         }
       }
+    },
+    "azahar-libretro": {
+      "description": "Azahar 2126.2 libretro core (Nintendo 3DS): RetroArch/.retroarch/cores64/azahar_libretro.so, as ArkOS builds it: christianhaitian/rk3566_core_builds@e76af8133b scripts/azahar.sh, with its patch series 000-029 (GammaOS's azahar-nano, upstream fixes, the dArkOS RG52 Mini port; credits in patches/standalone/azahar/) and its PGO profile, by Debian trixie's clang 19, OpenGL ES and Vulkan. Built at ArkOS's chroot paths",
+      "source": {
+        "url": "https://github.com/azahar-emu/azahar.git",
+        "commit": "219d743a1e698101fe1ab8bef43e6563126c3c27",
+        "tree": "a4ed1d9530bee1a98b168d782b3540b2585433ba",
+        "requested_ref": "refs/tags/2126.2",
+        "submodules": true,
+        "path": "/home/ark/rk3566_core_builds/azahar"
+      },
+      "toolchain": "standalone-azahar",
+      "source_date_epoch": 1793263886,
+      "downloads": [
+        {
+          "url": "https://raw.githubusercontent.com/christianhaitian/rk3566_core_builds/e76af8133b07c4faf75c203e029a94531fc1420e/pgo/azahar-nano-merged-20261020.profdata.gz",
+          "sha256": "6709d16b1345ec79ce3a91b842b6cf435093f530c93fd592a755cd5a61888df0",
+          "path": "/home/ark/rk3566_core_builds/pgo/azahar-nano-merged-20261020.profdata.gz"
+        }
+      ],
+      "patches": [
+        {
+          "diff": "patches/standalone/azahar/azahar-patch-000-gammaos-azahar-nano.patch"
+        },
+        {
+          "diff": "patches/standalone/azahar/azahar-patch-001-large-screen-layout.patch"
+        },
+        {
+          "diff": "patches/standalone/azahar/azahar-patch-002-gammaos-switches-on-linux.patch"
+        },
+        {
+          "diff": "patches/standalone/azahar/azahar-patch-003-libretro-present-window.patch"
+        },
+        {
+          "diff": "patches/standalone/azahar/azahar-patch-004-jit-warmup-steady-clock.patch"
+        },
+        {
+          "diff": "patches/standalone/azahar/azahar-patch-005-states-from-other-builds.patch"
+        },
+        {
+          "diff": "patches/standalone/azahar/azahar-patch-006-gammaos-defaults-as-core-options.patch"
+        },
+        {
+          "diff": "patches/standalone/azahar/azahar-patch-007-mali-and-frontend-as-gammaos.patch"
+        },
+        {
+          "diff": "patches/standalone/azahar/azahar-patch-008-large-screen-buffer-panel-size.patch"
+        },
+        {
+          "diff": "patches/standalone/azahar/azahar-patch-009-gammaos-nano-20261020.patch"
+        },
+        {
+          "diff": "patches/standalone/azahar/azahar-patch-010-simd-texture-codec.patch"
+        },
+        {
+          "diff": "patches/standalone/azahar/azahar-patch-011-swap-on-back.patch"
+        },
+        {
+          "diff": "patches/standalone/azahar/azahar-patch-012-savestates-streamed.patch"
+        },
+        {
+          "diff": "patches/standalone/azahar/azahar-patch-013-castlevania-stereo.patch"
+        },
+        {
+          "diff": "patches/standalone/azahar/azahar-patch-014-stereo-switches-as-core-options.patch"
+        },
+        {
+          "diff": "patches/standalone/azahar/azahar-patch-015-offscreen-draws-never-skipped.patch"
+        },
+        {
+          "diff": "patches/standalone/azahar/azahar-patch-016-realtime-audio-option.patch"
+        },
+        {
+          "diff": "patches/standalone/azahar/azahar-patch-017-shared-cheats.patch"
+        },
+        {
+          "diff": "patches/standalone/azahar/azahar-patch-018-gpu-timer-on-request.patch"
+        },
+        {
+          "diff": "patches/standalone/azahar/azahar-patch-019-framebuffers-retired.patch"
+        },
+        {
+          "diff": "patches/standalone/azahar/azahar-patch-020-right-eye-by-framebuffer.patch"
+        },
+        {
+          "diff": "patches/standalone/azahar/azahar-patch-021-shader-jit-masked-writes.patch"
+        },
+        {
+          "diff": "patches/standalone/azahar/azahar-patch-022-vk-skip-zero-area-renderpasses.patch"
+        },
+        {
+          "diff": "patches/standalone/azahar/azahar-patch-023-skip-zero-area-renderpasses-area.patch"
+        },
+        {
+          "diff": "patches/standalone/azahar/azahar-patch-024-vk-null-descriptors.patch"
+        },
+        {
+          "diff": "patches/standalone/azahar/azahar-patch-025-spirv-shadows.patch"
+        },
+        {
+          "diff": "patches/standalone/azahar/azahar-patch-026-blit-nearest.patch"
+        },
+        {
+          "diff": "patches/standalone/azahar/azahar-patch-027-shader-cache-progress.patch"
+        },
+        {
+          "diff": "patches/standalone/azahar/azahar-patch-028-upload-buffer-128mib.patch"
+        },
+        {
+          "diff": "patches/standalone/azahar/azahar-patch-029-deferred-storage-usage.patch"
+        }
+      ],
+      "steps": [
+        "git -C \"$SOURCE\" config core.abbrev 7",
+        "gunzip -c /home/ark/rk3566_core_builds/pgo/azahar-nano-merged-20261020.profdata.gz > \"$SOURCE/azahar.profdata\"",
+        "mkdir -p \"$SOURCE/build\" && cd \"$SOURCE/build\"",
+        "cmake .. -G Ninja -DCMAKE_BUILD_TYPE=Release -DCMAKE_SYSTEM_NAME=Linux -DCMAKE_SYSTEM_PROCESSOR=aarch64 -DCMAKE_C_COMPILER=/usr/bin/clang-19 -DCMAKE_CXX_COMPILER=/usr/bin/clang++-19 -DCMAKE_C_COMPILER_TARGET=aarch64-linux-gnu -DCMAKE_CXX_COMPILER_TARGET=aarch64-linux-gnu -DCMAKE_AR=/usr/bin/aarch64-linux-gnu-ar -DCMAKE_RANLIB=/usr/bin/aarch64-linux-gnu-ranlib -DENABLE_LIBRETRO=ON -DENABLE_OPENGL=ON -DENABLE_VULKAN=ON -DENABLE_TESTS=OFF -DENABLE_LTO=OFF -DCITRA_WARNINGS_AS_ERRORS=OFF \"-DCMAKE_C_FLAGS=-fprofile-use=/home/ark/rk3566_core_builds/azahar/azahar.profdata -Wno-profile-instr-unprofiled -Wno-profile-instr-out-of-date -Wno-backend-plugin\" \"-DCMAKE_CXX_FLAGS=-DUSING_GLES -fprofile-use=/home/ark/rk3566_core_builds/azahar/azahar.profdata -Wno-profile-instr-unprofiled -Wno-profile-instr-out-of-date -Wno-backend-plugin\"",
+        "ninja -j\"$(nproc)\" citra_libretro"
+      ],
+      "output": {
+        "files": [
+          {
+            "from": "/home/ark/rk3566_core_builds/azahar/build/bin/Release/azahar_libretro.so",
+            "to": "azahar_libretro.so",
+            "strip": "-s"
+          }
+        ],
+        "spruce": {
+          "azahar_libretro.so": "RetroArch/.retroarch/cores64/azahar_libretro.so"
+        }
+      },
+      "needed": {
+        "device": [
+          "ld-linux-aarch64.so.1",
+          "libc.so.6",
+          "libgcc_s.so.1",
+          "libm.so.6",
+          "libstdc++.so.6"
+        ],
+        "forbidden": [
+          "libEGL.so.1",
+          "libGL.so.1",
+          "libGLESv2.so.2",
+          "libvulkan.so.1"
+        ]
+      },
+      "shipped": {
+        "spruceos": "7592638d0",
+        "note": "first shipped in spruceOS b6c964642 (2026-11-10); built 2026-10-29T08:51:26Z (its BUILD_DATE)",
+        "files": {
+          "azahar_libretro.so": "12c603223762d2d9a82248102559581a24f7f07ff0b49f54ff53cd0172c21634"
+        }
+      }
     }
   }
 }
