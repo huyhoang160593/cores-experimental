@@ -125,6 +125,126 @@
         "source_path": "/libretro-super/dist/info/arduous_libretro.info"
       }
     },
+    "armgba": {
+      "source": {
+        "url": "https://github.com/MagnominusGit/armGBA.git",
+        "commit": "a06ea8c3c91606935f12457cec9a00549afa8983",
+        "requested_ref": "refs/heads/main"
+      },
+      "targets": [
+        "arm64",
+        "armhf"
+      ],
+      "build": {
+        "artifact_name": "armgba_libretro.so",
+        "driver": "direct-cmake",
+        "output_path": "armgba_libretro.so",
+        "source_date_epoch": true,
+        "source_dir": "armgba",
+        "cmake": {
+          "target": "armgba_libretro",
+          "arch_defines": {
+            "armhf": {
+              "CMAKE_C_FLAGS": "-mcpu=cortex-a7 -mfpu=neon-vfpv4 -mfloat-abi=hard",
+              "CMAKE_CXX_FLAGS": "-mcpu=cortex-a7 -mfpu=neon-vfpv4 -mfloat-abi=hard"
+            }
+          }
+        }
+      },
+      "metadata": {
+        "artifact_name": "armgba_libretro.info",
+        "repo_path": "metadata/armgba/spruceos-d14cdbefe.info"
+      }
+    },
+    "armn64": {
+      "source": {
+        "url": "https://github.com/MagnominusGit/armN64.git",
+        "commit": "3c1a66b6a6762da6caac28fcf0da2b9db3632584",
+        "requested_ref": "refs/heads/main"
+      },
+      "targets": [
+        "arm64"
+      ],
+      "build": {
+        "artifact_name": "armn64_libretro.so",
+        "driver": "direct-cmake",
+        "output_path": "armn64_libretro.so",
+        "source_date_epoch": true,
+        "source_dir": "armn64",
+        "cmake": {
+          "target": "armn64_libretro",
+          "defines": {
+            "ARMN64_TUNE": "OFF"
+          }
+        }
+      },
+      "metadata": {
+        "artifact_name": "armn64_libretro.info",
+        "repo_path": "metadata/armn64/spruceos-d14cdbefe.info"
+      }
+    },
+    "armnes": {
+      "source": {
+        "url": "https://github.com/MagnominusGit/armNES.git",
+        "commit": "13f04b0bc161af89834b7da858dcd9c22c101c7a",
+        "requested_ref": "refs/heads/main"
+      },
+      "targets": [
+        "arm64",
+        "armhf"
+      ],
+      "build": {
+        "artifact_name": "armnes_libretro.so",
+        "driver": "direct-cmake",
+        "output_path": "armnes_libretro.so",
+        "source_date_epoch": true,
+        "source_dir": "armnes",
+        "cmake": {
+          "target": "armnes_libretro",
+          "arch_defines": {
+            "armhf": {
+              "CMAKE_C_FLAGS": "-mcpu=cortex-a7 -mfpu=neon-vfpv4 -mfloat-abi=hard",
+              "CMAKE_CXX_FLAGS": "-mcpu=cortex-a7 -mfpu=neon-vfpv4 -mfloat-abi=hard"
+            }
+          }
+        }
+      },
+      "metadata": {
+        "artifact_name": "armnes_libretro.info",
+        "repo_path": "metadata/armnes/spruceos-d14cdbefe.info"
+      }
+    },
+    "armnes_arcade": {
+      "source": {
+        "url": "https://github.com/MagnominusGit/armNES.git",
+        "commit": "13f04b0bc161af89834b7da858dcd9c22c101c7a",
+        "requested_ref": "refs/heads/main"
+      },
+      "targets": [
+        "arm64",
+        "armhf"
+      ],
+      "build": {
+        "artifact_name": "armnes_arcade_libretro.so",
+        "driver": "direct-cmake",
+        "output_path": "armnes_arcade_libretro.so",
+        "source_date_epoch": true,
+        "source_dir": "armnes",
+        "cmake": {
+          "target": "armnes_arcade_libretro",
+          "arch_defines": {
+            "armhf": {
+              "CMAKE_C_FLAGS": "-mcpu=cortex-a7 -mfpu=neon-vfpv4 -mfloat-abi=hard",
+              "CMAKE_CXX_FLAGS": "-mcpu=cortex-a7 -mfpu=neon-vfpv4 -mfloat-abi=hard"
+            }
+          }
+        }
+      },
+      "metadata": {
+        "artifact_name": "armnes_arcade_libretro.info",
+        "repo_path": "metadata/armnes_arcade/spruceos-d14cdbefe.info"
+      }
+    },
     "atari800": {
       "source": {
         "url": "https://github.com/libretro/libretro-atari800.git",
@@ -1064,6 +1184,35 @@
         "source_path": "/libretro-super/dist/info/genesis_plus_gx_wide_libretro.info"
       }
     },
+    "gloopy": {
+      "source": {
+        "url": "https://github.com/seriamaugenlicher/gloopy.git",
+        "commit": "408c1f092405da472875598549516f409876c524",
+        "requested_ref": "refs/heads/main"
+      },
+      "targets": [
+        "arm64",
+        "armhf"
+      ],
+      "build": {
+        "artifact_name": "gloopy_libretro.so",
+        "driver": "direct-make",
+        "output_path": "gloopy_libretro.so",
+        "platforms": {
+          "arm64": "unix",
+          "armhf": "unix"
+        },
+        "source_dir": "gloopy",
+        "make_args": [
+          "-f",
+          "Makefile.libretro"
+        ]
+      },
+      "metadata": {
+        "artifact_name": "gloopy_libretro.info",
+        "repo_path": "metadata/gloopy/spruceos-d14cdbefe.info"
+      }
+    },
     "gme": {
       "source": {
         "url": "https://github.com/libretro/libretro-gme.git",
@@ -1361,6 +1510,29 @@
           "artifact_name": "km_ludicrousn64_2k22_xtreme_amped_libretro.info",
           "repo_path": "metadata/km_ludicrousn64_2k22_xtreme_amped_libretro.info"
         }
+      }
+    },
+    "km_vjag_xtreme_amped": {
+      "source": {
+        "url": "https://github.com/KMFDManic/virtualjaguar-libretro.git",
+        "commit": "3d3150ed2961bb40744b4f4d666e80df0725dac9",
+        "requested_ref": "refs/heads/master"
+      },
+      "targets": [
+        "armhf"
+      ],
+      "build": {
+        "artifact_name": "km_vjag_xtreme_amped_libretro.so",
+        "driver": "direct-make",
+        "output_path": "km_vjag_xtreme_amped_libretro.so",
+        "platforms": {
+          "armhf": "unix"
+        },
+        "source_dir": "km_vjag_xtreme_amped"
+      },
+      "metadata": {
+        "artifact_name": "km_vjag_xtreme_amped_libretro.info",
+        "repo_path": "metadata/km_vjag_xtreme_amped/spruceos-d14cdbefe.info"
       }
     },
     "libgametank": {
@@ -2819,6 +2991,28 @@
         "source_path": "/libretro-super/dist/info/vice_xvic_libretro.info"
       }
     },
+    "virtualjaguar": {
+      "source": {
+        "url": "https://github.com/libretro/virtualjaguar-libretro.git",
+        "commit": "767e1d347ef8b476a9be38497180736c7997d044",
+        "requested_ref": "refs/heads/master"
+      },
+      "targets": [
+        "arm64",
+        "armhf"
+      ],
+      "build": {
+        "artifact_name": "virtualjaguar_libretro.so",
+        "driver": "libretro-super",
+        "output_path": "dist/unix/virtualjaguar_libretro.so",
+        "source_dir": "libretro-virtualjaguar",
+        "source_key": "virtualjaguar"
+      },
+      "metadata": {
+        "artifact_name": "virtualjaguar_libretro.info",
+        "repo_path": "metadata/virtualjaguar/spruceos-d14cdbefe.info"
+      }
+    },
     "x1": {
       "source": {
         "url": "https://github.com/libretro/xmil-libretro.git",
@@ -2851,6 +3045,33 @@
       "metadata": {
         "artifact_name": "x1_libretro.info",
         "source_path": "/libretro-super/dist/info/x1_libretro.info"
+      }
+    },
+    "yabadabadoo": {
+      "source": {
+        "url": "https://github.com/ProRapSuperstarOriginalMaster/Yabadabadoo.git",
+        "commit": "953bca61e7d211bdc0428c3cbbebe184a92eb8ea",
+        "requested_ref": "refs/heads/main"
+      },
+      "targets": [
+        "armhf"
+      ],
+      "build": {
+        "artifact_name": "yabadabadoo_libretro.so",
+        "driver": "direct-make",
+        "output_path": "yabause/src/libretro/yabadabadoo_libretro.so",
+        "platforms": {
+          "armhf": "miyoomini"
+        },
+        "source_dir": "yabadabadoo",
+        "make_args": [
+          "CC_AS=arm-a30-linux-gnueabihf-gcc"
+        ],
+        "make_subdir": "yabause/src/libretro"
+      },
+      "metadata": {
+        "artifact_name": "yabadabadoo_libretro.info",
+        "repo_path": "metadata/yabadabadoo/spruceos-d14cdbefe.info"
       }
     },
     "yabasanshiro": {
