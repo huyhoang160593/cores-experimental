@@ -22,7 +22,6 @@ from __future__ import annotations
 
 import argparse
 import json
-import shlex
 import subprocess
 import sys
 from pathlib import Path
@@ -151,11 +150,12 @@ def cmd_toolchains(repo: Repo, args) -> int:
         if (size, digest) != (toolchain["archive"]["size"], toolchain["archive"]["sha256"]):
             print(f"{name}: {archive} does not match manifests/toolchains.json", file=sys.stderr)
             return 2
-        subprocess.run(f"gunzip -c {shlex.quote(str(archive))} | docker load", shell=True, check=True)
-        if not build.image_present(toolchain["image_id"]):
-            print(f"{name}: loaded archive did not produce {toolchain['image_id']}", file=sys.stderr)
+        try:
+            ref = build.load_toolchain(archive, toolchain["image_id"])
+        except RuntimeError as error:
+            print(f"{name}: {error}", file=sys.stderr)
             return 2
-        print(f"{name}: loaded {toolchain['image_id'][:19]}")
+        print(f"{name}: loaded {toolchain['image_id'][:19]}" + ("" if ref == toolchain["image_id"] else f" as {ref}"))
     return 0
 
 

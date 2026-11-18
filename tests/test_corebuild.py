@@ -1,8 +1,13 @@
 """Unit tests for the build driver; run with `python3 -m unittest discover tests`."""
 
+import hashlib
+import io
 import json
+import os
+import shutil
 import subprocess
 import sys
+import tarfile
 import tempfile
 import unittest
 from pathlib import Path
@@ -358,6 +363,105 @@ class StandaloneTest(unittest.TestCase):
         spec = {"shipped": {"files": {"emu": "1" * 64, "lib/x.so": "2" * 64, "gone": "3" * 64}}}
         files = {"emu": {"sha256": "1" * 64}, "lib/x.so": {"sha256": "9" * 64}}
         self.assertEqual(standalone.compare_shipped(spec, files), {"emu": "match", "lib/x.so": "differs", "gone": "missing"})
+
+
+# A docker stand-in: the classic store names an image by its config digest, the containerd store by another digest.
+FAKE_DOCKER = r'''
+import hashlib, io, json, os, sys, tarfile
+state_path = os.environ["FAKE_DOCKER_STATE"]
+state = json.load(open(state_path)) if os.path.exists(state_path) else {"images": {}, "tags": {}}
+def save():
+    json.dump(state, open(state_path, "w"))
+def resolve(ref):
+    return state["tags"].get(ref) or (ref if ref in state["images"] else None)
+args = sys.argv[1:]
+if args[0] == "load":
+    tar = tarfile.open(fileobj=io.BytesIO(sys.stdin.buffer.read()))
+    entry = json.loads(tar.extractfile("manifest.json").read())[0]
+    config = tar.extractfile(entry["Config"]).read()
+    digest = "sha256:" + hashlib.sha256(config).hexdigest()
+    image = digest if os.environ["FAKE_DOCKER_STORE"] == "classic" else "sha256:" + hashlib.sha256(b"m" + config).hexdigest()
+    layers = json.loads(config)["rootfs"]["diff_ids"]
+    state["images"][image] = {"layers": ["sha256:" + "0" * 64] if os.environ.get("FAKE_DOCKER_BAD") else layers}
+    for tag in entry["RepoTags"]:
+        state["tags"][tag] = image
+    save()
+    print("Loaded image: " + entry["RepoTags"][0])
+elif args[:2] == ["image", "inspect"]:
+    image = resolve(args[4])
+    if image is None:
+        sys.exit(1)
+    print(image if args[3] == "{{.Id}}" else json.dumps(state["images"][image]["layers"]))
+elif args[0] == "tag":
+    state["tags"][args[2]] = resolve(args[1])
+    save()
+elif args[0] == "run":
+    open(state_path + ".run", "w").write(json.dumps(args))
+'''
+
+
+class ToolchainImageTest(unittest.TestCase):
+    def setUp(self):
+        self.tmp = Path(tempfile.mkdtemp())
+        (self.tmp / "docker").write_text(f"#!{sys.executable}\n" + FAKE_DOCKER)
+        (self.tmp / "docker").chmod(0o755)
+        self.env = dict(os.environ)
+        os.environ["PATH"] = f"{self.tmp}{os.pathsep}{os.environ['PATH']}"
+        os.environ["FAKE_DOCKER_STATE"] = str(self.tmp / "state.json")
+        layer = b"layer"
+        self.config = json.dumps({"rootfs": {"type": "layers",
+                                             "diff_ids": ["sha256:" + hashlib.sha256(layer).hexdigest()]}}).encode()
+        self.image_id = "sha256:" + hashlib.sha256(self.config).hexdigest()
+        self.archive = self.tmp / "toolchain.tar.gz"
+        config_name = "blobs/sha256/" + self.image_id[7:]
+        manifest = json.dumps([{"Config": config_name, "RepoTags": ["fake-toolchain:latest"],
+                                "Layers": ["blobs/sha256/layer"]}]).encode()
+        with tarfile.open(self.archive, "w:gz") as tar:
+            for name, data in ((config_name, self.config), ("blobs/sha256/layer", layer), ("manifest.json", manifest)):
+                info = tarfile.TarInfo(name)
+                info.size = len(data)
+                tar.addfile(info, io.BytesIO(data))
+
+    def tearDown(self):
+        os.environ.clear()
+        os.environ.update(self.env)
+        shutil.rmtree(self.tmp)
+
+    def run_one(self):
+        script = recipe.Script(text="true", mounts=[])
+        self.assertEqual(build.run_container(REPO, self.image_id, script, self.tmp / "out"), 0)
+        return json.loads((self.tmp / "state.json.run").read_text())
+
+    def test_classic_store_uses_the_config_digest(self):
+        os.environ["FAKE_DOCKER_STORE"] = "classic"
+        self.assertEqual(build.load_toolchain(self.archive, self.image_id), self.image_id)
+        self.assertIn(self.image_id, self.run_one())
+        self.assertNotIn(build.alias(self.image_id), json.loads((self.tmp / "state.json").read_text())["tags"])
+
+    def test_containerd_store_is_reached_through_the_alias(self):
+        os.environ["FAKE_DOCKER_STORE"] = "containerd"
+        self.assertFalse(build.image_present(self.image_id))
+        self.assertEqual(build.load_toolchain(self.archive, self.image_id), build.alias(self.image_id))
+        self.assertTrue(build.image_present(self.image_id))
+        self.assertIn(build.alias(self.image_id), self.run_one())
+
+    def test_an_archive_of_another_image_is_refused(self):
+        os.environ["FAKE_DOCKER_STORE"] = "containerd"
+        with self.assertRaisesRegex(RuntimeError, "holds image"):
+            build.load_toolchain(self.archive, "sha256:" + "1" * 64)
+        self.assertFalse(build.image_present("sha256:" + "1" * 64))
+
+    def test_a_loaded_image_without_the_archive_layers_is_refused(self):
+        os.environ["FAKE_DOCKER_STORE"] = "containerd"
+        os.environ["FAKE_DOCKER_BAD"] = "1"
+        with self.assertRaisesRegex(RuntimeError, "does not have the layers"):
+            build.load_toolchain(self.archive, self.image_id)
+        self.assertFalse(build.image_present(self.image_id))
+
+    def test_a_missing_image_stops_the_build(self):
+        os.environ["FAKE_DOCKER_STORE"] = "containerd"
+        with self.assertRaisesRegex(RuntimeError, "is not loaded"):
+            build.run_container(REPO, self.image_id, recipe.Script(text="true", mounts=[]), self.tmp / "out")
 
 
 if __name__ == "__main__":

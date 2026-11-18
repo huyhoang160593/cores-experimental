@@ -83,6 +83,12 @@ lists what a selection expands to, and `bump` moves a core to a new commit
 core, its `.info`, the script, `build.log` and `record.json` in
 `results/<core>/<variant>/`.
 
+A toolchain's `image_id` is its image's config digest. `toolchains` checks that
+digest, and the image's layers, against the archive itself, so the check holds on
+both Docker image stores. Docker's containerd image store (the default since
+Docker 29) names images by another digest, so there the image is also tagged
+`cores-toolchain:<config digest>`, and builds use that tag.
+
 ## Known issues
 
 - mame2003_plus does not load when built at `-O0`; use `debug-og`.
