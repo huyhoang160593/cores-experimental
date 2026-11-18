@@ -1402,7 +1402,8 @@
         "artifact_name": "km_flycast_xtreme_libretro.so",
         "driver": "direct-make",
         "make_args": [
-          "HAVE_OPENMP=0"
+          "HAVE_OPENMP=0",
+          "ARCH=arm"
         ],
         "output_path": "flycast_libretro.so",
         "platforms": {
