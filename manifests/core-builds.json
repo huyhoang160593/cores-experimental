@@ -2693,6 +2693,36 @@
         "source_path": "/libretro-super/dist/info/stella2014_libretro.info"
       }
     },
+    "superwhizkid": {
+      "source": {
+        "url": "https://github.com/ryanmsartor/superwhizkid.git",
+        "commit": "d210018543262c3f6c8b70651c29a24e0eb129fd",
+        "requested_ref": "refs/tags/v0.2.0"
+      },
+      "targets": [
+        "arm64",
+        "armhf"
+      ],
+      "build": {
+        "artifact_name": "superwhizkid_libretro.so",
+        "driver": "direct-cmake",
+        "output_path": "superwhizkid_libretro.so",
+        "source_date_epoch": true,
+        "source_dir": "superwhizkid",
+        "cmake": {
+          "target": "superwhizkid_libretro",
+          "arch_defines": {
+            "armhf": {
+              "CMAKE_C_FLAGS": "-mcpu=cortex-a7 -mfpu=neon-vfpv4 -mfloat-abi=hard"
+            }
+          }
+        }
+      },
+      "metadata": {
+        "artifact_name": "superwhizkid_libretro.info",
+        "repo_path": "metadata/superwhizkid/spruceos-d14cdbefe.info"
+      }
+    },
     "swanstation": {
       "source": {
         "url": "https://github.com/libretro/swanstation.git",
