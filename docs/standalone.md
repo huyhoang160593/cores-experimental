@@ -121,7 +121,8 @@ Built against spruceOS `73bb91a19` (2026-10-11); "match" is byte for byte.
 | `moonlight` | `App/Moonlight/.../moonlight` and 32 libraries | match |
 | `bigpemu` | `Emu/JAGUAR/bigpemu/` (134 files, gl4es included) | match |
 | `dsperate-arm64`, `dsperate-a30` | `Emu/NDS/dsperate`, `dsperate.a30` | match |
-| `ppsspp-h700`, `-a30`, `-flip`, `-rgb30`, `-trimui`, `-smartpros` | `Emu/PSP/PPSSPPSDL_*` | match |
+| `ppsspp-h700`, `-a30`, `-trimui`, `-smartpros` | `Emu/PSP/PPSSPPSDL_*` | match |
+| `ppsspp-flip`, `-darkmoss3566`, `-darkmoss3326` | `Emu/PSP/PPSSPPSDL_Flip` (Vulkan), `_dArkMoss3566`, `_dArkMoss3326` of spruceOS `7592638d0` | match (runs 44403715782, 44403753952, 44403735142) |
 | `yabasanshiro-arm64` | `Emu/SATURN/yabasanshiro`, `lib64/` | match |
 | `yabasanshiro-arm64-pgo` | `Emu/SATURN/yabasanshiro`, `lib64/` of spruceOS `fcd5aca3d` (4.5.5, Development) | match |
 | `yabasanshiro-libretro` | `RetroArch/.retroarch/cores64/yabasanshiro_generic_libretro.so` of spruceOS `fcd5aca3d` (4.5.5, Development) | match |
