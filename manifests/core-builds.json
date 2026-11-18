@@ -2756,17 +2756,29 @@
         "requested_ref": "refs/heads/main"
       },
       "targets": [
-        "arm64"
+        "arm64",
+        "armhf"
       ],
       "build": {
         "artifact_name": "swanstation_libretro.so",
         "cmake": {
-          "target": "swanstation_libretro"
+          "target": "swanstation_libretro",
+          "arch_defines": {
+            "armhf": {
+              "CMAKE_C_FLAGS": "-mcpu=cortex-a7 -mfpu=neon-vfpv4 -mfloat-abi=hard",
+              "CMAKE_CXX_FLAGS": "-mcpu=cortex-a7 -mfpu=neon-vfpv4 -mfloat-abi=hard"
+            }
+          }
         },
         "driver": "direct-cmake",
         "output_path": "swanstation_libretro.so",
         "overlays": {
           "arm64": [
+            {
+              "patch": "patches/swanstation/openbios-cmake-3.16.patch"
+            }
+          ],
+          "armhf": [
             {
               "patch": "patches/swanstation/openbios-cmake-3.16.patch"
             }
