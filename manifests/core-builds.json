@@ -1389,6 +1389,32 @@
         "repo_path": "metadata/km_duckswanstation_xtreme_amped_libretro.info"
       }
     },
+    "km_flycast_xtreme": {
+      "source": {
+        "url": "https://github.com/KMFDManic/morpheuscast_xtreme.git",
+        "commit": "4c293f306bc16a265c2d768af5d0cea138426054",
+        "requested_ref": "refs/heads/master"
+      },
+      "targets": [
+        "armhf"
+      ],
+      "build": {
+        "artifact_name": "km_flycast_xtreme_libretro.so",
+        "driver": "direct-make",
+        "make_args": [
+          "HAVE_OPENMP=0"
+        ],
+        "output_path": "flycast_libretro.so",
+        "platforms": {
+          "armhf": "classic_armv7_a7"
+        },
+        "source_dir": "morpheuscast_xtreme"
+      },
+      "metadata": {
+        "artifact_name": "km_flycast_xtreme_libretro.info",
+        "repo_path": "metadata/km_flycast_xtreme/spruceos-7592638d0.info"
+      }
+    },
     "km_parallel_n64_xtreme_amped_turbo": {
       "source": {
         "url": "https://github.com/KMFDManic/parallel-n64.git",
