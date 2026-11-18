@@ -1035,6 +1035,32 @@
         "source_path": "/libretro-super/dist/info/gambatte_libretro.info"
       }
     },
+    "gametank": {
+      "source": {
+        "url": "https://github.com/SundownerSport/gametank-libretro.git",
+        "commit": "b9d0436ba70786912e9ef2dda9b3b3ee8e1c3c13",
+        "requested_ref": "refs/heads/main"
+      },
+      "targets": [
+        "arm64",
+        "armhf"
+      ],
+      "build": {
+        "artifact_name": "gametank_libretro.so",
+        "driver": "direct-make",
+        "git_abbrev": 7,
+        "output_path": "gametank_libretro.so",
+        "platforms": {
+          "arm64": "unix",
+          "armhf": "unix"
+        },
+        "source_dir": "gametank-libretro"
+      },
+      "metadata": {
+        "artifact_name": "gametank_libretro.info",
+        "repo_path": "metadata/gametank/spruceos-d14cdbefe.info"
+      }
+    },
     "gearboy": {
       "source": {
         "url": "https://github.com/drhelius/Gearboy.git",
