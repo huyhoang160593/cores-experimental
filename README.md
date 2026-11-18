@@ -47,6 +47,7 @@ with `-static` and `-stripped` and bundled separately.
 | [Build cores](.github/workflows/build.yml) (manual) | the cores, boards, profiles and extra flags you choose | every build loads |
 | [Cross product](.github/workflows/cross-product.yml) (manual) | every core × every board at `max` | every build loads |
 | [Freeze a release](.github/workflows/freeze.yml) (manual) | the chosen set, each built twice | every build loads and both builds are byte-identical |
+| [Build a standalone](.github/workflows/standalone.yml) (manual) | one [standalone recipe](docs/standalone.md) | every output exists and every library its ELFs need is accounted for; the summary says whether the files match spruce's |
 | [Check](.github/workflows/check.yml) (every push and PR) | nothing | the catalog check and unit tests pass |
 
 "Loads" means the core is loaded under qemu with the toolchain's ARM libraries
@@ -82,6 +83,12 @@ lists what a selection expands to, and `bump` moves a core to a new commit
 ([how](docs/catalog.md#moving-a-core-to-a-new-commit)). Each build leaves the
 core, its `.info`, the script, `build.log` and `record.json` in
 `results/<core>/<variant>/`.
+
+A toolchain's `image_id` is its image's config digest. `toolchains` checks that
+digest, and the image's layers, against the archive itself, so the check holds on
+both Docker image stores. Docker's containerd image store (the default since
+Docker 29) names images by another digest, so there the image is also tagged
+`cores-toolchain:<config digest>`, and builds use that tag.
 
 ## Known issues
 

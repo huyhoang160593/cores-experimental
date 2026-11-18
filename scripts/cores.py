@@ -11,7 +11,8 @@
   bundle --results DIR --out DIR         device-layout bundles per board+profile
   freeze --results DIR --name NAME       write or check a release freeze manifest
   summary --results DIR                  markdown status table
-  standalone list|script|build [NAME]    standalone emulators (docs/standalone.md)
+  standalone list|script|toolchain|build [NAME]
+                                         standalone emulators (docs/standalone.md)
 
 Selection options: --cores, --boards, --profiles (each 'all' or a list),
 --flags (extra GCC flags), --arch (limit universal builds to one ABI),
@@ -22,7 +23,6 @@ from __future__ import annotations
 
 import argparse
 import json
-import shlex
 import subprocess
 import sys
 from pathlib import Path
@@ -151,11 +151,12 @@ def cmd_toolchains(repo: Repo, args) -> int:
         if (size, digest) != (toolchain["archive"]["size"], toolchain["archive"]["sha256"]):
             print(f"{name}: {archive} does not match manifests/toolchains.json", file=sys.stderr)
             return 2
-        subprocess.run(f"gunzip -c {shlex.quote(str(archive))} | docker load", shell=True, check=True)
-        if not build.image_present(toolchain["image_id"]):
-            print(f"{name}: loaded archive did not produce {toolchain['image_id']}", file=sys.stderr)
+        try:
+            ref = build.load_toolchain(archive, toolchain["image_id"])
+        except RuntimeError as error:
+            print(f"{name}: {error}", file=sys.stderr)
             return 2
-        print(f"{name}: loaded {toolchain['image_id'][:19]}")
+        print(f"{name}: loaded {toolchain['image_id'][:19]}" + ("" if ref == toolchain["image_id"] else f" as {ref}"))
     return 0
 
 
@@ -231,6 +232,10 @@ def cmd_standalone(repo: Repo, args) -> int:
         spec = builds[args.name]
         print(standalone.render(args.name, spec, repo.toolchains[spec["toolchain"]]).text, end="")
         return 0
+    if args.action == "toolchain":
+        name = builds[args.name]["toolchain"]
+        print(name, repo.toolchains[name]["archive"]["name"])
+        return 0
     record = standalone.build_one(repo, args.name, Path(args.out))
     print(f"{args.name}: {record['status']}" + "".join(f"\n  {p}" for p in record["problems"]))
     return 0 if record["status"] == "built" else 1
@@ -273,7 +278,7 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("--results", required=True)
     p.add_argument("--annotations", action="store_true", help="print GitHub warning/error lines")
     p = sub.add_parser("standalone")
-    p.add_argument("action", choices=("list", "script", "build"))
+    p.add_argument("action", choices=("list", "script", "toolchain", "build"))
     p.add_argument("name", nargs="?")
     p.add_argument("--out", default="out")
     args = parser.parse_args(argv)

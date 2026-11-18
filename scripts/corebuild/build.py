@@ -9,6 +9,7 @@ import platform
 import re
 import shutil
 import subprocess
+import tarfile
 import time
 from pathlib import Path
 
@@ -30,16 +31,108 @@ def sha256(path: Path) -> str:
     return digest.hexdigest()
 
 
-def image_present(image_id: str) -> bool:
+def _inspect(ref: str, fmt: str) -> str | None:
     if shutil.which("docker") is None:
         raise RuntimeError("docker is not on PATH")
-    result = subprocess.run(["docker", "image", "inspect", "--format", "{{.Id}}", image_id],
+    result = subprocess.run(["docker", "image", "inspect", "--format", fmt, ref],
                             capture_output=True, text=True)
-    return result.returncode == 0 and result.stdout.strip() == image_id
+    return result.stdout.strip() if result.returncode == 0 else None
+
+
+def alias(image_id: str) -> str:
+    """The tag load_toolchain gives an image whose local ID is not its config digest."""
+    return "cores-toolchain:" + image_id.split(":", 1)[1]
+
+
+def image_ref(image_id: str) -> str | None:
+    """The docker reference of the loaded image whose config digest is image_id, or None.
+
+    The classic image store's IDs are config digests; the containerd store (Docker 29's default) uses
+    manifest digests, so there load_toolchain tags the image with alias(image_id)."""
+    if _inspect(image_id, "{{.Id}}") == image_id:
+        return image_id
+    ref = alias(image_id)
+    return ref if _inspect(ref, "{{.Id}}") is not None else None
+
+
+def image_present(image_id: str) -> bool:
+    return image_ref(image_id) is not None
+
+
+class _Tee:
+    def __init__(self, source, sink):
+        self.source, self.sink = source, sink
+
+    def read(self, size=-1):
+        data = self.source.read(size)
+        if data:
+            self.sink.write(data)
+        return data
+
+
+def load_toolchain(archive: Path, image_id: str) -> str:
+    """docker load a `docker save` .tar.gz, check it against image_id on either image store, return its ref.
+
+    The archive's config must hash to image_id, and the loaded image must have that config's layers."""
+    if shutil.which("docker") is None:
+        raise RuntimeError("docker is not on PATH")
+    small = {}
+    gunzip = subprocess.Popen(["gunzip", "-c", str(archive)], stdout=subprocess.PIPE)
+    load = subprocess.Popen(["docker", "load"], stdin=subprocess.PIPE, stdout=subprocess.PIPE,
+                            stderr=subprocess.STDOUT)
+    tee = _Tee(gunzip.stdout, load.stdin)
+    unreadable = None
+    try:
+        with tarfile.open(fileobj=tee, mode="r|") as tar:
+            for member in tar:
+                if member.isfile() and member.size < (1 << 20):
+                    small[member.name.removeprefix("./")] = tar.extractfile(member).read()
+        while tee.read(1 << 20):
+            pass
+    except tarfile.TarError as error:
+        unreadable = error
+    except BrokenPipeError:
+        pass  # docker load stopped reading; its exit status and output say why
+    finally:
+        gunzip.stdout.close()
+        try:
+            load.stdin.close()
+        except BrokenPipeError:
+            pass
+    with load.stdout:
+        output = load.stdout.read().decode(errors="replace")
+    gunzip_status, load_status = gunzip.wait(), load.wait()
+    if unreadable is not None:
+        raise RuntimeError(f"{archive.name} is not a tar archive ({unreadable})")
+    if gunzip_status != 0 or load_status != 0:
+        raise RuntimeError(f"docker load failed: {output.strip()}")
+    try:
+        entry = json.loads(small["manifest.json"])[0]
+        config = small[entry["Config"]]
+    except (KeyError, IndexError, ValueError) as error:
+        raise RuntimeError(f"{archive.name} is not a docker save archive ({error})") from None
+    digest = "sha256:" + hashlib.sha256(config).hexdigest()
+    if digest != image_id:
+        raise RuntimeError(f"{archive.name} holds image {digest}, not {image_id}")
+    loaded = re.findall(r"^Loaded image(?: ID)?: (\S+)$", output, re.M)
+    if not loaded:
+        raise RuntimeError(f"docker load named no image: {output.strip()}")
+    layers = _inspect(loaded[0], "{{json .RootFS.Layers}}")
+    if layers is None or json.loads(layers) != json.loads(config)["rootfs"]["diff_ids"]:
+        raise RuntimeError(f"{loaded[0]} does not have the layers of {image_id}")
+    if image_ref(image_id) is None:
+        subprocess.run(["docker", "tag", loaded[0], alias(image_id)], check=True, capture_output=True)
+    ref = image_ref(image_id)
+    if ref is None:
+        raise RuntimeError(f"{image_id} is not reachable after loading {archive.name}")
+    return ref
 
 
 def run_container(repo: Repo, image_id: str, script: recipe.Script, out: Path,
                   cpus: str | None = None) -> int:
+    ref = image_ref(image_id)
+    if ref is None:
+        raise RuntimeError(f"toolchain image {image_id} is not loaded")
     out.mkdir(parents=True)
     (out / "script.sh").write_text(script.text)
     command = ["docker", "run", "--rm", "-e", f"OUTPUT_UID={os.getuid()}",
@@ -48,7 +141,7 @@ def run_container(repo: Repo, image_id: str, script: recipe.Script, out: Path,
         command += ["--cpuset-cpus", cpus]
     for host, container in script.mounts:
         command += ["-v", f"{(repo.root / host).resolve()}:{container}:ro"]
-    command += [image_id, "bash", "-lc", script.text]
+    command += [ref, "bash", "-lc", script.text]
     with (out / "build.log").open("w") as log:
         return subprocess.run(command, stdout=log, stderr=subprocess.STDOUT).returncode
 

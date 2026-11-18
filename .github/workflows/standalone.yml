@@ -1,0 +1,82 @@
+name: Build a standalone
+
+# One recipe from manifests/standalone-builds.json, in its pinned image. It passes when every output exists and
+# every shipped ELF's libraries are accounted for; the summary says whether the bytes match what spruce ships.
+
+on:
+  workflow_dispatch:
+    inputs:
+      recipe:
+        description: Recipe name (python3 scripts/cores.py standalone list)
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+    env:
+      RECIPE: ${{ inputs.recipe }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Check the catalog and find the recipe's image
+        id: recipe
+        run: |
+          python3 scripts/cores.py check
+          found="$(python3 scripts/cores.py standalone toolchain "$RECIPE")"
+          read -r toolchain archive <<< "$found"
+          echo "toolchain=$toolchain" >> "$GITHUB_OUTPUT"
+          echo "archive=$archive" >> "$GITHUB_OUTPUT"
+      - name: Download, verify and load the toolchain image
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TOOLCHAIN: ${{ steps.recipe.outputs.toolchain }}
+          ARCHIVE: ${{ steps.recipe.outputs.archive }}
+        run: |
+          if ! gh release view toolchains --json assets --jq '.assets[].name' | grep -qxF "$ARCHIVE"; then
+            echo "::error::$ARCHIVE (image $TOOLCHAIN) is not on the toolchains release yet"
+            exit 1
+          fi
+          dir="$RUNNER_TEMP/toolchains"
+          # The release CDN sometimes resets a connection; the size and sha256 check below still guards the archive.
+          for attempt in 1 2 3; do
+            gh release download toolchains --pattern "$ARCHIVE" --dir "$dir" --clobber && break
+            [ "$attempt" -lt 3 ] || exit 1
+            echo "download of $ARCHIVE failed (attempt $attempt of 3), retrying"; sleep $((attempt * 15))
+          done
+          python3 scripts/cores.py toolchains --dir "$dir" --names "$TOOLCHAIN"
+          rm -rf "$dir"
+          df -h / | tail -1
+      - name: Build
+        run: python3 scripts/cores.py standalone build "$RECIPE" --out "$RUNNER_TEMP/results"
+      - name: Summarize
+        if: ${{ always() }}
+        run: |
+          record="$RUNNER_TEMP/results/$RECIPE/record.json"
+          [ -f "$record" ] || { echo "No record: the build did not start." >> "$GITHUB_STEP_SUMMARY"; exit 0; }
+          python3 - "$record" >> "$GITHUB_STEP_SUMMARY" <<'EOF'
+          import json, sys
+          r = json.load(open(sys.argv[1]))
+          print(f"## {r['name']}: {r['status']}\n\nsource `{r['source']['url']}` @ `{r['source']['commit']}`, exit {r['exit_code']}\n")
+          for p in r["problems"]:
+              print(f"- {p}")
+          if r["shipped"]:
+              print("\n| shipped file | compared with spruce |\n|---|---|")
+              for path, state in sorted(r["shipped"].items()):
+                  print(f"| `{path}` | {state} |")
+          EOF
+      - name: Upload results
+        if: ${{ always() }}
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: standalone-${{ inputs.recipe }}
+          path: ${{ runner.temp }}/results/
+          # Some recipes ship under RetroArch/.retroarch/, which upload-artifact skips by default.
+          include-hidden-files: true
+          if-no-files-found: ignore
+          retention-days: 14
