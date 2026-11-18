@@ -64,7 +64,7 @@ from pinned parts (`Dockerfile.standalone.<name>`, loaded by `manifests/toolchai
 | `standalone-vtree`, `-pcsx_rearmed`, `-moonlight`, `-gl4es`, `-ppsspp`, `-mupen64plus`, `-scummvm` | the 64-bit build of that emulator (`gl4es`: BigPEmu; `ppsspp`: H700) | the pinned arm64 base plus the wrapper's package list |
 | `standalone-dsperate`, `standalone-yabasanshiro` | `dsperate-arm64`, `yabasanshiro-arm64` | the same, plus the Kitware CMake release the wrapper's build used |
 | `standalone-armhf` | every `-a30` recipe | the pinned armhf base (the A30 GCC 13.2 toolchain and its glibc 2.23 sysroot) plus the tools the wrappers' `Dockerfile.a30` install |
-| `standalone-flip` | `ppsspp-flip`, `ppsspp-rgb30` | Debian bookworm (by digest) with steward-fu's Flip toolchain (GCC 13.3) |
+| `standalone-flip` | `ppsspp-flip`, `ppsspp-darkmoss3566`, `ppsspp-darkmoss3326` | Debian bookworm (by digest) with steward-fu's Flip toolchain (GCC 13.3) |
 | `standalone-trimui` | `ppsspp-trimui` | the arm64 base's GCC 9.4 over Linaro 7.5's glibc and TrimUI's tg5040 SDK |
 | `standalone-tsps` | `ppsspp-smartpros` | the compiler and sysroot of TrimUI's tg5050 SDK (GCC 10.3) |
 | `standalone-yabasanshiro-pgo` | `yabasanshiro-arm64-pgo`, `yabasanshiro-libretro`, `flycast-libretro-t3` | `standalone-yabasanshiro` plus Arm's GNU Toolchain 10.3-2021.07, a generic sysroot (its glibc 2.33, Khronos GLES headers, a stub libGLESv2) and the two builds' PGO profiles ([Saturn](#saturn-builds-spruceos-455)) |

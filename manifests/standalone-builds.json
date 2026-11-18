@@ -3131,9 +3131,9 @@
     },
     "ppsspp-flip": {
       "extends": "ppsspp",
-      "description": "PPSSPP v1.20.3: Emu/PSP/PPSSPPSDL_Flip on the Miyoo Flip (RK3566, Mali G52, fbdev). Built as spruceUI/PPSSPP-spruce@f74caa2 build-flip.sh does: steward-fu's Flip GCC 13.3 toolchain with LTO",
+      "description": "PPSSPP v1.20.3: Emu/PSP/PPSSPPSDL_Flip on the Miyoo Flip (RK3566, Mali G52, fbdev; Vulkan on VK_KHR_display when spruce's Vulkan driver is present). Built as spruceUI/PPSSPP-spruce@e193c9a build-flip.sh does: steward-fu's Flip GCC 13.3 toolchain with LTO, without the Vulkan-probe patch, with the PowerVR builds' display fallback",
       "toolchain": "standalone-flip",
-      "source_date_epoch": 1776009931,
+      "source_date_epoch": 1794698237,
       "patches": [
         {
           "diff": "patches/standalone/ppsspp/common-1-fullscreen.patch"
@@ -3154,7 +3154,7 @@
           "diff": "patches/standalone/ppsspp/common-6-sigusr2-toggle-pause-menu.patch"
         },
         {
-          "diff": "patches/standalone/ppsspp/common-7-skip-vulkan-probe.patch"
+          "diff": "patches/standalone/ppsspp/pvr-5-vulkan-display-fallback.patch"
         },
         {
           "diff": "patches/standalone/ppsspp/flip-1-pause-menu-compact.patch"
@@ -3166,7 +3166,7 @@
         "printf '%s\\n' 'set(CMAKE_SYSTEM_NAME Linux)' 'set(CMAKE_SYSTEM_PROCESSOR aarch64)' 'set(CMAKE_C_COMPILER /opt/flip/bin/aarch64-flip-linux-gnu-gcc)' 'set(CMAKE_CXX_COMPILER /opt/flip/bin/aarch64-flip-linux-gnu-g++)' \"set(CMAKE_SYSROOT $SYSROOT)\" \"set(CMAKE_FIND_ROOT_PATH $SYSROOT)\" 'set(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)' 'set(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)' 'set(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)' 'set(CMAKE_FIND_ROOT_PATH_MODE_PACKAGE ONLY)' 'set(PKG_CONFIG_EXECUTABLE /usr/bin/pkg-config)' \"set(ENV{PKG_CONFIG_SYSROOT_DIR} \\\"$SYSROOT\\\")\" \"set(ENV{PKG_CONFIG_LIBDIR} \\\"$SYSROOT/usr/lib/pkgconfig:$SYSROOT/usr/share/pkgconfig\\\")\" 'set(CMAKE_INTERPROCEDURAL_OPTIMIZATION TRUE)' > /tmp/flip-toolchain.cmake",
         "export PATH=\"/opt/flip/bin:/opt/flip/aarch64-flip-linux-gnu/bin:${PATH}\"",
         "mkdir -p /build/ppsspp/build && cd /build/ppsspp/build",
-        "cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE=/tmp/flip-toolchain.cmake -DCMAKE_C_COMPILER_LAUNCHER=ccache -DCMAKE_CXX_COMPILER_LAUNCHER=ccache \"-DCMAKE_C_FLAGS=-Ofast -mcpu=cortex-a55 -ffunction-sections -fdata-sections -fomit-frame-pointer -flto=auto -Wno-error\" \"-DCMAKE_CXX_FLAGS=-Ofast -mcpu=cortex-a55 -ffunction-sections -fdata-sections -fomit-frame-pointer -flto=auto -Wno-error\" \"-DCMAKE_EXE_LINKER_FLAGS=-Wl,--gc-sections -flto=auto\" -DUSING_GLES2=ON -DUSING_EGL=ON -DUSING_FBDEV=ON -DVULKAN=OFF -DUSING_X11_VULKAN=OFF -DUSE_WAYLAND_WSI=OFF -DBUILD_SHARED_LIBS=OFF -DUSE_SYSTEM_LIBPNG=OFF -DUSE_SYSTEM_FFMPEG=OFF -DUSE_DISCORD=OFF -DUSE_MINIUPNPC=OFF -DHEADLESS=OFF -DUNITTEST=OFF -DCMAKE_DISABLE_FIND_PACKAGE_SDL2_ttf=ON -DCMAKE_DISABLE_FIND_PACKAGE_Fontconfig=ON -DCMAKE_DISABLE_FIND_PACKAGE_X11=ON",
+        "cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE=/tmp/flip-toolchain.cmake -DCMAKE_C_COMPILER_LAUNCHER=ccache -DCMAKE_CXX_COMPILER_LAUNCHER=ccache \"-DCMAKE_C_FLAGS=-Ofast -mcpu=cortex-a55 -ffunction-sections -fdata-sections -fomit-frame-pointer -flto=auto -Wno-error\" \"-DCMAKE_CXX_FLAGS=-Ofast -mcpu=cortex-a55 -ffunction-sections -fdata-sections -fomit-frame-pointer -flto=auto -Wno-error\" \"-DCMAKE_EXE_LINKER_FLAGS=-Wl,--gc-sections -flto=auto\" -DUSING_GLES2=ON -DUSING_EGL=ON -DUSING_FBDEV=ON -DVULKAN=ON -DUSE_VULKAN_DISPLAY_KHR=ON -DUSING_X11_VULKAN=OFF -DUSE_WAYLAND_WSI=OFF -DBUILD_SHARED_LIBS=OFF -DUSE_SYSTEM_LIBPNG=OFF -DUSE_SYSTEM_FFMPEG=OFF -DUSE_DISCORD=OFF -DUSE_MINIUPNPC=OFF -DHEADLESS=OFF -DUNITTEST=OFF -DCMAKE_DISABLE_FIND_PACKAGE_SDL2_ttf=ON -DCMAKE_DISABLE_FIND_PACKAGE_Fontconfig=ON -DCMAKE_DISABLE_FIND_PACKAGE_X11=ON",
         "find . \\( -name 'flags.make' -o -name 'build.ninja' \\) -exec sed -i 's|-isystem |-I|g' {} +",
         "make -j\"$(nproc)\" PPSSPPSDL"
       ],
@@ -3202,15 +3202,15 @@
         "forbidden": []
       },
       "shipped": {
-        "spruceos": "73bb91a19",
+        "spruceos": "7592638d0",
         "files": {
-          "PPSSPPSDL_Flip": "1c628df231232f3eae94e0289c466467070fab26f50c4e09a362fc77d4ee0cb7"
+          "PPSSPPSDL_Flip": "73ff291ce0c716da0c40396a1e39ee91fe277246ebb43804c8716e91a06d18ef"
         }
       }
     },
-    "ppsspp-rgb30": {
+    "ppsspp-darkmoss3566": {
       "extends": "ppsspp",
-      "description": "PPSSPP v1.20.3: Emu/PSP/PPSSPPSDL_RGB30 on the RGB30, Miniloong and A10 Mini (RK3566 on dArkMoss, KMSDRM). Built as spruceUI/PPSSPP-spruce@670bd4b build-rgb30.sh does (branch rgb30-target): the Flip toolchain",
+      "description": "PPSSPP v1.20.3: Emu/PSP/PPSSPPSDL_dArkMoss3566 on the RGB30, Miniloong and A10 Mini (RK3566 on dArkMoss, KMSDRM). Built as spruceUI/PPSSPP-spruce build-darkmoss3566.sh does (build-rgb30.sh at 670bd4b, renamed in a05d12f; same bytes): the Flip toolchain",
       "toolchain": "standalone-flip",
       "source_date_epoch": 1788130196,
       "patches": [
@@ -3253,7 +3253,7 @@
         "files": [
           {
             "from": "/build/ppsspp/build/PPSSPPSDL",
-            "to": "PPSSPPSDL_RGB30",
+            "to": "PPSSPPSDL_dArkMoss3566",
             "strip": "-s"
           },
           {
@@ -3263,7 +3263,7 @@
           }
         ],
         "spruce": {
-          "PPSSPPSDL_RGB30": "Emu/PSP/PPSSPPSDL_RGB30"
+          "PPSSPPSDL_dArkMoss3566": "Emu/PSP/PPSSPPSDL_dArkMoss3566"
         }
       },
       "needed": {
@@ -3281,9 +3281,88 @@
         "forbidden": []
       },
       "shipped": {
-        "spruceos": "73bb91a19",
+        "spruceos": "7592638d0",
         "files": {
-          "PPSSPPSDL_RGB30": "621bef60ae7c360acdfbd445358e58c9f930e087c20a4273673f7c477415394d"
+          "PPSSPPSDL_dArkMoss3566": "621bef60ae7c360acdfbd445358e58c9f930e087c20a4273673f7c477415394d"
+        }
+      }
+    },
+    "ppsspp-darkmoss3326": {
+      "extends": "ppsspp",
+      "description": "PPSSPP v1.20.3: Emu/PSP/PPSSPPSDL_dArkMoss3326 on the RK3326 dArkMoss units (Cortex-A35, Mali G31, KMSDRM). Built as spruceUI/PPSSPP-spruce@e93682a does: the dArkMoss3566 build with -mcpu=cortex-a35, since A55 code dies with SIGILL on the A35",
+      "toolchain": "standalone-flip",
+      "source_date_epoch": 1793140493,
+      "patches": [
+        {
+          "diff": "patches/standalone/ppsspp/common-1-fullscreen.patch"
+        },
+        {
+          "diff": "patches/standalone/ppsspp/common-2-hide-cursor.patch"
+        },
+        {
+          "diff": "patches/standalone/ppsspp/common-3-no-mute-secondary.patch"
+        },
+        {
+          "diff": "patches/standalone/ppsspp/common-4-remap-pause-menu.patch"
+        },
+        {
+          "diff": "patches/standalone/ppsspp/common-5-sigusr1-save-and-quit.patch"
+        },
+        {
+          "diff": "patches/standalone/ppsspp/common-6-sigusr2-toggle-pause-menu.patch"
+        },
+        {
+          "diff": "patches/standalone/ppsspp/common-7-skip-vulkan-probe.patch"
+        },
+        {
+          "diff": "patches/standalone/ppsspp/rgb30-1-fullscreen-kmsdrm.patch"
+        }
+      ],
+      "steps": [
+        "set +u +o pipefail",
+        "SYSROOT=$(/opt/flip/bin/aarch64-flip-linux-gnu-gcc -print-sysroot)",
+        "printf '%s\\n' 'set(CMAKE_SYSTEM_NAME Linux)' 'set(CMAKE_SYSTEM_PROCESSOR aarch64)' 'set(CMAKE_C_COMPILER /opt/flip/bin/aarch64-flip-linux-gnu-gcc)' 'set(CMAKE_CXX_COMPILER /opt/flip/bin/aarch64-flip-linux-gnu-g++)' \"set(CMAKE_SYSROOT $SYSROOT)\" \"set(CMAKE_FIND_ROOT_PATH $SYSROOT)\" 'set(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)' 'set(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)' 'set(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)' 'set(CMAKE_FIND_ROOT_PATH_MODE_PACKAGE ONLY)' 'set(PKG_CONFIG_EXECUTABLE /usr/bin/pkg-config)' \"set(ENV{PKG_CONFIG_SYSROOT_DIR} \\\"$SYSROOT\\\")\" \"set(ENV{PKG_CONFIG_LIBDIR} \\\"$SYSROOT/usr/lib/pkgconfig:$SYSROOT/usr/share/pkgconfig\\\")\" 'set(CMAKE_INTERPROCEDURAL_OPTIMIZATION TRUE)' > /tmp/flip-toolchain.cmake",
+        "export PATH=\"/opt/flip/bin:/opt/flip/aarch64-flip-linux-gnu/bin:${PATH}\"",
+        "mkdir -p /build/ppsspp/build && cd /build/ppsspp/build",
+        "cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE=/tmp/flip-toolchain.cmake -DCMAKE_C_COMPILER_LAUNCHER=ccache -DCMAKE_CXX_COMPILER_LAUNCHER=ccache \"-DCMAKE_C_FLAGS=-Ofast -mcpu=cortex-a35 -ffunction-sections -fdata-sections -fomit-frame-pointer -flto=auto -Wno-error\" \"-DCMAKE_CXX_FLAGS=-Ofast -mcpu=cortex-a35 -ffunction-sections -fdata-sections -fomit-frame-pointer -flto=auto -Wno-error\" \"-DCMAKE_EXE_LINKER_FLAGS=-Wl,--gc-sections -flto=auto\" -DUSING_GLES2=ON -DUSING_EGL=OFF -DUSING_FBDEV=OFF -DVULKAN=OFF -DUSING_X11_VULKAN=OFF -DUSE_WAYLAND_WSI=OFF -DBUILD_SHARED_LIBS=OFF -DUSE_SYSTEM_LIBPNG=OFF -DUSE_SYSTEM_FFMPEG=OFF -DUSE_DISCORD=OFF -DUSE_MINIUPNPC=OFF -DHEADLESS=OFF -DUNITTEST=OFF -DCMAKE_DISABLE_FIND_PACKAGE_SDL2_ttf=ON -DCMAKE_DISABLE_FIND_PACKAGE_Fontconfig=ON -DCMAKE_DISABLE_FIND_PACKAGE_X11=ON",
+        "find . \\( -name 'flags.make' -o -name 'build.ninja' \\) -exec sed -i 's|-isystem |-I|g' {} +",
+        "make -j\"$(nproc)\" PPSSPPSDL"
+      ],
+      "output": {
+        "files": [
+          {
+            "from": "/build/ppsspp/build/PPSSPPSDL",
+            "to": "PPSSPPSDL_dArkMoss3326",
+            "strip": "-s"
+          },
+          {
+            "from": "/build/ppsspp/assets",
+            "to": "assets",
+            "dir": true
+          }
+        ],
+        "spruce": {
+          "PPSSPPSDL_dArkMoss3326": "Emu/PSP/PPSSPPSDL_dArkMoss3326"
+        }
+      },
+      "needed": {
+        "device": [
+          "ld-linux-aarch64.so.1",
+          "libEGL.so.1",
+          "libGLESv2.so.2",
+          "libSDL2-2.0.so.0",
+          "libc.so.6",
+          "libgcc_s.so.1",
+          "libm.so.6",
+          "libstdc++.so.6",
+          "libz.so.1"
+        ],
+        "forbidden": []
+      },
+      "shipped": {
+        "spruceos": "7592638d0",
+        "files": {
+          "PPSSPPSDL_dArkMoss3326": "5221dcc2d0a18592cb5a43424c765f06ab46a4c59b4bf827c2578c724e3ad264"
         }
       }
     },
