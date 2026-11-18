@@ -290,6 +290,17 @@ class StandaloneTest(unittest.TestCase):
     def test_recipes_are_consistent(self):
         self.assertEqual(standalone.check(REPO), [])
 
+    def test_toolchain_names_the_image_a_workflow_downloads(self):
+        def toolchain(name):
+            return subprocess.run([sys.executable, str(ROOT / "scripts/cores.py"), "standalone", "toolchain", name],
+                                  capture_output=True, text=True)
+        found = toolchain("mupen64plus-arm64-gliden64")  # inherits its toolchain through extends
+        self.assertEqual(found.returncode, 0, found.stderr)
+        self.assertEqual(found.stdout.split(), ["standalone-mupen64plus",
+                                                REPO.toolchains["standalone-mupen64plus"]["archive"]["name"]])
+        self.assertEqual(toolchain("ppsspp").returncode, 2)  # abstract: never built
+        self.assertTrue((ROOT / ".github/workflows/standalone.yml").is_file())
+
     def test_script_pins_the_source_and_ships_the_libraries(self):
         text = standalone.render("flycast-standalone", self.spec, self.toolchain).text
         self.assertIn(f"checkout -q {self.spec['source']['commit']}", text)

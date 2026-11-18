@@ -8,8 +8,12 @@ hashes of the files spruce ships today.
 ```bash
 python3 scripts/cores.py standalone list
 python3 scripts/cores.py standalone script flycast-standalone   # the build script
+python3 scripts/cores.py standalone toolchain flycast-standalone  # its image and archive
 python3 scripts/cores.py standalone build flycast-standalone --out results
 ```
+
+On GitHub, the *Build a standalone* workflow builds one recipe by name. It stops
+straight away if the recipe's image archive is not on the `toolchains` release.
 
 A build leaves the shipped files in `results/<name>/dist/`, laid out as the
 recipe's `output.spruce` map puts them on the card. Next to `dist/` are the build

@@ -11,7 +11,8 @@
   bundle --results DIR --out DIR         device-layout bundles per board+profile
   freeze --results DIR --name NAME       write or check a release freeze manifest
   summary --results DIR                  markdown status table
-  standalone list|script|build [NAME]    standalone emulators (docs/standalone.md)
+  standalone list|script|toolchain|build [NAME]
+                                         standalone emulators (docs/standalone.md)
 
 Selection options: --cores, --boards, --profiles (each 'all' or a list),
 --flags (extra GCC flags), --arch (limit universal builds to one ABI),
@@ -231,6 +232,10 @@ def cmd_standalone(repo: Repo, args) -> int:
         spec = builds[args.name]
         print(standalone.render(args.name, spec, repo.toolchains[spec["toolchain"]]).text, end="")
         return 0
+    if args.action == "toolchain":
+        name = builds[args.name]["toolchain"]
+        print(name, repo.toolchains[name]["archive"]["name"])
+        return 0
     record = standalone.build_one(repo, args.name, Path(args.out))
     print(f"{args.name}: {record['status']}" + "".join(f"\n  {p}" for p in record["problems"]))
     return 0 if record["status"] == "built" else 1
@@ -273,7 +278,7 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("--results", required=True)
     p.add_argument("--annotations", action="store_true", help="print GitHub warning/error lines")
     p = sub.add_parser("standalone")
-    p.add_argument("action", choices=("list", "script", "build"))
+    p.add_argument("action", choices=("list", "script", "toolchain", "build"))
     p.add_argument("name", nargs="?")
     p.add_argument("--out", default="out")
     args = parser.parse_args(argv)
