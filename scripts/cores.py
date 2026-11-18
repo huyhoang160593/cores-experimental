@@ -13,6 +13,8 @@
   summary --results DIR                  markdown status table
   standalone list|script|toolchain|build [NAME]
                                          standalone emulators (docs/standalone.md)
+  inventory --spruceos REPO [--rev REV]  record spruceOS's emulators and shipped files (docs/inventory.md)
+  coverage [--json] [--strict]           which of those files a recipe here builds or reproduces
 
 Selection options: --cores, --boards, --profiles (each 'all' or a list),
 --flags (extra GCC flags), --arch (limit universal builds to one ABI),
@@ -27,8 +29,8 @@ import subprocess
 import sys
 from pathlib import Path
 
-from corebuild import build, recipe, release, standalone
-from corebuild.catalog import COMMIT, Repo
+from corebuild import build, inventory, recipe, release, standalone
+from corebuild.catalog import COMMIT, Repo, load_json
 from corebuild.variants import RUNTIMES, Variant, parse_flags, plan
 
 
@@ -52,7 +54,8 @@ def expand(repo: Repo, args: argparse.Namespace, core: str) -> list[Variant]:
 
 
 def cmd_check(repo: Repo, args) -> int:
-    errors = repo.check() + standalone.check(repo)
+    path, names = _inventory_files(repo)
+    errors = repo.check() + standalone.check(repo) + inventory.check(names, load_json(path))
     for error in errors:
         print(error)
     print(f"{len(repo.cores)} cores, {len(repo.boards)} boards, {len(repo.profiles)} profiles: "
@@ -241,6 +244,28 @@ def cmd_standalone(repo: Repo, args) -> int:
     return 0 if record["status"] == "built" else 1
 
 
+def _inventory_files(repo: Repo) -> tuple[Path, dict]:
+    names = load_json(repo.root / "manifests/emulator-names.json")["names"]
+    return repo.root / "manifests/emulator-inventory.json", names
+
+
+def cmd_inventory(repo: Repo, args) -> int:
+    path, names = _inventory_files(repo)
+    data = inventory.generate(Path(args.spruceos), args.rev, names)
+    path.write_text(json.dumps(data, indent=2) + "\n")
+    print(f"{path.name}: spruceOS {data['spruceos']['commit'][:9]}, {len(data['systems'])} systems, "
+          f"{len(data['files'])} files")
+    return 0
+
+
+def cmd_coverage(repo: Repo, args) -> int:
+    path, names = _inventory_files(repo)
+    data = load_json(path)
+    rows = inventory.coverage(data, names, repo.cores, standalone.buildable(standalone.load(repo)))
+    print(json.dumps(rows, indent=2) if args.json else inventory.report(rows, data), end="" if not args.json else "\n")
+    return 1 if args.strict and any(row["status"] in ("no recipe", "unresolved") for row in rows) else 0
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = parser.add_subparsers(dest="command", required=True)
@@ -277,6 +302,12 @@ def main(argv: list[str] | None = None) -> int:
     p = sub.add_parser("summary")
     p.add_argument("--results", required=True)
     p.add_argument("--annotations", action="store_true", help="print GitHub warning/error lines")
+    p = sub.add_parser("inventory")
+    p.add_argument("--spruceos", required=True, help="a spruceOS git checkout")
+    p.add_argument("--rev", default="origin/Development")
+    p = sub.add_parser("coverage")
+    p.add_argument("--json", action="store_true")
+    p.add_argument("--strict", action="store_true", help="fail if an offered emulator has no recipe")
     p = sub.add_parser("standalone")
     p.add_argument("action", choices=("list", "script", "toolchain", "build"))
     p.add_argument("name", nargs="?")

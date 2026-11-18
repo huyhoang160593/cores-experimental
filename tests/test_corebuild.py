@@ -15,7 +15,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 
-from corebuild import build, recipe, release, standalone  # noqa: E402
+from corebuild import build, inventory, recipe, release, standalone  # noqa: E402
 from corebuild.catalog import Repo, known_good  # noqa: E402
 from corebuild.variants import parse_flags, plan  # noqa: E402
 
@@ -490,6 +490,64 @@ class ToolchainImageTest(unittest.TestCase):
         os.environ["FAKE_DOCKER_STORE"] = "containerd"
         with self.assertRaisesRegex(RuntimeError, "is not loaded"):
             build.run_container(REPO, self.image_id, recipe.Script(text="true", mounts=[]), self.tmp / "out")
+
+
+class InventoryTest(unittest.TestCase):
+    def test_generate_reads_systems_and_hashes_files(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            repo = Path(tmp)
+            subprocess.run(["git", "init", "-q", str(repo)], check=True)
+            config = {"default_emulator": "foo", "devices": ["A"],
+                      "menuOptions": {"Emulator_64": {"devices": ["B"], "options": ["foo", "bar-standalone"]},
+                                      "Governor": {"options": ["x"]}}}
+            (repo / "Emu/SYS").mkdir(parents=True)
+            (repo / "Emu/SYS/config.json").write_text(json.dumps(config))
+            (repo / "Emu/SYS/bar").write_bytes(b"bar")
+            (repo / "RetroArch/.retroarch/cores64").mkdir(parents=True)
+            (repo / "RetroArch/.retroarch/cores64/foo_libretro.so").write_bytes(b"foo")
+            subprocess.run(["git", "-C", str(repo), "add", "."], check=True)
+            subprocess.run(["git", "-C", str(repo), "-c", "user.name=t", "-c", "user.email=t@example.org",
+                            "commit", "-q", "-m", "x"], check=True)
+            data = inventory.generate(repo, "HEAD", {"bar-standalone": {"paths": ["Emu/SYS/bar"]}})
+        self.assertEqual(data["systems"]["SYS"], {"devices": ["A"], "default": "foo",
+                                                  "options": {"Emulator_64": {"devices": ["B"],
+                                                                              "options": ["foo", "bar-standalone"]}}})
+        self.assertEqual(data["files"], {"Emu/SYS/bar": hashlib.sha256(b"bar").hexdigest(),
+                                         "RetroArch/.retroarch/cores64/foo_libretro.so": hashlib.sha256(b"foo").hexdigest()})
+
+    def test_coverage_classes_every_offered_file(self):
+        sha = {name: hashlib.sha256(name.encode()).hexdigest() for name in ("a", "b", "c", "d")}
+        inv = {"spruceos": {"commit": "0" * 40, "date": "2026-11-18"},
+               "systems": {"S": {"devices": None, "default": "a", "options": {
+                   "Emulator": {"devices": ["X"], "options": ["a", "b", "c-standalone", "mystery", "Flycast-libretro",
+                                                              "d-standalone", "closed"]}}}},
+               "files": {"RetroArch/.retroarch/cores64/a_libretro.so": sha["a"],
+                         "RetroArch/.retroarch/cores/b_libretro.so": sha["b"],
+                         "Emu/S/c": sha["c"], "Emu/S/d": sha["d"]}}
+        names = {"c-standalone": {"paths": ["Emu/S/c"]}, "d-standalone": {"paths": ["Emu/S/d"]},
+                 "Flycast-libretro": {"core": "flycast"}, "closed": {"closed_source": "no source"}}
+        catalog = {"a": {"targets": ["arm64"], "build": {"artifact_name": "a_libretro.so"},
+                         "shipped": {"files": {"RetroArch/.retroarch/cores64/a_libretro.so": sha["a"]}}},
+                   "b": {"targets": ["armhf"], "build": {"artifact_name": "b_libretro.so"}}}
+        standalones = {"c-old": {"output": {"files": [{"to": "c"}], "spruce": {"c": "Emu/S/c-renamed"}},
+                                 "shipped": {"files": {"c": sha["c"]}}}}
+        rows = {(r["name"], r["path"]): r for r in inventory.coverage(inv, names, catalog, standalones)}
+        self.assertEqual(rows[("a", "RetroArch/.retroarch/cores64/a_libretro.so")]["status"], "reproduces")
+        self.assertEqual(rows[("b", "RetroArch/.retroarch/cores/b_libretro.so")]["status"], "recipe")
+        self.assertEqual(rows[("c-standalone", "Emu/S/c")]["status"], "reproduces")  # recorded at a renamed path
+        self.assertEqual(rows[("d-standalone", "Emu/S/d")]["status"], "no recipe")
+        self.assertEqual(rows[("mystery", "")]["status"], "unresolved")
+        self.assertEqual(rows[("Flycast-libretro", "")]["status"], "not shipped")
+        self.assertEqual(rows[("closed", "")]["status"], "closed source")
+        self.assertIn("S (default)", rows[("a", "RetroArch/.retroarch/cores64/a_libretro.so")]["where"])
+
+    def test_committed_inventory_and_names_are_consistent(self):
+        names = json.loads((ROOT / "manifests/emulator-names.json").read_text())["names"]
+        data = json.loads((ROOT / "manifests/emulator-inventory.json").read_text())
+        self.assertEqual(inventory.check(names, data), [])
+        self.assertRegex(data["spruceos"]["commit"], r"^[0-9a-f]{40}$")
+        self.assertTrue(inventory.report(inventory.coverage(data, names, REPO.cores, standalone.buildable(
+            standalone.load(REPO))), data).startswith("# Emulator inventory coverage"))
 
 
 if __name__ == "__main__":

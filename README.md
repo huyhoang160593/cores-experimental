@@ -78,7 +78,8 @@ python3 scripts/cores.py bundle --results results --out bundles
 python3 -m unittest discover -s tests
 ```
 
-`scripts/cores.py script np2kai arm64` prints the exact build script, `plan`
+`scripts/cores.py coverage` reports which of spruceOS's emulators the recipes here build
+([inventory](docs/inventory.md)). `scripts/cores.py script np2kai arm64` prints the exact build script, `plan`
 lists what a selection expands to, and `bump` moves a core to a new commit
 ([how](docs/catalog.md#moving-a-core-to-a-new-commit)). Each build leaves the
 core, its `.info`, the script, `build.log` and `record.json` in
@@ -120,6 +121,7 @@ Docker 29) names images by another digest, so there the image is also tagged
 | `manifests/standalone-builds.json` | standalone emulators spruce ships, such as Flycast's `Emu/DC/flycast` ([how](docs/standalone.md)) |
 | `manifests/boards.json`, `manifests/optimization-profiles.json` | board and profile flags |
 | `manifests/toolchains.json` | the toolchain images: archive digests and image IDs |
+| `manifests/emulator-inventory.json`, `manifests/emulator-names.json` | what spruceOS offers and ships, and what its option names stand for; `scripts/cores.py coverage` says which of it the recipes here build ([how](docs/inventory.md)) |
 | `patches/` | source patches used by the recipes ([list](patches/README.md)) |
 | `metadata/` | `.info` files libretro-super does not provide |
 | `scripts/` | `cores.py` and the `corebuild` package |

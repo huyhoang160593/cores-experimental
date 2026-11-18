@@ -17,3 +17,5 @@ jobs:
           persist-credentials: false
       - run: python3 scripts/cores.py check
       - run: python3 -m unittest discover -s tests
+      - name: Coverage of spruceOS's emulator inventory
+        run: python3 scripts/cores.py coverage >> "$GITHUB_STEP_SUMMARY"

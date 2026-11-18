@@ -1,0 +1,164 @@
+{
+  "note": "Emulator names in spruceOS's Emu/*/config.json that do not name a shipped core (<name>_libretro.so, or <name> without a trailing _libretro/-libretro). Each maps to a core, to the card paths of its files ('archive!member' for a file inside a .7z), or says why there is none. Read from spruceOS's launcher scripts (spruce/scripts/emu/); see docs/inventory.md.",
+  "names": {
+    "advmame-standalone": {
+      "paths": [
+        "Emu/ARCADE/advmame.7z"
+      ],
+      "note": "the binary ships inside the archive"
+    },
+    "bigpemu-standalone": {
+      "paths": [
+        "Emu/JAGUAR/bigpemu/bigpemu"
+      ]
+    },
+    "DraStic-original": {
+      "closed_source": "DraStic is closed source"
+    },
+    "DraStic-Steward": {
+      "closed_source": "DraStic is closed source (steward-fu's build)"
+    },
+    "DraStic-trngaje": {
+      "closed_source": "DraStic is closed source (trngaje's build)"
+    },
+    "DSperate": {
+      "paths": [
+        "Emu/NDS/dsperate",
+        "Emu/NDS/dsperate.a30"
+      ]
+    },
+    "DSperate-Tate": {
+      "paths": [
+        "Emu/NDS/dsperate",
+        "Emu/NDS/dsperate.a30"
+      ],
+      "note": "DSperate rotated (standard_launch.sh)"
+    },
+    "ffplay": {
+      "paths": [
+        "Emu/MEDIA/bin64/ffplay",
+        "Emu/MEDIA/bin32/ffplay"
+      ]
+    },
+    "Flycast-libretro": {
+      "core": "flycast"
+    },
+    "Flycast-standalone": {
+      "paths": [
+        "Emu/DC/flycast"
+      ]
+    },
+    "Flycast2021-libretro": {
+      "core": "flycast2021"
+    },
+    "Flycast2024-libretro": {
+      "core": "flycast2024"
+    },
+    "Flycast2024-standalone": {
+      "paths": [
+        "Emu/DC/flycast2024"
+      ],
+      "note": "flycast_functions.sh runs ./flycast2024"
+    },
+    "freej2me_plus": {
+      "core": "freej2me_plus",
+      "note": "J2ME's default_emulator; no core file ships"
+    },
+    "gametank-standalone": {
+      "paths": [
+        "Emu/GAMETANK/gametank/GameTankEmulator",
+        "Emu/GAMETANK/gametank-a30/GameTankEmulator"
+      ]
+    },
+    "gvu": {
+      "paths": [
+        "Emu/MEDIA/bin64/gvu",
+        "Emu/MEDIA/bin32/gvu"
+      ]
+    },
+    "km_mame2003_xtreme": {
+      "core": "km_mame2003_xtreme",
+      "note": "offered on the Miyoo Mini; no core file ships"
+    },
+    "km_puae_xtreme_amped": {
+      "core": "km_puae_xtreme_amped",
+      "note": "offered on the Miyoo Mini; no core file ships"
+    },
+    "mpv": {
+      "unresolved": "run_mpv (media_functions.sh) starts an mpv that is not in the card tree"
+    },
+    "mupen64plus-pow2": {
+      "paths": [
+        "Emu/N64/pow2/mupen64plus"
+      ]
+    },
+    "mupen64plus-standalone": {
+      "paths": [
+        "Emu/N64/mupen64plus/mupen64plus",
+        "Emu/N64/mupen64plus-a30/mupen64plus"
+      ]
+    },
+    "OpenBOR": {
+      "paths": [
+        "Emu/OPENBOR/OpenBOR_64_mod",
+        "Emu/OPENBOR/OpenBOR_Flip",
+        "Emu/OPENBOR/OpenBOR_TrimUI",
+        "Emu/OPENBOR/OpenBOR_mod",
+        "Emu/OPENBOR/OpenBOR_new"
+      ],
+      "note": "openbor_functions.sh picks the device's build"
+    },
+    "pico8": {
+      "closed_source": "PICO-8 is proprietary; users add their own copy"
+    },
+    "PPSSPP-SA": {
+      "paths": [
+        "Emu/PSP/PPSSPPSDL_A30",
+        "Emu/PSP/PPSSPPSDL_Flip",
+        "Emu/PSP/PPSSPPSDL_SmartProS",
+        "Emu/PSP/PPSSPPSDL_TrimUI",
+        "Emu/PSP/PPSSPPSDL_dArkMoss3326",
+        "Emu/PSP/PPSSPPSDL_dArkMoss3566",
+        "Emu/PSP/PPSSPPSDL_h700"
+      ],
+      "note": "PSP's default_emulator; ppsspp_functions.sh picks the device's build"
+    },
+    "puae": {
+      "core": "puae",
+      "note": "offered on the Miyoo Mini; no core file ships"
+    },
+    "scummvm": {
+      "core": "scummvm",
+      "note": "SCUMMVM's default_emulator; every device's list offers only scummvm-standalone"
+    },
+    "scummvm-standalone": {
+      "paths": [
+        "Emu/SCUMMVM/scummvm_64.7z!scummvm.64",
+        "Emu/SCUMMVM/scummvm_a30.7z!scummvm.a30",
+        "Emu/SCUMMVM/scummvm_mini.7z!scummvm.mini"
+      ]
+    },
+    "sh": {
+      "not_emulator": "PORTS runs shell scripts"
+    },
+    "xroar": {
+      "paths": [
+        "Emu/COCO/xroar"
+      ]
+    },
+    "yabasanshiro-libretro": {
+      "unresolved": "SATURN's default_emulator; no launcher script names it"
+    },
+    "yabasanshiro-standalone-bios": {
+      "paths": [
+        "Emu/SATURN/yabasanshiro"
+      ],
+      "note": "the -hle binary, run with -b"
+    },
+    "yabasanshiro-standalone-hle": {
+      "paths": [
+        "Emu/SATURN/yabasanshiro"
+      ]
+    }
+  }
+}
