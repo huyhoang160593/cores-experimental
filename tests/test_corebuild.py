@@ -536,6 +536,13 @@ class InventoryTest(unittest.TestCase):
         self.assertEqual(rows[("b", "RetroArch/.retroarch/cores/b_libretro.so")]["status"], "recipe")
         self.assertEqual(rows[("c-standalone", "Emu/S/c")]["status"], "reproduces")  # recorded at a renamed path
         self.assertEqual(rows[("d-standalone", "Emu/S/d")]["status"], "no recipe")
+        # A record no build has matched yet counts as a recipe, at its own path or a renamed one.
+        standalones["d-new"] = {"output": {"files": [{"to": "d"}], "spruce": {"d": "Emu/S/d"}},
+                                "shipped": {"unverified": True, "files": {"d": sha["d"]}}}
+        standalones["c-old"]["shipped"]["unverified"] = True
+        rows = {(r["name"], r["path"]): r for r in inventory.coverage(inv, names, catalog, standalones)}
+        self.assertEqual(rows[("d-standalone", "Emu/S/d")]["status"], "recipe")
+        self.assertEqual(rows[("c-standalone", "Emu/S/c")]["status"], "no recipe")
         self.assertEqual(rows[("mystery", "")]["status"], "unresolved")
         self.assertEqual(rows[("Flycast-libretro", "")]["status"], "not shipped")
         self.assertEqual(rows[("closed", "")]["status"], "closed source")

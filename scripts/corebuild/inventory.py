@@ -122,17 +122,23 @@ def resolve(name: str, inventory: dict, names: dict) -> dict:
     return {"kind": "standalone", "paths": entry["paths"], "note": entry.get("note", "")}
 
 
+def _matched(spec: dict) -> dict:
+    """The shipped files a build has matched: none while the record is marked unverified."""
+    shipped = spec.get("shipped", {})
+    return {} if shipped.get("unverified") else shipped.get("files", {})
+
+
 def recipes_by_path(catalog: dict, standalones: dict) -> dict:
-    """{card path: [(recipe, the sha256 it records as shipped, or None)]} for everything a recipe builds."""
+    """{card path: [(recipe, the sha256 a build of it has matched as shipped, or None)]} for everything a recipe builds."""
     found: dict[str, list] = {}
     for core, spec in catalog.items():
-        shipped = spec.get("shipped", {}).get("files", {})
+        shipped = _matched(spec)
         for arch in spec["targets"]:
             path = f"{CORE_DIRS[arch]}/{spec['build']['artifact_name']}"
             found.setdefault(path, []).append((core, shipped.get(path)))
     for name, spec in standalones.items():
         spruce = spec.get("output", {}).get("spruce", {})
-        shipped = spec.get("shipped", {}).get("files", {})
+        shipped = _matched(spec)
         for item in spec.get("output", {}).get("files", []):
             card = _card_path(item["to"], spruce)
             if card:

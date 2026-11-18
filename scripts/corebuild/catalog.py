@@ -108,6 +108,8 @@ class Repo:
             problems.append(f"shipped.variant {variant!r} names no targeted arch")
         if not shipped.get("files"):
             problems.append("shipped.files is empty")
+        if not isinstance(shipped.get("unverified", False), bool):
+            problems.append("shipped.unverified must be true or false")
         for path, digest in shipped.get("files", {}).items():
             if path.startswith("/") or ".." in path.split("/"):
                 problems.append(f"shipped file {path}: not a card-relative path")

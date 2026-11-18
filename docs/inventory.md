@@ -29,7 +29,7 @@ An optional `note` is shown in the report.
 
 | status | meaning |
 |---|---|
-| reproduces | a recipe records this file's exact sha256 as shipped. The card path may be one spruceOS has since renamed; the report then names it |
+| reproduces | a recipe records this file's exact sha256 as shipped, and the record is not marked `unverified`. The card path may be one spruceOS has since renamed; the report then names it |
 | recipe | a recipe here builds this file, but no recorded sha256 matches what ships |
 | no recipe | the file ships, and nothing here builds it |
 | not shipped | a menu offers it, but the file is not in the tree |

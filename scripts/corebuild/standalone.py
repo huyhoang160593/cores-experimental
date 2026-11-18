@@ -104,6 +104,8 @@ def spec_problems(repo: Repo, spec: dict) -> list[str]:
     for path, digest in spec.get("shipped", {}).get("files", {}).items():
         if not SHA256.match(digest):
             problems.append(f"shipped file {path}: sha256 must be 64 hex digits")
+    if not isinstance(spec.get("shipped", {}).get("unverified", False), bool):
+        problems.append("shipped.unverified must be true or false")
     needed = spec.get("needed", {})
     overlap = set(needed.get("device", [])) & set(needed.get("forbidden", []))
     if overlap:
