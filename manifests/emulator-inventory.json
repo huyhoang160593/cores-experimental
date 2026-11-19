@@ -4,10 +4,414 @@
     "commit": "d7ce3dc52ae993d308a61d64f0e5231b64f5ca1b",
     "date": "2026-11-19"
   },
+  "devices": [
+    {
+      "unit": "my355",
+      "names": [],
+      "platform": "my355",
+      "parent": "",
+      "arch": "",
+      "dual_ra": false
+    },
+    {
+      "unit": "A10Mini",
+      "names": [
+        "A10MINI",
+        "DARKMOSS"
+      ],
+      "platform": "A10Mini",
+      "parent": "",
+      "arch": "aarch64",
+      "dual_ra": true
+    },
+    {
+      "unit": "A10MiniV4",
+      "names": [
+        "A10MINIV4",
+        "DARKMOSS"
+      ],
+      "platform": "A10MiniV4",
+      "parent": "",
+      "arch": "aarch64",
+      "dual_ra": true
+    },
+    {
+      "unit": "E5Plus",
+      "names": [
+        "E5PLUS",
+        "DARKMOSS"
+      ],
+      "platform": "E5Plus",
+      "parent": "",
+      "arch": "aarch64",
+      "dual_ra": true
+    },
+    {
+      "unit": "G350",
+      "names": [
+        "G350",
+        "DARKMOSS"
+      ],
+      "platform": "G350",
+      "parent": "",
+      "arch": "aarch64",
+      "dual_ra": true
+    },
+    {
+      "unit": "Miniloong",
+      "names": [
+        "MINILOONG_POCKET1",
+        "DARKMOSS"
+      ],
+      "platform": "Miniloong",
+      "parent": "",
+      "arch": "aarch64",
+      "dual_ra": true
+    },
+    {
+      "unit": "Pixel2DarkMoss",
+      "names": [
+        "GKD_PIXEL2_DARKMOSS",
+        "DARKMOSS"
+      ],
+      "platform": "Pixel2DarkMoss",
+      "parent": "",
+      "arch": "aarch64",
+      "dual_ra": true
+    },
+    {
+      "unit": "RG351P",
+      "names": [
+        "ANBERNIC_RG351P",
+        "DARKMOSS"
+      ],
+      "platform": "RG351P",
+      "parent": "",
+      "arch": "aarch64",
+      "dual_ra": true
+    },
+    {
+      "unit": "RG353M",
+      "names": [
+        "RG353M",
+        "DARKMOSS"
+      ],
+      "platform": "RG353M",
+      "parent": "",
+      "arch": "aarch64",
+      "dual_ra": true
+    },
+    {
+      "unit": "RGB20SX",
+      "names": [
+        "RGB20SX",
+        "DARKMOSS"
+      ],
+      "platform": "RGB20SX",
+      "parent": "",
+      "arch": "aarch64",
+      "dual_ra": true
+    },
+    {
+      "unit": "RGB30",
+      "names": [
+        "RGB30",
+        "DARKMOSS"
+      ],
+      "platform": "RGB30",
+      "parent": "",
+      "arch": "aarch64",
+      "dual_ra": true
+    },
+    {
+      "unit": "V10",
+      "names": [
+        "POWKIDDY_V10",
+        "DARKMOSS"
+      ],
+      "platform": "V10",
+      "parent": "",
+      "arch": "aarch64",
+      "dual_ra": true
+    },
+    {
+      "unit": "XUMiniM",
+      "names": [
+        "MAGICX_XU_MINI_M",
+        "DARKMOSS"
+      ],
+      "platform": "XUMiniM",
+      "parent": "",
+      "arch": "aarch64",
+      "dual_ra": true
+    },
+    {
+      "unit": "AnbernicRG28XX",
+      "names": [
+        "ANBERNIC_RG28XX",
+        "ANBERNIC_RGXX"
+      ],
+      "platform": "AnbernicRG28XX",
+      "parent": "",
+      "arch": "aarch64",
+      "dual_ra": true
+    },
+    {
+      "unit": "AnbernicRGCubeXX",
+      "names": [
+        "ANBERNIC_RGCUBEXX",
+        "ANBERNIC_RGXX"
+      ],
+      "platform": "AnbernicRGCubeXX",
+      "parent": "",
+      "arch": "aarch64",
+      "dual_ra": true
+    },
+    {
+      "unit": "AnbernicXX640480",
+      "names": [
+        "ANBERNIC_RGXX640480",
+        "ANBERNIC_RGXX"
+      ],
+      "platform": "AnbernicXX640480",
+      "parent": "",
+      "arch": "aarch64",
+      "dual_ra": true
+    },
+    {
+      "unit": "AnbernicXX640480NoStick",
+      "names": [
+        "ANBERNIC_RGXX640480",
+        "ANBERNIC_RGXX"
+      ],
+      "platform": "AnbernicXX640480NoStick",
+      "parent": "",
+      "arch": "aarch64",
+      "dual_ra": true
+    },
+    {
+      "unit": "AnbernicXX640480OneStick",
+      "names": [
+        "ANBERNIC_RGXX640480",
+        "ANBERNIC_RGXX"
+      ],
+      "platform": "AnbernicXX640480OneStick",
+      "parent": "",
+      "arch": "aarch64",
+      "dual_ra": true
+    },
+    {
+      "unit": "AnbernicXX720480",
+      "names": [
+        "ANBERNIC_RGXX720480",
+        "ANBERNIC_RGXX"
+      ],
+      "platform": "AnbernicXX720480",
+      "parent": "",
+      "arch": "aarch64",
+      "dual_ra": true
+    },
+    {
+      "unit": "AnbernicXX720480NoStick",
+      "names": [
+        "ANBERNIC_RGXX720480",
+        "ANBERNIC_RGXX"
+      ],
+      "platform": "AnbernicXX720480NoStick",
+      "parent": "",
+      "arch": "aarch64",
+      "dual_ra": true
+    },
+    {
+      "unit": "MIYOO_MINI",
+      "names": [
+        "MIYOO_MINI",
+        "MIYOO_MINI_FAMILY"
+      ],
+      "platform": "MiyooMini",
+      "parent": "",
+      "arch": "armhf",
+      "dual_ra": false
+    },
+    {
+      "unit": "MIYOO_MINI_FLIP",
+      "names": [
+        "MIYOO_MINI_FLIP",
+        "MIYOO_MINI_FAMILY"
+      ],
+      "platform": "MiyooMini",
+      "parent": "",
+      "arch": "armhf",
+      "dual_ra": false
+    },
+    {
+      "unit": "MIYOO_MINI_PLUS",
+      "names": [
+        "MIYOO_MINI_PLUS",
+        "MIYOO_MINI_FAMILY"
+      ],
+      "platform": "MiyooMini",
+      "parent": "",
+      "arch": "armhf",
+      "dual_ra": false
+    },
+    {
+      "unit": "MIYOO_MINI_V4",
+      "names": [
+        "MIYOO_MINI_V4",
+        "MIYOO_MINI_FAMILY"
+      ],
+      "platform": "MiyooMini",
+      "parent": "",
+      "arch": "armhf",
+      "dual_ra": false
+    },
+    {
+      "unit": "BrickOakMOSS",
+      "names": [
+        "TRIMUI_BRICK_OAKMOSS",
+        "TRIMUI_BRICK",
+        "TRIMUI_A133P"
+      ],
+      "platform": "BrickOakMOSS",
+      "parent": "Brick",
+      "arch": "aarch64",
+      "dual_ra": false
+    },
+    {
+      "unit": "V20",
+      "names": [
+        "POWKIDDY_V20",
+        "OAKMOSS_A133P"
+      ],
+      "platform": "V20",
+      "parent": "",
+      "arch": "aarch64",
+      "dual_ra": false
+    },
+    {
+      "unit": "V90S",
+      "names": [
+        "POWKIDDY_V90S",
+        "OAKMOSS_A133P"
+      ],
+      "platform": "V90S",
+      "parent": "",
+      "arch": "aarch64",
+      "dual_ra": false
+    },
+    {
+      "unit": "XU20",
+      "names": [
+        "MAGICX_XU20",
+        "OAKMOSS_A133P"
+      ],
+      "platform": "XU20",
+      "parent": "",
+      "arch": "aarch64",
+      "dual_ra": false
+    },
+    {
+      "unit": "Zero28",
+      "names": [
+        "MAGICX_ZERO28",
+        "OAKMOSS_A133P"
+      ],
+      "platform": "Zero28",
+      "parent": "",
+      "arch": "aarch64",
+      "dual_ra": false
+    },
+    {
+      "unit": "Zero40",
+      "names": [
+        "MAGICX_ZERO40",
+        "OAKMOSS_A133P"
+      ],
+      "platform": "Zero40",
+      "parent": "",
+      "arch": "aarch64",
+      "dual_ra": false
+    },
+    {
+      "unit": "A30",
+      "names": [
+        "MIYOO_A30"
+      ],
+      "platform": "A30",
+      "parent": "",
+      "arch": "armhf",
+      "dual_ra": false
+    },
+    {
+      "unit": "Brick",
+      "names": [
+        "TRIMUI_BRICK",
+        "TRIMUI_A133P"
+      ],
+      "platform": "Brick",
+      "parent": "",
+      "arch": "aarch64",
+      "dual_ra": false
+    },
+    {
+      "unit": "BrickPro",
+      "names": [
+        "TRIMUI_BRICK_PRO",
+        "TRIMUI_A133P"
+      ],
+      "platform": "BrickPro",
+      "parent": "",
+      "arch": "aarch64",
+      "dual_ra": false
+    },
+    {
+      "unit": "Flip",
+      "names": [
+        "MIYOO_FLIP"
+      ],
+      "platform": "Flip",
+      "parent": "",
+      "arch": "aarch64",
+      "dual_ra": true
+    },
+    {
+      "unit": "SmartPro",
+      "names": [
+        "TRIMUI_SMART_PRO",
+        "TRIMUI_A133P"
+      ],
+      "platform": "SmartPro",
+      "parent": "",
+      "arch": "aarch64",
+      "dual_ra": false
+    },
+    {
+      "unit": "SmartProS",
+      "names": [
+        "TRIMUI_SMART_PRO_S"
+      ],
+      "platform": "SmartProS",
+      "parent": "",
+      "arch": "aarch64",
+      "dual_ra": false
+    },
+    {
+      "unit": "Pixel2",
+      "names": [
+        "GKD_PIXEL2"
+      ],
+      "platform": "Pixel2",
+      "parent": "",
+      "arch": "aarch64",
+      "dual_ra": false
+    }
+  ],
   "systems": {
     "-CUSTOM-SYSTEM-": {
       "devices": null,
       "default": "gametank",
+      "launch": "../../spruce/scripts/emu/standard_launch.sh",
       "options": {}
     },
     "3DS": {
@@ -21,18 +425,29 @@
         "MIYOO_FLIP"
       ],
       "default": "azahar",
-      "options": {}
+      "launch": "../../spruce/scripts/emu/vulkan_launch.sh",
+      "options": {},
+      "raBuild": {
+        "devices": [
+          "MIYOO_FLIP"
+        ],
+        "options": [
+          "64-bit"
+        ]
+      }
     },
     "A30PORTS": {
       "devices": [
         "MIYOO_A30"
       ],
       "default": "sh",
+      "launch": "../../spruce/scripts/emu/standard_launch.sh",
       "options": {}
     },
     "AMIGA": {
       "devices": null,
       "default": "uae4arm",
+      "launch": "../../spruce/scripts/emu/standard_launch.sh",
       "options": {
         "Emulator": {
           "devices": [
@@ -66,6 +481,7 @@
     "ARCADE": {
       "devices": null,
       "default": "fbneo",
+      "launch": "../../spruce/scripts/emu/standard_launch.sh",
       "options": {
         "Emulator": {
           "devices": [
@@ -105,11 +521,23 @@
             "fbalpha2012"
           ]
         }
+      },
+      "raBuild": {
+        "devices": [
+          "MIYOO_FLIP",
+          "ANBERNIC_RGXX",
+          "DARKMOSS"
+        ],
+        "options": [
+          "64-bit",
+          "32-bit"
+        ]
       }
     },
     "ARDUBOY": {
       "devices": null,
       "default": "ardens",
+      "launch": "../../spruce/scripts/emu/standard_launch.sh",
       "options": {
         "Emulator": {
           "devices": null,
@@ -123,16 +551,19 @@
     "ATARI": {
       "devices": null,
       "default": "stella2014",
+      "launch": "../../spruce/scripts/emu/standard_launch.sh",
       "options": {}
     },
     "ATARIST": {
       "devices": null,
       "default": "hatari",
+      "launch": "../../spruce/scripts/emu/standard_launch.sh",
       "options": {}
     },
     "ATOMISWAVE": {
       "devices": null,
       "default": "flycast",
+      "launch": "../../spruce/scripts/emu/standard_launch.sh",
       "options": {
         "Emulator_A30": {
           "devices": [
@@ -169,11 +600,23 @@
             "Flycast2024-standalone"
           ]
         }
+      },
+      "raBuild": {
+        "devices": [
+          "MIYOO_FLIP",
+          "ANBERNIC_RGXX",
+          "DARKMOSS"
+        ],
+        "options": [
+          "64-bit",
+          "32-bit"
+        ]
       }
     },
     "CHAI": {
       "devices": null,
       "default": "chailove",
+      "launch": "../../spruce/scripts/emu/standard_launch.sh",
       "options": {}
     },
     "COCO": {
@@ -187,11 +630,13 @@
         "OAKMOSS_A133P"
       ],
       "default": "xroar",
+      "launch": "../../spruce/scripts/emu/standard_launch.sh",
       "options": {}
     },
     "COLECO": {
       "devices": null,
       "default": "bluemsx",
+      "launch": "../../spruce/scripts/emu/standard_launch.sh",
       "options": {
         "Emulator": {
           "devices": null,
@@ -205,11 +650,13 @@
     "COMMODORE": {
       "devices": null,
       "default": "vice_x64",
+      "launch": "../../spruce/scripts/emu/standard_launch.sh",
       "options": {}
     },
     "CPC": {
       "devices": null,
       "default": "cap32",
+      "launch": "../../spruce/scripts/emu/standard_launch.sh",
       "options": {
         "Emulator": {
           "devices": null,
@@ -223,6 +670,7 @@
     "CPS1": {
       "devices": null,
       "default": "fbalpha2012",
+      "launch": "../../spruce/scripts/emu/standard_launch.sh",
       "options": {
         "Emulator": {
           "devices": null,
@@ -236,6 +684,7 @@
     "CPS2": {
       "devices": null,
       "default": "fbalpha2012",
+      "launch": "../../spruce/scripts/emu/standard_launch.sh",
       "options": {
         "Emulator": {
           "devices": null,
@@ -249,6 +698,7 @@
     "CPS3": {
       "devices": null,
       "default": "fbalpha2012",
+      "launch": "../../spruce/scripts/emu/standard_launch.sh",
       "options": {
         "Emulator": {
           "devices": null,
@@ -271,6 +721,7 @@
         "OAKMOSS_A133P"
       ],
       "default": "flycast",
+      "launch": "../../spruce/scripts/emu/standard_launch.sh",
       "options": {
         "Emulator_DARKMOSS": {
           "devices": [
@@ -315,46 +766,65 @@
             "Flycast2024-standalone"
           ]
         }
+      },
+      "raBuild": {
+        "devices": [
+          "MIYOO_FLIP",
+          "ANBERNIC_RGXX",
+          "DARKMOSS"
+        ],
+        "options": [
+          "64-bit",
+          "32-bit"
+        ]
       }
     },
     "DOOM": {
       "devices": null,
       "default": "prboom",
+      "launch": "../../spruce/scripts/emu/standard_launch.sh",
       "options": {}
     },
     "DOS": {
       "devices": null,
       "default": "dosbox_pure",
+      "launch": "../../spruce/scripts/emu/standard_launch.sh",
       "options": {}
     },
     "EASYRPG": {
       "devices": null,
       "default": "easyrpg",
+      "launch": "../../spruce/scripts/emu/standard_launch.sh",
       "options": {}
     },
     "EIGHTHUNDRED": {
       "devices": null,
       "default": "atari800",
+      "launch": "../../spruce/scripts/emu/standard_launch.sh",
       "options": {}
     },
     "FAIRCHILD": {
       "devices": null,
       "default": "freechaf",
+      "launch": "../../spruce/scripts/emu/standard_launch.sh",
       "options": {}
     },
     "FAKE08": {
       "devices": null,
       "default": "fake08",
+      "launch": "../../spruce/scripts/emu/standard_launch.sh",
       "options": {}
     },
     "FBNEO": {
       "devices": null,
       "default": "fbneo",
+      "launch": "../../spruce/scripts/emu/standard_launch.sh",
       "options": {}
     },
     "FC": {
       "devices": null,
       "default": "fceumm",
+      "launch": "../../spruce/scripts/emu/standard_launch.sh",
       "options": {
         "Emulator": {
           "devices": null,
@@ -370,6 +840,7 @@
     "FDS": {
       "devices": null,
       "default": "fceumm",
+      "launch": "../../spruce/scripts/emu/standard_launch.sh",
       "options": {
         "Emulator": {
           "devices": null,
@@ -384,16 +855,19 @@
     "FIFTYTWOHUNDRED": {
       "devices": null,
       "default": "a5200",
+      "launch": "../../spruce/scripts/emu/standard_launch.sh",
       "options": {}
     },
     "GAMATE": {
       "devices": null,
       "default": "superwhizkid",
+      "launch": "../../spruce/scripts/emu/standard_launch.sh",
       "options": {}
     },
     "GAMETANK": {
       "devices": null,
       "default": "gametank",
+      "launch": "../../spruce/scripts/emu/standard_launch.sh",
       "options": {
         "Emulator_A30": {
           "devices": [
@@ -424,6 +898,7 @@
     "GB": {
       "devices": null,
       "default": "gambatte",
+      "launch": "../../spruce/scripts/emu/standard_launch.sh",
       "options": {
         "Emulator": {
           "devices": [
@@ -458,6 +933,7 @@
     "GBA": {
       "devices": null,
       "default": "armgba",
+      "launch": "../../spruce/scripts/emu/standard_launch.sh",
       "options": {
         "Emulator": {
           "devices": [
@@ -492,6 +968,7 @@
     "GBC": {
       "devices": null,
       "default": "gambatte",
+      "launch": "../../spruce/scripts/emu/standard_launch.sh",
       "options": {
         "Emulator": {
           "devices": [
@@ -526,6 +1003,7 @@
     "GG": {
       "devices": null,
       "default": "genesis_plus_gx",
+      "launch": "../../spruce/scripts/emu/standard_launch.sh",
       "options": {
         "Emulator": {
           "devices": null,
@@ -540,11 +1018,13 @@
     "GW": {
       "devices": null,
       "default": "gw",
+      "launch": "../../spruce/scripts/emu/standard_launch.sh",
       "options": {}
     },
     "INTELLIVISION": {
       "devices": null,
       "default": "freeintv",
+      "launch": "../../spruce/scripts/emu/standard_launch.sh",
       "options": {}
     },
     "J2ME": {
@@ -560,11 +1040,13 @@
         "OAKMOSS_A133P"
       ],
       "default": "freej2me_plus",
+      "launch": "../../spruce/scripts/emu/standard_launch.sh",
       "options": {}
     },
     "JAGUAR": {
       "devices": null,
       "default": "virtualjaguar",
+      "launch": "../../spruce/scripts/emu/standard_launch.sh",
       "options": {
         "Emulator_A30": {
           "devices": [
@@ -604,11 +1086,13 @@
     "LOOPY": {
       "devices": null,
       "default": "gloopy",
+      "launch": "../../spruce/scripts/emu/standard_launch.sh",
       "options": {}
     },
     "LYNX": {
       "devices": null,
       "default": "handy",
+      "launch": "../../spruce/scripts/emu/standard_launch.sh",
       "options": {
         "Emulator": {
           "devices": null,
@@ -622,11 +1106,13 @@
     "MAME2003PLUS": {
       "devices": null,
       "default": "mame2003_plus",
+      "launch": "../../spruce/scripts/emu/standard_launch.sh",
       "options": {}
     },
     "MD": {
       "devices": null,
       "default": "picodrive",
+      "launch": "../../spruce/scripts/emu/standard_launch.sh",
       "options": {
         "Emulator": {
           "devices": null,
@@ -640,6 +1126,7 @@
     "MEDIA": {
       "devices": null,
       "default": "ffplay",
+      "launch": "../../spruce/scripts/emu/standard_launch.sh",
       "options": {
         "Emulator_32": {
           "devices": [
@@ -681,16 +1168,19 @@
     "MEGADUCK": {
       "devices": null,
       "default": "armgba",
+      "launch": "../../spruce/scripts/emu/standard_launch.sh",
       "options": {}
     },
     "MKXP-Z": {
       "devices": null,
       "default": "mkxp-z",
+      "launch": "../../spruce/scripts/emu/standard_launch.sh",
       "options": {}
     },
     "MS": {
       "devices": null,
       "default": "genesis_plus_gx",
+      "launch": "../../spruce/scripts/emu/standard_launch.sh",
       "options": {
         "Emulator": {
           "devices": null,
@@ -705,16 +1195,19 @@
     "MSU1": {
       "devices": null,
       "default": "snes9x",
+      "launch": "../../spruce/scripts/emu/standard_launch.sh",
       "options": {}
     },
     "MSUMD": {
       "devices": null,
       "default": "genesis_plus_gx",
+      "launch": "../../spruce/scripts/emu/standard_launch.sh",
       "options": {}
     },
     "MSX": {
       "devices": null,
       "default": "bluemsx",
+      "launch": "../../spruce/scripts/emu/standard_launch.sh",
       "options": {
         "Emulator": {
           "devices": null,
@@ -737,6 +1230,7 @@
         "OAKMOSS_A133P"
       ],
       "default": "km_ludicrousn64_2k22_xtreme_amped",
+      "launch": "../../spruce/scripts/emu/standard_launch.sh",
       "options": {
         "Emulator_DARKMOSS": {
           "devices": [
@@ -791,11 +1285,23 @@
             "mupen64plus"
           ]
         }
+      },
+      "raBuild": {
+        "devices": [
+          "MIYOO_FLIP",
+          "ANBERNIC_RGXX",
+          "DARKMOSS"
+        ],
+        "options": [
+          "64-bit",
+          "32-bit"
+        ]
       }
     },
     "NAOMI": {
       "devices": null,
       "default": "flycast",
+      "launch": "../../spruce/scripts/emu/standard_launch.sh",
       "options": {
         "Emulator_A30": {
           "devices": [
@@ -832,11 +1338,23 @@
             "Flycast2024-standalone"
           ]
         }
+      },
+      "raBuild": {
+        "devices": [
+          "MIYOO_FLIP",
+          "ANBERNIC_RGXX",
+          "DARKMOSS"
+        ],
+        "options": [
+          "64-bit",
+          "32-bit"
+        ]
       }
     },
     "NDS": {
       "devices": null,
       "default": "DSperate",
+      "launch": "../../spruce/scripts/emu/standard_launch.sh",
       "options": {
         "Emulator_A30": {
           "devices": [
@@ -901,6 +1419,7 @@
         "OAKMOSS_A133P"
       ],
       "default": "DSperate",
+      "launch": "../../spruce/scripts/emu/standard_launch.sh",
       "options": {
         "Emulator": {
           "devices": null,
@@ -914,11 +1433,13 @@
     "NEOCD": {
       "devices": null,
       "default": "neocd",
+      "launch": "../../spruce/scripts/emu/standard_launch.sh",
       "options": {}
     },
     "NEOGEO": {
       "devices": null,
       "default": "fbalpha2012",
+      "launch": "../../spruce/scripts/emu/standard_launch.sh",
       "options": {
         "Emulator": {
           "devices": [
@@ -949,6 +1470,7 @@
     "NGP": {
       "devices": null,
       "default": "mednafen_ngp",
+      "launch": "../../spruce/scripts/emu/standard_launch.sh",
       "options": {
         "Emulator": {
           "devices": null,
@@ -962,6 +1484,7 @@
     "NGPC": {
       "devices": null,
       "default": "mednafen_ngp",
+      "launch": "../../spruce/scripts/emu/standard_launch.sh",
       "options": {
         "Emulator": {
           "devices": null,
@@ -975,36 +1498,43 @@
     "ODYSSEY": {
       "devices": null,
       "default": "o2em",
+      "launch": "../../spruce/scripts/emu/standard_launch.sh",
       "options": {}
     },
     "OPENBOR": {
       "devices": null,
       "default": "OpenBOR",
+      "launch": "../../spruce/scripts/emu/standard_launch.sh",
       "options": {}
     },
     "PC98": {
       "devices": null,
       "default": "np2kai",
+      "launch": "../../spruce/scripts/emu/standard_launch.sh",
       "options": {}
     },
     "PCE": {
       "devices": null,
       "default": "mednafen_pce_fast",
+      "launch": "../../spruce/scripts/emu/standard_launch.sh",
       "options": {}
     },
     "PCECD": {
       "devices": null,
       "default": "mednafen_pce_fast",
+      "launch": "../../spruce/scripts/emu/standard_launch.sh",
       "options": {}
     },
     "PICO8": {
       "devices": null,
       "default": "pico8",
+      "launch": "../../spruce/scripts/emu/standard_launch.sh",
       "options": {}
     },
     "POKE": {
       "devices": null,
       "default": "pokemini",
+      "launch": "../../spruce/scripts/emu/standard_launch.sh",
       "options": {}
     },
     "PORTS": {
@@ -1018,11 +1548,13 @@
         "OAKMOSS_A133P"
       ],
       "default": "sh",
+      "launch": "../../spruce/scripts/emu/standard_launch.sh",
       "options": {}
     },
     "PS": {
       "devices": null,
       "default": "pcsx_rearmed",
+      "launch": "../../spruce/scripts/emu/standard_launch.sh",
       "options": {
         "Emulator_DARKMOSS": {
           "devices": [
@@ -1064,6 +1596,17 @@
             "swanstation"
           ]
         }
+      },
+      "raBuild": {
+        "devices": [
+          "MIYOO_FLIP",
+          "ANBERNIC_RGXX",
+          "DARKMOSS"
+        ],
+        "options": [
+          "64-bit",
+          "32-bit"
+        ]
       }
     },
     "PSP": {
@@ -1078,21 +1621,25 @@
         "OAKMOSS_A133P"
       ],
       "default": "PPSSPP-SA",
+      "launch": "../../spruce/scripts/emu/standard_launch.sh",
       "options": {}
     },
     "QUAKE": {
       "devices": null,
       "default": "tyrquake",
+      "launch": "../../spruce/scripts/emu/standard_launch.sh",
       "options": {}
     },
     "SATELLAVIEW": {
       "devices": null,
       "default": "snes9x",
+      "launch": "../../spruce/scripts/emu/standard_launch.sh",
       "options": {}
     },
     "SATURN": {
       "devices": null,
       "default": "yabasanshiro-libretro",
+      "launch": "../../spruce/scripts/emu/standard_launch.sh",
       "options": {
         "Emulator_DARKMOSS": {
           "devices": [
@@ -1167,6 +1714,17 @@
             "yabadabadoo"
           ]
         }
+      },
+      "raBuild": {
+        "devices": [
+          "MIYOO_FLIP",
+          "ANBERNIC_RGXX",
+          "DARKMOSS"
+        ],
+        "options": [
+          "64-bit",
+          "32-bit"
+        ]
       }
     },
     "SCUMMVM": {
@@ -1182,6 +1740,7 @@
         "OAKMOSS_A133P"
       ],
       "default": "scummvm",
+      "launch": "../../spruce/scripts/emu/standard_launch.sh",
       "options": {
         "Emulator_A30": {
           "devices": [
@@ -1218,6 +1777,7 @@
     "SEGACD": {
       "devices": null,
       "default": "picodrive",
+      "launch": "../../spruce/scripts/emu/standard_launch.sh",
       "options": {
         "Emulator": {
           "devices": null,
@@ -1231,6 +1791,7 @@
     "SEGASGONE": {
       "devices": null,
       "default": "genesis_plus_gx",
+      "launch": "../../spruce/scripts/emu/standard_launch.sh",
       "options": {
         "Emulator": {
           "devices": null,
@@ -1245,11 +1806,13 @@
     "SEVENTYEIGHTHUNDRED": {
       "devices": null,
       "default": "prosystem",
+      "launch": "../../spruce/scripts/emu/standard_launch.sh",
       "options": {}
     },
     "SFC": {
       "devices": null,
       "default": "chimerasnes",
+      "launch": "../../spruce/scripts/emu/standard_launch.sh",
       "options": {
         "Emulator_64": {
           "devices": [
@@ -1285,76 +1848,91 @@
     "SGB": {
       "devices": null,
       "default": "mgba",
+      "launch": "../../spruce/scripts/emu/standard_launch.sh",
       "options": {}
     },
     "SGFX": {
       "devices": null,
       "default": "mednafen_supergrafx",
+      "launch": "../../spruce/scripts/emu/standard_launch.sh",
       "options": {}
     },
     "SUFAMI": {
       "devices": null,
       "default": "snes9x",
+      "launch": "../../spruce/scripts/emu/standard_launch.sh",
       "options": {}
     },
     "SUPERVISION": {
       "devices": null,
       "default": "potator",
+      "launch": "../../spruce/scripts/emu/standard_launch.sh",
       "options": {}
     },
     "THIRTYTWOX": {
       "devices": null,
       "default": "picodrive",
+      "launch": "../../spruce/scripts/emu/standard_launch.sh",
       "options": {}
     },
     "TIC": {
       "devices": null,
       "default": "tic80",
+      "launch": "../../spruce/scripts/emu/standard_launch.sh",
       "options": {}
     },
     "VB": {
       "devices": null,
       "default": "mednafen_vb",
+      "launch": "../../spruce/scripts/emu/standard_launch.sh",
       "options": {}
     },
     "VECTREX": {
       "devices": null,
       "default": "vecx",
+      "launch": "../../spruce/scripts/emu/standard_launch.sh",
       "options": {}
     },
     "VIC20": {
       "devices": null,
       "default": "vice_xvic",
+      "launch": "../../spruce/scripts/emu/standard_launch.sh",
       "options": {}
     },
     "VIDEOPAC": {
       "devices": null,
       "default": "o2em",
+      "launch": "../../spruce/scripts/emu/standard_launch.sh",
       "options": {}
     },
     "WOLF": {
       "devices": null,
       "default": "ecwolf",
+      "launch": "../../spruce/scripts/emu/standard_launch.sh",
       "options": {}
     },
     "WS": {
       "devices": null,
       "default": "mednafen_wswan",
+      "launch": "../../spruce/scripts/emu/standard_launch.sh",
       "options": {}
     },
     "WSC": {
       "devices": null,
       "default": "mednafen_wswan",
+      "launch": "../../spruce/scripts/emu/standard_launch.sh",
       "options": {}
     },
     "X68000": {
       "devices": null,
       "default": "px68k",
+      "launch": "../../spruce/scripts/emu/standard_launch.sh",
       "options": {}
     },
     "ZXS": {
       "devices": null,
       "default": "fuse",
+      "launch": "../../spruce/scripts/emu/standard_launch.sh",
       "options": {}
     }
   },

@@ -17,7 +17,9 @@ cores-experimental tracks four waves of cores, plus everything else it pins. Eac
 A file entry (spruce and TwigUI-Next waves) has the file's `sha256` and a `status`:
 
 - spruce waves: the coverage status (`reproduces`, `recipe`, `no recipe`, …, see [inventory](inventory.md)), the
-  `recipes` that build the path, and for a reproduced file its `pin` (recipe, source URL and commit);
+  `recipes` that build the path, the device `families` that load or run it, `spare: true` for a shipped core no
+  device loads from that folder, and for a reproduced file its `pin` (recipe, source URL and commit). A
+  `not shipped` core entry is a folder a device loads it from where spruce ships nothing;
 - `pixel2-twiguinext`: `pinned` (the package and its source pin are recorded), `reproduced` (rebuilt byte for byte,
   `verified` says how) or `near` (rebuilt, with a known difference in `verified`).
 
@@ -37,8 +39,12 @@ python3 scripts/waves.py summary
 
 ## Notes
 
-- The spruce waves come from the emulator inventory, which follows spruce's emulator menus: a file no menu offers
-  (`armnes_arcade`, at 7592638d0 and e1eab6bfc) and apps such as vTree are in no wave, so their recipes count as `custom`.
+- The spruce waves come from the emulator inventory, which follows spruce's emulator menus and the folder each
+  device loads from. Every shipped core is in them, spare or not, so a recipe that builds a spare file is not
+  `custom`; apps such as vTree are in no wave, so their recipes are. At d7ce3dc52, spruce-nightly has 44 spare
+  cores (43 that no menu offers, plus `cores64/mupen64plus`: N64 offers `mupen64plus` only on 32-bit lists), and 7
+  folder gaps: `cores/` flycast2021 and flycast2024 (the 32-bit RA Build on the Flip, the XX and dArkMoss), the
+  Mini's puae, km_puae_xtreme_amped and km_mame2003_xtreme, and freej2me_plus in both folders.
 - spruce-nightly's 49 GCC 9.4 cores without a reproducing recipe carry a hand-kept `pin`
   (`confidence`: `unambiguous`, `likely` or `ambiguous`; `verified: false`) and its `evidence`: 37 came with
   spruceOS 327c258ee (built 2025-05-05/06), one with 4a96070f8, the rest with their 2026 imports. A build at the pin

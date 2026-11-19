@@ -62,12 +62,18 @@ def cmd_spruce(args) -> int:
     inv = inventory.generate(Path(args.spruceos), args.rev, names)
     sources = recipe_sources(repo, builds)
     files: dict = {}
-    for row in inventory.coverage(inv, names, repo.cores, builds):
+    rows = inventory.coverage(inv, names, repo.cores, builds)
+    unused = inventory.spare(rows)
+    for row in rows:
         if not row["path"]:
             continue
         entry = files.setdefault(row["path"], {"sha256": inv["files"].get(row["path"]), "kind": row["kind"],
-                                               "names": [], "status": row["status"], "recipes": row["recipes"]})
+                                               "names": [], "status": row["status"], "recipes": row["recipes"],
+                                               "families": []})
         entry["names"].append(row["name"])
+        entry["families"] = sorted(set(entry["families"]) | set(row["families"]))
+        if row["path"] in unused:
+            entry["spare"] = True  # shipped, but no device loads it from this folder
         if row["status"] == "reproduces" and "pin" not in entry:
             recipe = row["recipes"][0].split(" (as ")[0]
             src = sources.get(recipe, {})
@@ -78,7 +84,8 @@ def cmd_spruce(args) -> int:
             "files": carry(args.name, "files", dict(sorted(files.items())))}
     path = write(args.name, data)
     print(f"{path.relative_to(ROOT)}: spruceOS {inv['spruceos']['commit'][:9]}, {len(files)} files, "
-          + ", ".join(f"{k} {v}" for k, v in Counter(f["status"] for f in files.values()).most_common()))
+          + ", ".join(f"{k} {v}" for k, v in Counter(f["status"] for f in files.values()).most_common())
+          + f"; spare {len(unused)}")
     return 0
 
 
@@ -209,7 +216,9 @@ def cmd_summary(args) -> int:
         data = load_json(path)
         if "files" in data:
             counts = Counter(e["status"] for e in (*data["files"].values(), *data.get("base", {}).values()))
-            print(f"{path.stem:20} {sum(counts.values()):4} files  " + ", ".join(f"{k} {v}" for k, v in counts.most_common()))
+            spare = sum(1 for e in data["files"].values() if e.get("spare"))
+            print(f"{path.stem:20} {sum(counts.values()):4} files  " + ", ".join(f"{k} {v}" for k, v in counts.most_common())
+                  + (f"; spare {spare}" if spare else ""))
         elif "sources" in data:
             counts = Counter(e["edge"]["kind"] for e in data["sources"].values())
             print(f"{path.stem:20} {len(data['sources']):4} recipes  " + ", ".join(f"{k} {v}" for k, v in counts.items()))

@@ -15,7 +15,14 @@
         "advmame-standalone"
       ],
       "status": "no recipe",
-      "recipes": []
+      "recipes": [],
+      "families": [
+        "GKD_PIXEL2",
+        "MIYOO_FLIP",
+        "OAKMOSS_A133P",
+        "TRIMUI_A133P",
+        "TRIMUI_SMART_PRO_S"
+      ]
     },
     "Emu/COCO/xroar": {
       "sha256": "58b665c41da16841c0d7993f1e2a9d79ab4f2514ff9d1662a5da7e01ca190c1c",
@@ -26,6 +33,15 @@
       "status": "recipe",
       "recipes": [
         "standalone:xroar"
+      ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "GKD_PIXEL2",
+        "MIYOO_FLIP",
+        "OAKMOSS_A133P",
+        "TRIMUI_A133P",
+        "TRIMUI_SMART_PRO_S"
       ]
     },
     "Emu/DC/flycast": {
@@ -37,6 +53,15 @@
       "status": "reproduces",
       "recipes": [
         "standalone:flycast-standalone-t3-lto"
+      ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "GKD_PIXEL2",
+        "MIYOO_FLIP",
+        "OAKMOSS_A133P",
+        "TRIMUI_A133P",
+        "TRIMUI_SMART_PRO_S"
       ],
       "pin": {
         "recipe": "standalone:flycast-standalone-t3-lto",
@@ -51,7 +76,10 @@
         "Flycast2024-standalone"
       ],
       "status": "not shipped",
-      "recipes": []
+      "recipes": [],
+      "families": [
+        "GKD_PIXEL2"
+      ]
     },
     "Emu/GAMETANK/gametank-a30/GameTankEmulator": {
       "sha256": "c895fe8a2a789013714733a8dd8de89e7f78a78db810acbe106b3d6bd12c5f17",
@@ -62,6 +90,16 @@
       "status": "reproduces",
       "recipes": [
         "standalone:gametank-a30"
+      ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "GKD_PIXEL2",
+        "MIYOO_A30",
+        "MIYOO_FLIP",
+        "OAKMOSS_A133P",
+        "TRIMUI_A133P",
+        "TRIMUI_SMART_PRO_S"
       ],
       "pin": {
         "recipe": "standalone:gametank-a30",
@@ -79,6 +117,16 @@
       "recipes": [
         "standalone:gametank-arm64"
       ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "GKD_PIXEL2",
+        "MIYOO_A30",
+        "MIYOO_FLIP",
+        "OAKMOSS_A133P",
+        "TRIMUI_A133P",
+        "TRIMUI_SMART_PRO_S"
+      ],
       "pin": {
         "recipe": "standalone:gametank-arm64",
         "url": "https://github.com/clydeshaffer/GameTankEmulator.git",
@@ -94,6 +142,15 @@
       "status": "reproduces",
       "recipes": [
         "standalone:bigpemu"
+      ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "GKD_PIXEL2",
+        "MIYOO_FLIP",
+        "OAKMOSS_A133P",
+        "TRIMUI_A133P",
+        "TRIMUI_SMART_PRO_S"
       ],
       "pin": {
         "recipe": "standalone:bigpemu",
@@ -111,6 +168,16 @@
       "recipes": [
         "standalone:gvu-a30"
       ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "MIYOO_A30",
+        "MIYOO_FLIP",
+        "MIYOO_MINI_FAMILY",
+        "OAKMOSS_A133P",
+        "TRIMUI_A133P",
+        "TRIMUI_SMART_PRO_S"
+      ],
       "pin": {
         "recipe": "standalone:gvu-a30",
         "url": "https://github.com/Sundownersport/GVU.git",
@@ -126,6 +193,16 @@
       "status": "reproduces",
       "recipes": [
         "standalone:gvu-arm64"
+      ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "MIYOO_A30",
+        "MIYOO_FLIP",
+        "MIYOO_MINI_FAMILY",
+        "OAKMOSS_A133P",
+        "TRIMUI_A133P",
+        "TRIMUI_SMART_PRO_S"
       ],
       "pin": {
         "recipe": "standalone:gvu-arm64",
@@ -143,6 +220,16 @@
       "recipes": [
         "standalone:mupen64plus-a30"
       ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "GKD_PIXEL2",
+        "MIYOO_A30",
+        "MIYOO_FLIP",
+        "OAKMOSS_A133P",
+        "TRIMUI_A133P",
+        "TRIMUI_SMART_PRO_S"
+      ],
       "pin": {
         "recipe": "standalone:mupen64plus-a30",
         "url": "https://github.com/mupen64plus/mupen64plus-core.git",
@@ -159,6 +246,16 @@
       "recipes": [
         "standalone:mupen64plus-arm64-20260404"
       ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "GKD_PIXEL2",
+        "MIYOO_A30",
+        "MIYOO_FLIP",
+        "OAKMOSS_A133P",
+        "TRIMUI_A133P",
+        "TRIMUI_SMART_PRO_S"
+      ],
       "pin": {
         "recipe": "standalone:mupen64plus-arm64-20260404",
         "url": "https://github.com/mupen64plus/mupen64plus-core.git",
@@ -174,6 +271,15 @@
       "status": "recipe",
       "recipes": [
         "standalone:mupen64plus-pow2"
+      ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "GKD_PIXEL2",
+        "MIYOO_FLIP",
+        "OAKMOSS_A133P",
+        "TRIMUI_A133P",
+        "TRIMUI_SMART_PRO_S"
       ]
     },
     "Emu/NDS/dsperate": {
@@ -186,6 +292,17 @@
       "status": "recipe",
       "recipes": [
         "standalone:dsperate-arm64"
+      ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "GKD_PIXEL2",
+        "MIYOO_A30",
+        "MIYOO_FLIP",
+        "MIYOO_MINI_FAMILY",
+        "OAKMOSS_A133P",
+        "TRIMUI_A133P",
+        "TRIMUI_SMART_PRO_S"
       ]
     },
     "Emu/NDS/dsperate.a30": {
@@ -198,6 +315,17 @@
       "status": "recipe",
       "recipes": [
         "standalone:dsperate-a30"
+      ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "GKD_PIXEL2",
+        "MIYOO_A30",
+        "MIYOO_FLIP",
+        "MIYOO_MINI_FAMILY",
+        "OAKMOSS_A133P",
+        "TRIMUI_A133P",
+        "TRIMUI_SMART_PRO_S"
       ]
     },
     "Emu/OPENBOR/OpenBOR_64_mod": {
@@ -207,7 +335,18 @@
         "OpenBOR"
       ],
       "status": "no recipe",
-      "recipes": []
+      "recipes": [],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "GKD_PIXEL2",
+        "MIYOO_A30",
+        "MIYOO_FLIP",
+        "MIYOO_MINI_FAMILY",
+        "OAKMOSS_A133P",
+        "TRIMUI_A133P",
+        "TRIMUI_SMART_PRO_S"
+      ]
     },
     "Emu/OPENBOR/OpenBOR_Flip": {
       "sha256": "35871a5a10b339ab1e93ced993a62af7dc83e10662d67011a82e26ccce3281f4",
@@ -216,7 +355,18 @@
         "OpenBOR"
       ],
       "status": "no recipe",
-      "recipes": []
+      "recipes": [],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "GKD_PIXEL2",
+        "MIYOO_A30",
+        "MIYOO_FLIP",
+        "MIYOO_MINI_FAMILY",
+        "OAKMOSS_A133P",
+        "TRIMUI_A133P",
+        "TRIMUI_SMART_PRO_S"
+      ]
     },
     "Emu/OPENBOR/OpenBOR_TrimUI": {
       "sha256": "01b22813e6aee1d439a6d79c68a97fb367e9182aa317fd36e333c8f379afc120",
@@ -227,6 +377,17 @@
       "status": "recipe",
       "recipes": [
         "standalone:openbor-trimui"
+      ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "GKD_PIXEL2",
+        "MIYOO_A30",
+        "MIYOO_FLIP",
+        "MIYOO_MINI_FAMILY",
+        "OAKMOSS_A133P",
+        "TRIMUI_A133P",
+        "TRIMUI_SMART_PRO_S"
       ]
     },
     "Emu/OPENBOR/OpenBOR_mod": {
@@ -236,7 +397,18 @@
         "OpenBOR"
       ],
       "status": "no recipe",
-      "recipes": []
+      "recipes": [],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "GKD_PIXEL2",
+        "MIYOO_A30",
+        "MIYOO_FLIP",
+        "MIYOO_MINI_FAMILY",
+        "OAKMOSS_A133P",
+        "TRIMUI_A133P",
+        "TRIMUI_SMART_PRO_S"
+      ]
     },
     "Emu/OPENBOR/OpenBOR_new": {
       "sha256": "7d2bc15997d8472202b59daecb8f0552b2e0c3fa438665c314097f5a71bb01a4",
@@ -247,6 +419,17 @@
       "status": "recipe",
       "recipes": [
         "standalone:openbor-new"
+      ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "GKD_PIXEL2",
+        "MIYOO_A30",
+        "MIYOO_FLIP",
+        "MIYOO_MINI_FAMILY",
+        "OAKMOSS_A133P",
+        "TRIMUI_A133P",
+        "TRIMUI_SMART_PRO_S"
       ]
     },
     "Emu/PSP/PPSSPPSDL_A30": {
@@ -258,6 +441,16 @@
       "status": "reproduces",
       "recipes": [
         "standalone:ppsspp-a30"
+      ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "GKD_PIXEL2",
+        "MIYOO_A30",
+        "MIYOO_FLIP",
+        "OAKMOSS_A133P",
+        "TRIMUI_A133P",
+        "TRIMUI_SMART_PRO_S"
       ],
       "pin": {
         "recipe": "standalone:ppsspp-a30",
@@ -275,6 +468,16 @@
       "recipes": [
         "standalone:ppsspp-flip"
       ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "GKD_PIXEL2",
+        "MIYOO_A30",
+        "MIYOO_FLIP",
+        "OAKMOSS_A133P",
+        "TRIMUI_A133P",
+        "TRIMUI_SMART_PRO_S"
+      ],
       "pin": {
         "recipe": "standalone:ppsspp-flip",
         "url": "https://github.com/hrydgard/ppsspp.git",
@@ -290,6 +493,16 @@
       "status": "reproduces",
       "recipes": [
         "standalone:ppsspp-smartpros"
+      ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "GKD_PIXEL2",
+        "MIYOO_A30",
+        "MIYOO_FLIP",
+        "OAKMOSS_A133P",
+        "TRIMUI_A133P",
+        "TRIMUI_SMART_PRO_S"
       ],
       "pin": {
         "recipe": "standalone:ppsspp-smartpros",
@@ -307,6 +520,16 @@
       "recipes": [
         "standalone:ppsspp-trimui"
       ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "GKD_PIXEL2",
+        "MIYOO_A30",
+        "MIYOO_FLIP",
+        "OAKMOSS_A133P",
+        "TRIMUI_A133P",
+        "TRIMUI_SMART_PRO_S"
+      ],
       "pin": {
         "recipe": "standalone:ppsspp-trimui",
         "url": "https://github.com/hrydgard/ppsspp.git",
@@ -322,6 +545,16 @@
       "status": "reproduces",
       "recipes": [
         "standalone:ppsspp-darkmoss3326"
+      ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "GKD_PIXEL2",
+        "MIYOO_A30",
+        "MIYOO_FLIP",
+        "OAKMOSS_A133P",
+        "TRIMUI_A133P",
+        "TRIMUI_SMART_PRO_S"
       ],
       "pin": {
         "recipe": "standalone:ppsspp-darkmoss3326",
@@ -339,6 +572,16 @@
       "recipes": [
         "standalone:ppsspp-darkmoss3566"
       ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "GKD_PIXEL2",
+        "MIYOO_A30",
+        "MIYOO_FLIP",
+        "OAKMOSS_A133P",
+        "TRIMUI_A133P",
+        "TRIMUI_SMART_PRO_S"
+      ],
       "pin": {
         "recipe": "standalone:ppsspp-darkmoss3566",
         "url": "https://github.com/hrydgard/ppsspp.git",
@@ -354,6 +597,16 @@
       "status": "reproduces",
       "recipes": [
         "standalone:ppsspp-h700"
+      ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "GKD_PIXEL2",
+        "MIYOO_A30",
+        "MIYOO_FLIP",
+        "OAKMOSS_A133P",
+        "TRIMUI_A133P",
+        "TRIMUI_SMART_PRO_S"
       ],
       "pin": {
         "recipe": "standalone:ppsspp-h700",
@@ -373,6 +626,15 @@
         "standalone:yabasanshiro-arm64",
         "standalone:yabasanshiro-arm64-pgo",
         "standalone:yabasanshiro-standalone"
+      ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "GKD_PIXEL2",
+        "MIYOO_FLIP",
+        "OAKMOSS_A133P",
+        "TRIMUI_A133P",
+        "TRIMUI_SMART_PRO_S"
       ]
     },
     "Emu/SCUMMVM/scummvm_64.7z!scummvm.64": {
@@ -384,6 +646,17 @@
       "status": "reproduces",
       "recipes": [
         "standalone:scummvm-arm64"
+      ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "GKD_PIXEL2",
+        "MIYOO_A30",
+        "MIYOO_FLIP",
+        "MIYOO_MINI_FAMILY",
+        "OAKMOSS_A133P",
+        "TRIMUI_A133P",
+        "TRIMUI_SMART_PRO_S"
       ],
       "pin": {
         "recipe": "standalone:scummvm-arm64",
@@ -401,6 +674,17 @@
       "recipes": [
         "standalone:scummvm-a30"
       ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "GKD_PIXEL2",
+        "MIYOO_A30",
+        "MIYOO_FLIP",
+        "MIYOO_MINI_FAMILY",
+        "OAKMOSS_A133P",
+        "TRIMUI_A133P",
+        "TRIMUI_SMART_PRO_S"
+      ],
       "pin": {
         "recipe": "standalone:scummvm-a30",
         "url": "https://github.com/scummvm/scummvm.git",
@@ -417,11 +701,48 @@
       "recipes": [
         "standalone:scummvm-mini"
       ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "GKD_PIXEL2",
+        "MIYOO_A30",
+        "MIYOO_FLIP",
+        "MIYOO_MINI_FAMILY",
+        "OAKMOSS_A133P",
+        "TRIMUI_A133P",
+        "TRIMUI_SMART_PRO_S"
+      ],
       "pin": {
         "recipe": "standalone:scummvm-mini",
         "url": "https://github.com/scummvm/scummvm.git",
         "commit": "d21ef2e4cb9a9c979b111375624bdf5b66d91bfa"
       }
+    },
+    "RetroArch/.retroarch/cores/2048_libretro.so": {
+      "sha256": "36b62df9585b7e96cee348fec2f4629810471910abd8938450381f6b4929ef0f",
+      "kind": "core",
+      "names": [
+        "2048"
+      ],
+      "status": "recipe",
+      "recipes": [
+        "2048"
+      ],
+      "families": [],
+      "spare": true
+    },
+    "RetroArch/.retroarch/cores/81_libretro.so": {
+      "sha256": "e8d708f71c04afb6ad43cc078b1b9b263621cc3c7a5e1f5525d431bb8eaa9d64",
+      "kind": "core",
+      "names": [
+        "81"
+      ],
+      "status": "recipe",
+      "recipes": [
+        "81"
+      ],
+      "families": [],
+      "spare": true
     },
     "RetroArch/.retroarch/cores/a5200_libretro.so": {
       "sha256": "47dbf7bbe326d16b82dad94ae8ec1795ad87b7a59709e706a890769d09d62881",
@@ -432,6 +753,10 @@
       "status": "recipe",
       "recipes": [
         "a5200"
+      ],
+      "families": [
+        "MIYOO_A30",
+        "MIYOO_MINI_FAMILY"
       ]
     },
     "RetroArch/.retroarch/cores/ardens_libretro.so": {
@@ -443,6 +768,10 @@
       "status": "recipe",
       "recipes": [
         "ardens"
+      ],
+      "families": [
+        "MIYOO_A30",
+        "MIYOO_MINI_FAMILY"
       ]
     },
     "RetroArch/.retroarch/cores/arduous_libretro.so": {
@@ -454,6 +783,10 @@
       "status": "reproduces",
       "recipes": [
         "arduous"
+      ],
+      "families": [
+        "MIYOO_A30",
+        "MIYOO_MINI_FAMILY"
       ],
       "pin": {
         "recipe": "arduous",
@@ -471,11 +804,28 @@
       "recipes": [
         "armgba"
       ],
+      "families": [
+        "MIYOO_A30",
+        "MIYOO_MINI_FAMILY"
+      ],
       "pin": {
         "recipe": "armgba",
         "url": "https://github.com/MagnominusGit/armGBA.git",
         "commit": "a06ea8c3c91606935f12457cec9a00549afa8983"
       }
+    },
+    "RetroArch/.retroarch/cores/armnes_arcade_libretro.so": {
+      "sha256": "1d8cb509296e801f6cc495bccb12eb41473cd932916d9454fd9d32fa9772edeb",
+      "kind": "core",
+      "names": [
+        "armnes_arcade"
+      ],
+      "status": "recipe",
+      "recipes": [
+        "armnes_arcade"
+      ],
+      "families": [],
+      "spare": true
     },
     "RetroArch/.retroarch/cores/armnes_libretro.so": {
       "sha256": "f840e12ec256fe9836c0bae0a37b275dc5354db78c8e2913fe53033ff0febfab",
@@ -486,6 +836,10 @@
       "status": "reproduces",
       "recipes": [
         "armnes"
+      ],
+      "families": [
+        "MIYOO_A30",
+        "MIYOO_MINI_FAMILY"
       ],
       "pin": {
         "recipe": "armnes",
@@ -502,7 +856,24 @@
       "status": "recipe",
       "recipes": [
         "atari800"
+      ],
+      "families": [
+        "MIYOO_A30",
+        "MIYOO_MINI_FAMILY"
       ]
+    },
+    "RetroArch/.retroarch/cores/bk_libretro.so": {
+      "sha256": "18f5f050b9c6182ceb3ef5214651a0b28c1286888f4ec4b5d4471c29116bb8eb",
+      "kind": "core",
+      "names": [
+        "bk"
+      ],
+      "status": "recipe",
+      "recipes": [
+        "bk"
+      ],
+      "families": [],
+      "spare": true
     },
     "RetroArch/.retroarch/cores/bluemsx_libretro.so": {
       "sha256": "0bb6538ce807f430d8edceae9fd1b6882718bd277398850870debbee8a28a4bf",
@@ -513,6 +884,10 @@
       "status": "recipe",
       "recipes": [
         "bluemsx"
+      ],
+      "families": [
+        "MIYOO_A30",
+        "MIYOO_MINI_FAMILY"
       ]
     },
     "RetroArch/.retroarch/cores/cap32_libretro.so": {
@@ -524,6 +899,10 @@
       "status": "recipe",
       "recipes": [
         "cap32"
+      ],
+      "families": [
+        "MIYOO_A30",
+        "MIYOO_MINI_FAMILY"
       ]
     },
     "RetroArch/.retroarch/cores/chailove_libretro.so": {
@@ -535,6 +914,10 @@
       "status": "recipe",
       "recipes": [
         "chailove"
+      ],
+      "families": [
+        "MIYOO_A30",
+        "MIYOO_MINI_FAMILY"
       ]
     },
     "RetroArch/.retroarch/cores/chimerasnes_libretro.so": {
@@ -546,6 +929,10 @@
       "status": "recipe",
       "recipes": [
         "chimerasnes"
+      ],
+      "families": [
+        "MIYOO_A30",
+        "MIYOO_MINI_FAMILY"
       ]
     },
     "RetroArch/.retroarch/cores/crocods_libretro.so": {
@@ -557,7 +944,24 @@
       "status": "recipe",
       "recipes": [
         "crocods"
+      ],
+      "families": [
+        "MIYOO_A30",
+        "MIYOO_MINI_FAMILY"
       ]
+    },
+    "RetroArch/.retroarch/cores/daphne_libretro.so": {
+      "sha256": "af71cfd439ffd58b1693e38cfff5773bd584bbf5f1caa840ccd32bcb34167f0b",
+      "kind": "core",
+      "names": [
+        "daphne"
+      ],
+      "status": "recipe",
+      "recipes": [
+        "daphne"
+      ],
+      "families": [],
+      "spare": true
     },
     "RetroArch/.retroarch/cores/dosbox_pure_libretro.so": {
       "sha256": "299fc728c8efc026c6b45c40e6f829d05b456cd1a09082ee84a453e4243d00e5",
@@ -568,6 +972,10 @@
       "status": "recipe",
       "recipes": [
         "dosbox_pure"
+      ],
+      "families": [
+        "MIYOO_A30",
+        "MIYOO_MINI_FAMILY"
       ]
     },
     "RetroArch/.retroarch/cores/easyrpg_libretro.so": {
@@ -579,6 +987,10 @@
       "status": "recipe",
       "recipes": [
         "easyrpg"
+      ],
+      "families": [
+        "MIYOO_A30",
+        "MIYOO_MINI_FAMILY"
       ],
       "pin": {
         "url": "https://github.com/EasyRPG/Player.git",
@@ -598,6 +1010,10 @@
       "status": "recipe",
       "recipes": [
         "ecwolf"
+      ],
+      "families": [
+        "MIYOO_A30",
+        "MIYOO_MINI_FAMILY"
       ]
     },
     "RetroArch/.retroarch/cores/fake08_libretro.so": {
@@ -609,6 +1025,10 @@
       "status": "recipe",
       "recipes": [
         "fake08"
+      ],
+      "families": [
+        "MIYOO_A30",
+        "MIYOO_MINI_FAMILY"
       ]
     },
     "RetroArch/.retroarch/cores/fbalpha2012_libretro.so": {
@@ -620,6 +1040,13 @@
       "status": "recipe",
       "recipes": [
         "fbalpha2012"
+      ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "MIYOO_A30",
+        "MIYOO_FLIP",
+        "MIYOO_MINI_FAMILY"
       ]
     },
     "RetroArch/.retroarch/cores/fbneo_libretro.so": {
@@ -631,6 +1058,13 @@
       "status": "recipe",
       "recipes": [
         "fbneo"
+      ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "MIYOO_A30",
+        "MIYOO_FLIP",
+        "MIYOO_MINI_FAMILY"
       ]
     },
     "RetroArch/.retroarch/cores/fceumm_libretro.so": {
@@ -642,6 +1076,42 @@
       "status": "recipe",
       "recipes": [
         "fceumm"
+      ],
+      "families": [
+        "MIYOO_A30",
+        "MIYOO_MINI_FAMILY"
+      ]
+    },
+    "RetroArch/.retroarch/cores/flycast2021_libretro.so": {
+      "sha256": null,
+      "kind": "core",
+      "names": [
+        "Flycast2021-libretro"
+      ],
+      "status": "not shipped",
+      "recipes": [
+        "flycast2021"
+      ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "MIYOO_FLIP"
+      ]
+    },
+    "RetroArch/.retroarch/cores/flycast2024_libretro.so": {
+      "sha256": null,
+      "kind": "core",
+      "names": [
+        "Flycast2024-libretro"
+      ],
+      "status": "not shipped",
+      "recipes": [
+        "flycast2024"
+      ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "MIYOO_FLIP"
       ]
     },
     "RetroArch/.retroarch/cores/flycast_libretro.so": {
@@ -654,6 +1124,13 @@
       "status": "recipe",
       "recipes": [
         "flycast"
+      ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "MIYOO_A30",
+        "MIYOO_FLIP",
+        "MIYOO_MINI_FAMILY"
       ]
     },
     "RetroArch/.retroarch/cores/fmsx_libretro.so": {
@@ -665,6 +1142,10 @@
       "status": "recipe",
       "recipes": [
         "fmsx"
+      ],
+      "families": [
+        "MIYOO_A30",
+        "MIYOO_MINI_FAMILY"
       ]
     },
     "RetroArch/.retroarch/cores/freechaf_libretro.so": {
@@ -676,6 +1157,10 @@
       "status": "recipe",
       "recipes": [
         "freechaf"
+      ],
+      "families": [
+        "MIYOO_A30",
+        "MIYOO_MINI_FAMILY"
       ]
     },
     "RetroArch/.retroarch/cores/freeintv_libretro.so": {
@@ -687,7 +1172,37 @@
       "status": "recipe",
       "recipes": [
         "freeintv"
+      ],
+      "families": [
+        "MIYOO_A30",
+        "MIYOO_MINI_FAMILY"
       ]
+    },
+    "RetroArch/.retroarch/cores/freej2me_plus_libretro.so": {
+      "sha256": null,
+      "kind": "core",
+      "names": [
+        "freej2me_plus"
+      ],
+      "status": "not shipped",
+      "recipes": [],
+      "families": [
+        "MIYOO_A30",
+        "MIYOO_MINI_FAMILY"
+      ]
+    },
+    "RetroArch/.retroarch/cores/frodo_libretro.so": {
+      "sha256": "892ace0ab458bdad435e0de1e7cb5145a167c8286409bfd65ec3096ddb2161c4",
+      "kind": "core",
+      "names": [
+        "frodo"
+      ],
+      "status": "recipe",
+      "recipes": [
+        "frodo"
+      ],
+      "families": [],
+      "spare": true
     },
     "RetroArch/.retroarch/cores/fuse_libretro.so": {
       "sha256": "b2f1240982a00893053a447eea570292339ccd0896250bc404a1ab74af71ae73",
@@ -698,6 +1213,10 @@
       "status": "recipe",
       "recipes": [
         "fuse"
+      ],
+      "families": [
+        "MIYOO_A30",
+        "MIYOO_MINI_FAMILY"
       ]
     },
     "RetroArch/.retroarch/cores/gambatte_libretro.so": {
@@ -709,6 +1228,10 @@
       "status": "recipe",
       "recipes": [
         "gambatte"
+      ],
+      "families": [
+        "MIYOO_A30",
+        "MIYOO_MINI_FAMILY"
       ]
     },
     "RetroArch/.retroarch/cores/gametank_libretro.so": {
@@ -720,7 +1243,24 @@
       "status": "recipe",
       "recipes": [
         "gametank"
+      ],
+      "families": [
+        "MIYOO_A30",
+        "MIYOO_MINI_FAMILY"
       ]
+    },
+    "RetroArch/.retroarch/cores/gearboy_libretro.so": {
+      "sha256": "cd8d0b3a2def2e41d11a5cd81ce247d38bfd8f84a3cbabe7a714f1b32212d70a",
+      "kind": "core",
+      "names": [
+        "gearboy"
+      ],
+      "status": "recipe",
+      "recipes": [
+        "gearboy"
+      ],
+      "families": [],
+      "spare": true
     },
     "RetroArch/.retroarch/cores/gearcoleco_libretro.so": {
       "sha256": "1b3fb8bf99e9ebabadec8683dcd58979a017979db4a2df92edbd2646ce7f675f",
@@ -731,6 +1271,10 @@
       "status": "recipe",
       "recipes": [
         "gearcoleco"
+      ],
+      "families": [
+        "MIYOO_A30",
+        "MIYOO_MINI_FAMILY"
       ]
     },
     "RetroArch/.retroarch/cores/gearsystem_libretro.so": {
@@ -742,6 +1286,10 @@
       "status": "recipe",
       "recipes": [
         "gearsystem"
+      ],
+      "families": [
+        "MIYOO_A30",
+        "MIYOO_MINI_FAMILY"
       ]
     },
     "RetroArch/.retroarch/cores/genesis_plus_gx_libretro.so": {
@@ -753,6 +1301,10 @@
       "status": "recipe",
       "recipes": [
         "genesis_plus_gx"
+      ],
+      "families": [
+        "MIYOO_A30",
+        "MIYOO_MINI_FAMILY"
       ]
     },
     "RetroArch/.retroarch/cores/gloopy_libretro.so": {
@@ -764,6 +1316,10 @@
       "status": "recipe",
       "recipes": [
         "gloopy"
+      ],
+      "families": [
+        "MIYOO_A30",
+        "MIYOO_MINI_FAMILY"
       ]
     },
     "RetroArch/.retroarch/cores/gme_libretro.so": {
@@ -775,6 +1331,10 @@
       "status": "recipe",
       "recipes": [
         "gme"
+      ],
+      "families": [
+        "MIYOO_A30",
+        "MIYOO_MINI_FAMILY"
       ]
     },
     "RetroArch/.retroarch/cores/gpsp_libretro.so": {
@@ -786,6 +1346,10 @@
       "status": "recipe",
       "recipes": [
         "gpsp"
+      ],
+      "families": [
+        "MIYOO_A30",
+        "MIYOO_MINI_FAMILY"
       ]
     },
     "RetroArch/.retroarch/cores/gw_libretro.so": {
@@ -797,6 +1361,10 @@
       "status": "recipe",
       "recipes": [
         "gw"
+      ],
+      "families": [
+        "MIYOO_A30",
+        "MIYOO_MINI_FAMILY"
       ]
     },
     "RetroArch/.retroarch/cores/handy_libretro.so": {
@@ -808,6 +1376,10 @@
       "status": "recipe",
       "recipes": [
         "handy"
+      ],
+      "families": [
+        "MIYOO_A30",
+        "MIYOO_MINI_FAMILY"
       ]
     },
     "RetroArch/.retroarch/cores/hatari_libretro.so": {
@@ -819,6 +1391,10 @@
       "status": "recipe",
       "recipes": [
         "hatari"
+      ],
+      "families": [
+        "MIYOO_A30",
+        "MIYOO_MINI_FAMILY"
       ]
     },
     "RetroArch/.retroarch/cores/km_duckswanstation_xtreme_amped_libretro.so": {
@@ -830,6 +1406,9 @@
       "status": "recipe",
       "recipes": [
         "km_duckswanstation_xtreme_amped"
+      ],
+      "families": [
+        "MIYOO_A30"
       ]
     },
     "RetroArch/.retroarch/cores/km_flycast_xtreme_libretro.so": {
@@ -841,6 +1420,9 @@
       "status": "recipe",
       "recipes": [
         "km_flycast_xtreme"
+      ],
+      "families": [
+        "MIYOO_A30"
       ]
     },
     "RetroArch/.retroarch/cores/km_ludicrousn64_2k22_xtreme_amped_libretro.so": {
@@ -852,6 +1434,26 @@
       "status": "recipe",
       "recipes": [
         "km_ludicrousn64_2k22_xtreme_amped"
+      ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "MIYOO_A30",
+        "MIYOO_FLIP"
+      ]
+    },
+    "RetroArch/.retroarch/cores/km_mame2003_xtreme_libretro.so": {
+      "sha256": null,
+      "kind": "core",
+      "names": [
+        "km_mame2003_xtreme"
+      ],
+      "status": "not shipped",
+      "recipes": [
+        "km_mame2003_xtreme"
+      ],
+      "families": [
+        "MIYOO_MINI_FAMILY"
       ]
     },
     "RetroArch/.retroarch/cores/km_parallel_n64_xtreme_amped_turbo_libretro.so": {
@@ -863,6 +1465,26 @@
       "status": "recipe",
       "recipes": [
         "km_parallel_n64_xtreme_amped_turbo"
+      ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "MIYOO_A30",
+        "MIYOO_FLIP"
+      ]
+    },
+    "RetroArch/.retroarch/cores/km_puae_xtreme_amped_libretro.so": {
+      "sha256": null,
+      "kind": "core",
+      "names": [
+        "km_puae_xtreme_amped"
+      ],
+      "status": "not shipped",
+      "recipes": [
+        "km_puae_xtreme_amped"
+      ],
+      "families": [
+        "MIYOO_MINI_FAMILY"
       ]
     },
     "RetroArch/.retroarch/cores/km_vjag_xtreme_amped_libretro.so": {
@@ -874,7 +1496,37 @@
       "status": "recipe",
       "recipes": [
         "km_vjag_xtreme_amped"
+      ],
+      "families": [
+        "MIYOO_A30",
+        "MIYOO_MINI_FAMILY"
       ]
+    },
+    "RetroArch/.retroarch/cores/lowresnx_libretro.so": {
+      "sha256": "05cd158e15b10a9e2a8a54b881912766d1e4e2e914e388afad945b490dcde530",
+      "kind": "core",
+      "names": [
+        "lowresnx"
+      ],
+      "status": "recipe",
+      "recipes": [
+        "lowresnx"
+      ],
+      "families": [],
+      "spare": true
+    },
+    "RetroArch/.retroarch/cores/lutro_libretro.so": {
+      "sha256": "f927368eb7345917bd16ea3263767393a6bc6f6676d1d70f8a08b585dd753ff5",
+      "kind": "core",
+      "names": [
+        "lutro"
+      ],
+      "status": "recipe",
+      "recipes": [
+        "lutro"
+      ],
+      "families": [],
+      "spare": true
     },
     "RetroArch/.retroarch/cores/mame2003_plus_libretro.so": {
       "sha256": "6a038f48683b40606f4c0396ef7583c45e6e26a44bc027603c661e66073bc42f",
@@ -885,6 +1537,13 @@
       "status": "recipe",
       "recipes": [
         "mame2003_plus"
+      ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "MIYOO_A30",
+        "MIYOO_FLIP",
+        "MIYOO_MINI_FAMILY"
       ]
     },
     "RetroArch/.retroarch/cores/mednafen_lynx_libretro.so": {
@@ -896,6 +1555,10 @@
       "status": "recipe",
       "recipes": [
         "mednafen_lynx"
+      ],
+      "families": [
+        "MIYOO_A30",
+        "MIYOO_MINI_FAMILY"
       ]
     },
     "RetroArch/.retroarch/cores/mednafen_ngp_libretro.so": {
@@ -907,6 +1570,10 @@
       "status": "recipe",
       "recipes": [
         "mednafen_ngp"
+      ],
+      "families": [
+        "MIYOO_A30",
+        "MIYOO_MINI_FAMILY"
       ]
     },
     "RetroArch/.retroarch/cores/mednafen_pce_fast_libretro.so": {
@@ -918,7 +1585,24 @@
       "status": "recipe",
       "recipes": [
         "mednafen_pce_fast"
+      ],
+      "families": [
+        "MIYOO_A30",
+        "MIYOO_MINI_FAMILY"
       ]
+    },
+    "RetroArch/.retroarch/cores/mednafen_pcfx_libretro.so": {
+      "sha256": "676f4004c6b48f90d6fbd79865a39ba451efaffd42efea2d7d385f08c8142821",
+      "kind": "core",
+      "names": [
+        "mednafen_pcfx"
+      ],
+      "status": "recipe",
+      "recipes": [
+        "mednafen_pcfx"
+      ],
+      "families": [],
+      "spare": true
     },
     "RetroArch/.retroarch/cores/mednafen_supafaust_libretro.so": {
       "sha256": "5905469e957a8bc52f1c2f20d0d3a3a83501427985d3c6ffff96b8c86054bd4a",
@@ -929,6 +1613,10 @@
       "status": "recipe",
       "recipes": [
         "mednafen_supafaust"
+      ],
+      "families": [
+        "MIYOO_A30",
+        "MIYOO_MINI_FAMILY"
       ]
     },
     "RetroArch/.retroarch/cores/mednafen_supergrafx_libretro.so": {
@@ -940,6 +1628,10 @@
       "status": "recipe",
       "recipes": [
         "mednafen_supergrafx"
+      ],
+      "families": [
+        "MIYOO_A30",
+        "MIYOO_MINI_FAMILY"
       ]
     },
     "RetroArch/.retroarch/cores/mednafen_vb_libretro.so": {
@@ -951,6 +1643,10 @@
       "status": "recipe",
       "recipes": [
         "mednafen_vb"
+      ],
+      "families": [
+        "MIYOO_A30",
+        "MIYOO_MINI_FAMILY"
       ]
     },
     "RetroArch/.retroarch/cores/mednafen_wswan_libretro.so": {
@@ -962,6 +1658,10 @@
       "status": "recipe",
       "recipes": [
         "mednafen_wswan"
+      ],
+      "families": [
+        "MIYOO_A30",
+        "MIYOO_MINI_FAMILY"
       ]
     },
     "RetroArch/.retroarch/cores/mgba_libretro.so": {
@@ -973,6 +1673,10 @@
       "status": "recipe",
       "recipes": [
         "mgba"
+      ],
+      "families": [
+        "MIYOO_A30",
+        "MIYOO_MINI_FAMILY"
       ]
     },
     "RetroArch/.retroarch/cores/mkxp-z_libretro.so": {
@@ -982,7 +1686,24 @@
         "mkxp-z"
       ],
       "status": "no recipe",
-      "recipes": []
+      "recipes": [],
+      "families": [
+        "MIYOO_A30",
+        "MIYOO_MINI_FAMILY"
+      ]
+    },
+    "RetroArch/.retroarch/cores/mu_libretro.so": {
+      "sha256": "b48faf3803e1f799d5cb164e55838c59adbac70bb7583818fd9a71ccd842213c",
+      "kind": "core",
+      "names": [
+        "mu"
+      ],
+      "status": "recipe",
+      "recipes": [
+        "mu"
+      ],
+      "families": [],
+      "spare": true
     },
     "RetroArch/.retroarch/cores/mupen64plus_libretro.so": {
       "sha256": "89eeb5cc47973abdb10c674f77fafb6b762d11077a1c0921e43fc03b5eedaa22",
@@ -991,7 +1712,13 @@
         "mupen64plus"
       ],
       "status": "no recipe",
-      "recipes": []
+      "recipes": [],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "MIYOO_A30",
+        "MIYOO_FLIP"
+      ]
     },
     "RetroArch/.retroarch/cores/neocd_libretro.so": {
       "sha256": "42f6e10cc6866c96d15c03b686ed6c9210aca0d93c5eac4750d400cf70fc78a4",
@@ -1002,6 +1729,10 @@
       "status": "recipe",
       "recipes": [
         "neocd"
+      ],
+      "families": [
+        "MIYOO_A30",
+        "MIYOO_MINI_FAMILY"
       ]
     },
     "RetroArch/.retroarch/cores/nestopia_libretro.so": {
@@ -1013,6 +1744,10 @@
       "status": "recipe",
       "recipes": [
         "nestopia"
+      ],
+      "families": [
+        "MIYOO_A30",
+        "MIYOO_MINI_FAMILY"
       ]
     },
     "RetroArch/.retroarch/cores/np2kai_libretro.so": {
@@ -1024,7 +1759,24 @@
       "status": "recipe",
       "recipes": [
         "np2kai"
+      ],
+      "families": [
+        "MIYOO_A30",
+        "MIYOO_MINI_FAMILY"
       ]
+    },
+    "RetroArch/.retroarch/cores/numero_libretro.so": {
+      "sha256": "9647eaed50a64939ee112a5ba3324d681e06c85bd761aa77cabe8db081ea4a56",
+      "kind": "core",
+      "names": [
+        "numero"
+      ],
+      "status": "recipe",
+      "recipes": [
+        "numero"
+      ],
+      "families": [],
+      "spare": true
     },
     "RetroArch/.retroarch/cores/o2em_libretro.so": {
       "sha256": "bbd5e3135928df8aae69652843696294bd6a3ed44ac51c09e1b29e1b543de267",
@@ -1035,7 +1787,24 @@
       "status": "recipe",
       "recipes": [
         "o2em"
+      ],
+      "families": [
+        "MIYOO_A30",
+        "MIYOO_MINI_FAMILY"
       ]
+    },
+    "RetroArch/.retroarch/cores/opera_libretro.so": {
+      "sha256": "0a4bf26cdc2dca7a8c03b97d880696669c5aedac6bdaa38518c4a0ee54f67331",
+      "kind": "core",
+      "names": [
+        "opera"
+      ],
+      "status": "recipe",
+      "recipes": [
+        "opera"
+      ],
+      "families": [],
+      "spare": true
     },
     "RetroArch/.retroarch/cores/pcsx_rearmed_libretro.so": {
       "sha256": "6b89bef2e34622dcebfba4e92ad1b8fdd13305332a6f595ab19a883ba91febbe",
@@ -1046,6 +1815,13 @@
       "status": "recipe",
       "recipes": [
         "pcsx_rearmed"
+      ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "MIYOO_A30",
+        "MIYOO_FLIP",
+        "MIYOO_MINI_FAMILY"
       ]
     },
     "RetroArch/.retroarch/cores/picodrive_libretro.so": {
@@ -1057,6 +1833,10 @@
       "status": "recipe",
       "recipes": [
         "picodrive"
+      ],
+      "families": [
+        "MIYOO_A30",
+        "MIYOO_MINI_FAMILY"
       ],
       "pin": {
         "url": "https://github.com/libretro/picodrive.git",
@@ -1077,6 +1857,9 @@
       "recipes": [
         "standalone:pokedaisy-armhf-20261112"
       ],
+      "families": [
+        "MIYOO_A30"
+      ],
       "pin": {
         "recipe": "standalone:pokedaisy-armhf-20261112",
         "url": "https://github.com/thwonp/pokedaisy-lr.git",
@@ -1092,6 +1875,9 @@
       "status": "reproduces",
       "recipes": [
         "standalone:pokedaisy-armhf-20261113"
+      ],
+      "families": [
+        "MIYOO_A30"
       ],
       "pin": {
         "recipe": "standalone:pokedaisy-armhf-20261113",
@@ -1109,6 +1895,9 @@
       "recipes": [
         "standalone:pokedaisy-armhf-20261112"
       ],
+      "families": [
+        "MIYOO_A30"
+      ],
       "pin": {
         "recipe": "standalone:pokedaisy-armhf-20261112",
         "url": "https://github.com/thwonp/pokedaisy-lr.git",
@@ -1124,6 +1913,10 @@
       "status": "recipe",
       "recipes": [
         "pokemini"
+      ],
+      "families": [
+        "MIYOO_A30",
+        "MIYOO_MINI_FAMILY"
       ]
     },
     "RetroArch/.retroarch/cores/potator_libretro.so": {
@@ -1135,6 +1928,10 @@
       "status": "recipe",
       "recipes": [
         "potator"
+      ],
+      "families": [
+        "MIYOO_A30",
+        "MIYOO_MINI_FAMILY"
       ]
     },
     "RetroArch/.retroarch/cores/prboom_libretro.so": {
@@ -1146,6 +1943,10 @@
       "status": "recipe",
       "recipes": [
         "prboom"
+      ],
+      "families": [
+        "MIYOO_A30",
+        "MIYOO_MINI_FAMILY"
       ]
     },
     "RetroArch/.retroarch/cores/prosystem_libretro.so": {
@@ -1157,6 +1958,10 @@
       "status": "recipe",
       "recipes": [
         "prosystem"
+      ],
+      "families": [
+        "MIYOO_A30",
+        "MIYOO_MINI_FAMILY"
       ]
     },
     "RetroArch/.retroarch/cores/puae2021_libretro.so": {
@@ -1168,7 +1973,38 @@
       "status": "recipe",
       "recipes": [
         "puae2021"
+      ],
+      "families": [
+        "MIYOO_A30",
+        "MIYOO_MINI_FAMILY"
       ]
+    },
+    "RetroArch/.retroarch/cores/puae_libretro.so": {
+      "sha256": null,
+      "kind": "core",
+      "names": [
+        "puae"
+      ],
+      "status": "not shipped",
+      "recipes": [
+        "puae"
+      ],
+      "families": [
+        "MIYOO_MINI_FAMILY"
+      ]
+    },
+    "RetroArch/.retroarch/cores/puzzlescript_libretro.so": {
+      "sha256": "a0ad4ee74827115dbf011743a0976c45ba37578596893187f168b7c656f75c18",
+      "kind": "core",
+      "names": [
+        "puzzlescript"
+      ],
+      "status": "recipe",
+      "recipes": [
+        "puzzlescript"
+      ],
+      "families": [],
+      "spare": true
     },
     "RetroArch/.retroarch/cores/px68k_libretro.so": {
       "sha256": "688eb0ebf65a62b4d3e47f94980a0a76a9ac93b41d7510abdd34a7f8ad398e23",
@@ -1179,7 +2015,24 @@
       "status": "recipe",
       "recipes": [
         "px68k"
+      ],
+      "families": [
+        "MIYOO_A30",
+        "MIYOO_MINI_FAMILY"
       ]
+    },
+    "RetroArch/.retroarch/cores/quasi88_libretro.so": {
+      "sha256": "3e2cdd0016cea96ae6cb8a9e9cdc30fe8ad9319206c181977a5589f589198727",
+      "kind": "core",
+      "names": [
+        "quasi88"
+      ],
+      "status": "recipe",
+      "recipes": [
+        "quasi88"
+      ],
+      "families": [],
+      "spare": true
     },
     "RetroArch/.retroarch/cores/quicknes_libretro.so": {
       "sha256": "f134f81181a55f8473fc6acd541588ff45c918ec40004380203b11a50fd27009",
@@ -1190,6 +2043,10 @@
       "status": "recipe",
       "recipes": [
         "quicknes"
+      ],
+      "families": [
+        "MIYOO_A30",
+        "MIYOO_MINI_FAMILY"
       ]
     },
     "RetroArch/.retroarch/cores/race_libretro.so": {
@@ -1201,7 +2058,63 @@
       "status": "recipe",
       "recipes": [
         "race"
+      ],
+      "families": [
+        "MIYOO_A30",
+        "MIYOO_MINI_FAMILY"
       ]
+    },
+    "RetroArch/.retroarch/cores/reminiscence_libretro.so": {
+      "sha256": "2ed274a0da9f39743d69d66028e0ec096de1a61ad016f9d6bd8b061444c27a4c",
+      "kind": "core",
+      "names": [
+        "reminiscence"
+      ],
+      "status": "recipe",
+      "recipes": [
+        "reminiscence"
+      ],
+      "families": [],
+      "spare": true
+    },
+    "RetroArch/.retroarch/cores/snes9x2002_libretro.so": {
+      "sha256": "43caa60ef03495835c4e7321e786be3a8fb215d3b2d161e37ba722a5634e7b5c",
+      "kind": "core",
+      "names": [
+        "snes9x2002"
+      ],
+      "status": "recipe",
+      "recipes": [
+        "snes9x2002"
+      ],
+      "families": [],
+      "spare": true
+    },
+    "RetroArch/.retroarch/cores/snes9x2005_libretro.so": {
+      "sha256": "f5f939d8c4a594a04611a6d4a9421d6f00dd3b3f3b39011249eb263ce2ef02ea",
+      "kind": "core",
+      "names": [
+        "snes9x2005"
+      ],
+      "status": "recipe",
+      "recipes": [
+        "snes9x2005"
+      ],
+      "families": [],
+      "spare": true
+    },
+    "RetroArch/.retroarch/cores/snes9x2005_plus_libretro.so": {
+      "sha256": "7510f38057ce881f2b0f6486e0e4a65581343d88928087be5cf9180cfc3a18b0",
+      "kind": "core",
+      "names": [
+        "snes9x2005_plus"
+      ],
+      "status": "recipe",
+      "recipes": [
+        "snes9x2005_plus"
+      ],
+      "families": [],
+      "spare": true
     },
     "RetroArch/.retroarch/cores/snes9x2010_libretro.so": {
       "sha256": "a8b1de5914a04ea3fffa0164a775dee472c28810c2f7354e43a470d96d4ba2cf",
@@ -1212,6 +2125,10 @@
       "status": "recipe",
       "recipes": [
         "snes9x2010"
+      ],
+      "families": [
+        "MIYOO_A30",
+        "MIYOO_MINI_FAMILY"
       ]
     },
     "RetroArch/.retroarch/cores/snes9x_libretro.so": {
@@ -1223,7 +2140,24 @@
       "status": "recipe",
       "recipes": [
         "snes9x"
+      ],
+      "families": [
+        "MIYOO_A30",
+        "MIYOO_MINI_FAMILY"
       ]
+    },
+    "RetroArch/.retroarch/cores/squirreljme_libretro.so": {
+      "sha256": "5528cc0ff911ba343d7729f36f252a67f9105bbca92d2505b83ce274f1c376ba",
+      "kind": "core",
+      "names": [
+        "squirreljme"
+      ],
+      "status": "recipe",
+      "recipes": [
+        "squirreljme"
+      ],
+      "families": [],
+      "spare": true
     },
     "RetroArch/.retroarch/cores/stella2014_libretro.so": {
       "sha256": "9cbcd43113e9878a53514e331be16ac0cee9e83eff421d16707dd935575b2ec9",
@@ -1234,6 +2168,10 @@
       "status": "recipe",
       "recipes": [
         "stella2014"
+      ],
+      "families": [
+        "MIYOO_A30",
+        "MIYOO_MINI_FAMILY"
       ]
     },
     "RetroArch/.retroarch/cores/superwhizkid_libretro.so": {
@@ -1245,6 +2183,10 @@
       "status": "reproduces",
       "recipes": [
         "superwhizkid"
+      ],
+      "families": [
+        "MIYOO_A30",
+        "MIYOO_MINI_FAMILY"
       ],
       "pin": {
         "recipe": "superwhizkid",
@@ -1263,7 +2205,25 @@
       "status": "recipe",
       "recipes": [
         "swanstation"
+      ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "MIYOO_FLIP"
       ]
+    },
+    "RetroArch/.retroarch/cores/theodore_libretro.so": {
+      "sha256": "6341211657391ccd28c2a1b2d14d6636985ae895f641732da5497f3ada7a4e59",
+      "kind": "core",
+      "names": [
+        "theodore"
+      ],
+      "status": "recipe",
+      "recipes": [
+        "theodore"
+      ],
+      "families": [],
+      "spare": true
     },
     "RetroArch/.retroarch/cores/tic80_libretro.so": {
       "sha256": "8ec111036704b03274a01e479d785de08622274cf8d8adf3679e38b7d2a2e8d3",
@@ -1274,6 +2234,10 @@
       "status": "recipe",
       "recipes": [
         "tic80"
+      ],
+      "families": [
+        "MIYOO_A30",
+        "MIYOO_MINI_FAMILY"
       ]
     },
     "RetroArch/.retroarch/cores/tyrquake_libretro.so": {
@@ -1285,6 +2249,10 @@
       "status": "recipe",
       "recipes": [
         "tyrquake"
+      ],
+      "families": [
+        "MIYOO_A30",
+        "MIYOO_MINI_FAMILY"
       ]
     },
     "RetroArch/.retroarch/cores/uae4arm_libretro.so": {
@@ -1296,7 +2264,37 @@
       "status": "recipe",
       "recipes": [
         "uae4arm"
+      ],
+      "families": [
+        "MIYOO_A30",
+        "MIYOO_MINI_FAMILY"
       ]
+    },
+    "RetroArch/.retroarch/cores/uw8_libretro.so": {
+      "sha256": "8087a5b494f982e5ec32b752c303849da92024bb73f570a1b37b40f2e9353059",
+      "kind": "core",
+      "names": [
+        "uw8"
+      ],
+      "status": "recipe",
+      "recipes": [
+        "uw8"
+      ],
+      "families": [],
+      "spare": true
+    },
+    "RetroArch/.retroarch/cores/uzem_libretro.so": {
+      "sha256": "9b5024a5c6c438227b94a7e12ada6930c2382a8d5489b9e3c573df516694950d",
+      "kind": "core",
+      "names": [
+        "uzem"
+      ],
+      "status": "recipe",
+      "recipes": [
+        "uzem"
+      ],
+      "families": [],
+      "spare": true
     },
     "RetroArch/.retroarch/cores/vecx_libretro.so": {
       "sha256": "4e29450ba3bfc915fb5d23ff53c370fabf8d87c4944a5ec189218dbde8b4540e",
@@ -1307,7 +2305,24 @@
       "status": "recipe",
       "recipes": [
         "vecx"
+      ],
+      "families": [
+        "MIYOO_A30",
+        "MIYOO_MINI_FAMILY"
       ]
+    },
+    "RetroArch/.retroarch/cores/vemulator_libretro.so": {
+      "sha256": "0dbd375d580374e54a6e139fc74abca191f745d3ed607c25185ac6bf75eb0d3b",
+      "kind": "core",
+      "names": [
+        "vemulator"
+      ],
+      "status": "recipe",
+      "recipes": [
+        "vemulator"
+      ],
+      "families": [],
+      "spare": true
     },
     "RetroArch/.retroarch/cores/vice_x64_libretro.so": {
       "sha256": "735481f5b7ce048cedf55d7fb005847805a3e7babbefd5e0ef57ccc03604a64b",
@@ -1318,6 +2333,10 @@
       "status": "recipe",
       "recipes": [
         "vice_x64"
+      ],
+      "families": [
+        "MIYOO_A30",
+        "MIYOO_MINI_FAMILY"
       ]
     },
     "RetroArch/.retroarch/cores/vice_xvic_libretro.so": {
@@ -1329,6 +2348,10 @@
       "status": "recipe",
       "recipes": [
         "vice_xvic"
+      ],
+      "families": [
+        "MIYOO_A30",
+        "MIYOO_MINI_FAMILY"
       ]
     },
     "RetroArch/.retroarch/cores/virtualjaguar_libretro.so": {
@@ -1340,7 +2363,24 @@
       "status": "recipe",
       "recipes": [
         "virtualjaguar"
+      ],
+      "families": [
+        "MIYOO_A30",
+        "MIYOO_MINI_FAMILY"
       ]
+    },
+    "RetroArch/.retroarch/cores/x1_libretro.so": {
+      "sha256": "e95a80181c440b68a9c3e98149754599e049f0de7f31fa21ad01da45b31183ce",
+      "kind": "core",
+      "names": [
+        "x1"
+      ],
+      "status": "recipe",
+      "recipes": [
+        "x1"
+      ],
+      "families": [],
+      "spare": true
     },
     "RetroArch/.retroarch/cores/yabadabadoo_libretro.so": {
       "sha256": "8467bdf91053541e186c32f1fc205f20e4913fc142eb72d3d9648db821b4200a",
@@ -1351,7 +2391,27 @@
       "status": "recipe",
       "recipes": [
         "yabadabadoo"
+      ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "MIYOO_A30",
+        "MIYOO_FLIP",
+        "MIYOO_MINI_FAMILY"
       ]
+    },
+    "RetroArch/.retroarch/cores64/81_libretro.so": {
+      "sha256": "1a168fcc074faa26eec8c2c2c407643d43dff1e28757e98c44d979d565550d78",
+      "kind": "core",
+      "names": [
+        "81"
+      ],
+      "status": "recipe",
+      "recipes": [
+        "81"
+      ],
+      "families": [],
+      "spare": true
     },
     "RetroArch/.retroarch/cores64/a5200_libretro.so": {
       "sha256": "b42ae6eee8178c0eed9c0fe361112161ba081c8481076b06647e1a54c8a94d72",
@@ -1362,6 +2422,15 @@
       "status": "recipe",
       "recipes": [
         "a5200"
+      ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "GKD_PIXEL2",
+        "MIYOO_FLIP",
+        "OAKMOSS_A133P",
+        "TRIMUI_A133P",
+        "TRIMUI_SMART_PRO_S"
       ],
       "pin": {
         "url": "https://github.com/libretro/a5200.git",
@@ -1382,6 +2451,15 @@
       "recipes": [
         "ardens"
       ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "GKD_PIXEL2",
+        "MIYOO_FLIP",
+        "OAKMOSS_A133P",
+        "TRIMUI_A133P",
+        "TRIMUI_SMART_PRO_S"
+      ],
       "pin": {
         "recipe": "ardens",
         "url": "https://github.com/tiberiusbrown/Ardens.git",
@@ -1400,6 +2478,15 @@
       "recipes": [
         "arduous"
       ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "GKD_PIXEL2",
+        "MIYOO_FLIP",
+        "OAKMOSS_A133P",
+        "TRIMUI_A133P",
+        "TRIMUI_SMART_PRO_S"
+      ],
       "pin": {
         "recipe": "arduous",
         "url": "https://github.com/libretro/arduous.git",
@@ -1415,6 +2502,15 @@
       "status": "reproduces",
       "recipes": [
         "armgba"
+      ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "GKD_PIXEL2",
+        "MIYOO_FLIP",
+        "OAKMOSS_A133P",
+        "TRIMUI_A133P",
+        "TRIMUI_SMART_PRO_S"
       ],
       "pin": {
         "recipe": "armgba",
@@ -1432,6 +2528,15 @@
       "recipes": [
         "armn64"
       ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "GKD_PIXEL2",
+        "MIYOO_FLIP",
+        "OAKMOSS_A133P",
+        "TRIMUI_A133P",
+        "TRIMUI_SMART_PRO_S"
+      ],
       "pin": {
         "url": "https://github.com/MagnominusGit/armN64.git",
         "commit": "20ea32ee4651a54dba2682c17581ff4fbc9a796c",
@@ -1440,6 +2545,19 @@
         "verified": false
       },
       "evidence": "spruceOS b43e8baf9 (2026-11-18, ryanmsartor: update armulators to latest)"
+    },
+    "RetroArch/.retroarch/cores64/armnes_arcade_libretro.so": {
+      "sha256": "f76f62126d9c0810539426d836b0d31d5ac7c327811a7644f4ab26850c7b64b3",
+      "kind": "core",
+      "names": [
+        "armnes_arcade"
+      ],
+      "status": "recipe",
+      "recipes": [
+        "armnes_arcade"
+      ],
+      "families": [],
+      "spare": true
     },
     "RetroArch/.retroarch/cores64/armnes_libretro.so": {
       "sha256": "cdb42d30ddc8d96e2a577a7800a23c23191d3ad3e6b466903f344e682ddfbd08",
@@ -1450,6 +2568,15 @@
       "status": "reproduces",
       "recipes": [
         "armnes"
+      ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "GKD_PIXEL2",
+        "MIYOO_FLIP",
+        "OAKMOSS_A133P",
+        "TRIMUI_A133P",
+        "TRIMUI_SMART_PRO_S"
       ],
       "pin": {
         "recipe": "armnes",
@@ -1466,6 +2593,15 @@
       "status": "recipe",
       "recipes": [
         "armsnes"
+      ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "GKD_PIXEL2",
+        "MIYOO_FLIP",
+        "OAKMOSS_A133P",
+        "TRIMUI_A133P",
+        "TRIMUI_SMART_PRO_S"
       ],
       "pin": {
         "url": "https://github.com/MagnominusGit/armSNES.git",
@@ -1486,6 +2622,15 @@
       "recipes": [
         "atari800"
       ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "GKD_PIXEL2",
+        "MIYOO_FLIP",
+        "OAKMOSS_A133P",
+        "TRIMUI_A133P",
+        "TRIMUI_SMART_PRO_S"
+      ],
       "pin": {
         "url": "https://github.com/libretro/libretro-atari800.git",
         "commit": "6a18cb23cc4a7cecabd9b16143d2d7332ae8d44b",
@@ -1505,6 +2650,11 @@
       "recipes": [
         "standalone:azahar-libretro"
       ],
+      "families": [
+        "DARKMOSS",
+        "MIYOO_FLIP",
+        "OAKMOSS_A133P"
+      ],
       "pin": {
         "recipe": "standalone:azahar-libretro",
         "url": "https://github.com/azahar-emu/azahar.git",
@@ -1520,6 +2670,15 @@
       "status": "recipe",
       "recipes": [
         "bluemsx"
+      ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "GKD_PIXEL2",
+        "MIYOO_FLIP",
+        "OAKMOSS_A133P",
+        "TRIMUI_A133P",
+        "TRIMUI_SMART_PRO_S"
       ],
       "pin": {
         "url": "https://github.com/libretro/blueMSX-libretro.git",
@@ -1541,6 +2700,15 @@
       "recipes": [
         "cap32"
       ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "GKD_PIXEL2",
+        "MIYOO_FLIP",
+        "OAKMOSS_A133P",
+        "TRIMUI_A133P",
+        "TRIMUI_SMART_PRO_S"
+      ],
       "pin": {
         "url": "https://github.com/libretro/libretro-cap32.git",
         "commit": "9129393fde936fb2fd7cfe3d27128f3d43ac2964",
@@ -1559,6 +2727,15 @@
       "status": "recipe",
       "recipes": [
         "chailove"
+      ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "GKD_PIXEL2",
+        "MIYOO_FLIP",
+        "OAKMOSS_A133P",
+        "TRIMUI_A133P",
+        "TRIMUI_SMART_PRO_S"
       ],
       "pin": {
         "url": "https://github.com/libretro/ChaiLove.git",
@@ -1579,6 +2756,15 @@
       "recipes": [
         "chimerasnes"
       ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "GKD_PIXEL2",
+        "MIYOO_FLIP",
+        "OAKMOSS_A133P",
+        "TRIMUI_A133P",
+        "TRIMUI_SMART_PRO_S"
+      ],
       "pin": {
         "url": "https://github.com/jamsilva/chimerasnes.git",
         "commit": "04c57c2902c25f36ae5a5d9c57aff851a772c868",
@@ -1598,6 +2784,15 @@
       "recipes": [
         "crocods"
       ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "GKD_PIXEL2",
+        "MIYOO_FLIP",
+        "OAKMOSS_A133P",
+        "TRIMUI_A133P",
+        "TRIMUI_SMART_PRO_S"
+      ],
       "pin": {
         "url": "https://github.com/libretro/libretro-crocods.git",
         "commit": "a320f6e38af49af84a63f81329a1bdb9322022b4",
@@ -1606,6 +2801,19 @@
         "verified": false
       },
       "evidence": "came with spruceOS 327c258ee (2025-05-17), the same code and data sections as that import (only stripped since, in bd606af63); built 2025-05-05/06 (sibling builds embed those dates); no commit between 2025-05-04 and 05-07 on master"
+    },
+    "RetroArch/.retroarch/cores64/daphne_libretro.so": {
+      "sha256": "d4fcb412841005f27a76f89294bca2c01f2ef60d4291108d940cd7561a42dc3d",
+      "kind": "core",
+      "names": [
+        "daphne"
+      ],
+      "status": "recipe",
+      "recipes": [
+        "daphne"
+      ],
+      "families": [],
+      "spare": true
     },
     "RetroArch/.retroarch/cores64/dosbox_pure_libretro.so": {
       "sha256": "0fa739000574d0dbf97b81fc50613f6d57bf5dd072f804b0ba36a440571edd4e",
@@ -1616,6 +2824,15 @@
       "status": "recipe",
       "recipes": [
         "dosbox_pure"
+      ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "GKD_PIXEL2",
+        "MIYOO_FLIP",
+        "OAKMOSS_A133P",
+        "TRIMUI_A133P",
+        "TRIMUI_SMART_PRO_S"
       ]
     },
     "RetroArch/.retroarch/cores64/easyrpg_libretro.so": {
@@ -1627,6 +2844,15 @@
       "status": "recipe",
       "recipes": [
         "easyrpg"
+      ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "GKD_PIXEL2",
+        "MIYOO_FLIP",
+        "OAKMOSS_A133P",
+        "TRIMUI_A133P",
+        "TRIMUI_SMART_PRO_S"
       ],
       "pin": {
         "url": "https://github.com/EasyRPG/Player.git",
@@ -1647,6 +2873,15 @@
       "recipes": [
         "ecwolf"
       ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "GKD_PIXEL2",
+        "MIYOO_FLIP",
+        "OAKMOSS_A133P",
+        "TRIMUI_A133P",
+        "TRIMUI_SMART_PRO_S"
+      ],
       "pin": {
         "url": "https://github.com/libretro/ecwolf.git",
         "commit": "c57ad894d5942740b4896511e8554c9a776b04a6",
@@ -1665,6 +2900,15 @@
       "status": "recipe",
       "recipes": [
         "fake08"
+      ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "GKD_PIXEL2",
+        "MIYOO_FLIP",
+        "OAKMOSS_A133P",
+        "TRIMUI_A133P",
+        "TRIMUI_SMART_PRO_S"
       ]
     },
     "RetroArch/.retroarch/cores64/fbalpha2012_libretro.so": {
@@ -1676,6 +2920,15 @@
       "status": "recipe",
       "recipes": [
         "fbalpha2012"
+      ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "GKD_PIXEL2",
+        "MIYOO_FLIP",
+        "OAKMOSS_A133P",
+        "TRIMUI_A133P",
+        "TRIMUI_SMART_PRO_S"
       ],
       "pin": {
         "url": "https://github.com/libretro/fbalpha2012.git",
@@ -1696,6 +2949,15 @@
       "recipes": [
         "fbneo"
       ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "GKD_PIXEL2",
+        "MIYOO_FLIP",
+        "OAKMOSS_A133P",
+        "TRIMUI_A133P",
+        "TRIMUI_SMART_PRO_S"
+      ],
       "pin": {
         "url": "https://github.com/libretro/FBNeo.git",
         "commit": "5ed35561e2e86c19a618268a60f31bff12d375ab",
@@ -1714,7 +2976,29 @@
       "status": "recipe",
       "recipes": [
         "fceumm"
+      ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "GKD_PIXEL2",
+        "MIYOO_FLIP",
+        "OAKMOSS_A133P",
+        "TRIMUI_A133P",
+        "TRIMUI_SMART_PRO_S"
       ]
+    },
+    "RetroArch/.retroarch/cores64/ffmpeg_libretro.so": {
+      "sha256": "d4996d5e997fa3e0e5e735e9974b70b03eca39cff5e9d6ef75a78b0de4e17173",
+      "kind": "core",
+      "names": [
+        "ffmpeg"
+      ],
+      "status": "recipe",
+      "recipes": [
+        "ffmpeg"
+      ],
+      "families": [],
+      "spare": true
     },
     "RetroArch/.retroarch/cores64/flycast2021_libretro.so": {
       "sha256": "a8a7a675a3c6086c86435bf6f8f01a42c05468cbbd2f9da05d3d816c9ef62094",
@@ -1725,6 +3009,15 @@
       "status": "recipe",
       "recipes": [
         "flycast2021"
+      ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "GKD_PIXEL2",
+        "MIYOO_FLIP",
+        "OAKMOSS_A133P",
+        "TRIMUI_A133P",
+        "TRIMUI_SMART_PRO_S"
       ],
       "pin": {
         "url": "https://github.com/flyinghead/flycast.git",
@@ -1744,6 +3037,14 @@
       "status": "recipe",
       "recipes": [
         "flycast2024"
+      ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "MIYOO_FLIP",
+        "OAKMOSS_A133P",
+        "TRIMUI_A133P",
+        "TRIMUI_SMART_PRO_S"
       ],
       "pin": {
         "url": "https://github.com/flyinghead/flycast.git",
@@ -1765,6 +3066,14 @@
       "recipes": [
         "standalone:flycast-libretro-t3"
       ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "MIYOO_FLIP",
+        "OAKMOSS_A133P",
+        "TRIMUI_A133P",
+        "TRIMUI_SMART_PRO_S"
+      ],
       "pin": {
         "recipe": "standalone:flycast-libretro-t3",
         "url": "https://github.com/flyinghead/flycast.git",
@@ -1780,6 +3089,15 @@
       "status": "recipe",
       "recipes": [
         "fmsx"
+      ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "GKD_PIXEL2",
+        "MIYOO_FLIP",
+        "OAKMOSS_A133P",
+        "TRIMUI_A133P",
+        "TRIMUI_SMART_PRO_S"
       ],
       "pin": {
         "url": "https://github.com/libretro/fmsx-libretro.git",
@@ -1800,6 +3118,15 @@
       "recipes": [
         "freechaf"
       ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "GKD_PIXEL2",
+        "MIYOO_FLIP",
+        "OAKMOSS_A133P",
+        "TRIMUI_A133P",
+        "TRIMUI_SMART_PRO_S"
+      ],
       "pin": {
         "url": "https://github.com/libretro/FreeChaF.git",
         "commit": "cdb8ad6fcecb276761b193650f5ce9ae8b878067",
@@ -1819,6 +3146,15 @@
       "recipes": [
         "freeintv"
       ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "GKD_PIXEL2",
+        "MIYOO_FLIP",
+        "OAKMOSS_A133P",
+        "TRIMUI_A133P",
+        "TRIMUI_SMART_PRO_S"
+      ],
       "pin": {
         "url": "https://github.com/libretro/FreeIntv.git",
         "commit": "6efc4b8fd4c7423ec1f5ff1913b854529135b565",
@@ -1827,6 +3163,24 @@
         "verified": false
       },
       "evidence": "came with spruceOS 327c258ee (2025-05-17), the same code and data sections as that import (only stripped since, in bd606af63); built 2025-05-05/06 (sibling builds embed those dates); no commit between 2025-05-04 and 05-07 on master"
+    },
+    "RetroArch/.retroarch/cores64/freej2me_plus_libretro.so": {
+      "sha256": null,
+      "kind": "core",
+      "names": [
+        "freej2me_plus"
+      ],
+      "status": "not shipped",
+      "recipes": [],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "GKD_PIXEL2",
+        "MIYOO_FLIP",
+        "OAKMOSS_A133P",
+        "TRIMUI_A133P",
+        "TRIMUI_SMART_PRO_S"
+      ]
     },
     "RetroArch/.retroarch/cores64/fuse_libretro.so": {
       "sha256": "6bcc2710f717294fcf60e60c88e7b44d7a118c2c319463d49d3bc0a3e1b6f206",
@@ -1837,6 +3191,15 @@
       "status": "recipe",
       "recipes": [
         "fuse"
+      ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "GKD_PIXEL2",
+        "MIYOO_FLIP",
+        "OAKMOSS_A133P",
+        "TRIMUI_A133P",
+        "TRIMUI_SMART_PRO_S"
       ],
       "pin": {
         "url": "https://github.com/libretro/fuse-libretro.git",
@@ -1857,6 +3220,15 @@
       "recipes": [
         "gambatte"
       ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "GKD_PIXEL2",
+        "MIYOO_FLIP",
+        "OAKMOSS_A133P",
+        "TRIMUI_A133P",
+        "TRIMUI_SMART_PRO_S"
+      ],
       "pin": {
         "url": "https://github.com/libretro/gambatte-libretro.git",
         "commit": "77f2567d718b8973d02caa2daa8dce4953faf811",
@@ -1876,7 +3248,29 @@
       "status": "recipe",
       "recipes": [
         "gametank"
+      ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "GKD_PIXEL2",
+        "MIYOO_FLIP",
+        "OAKMOSS_A133P",
+        "TRIMUI_A133P",
+        "TRIMUI_SMART_PRO_S"
       ]
+    },
+    "RetroArch/.retroarch/cores64/gearboy_libretro.so": {
+      "sha256": "ffb11d35f7a178aaa76db4b27042774d4c78ac4c379aabd46b997561188a100e",
+      "kind": "core",
+      "names": [
+        "gearboy"
+      ],
+      "status": "recipe",
+      "recipes": [
+        "gearboy"
+      ],
+      "families": [],
+      "spare": true
     },
     "RetroArch/.retroarch/cores64/gearcoleco_libretro.so": {
       "sha256": "ea32e624cf1a969a683deca4bfe6f249d310805506b60afb9d76e8e5180465cf",
@@ -1887,6 +3281,15 @@
       "status": "recipe",
       "recipes": [
         "gearcoleco"
+      ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "GKD_PIXEL2",
+        "MIYOO_FLIP",
+        "OAKMOSS_A133P",
+        "TRIMUI_A133P",
+        "TRIMUI_SMART_PRO_S"
       ],
       "pin": {
         "url": "https://github.com/drhelius/Gearcoleco.git",
@@ -1907,6 +3310,15 @@
       "recipes": [
         "gearsystem"
       ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "GKD_PIXEL2",
+        "MIYOO_FLIP",
+        "OAKMOSS_A133P",
+        "TRIMUI_A133P",
+        "TRIMUI_SMART_PRO_S"
+      ],
       "pin": {
         "url": "https://github.com/drhelius/Gearsystem.git",
         "commit": "81decc29b8aada7b206934bc970531a35ca1a080",
@@ -1926,6 +3338,15 @@
       "recipes": [
         "genesis_plus_gx"
       ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "GKD_PIXEL2",
+        "MIYOO_FLIP",
+        "OAKMOSS_A133P",
+        "TRIMUI_A133P",
+        "TRIMUI_SMART_PRO_S"
+      ],
       "pin": {
         "url": "https://github.com/libretro/Genesis-Plus-GX.git",
         "commit": "f64e0a1e04a67a5edf79026c07dc5094f8df74bc",
@@ -1934,6 +3355,19 @@
         "verified": false
       },
       "evidence": "came with spruceOS 327c258ee (2025-05-17), the same code and data sections as that import (only stripped since, in bd606af63); built 2025-05-05/06 (sibling builds embed those dates); no commit between 2025-05-04 and 05-07 on master; CE's current recipe does not build at the pin (run 44594308904)"
+    },
+    "RetroArch/.retroarch/cores64/genesis_plus_gx_wide_libretro.so": {
+      "sha256": "96eb5e2771e03ae3c867b31db8d8413e951c2dff4e3fb4b7ac8b1749b3f44742",
+      "kind": "core",
+      "names": [
+        "genesis_plus_gx_wide"
+      ],
+      "status": "recipe",
+      "recipes": [
+        "genesis_plus_gx_wide"
+      ],
+      "families": [],
+      "spare": true
     },
     "RetroArch/.retroarch/cores64/gloopy_libretro.so": {
       "sha256": "493be2506365435e3e455e3de4074f80a54fba59cffe9ef1a859d32c53164f0f",
@@ -1944,6 +3378,15 @@
       "status": "recipe",
       "recipes": [
         "gloopy"
+      ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "GKD_PIXEL2",
+        "MIYOO_FLIP",
+        "OAKMOSS_A133P",
+        "TRIMUI_A133P",
+        "TRIMUI_SMART_PRO_S"
       ],
       "pin": {
         "url": "https://github.com/seriamaugenlicher/gloopy.git",
@@ -1963,6 +3406,15 @@
       "status": "recipe",
       "recipes": [
         "gme"
+      ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "GKD_PIXEL2",
+        "MIYOO_FLIP",
+        "OAKMOSS_A133P",
+        "TRIMUI_A133P",
+        "TRIMUI_SMART_PRO_S"
       ]
     },
     "RetroArch/.retroarch/cores64/gpsp_libretro.so": {
@@ -1974,6 +3426,15 @@
       "status": "recipe",
       "recipes": [
         "gpsp"
+      ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "GKD_PIXEL2",
+        "MIYOO_FLIP",
+        "OAKMOSS_A133P",
+        "TRIMUI_A133P",
+        "TRIMUI_SMART_PRO_S"
       ],
       "pin": {
         "url": "https://github.com/libretro/gpsp.git",
@@ -1995,6 +3456,15 @@
       "recipes": [
         "gw"
       ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "GKD_PIXEL2",
+        "MIYOO_FLIP",
+        "OAKMOSS_A133P",
+        "TRIMUI_A133P",
+        "TRIMUI_SMART_PRO_S"
+      ],
       "pin": {
         "url": "https://github.com/libretro/gw-libretro.git",
         "commit": "435e5cfd4bf6aea03a84259e9b8dba3daf3ff5bd",
@@ -2014,6 +3484,15 @@
       "recipes": [
         "handy"
       ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "GKD_PIXEL2",
+        "MIYOO_FLIP",
+        "OAKMOSS_A133P",
+        "TRIMUI_A133P",
+        "TRIMUI_SMART_PRO_S"
+      ],
       "pin": {
         "url": "https://github.com/libretro/libretro-handy.git",
         "commit": "4e9e072796e5552a9d57f6ab83b3f85f27b17fb6",
@@ -2032,6 +3511,15 @@
       "status": "recipe",
       "recipes": [
         "hatari"
+      ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "GKD_PIXEL2",
+        "MIYOO_FLIP",
+        "OAKMOSS_A133P",
+        "TRIMUI_A133P",
+        "TRIMUI_SMART_PRO_S"
       ]
     },
     "RetroArch/.retroarch/cores64/km_ludicrousn64_2k22_xtreme_amped_libretro.so": {
@@ -2044,6 +3532,15 @@
       "recipes": [
         "km_ludicrousn64_2k22_xtreme_amped"
       ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "GKD_PIXEL2",
+        "MIYOO_FLIP",
+        "OAKMOSS_A133P",
+        "TRIMUI_A133P",
+        "TRIMUI_SMART_PRO_S"
+      ],
       "pin": {
         "url": "https://github.com/KMFDManic/ludicrous-2k22-xtreme-amped.git",
         "commit": "3733148e82c2f88e81d9dd902cab96dede962d32",
@@ -2052,6 +3549,19 @@
         "verified": false
       },
       "evidence": "came with spruceOS 4a96070f8 (2025-05-03, cobaltgit), the same code and data sections as that import (only stripped since, in bd606af63); built 2025-05-05/06 (sibling builds embed those dates); no commit between 2025-05-04 and 05-07 on master"
+    },
+    "RetroArch/.retroarch/cores64/lowresnx_libretro.so": {
+      "sha256": "ec7bedca0364ed69498092e48f3b370076091687b2ded9f4d123b3687995e588",
+      "kind": "core",
+      "names": [
+        "lowresnx"
+      ],
+      "status": "recipe",
+      "recipes": [
+        "lowresnx"
+      ],
+      "families": [],
+      "spare": true
     },
     "RetroArch/.retroarch/cores64/mame2003_plus_libretro.so": {
       "sha256": "1a092b24d1083ab37c8c9bac8d0aa4fda0aceb3f84fc15a0f7c4976f10e68dd4",
@@ -2062,6 +3572,15 @@
       "status": "recipe",
       "recipes": [
         "mame2003_plus"
+      ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "GKD_PIXEL2",
+        "MIYOO_FLIP",
+        "OAKMOSS_A133P",
+        "TRIMUI_A133P",
+        "TRIMUI_SMART_PRO_S"
       ],
       "pin": {
         "url": "https://github.com/libretro/mame2003-plus-libretro.git",
@@ -2082,6 +3601,15 @@
       "recipes": [
         "mednafen_lynx"
       ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "GKD_PIXEL2",
+        "MIYOO_FLIP",
+        "OAKMOSS_A133P",
+        "TRIMUI_A133P",
+        "TRIMUI_SMART_PRO_S"
+      ],
       "pin": {
         "url": "https://github.com/libretro/beetle-lynx-libretro.git",
         "commit": "872697f422db07ca850c3ecfe891d5130edeacea",
@@ -2101,6 +3629,15 @@
       "recipes": [
         "mednafen_ngp"
       ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "GKD_PIXEL2",
+        "MIYOO_FLIP",
+        "OAKMOSS_A133P",
+        "TRIMUI_A133P",
+        "TRIMUI_SMART_PRO_S"
+      ],
       "pin": {
         "url": "https://github.com/libretro/beetle-ngp-libretro.git",
         "commit": "139fe34c8dfc5585d6ee1793a7902bca79d544de",
@@ -2119,7 +3656,29 @@
       "status": "recipe",
       "recipes": [
         "mednafen_pce_fast"
+      ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "GKD_PIXEL2",
+        "MIYOO_FLIP",
+        "OAKMOSS_A133P",
+        "TRIMUI_A133P",
+        "TRIMUI_SMART_PRO_S"
       ]
+    },
+    "RetroArch/.retroarch/cores64/mednafen_pcfx_libretro.so": {
+      "sha256": "a78c726ee75f70a6ddf1a6d740c0575f768b56543333920ddde9b4454cc5229e",
+      "kind": "core",
+      "names": [
+        "mednafen_pcfx"
+      ],
+      "status": "recipe",
+      "recipes": [
+        "mednafen_pcfx"
+      ],
+      "families": [],
+      "spare": true
     },
     "RetroArch/.retroarch/cores64/mednafen_supafaust_libretro.so": {
       "sha256": "62cd3e06002103ac76e223f54755d09fd9dd69e63cd35d3064c82bcf177cca6b",
@@ -2130,6 +3689,15 @@
       "status": "recipe",
       "recipes": [
         "mednafen_supafaust"
+      ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "GKD_PIXEL2",
+        "MIYOO_FLIP",
+        "OAKMOSS_A133P",
+        "TRIMUI_A133P",
+        "TRIMUI_SMART_PRO_S"
       ]
     },
     "RetroArch/.retroarch/cores64/mednafen_supergrafx_libretro.so": {
@@ -2141,6 +3709,15 @@
       "status": "recipe",
       "recipes": [
         "mednafen_supergrafx"
+      ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "GKD_PIXEL2",
+        "MIYOO_FLIP",
+        "OAKMOSS_A133P",
+        "TRIMUI_A133P",
+        "TRIMUI_SMART_PRO_S"
       ],
       "pin": {
         "url": "https://github.com/libretro/beetle-supergrafx-libretro.git",
@@ -2160,6 +3737,15 @@
       "status": "recipe",
       "recipes": [
         "mednafen_vb"
+      ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "GKD_PIXEL2",
+        "MIYOO_FLIP",
+        "OAKMOSS_A133P",
+        "TRIMUI_A133P",
+        "TRIMUI_SMART_PRO_S"
       ]
     },
     "RetroArch/.retroarch/cores64/mednafen_wswan_libretro.so": {
@@ -2171,6 +3757,15 @@
       "status": "recipe",
       "recipes": [
         "mednafen_wswan"
+      ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "GKD_PIXEL2",
+        "MIYOO_FLIP",
+        "OAKMOSS_A133P",
+        "TRIMUI_A133P",
+        "TRIMUI_SMART_PRO_S"
       ]
     },
     "RetroArch/.retroarch/cores64/mgba_libretro.so": {
@@ -2182,6 +3777,15 @@
       "status": "recipe",
       "recipes": [
         "mgba"
+      ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "GKD_PIXEL2",
+        "MIYOO_FLIP",
+        "OAKMOSS_A133P",
+        "TRIMUI_A133P",
+        "TRIMUI_SMART_PRO_S"
       ]
     },
     "RetroArch/.retroarch/cores64/mkxp-z_libretro.so": {
@@ -2191,7 +3795,16 @@
         "mkxp-z"
       ],
       "status": "no recipe",
-      "recipes": []
+      "recipes": [],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "GKD_PIXEL2",
+        "MIYOO_FLIP",
+        "OAKMOSS_A133P",
+        "TRIMUI_A133P",
+        "TRIMUI_SMART_PRO_S"
+      ]
     },
     "RetroArch/.retroarch/cores64/mupen64plus_libretro.so": {
       "sha256": "3e723755f074210c6fc8d16be6b9ae0b2b6b9bb732c6a6d23cbc0d6cdfddabd3",
@@ -2200,7 +3813,9 @@
         "mupen64plus"
       ],
       "status": "no recipe",
-      "recipes": []
+      "recipes": [],
+      "families": [],
+      "spare": true
     },
     "RetroArch/.retroarch/cores64/mupen64plus_next_libretro.so": {
       "sha256": "ebdaaf6697bb5026f85e643e759020f9d0a515998bbc2b3dc53fb55d049fc3c6",
@@ -2211,6 +3826,15 @@
       "status": "recipe",
       "recipes": [
         "mupen64plus_next"
+      ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "GKD_PIXEL2",
+        "MIYOO_FLIP",
+        "OAKMOSS_A133P",
+        "TRIMUI_A133P",
+        "TRIMUI_SMART_PRO_S"
       ]
     },
     "RetroArch/.retroarch/cores64/neocd_libretro.so": {
@@ -2222,6 +3846,15 @@
       "status": "recipe",
       "recipes": [
         "neocd"
+      ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "GKD_PIXEL2",
+        "MIYOO_FLIP",
+        "OAKMOSS_A133P",
+        "TRIMUI_A133P",
+        "TRIMUI_SMART_PRO_S"
       ],
       "pin": {
         "url": "https://github.com/libretro/neocd_libretro.git",
@@ -2242,6 +3875,15 @@
       "recipes": [
         "nestopia"
       ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "GKD_PIXEL2",
+        "MIYOO_FLIP",
+        "OAKMOSS_A133P",
+        "TRIMUI_A133P",
+        "TRIMUI_SMART_PRO_S"
+      ],
       "pin": {
         "url": "https://github.com/libretro/nestopia.git",
         "commit": "bafbd8ed1853006bc0f9e8c83b86ae24cb543e6a",
@@ -2260,6 +3902,15 @@
       "status": "recipe",
       "recipes": [
         "np2kai"
+      ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "GKD_PIXEL2",
+        "MIYOO_FLIP",
+        "OAKMOSS_A133P",
+        "TRIMUI_A133P",
+        "TRIMUI_SMART_PRO_S"
       ]
     },
     "RetroArch/.retroarch/cores64/o2em_libretro.so": {
@@ -2272,6 +3923,15 @@
       "recipes": [
         "o2em"
       ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "GKD_PIXEL2",
+        "MIYOO_FLIP",
+        "OAKMOSS_A133P",
+        "TRIMUI_A133P",
+        "TRIMUI_SMART_PRO_S"
+      ],
       "pin": {
         "url": "https://github.com/libretro/libretro-o2em.git",
         "commit": "3ba4231c1dc8dcdf487428712856b790d2e4b8f3",
@@ -2280,6 +3940,19 @@
         "verified": false
       },
       "evidence": "came with spruceOS 327c258ee (2025-05-17), the same code and data sections as that import (only stripped since, in bd606af63); built 2025-05-05/06 (sibling builds embed those dates); no commit between 2025-05-04 and 05-07 on master"
+    },
+    "RetroArch/.retroarch/cores64/opera_libretro.so": {
+      "sha256": "54b19b34500aee2db2ad524eb37c8d6b2054a12435d440729428b1ae73863edb",
+      "kind": "core",
+      "names": [
+        "opera"
+      ],
+      "status": "recipe",
+      "recipes": [
+        "opera"
+      ],
+      "families": [],
+      "spare": true
     },
     "RetroArch/.retroarch/cores64/parallel_n64_libretro.so": {
       "sha256": "21ccb279ef4c1928d16580a08e89d11f85050edccfdfba9c600b509f67e5e7a0",
@@ -2290,6 +3963,14 @@
       "status": "recipe",
       "recipes": [
         "parallel_n64"
+      ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "GKD_PIXEL2",
+        "MIYOO_FLIP",
+        "OAKMOSS_A133P",
+        "TRIMUI_A133P",
+        "TRIMUI_SMART_PRO_S"
       ]
     },
     "RetroArch/.retroarch/cores64/pcsx_rearmed_libretro.so": {
@@ -2301,6 +3982,15 @@
       "status": "recipe",
       "recipes": [
         "pcsx_rearmed"
+      ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "GKD_PIXEL2",
+        "MIYOO_FLIP",
+        "OAKMOSS_A133P",
+        "TRIMUI_A133P",
+        "TRIMUI_SMART_PRO_S"
       ]
     },
     "RetroArch/.retroarch/cores64/picodrive_libretro.so": {
@@ -2312,6 +4002,15 @@
       "status": "recipe",
       "recipes": [
         "picodrive"
+      ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "GKD_PIXEL2",
+        "MIYOO_FLIP",
+        "OAKMOSS_A133P",
+        "TRIMUI_A133P",
+        "TRIMUI_SMART_PRO_S"
       ],
       "pin": {
         "url": "https://github.com/libretro/picodrive.git",
@@ -2332,6 +4031,15 @@
       "recipes": [
         "standalone:pokedaisy-arm64-20261112"
       ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "GKD_PIXEL2",
+        "MIYOO_FLIP",
+        "OAKMOSS_A133P",
+        "TRIMUI_A133P",
+        "TRIMUI_SMART_PRO_S"
+      ],
       "pin": {
         "recipe": "standalone:pokedaisy-arm64-20261112",
         "url": "https://github.com/thwonp/pokedaisy-lr.git",
@@ -2347,6 +4055,15 @@
       "status": "reproduces",
       "recipes": [
         "standalone:pokedaisy-arm64-20261113"
+      ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "GKD_PIXEL2",
+        "MIYOO_FLIP",
+        "OAKMOSS_A133P",
+        "TRIMUI_A133P",
+        "TRIMUI_SMART_PRO_S"
       ],
       "pin": {
         "recipe": "standalone:pokedaisy-arm64-20261113",
@@ -2364,6 +4081,15 @@
       "recipes": [
         "standalone:pokedaisy-arm64-20261112"
       ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "GKD_PIXEL2",
+        "MIYOO_FLIP",
+        "OAKMOSS_A133P",
+        "TRIMUI_A133P",
+        "TRIMUI_SMART_PRO_S"
+      ],
       "pin": {
         "recipe": "standalone:pokedaisy-arm64-20261112",
         "url": "https://github.com/thwonp/pokedaisy-lr.git",
@@ -2379,6 +4105,15 @@
       "status": "recipe",
       "recipes": [
         "pokemini"
+      ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "GKD_PIXEL2",
+        "MIYOO_FLIP",
+        "OAKMOSS_A133P",
+        "TRIMUI_A133P",
+        "TRIMUI_SMART_PRO_S"
       ]
     },
     "RetroArch/.retroarch/cores64/potator_libretro.so": {
@@ -2390,6 +4125,15 @@
       "status": "recipe",
       "recipes": [
         "potator"
+      ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "GKD_PIXEL2",
+        "MIYOO_FLIP",
+        "OAKMOSS_A133P",
+        "TRIMUI_A133P",
+        "TRIMUI_SMART_PRO_S"
       ],
       "pin": {
         "url": "https://github.com/libretro/potator.git",
@@ -2410,6 +4154,15 @@
       "recipes": [
         "prboom"
       ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "GKD_PIXEL2",
+        "MIYOO_FLIP",
+        "OAKMOSS_A133P",
+        "TRIMUI_A133P",
+        "TRIMUI_SMART_PRO_S"
+      ],
       "pin": {
         "url": "https://github.com/libretro/libretro-prboom.git",
         "commit": "b3e5f8b2e8855f9c6fc7ff7a0036e4e61379177d",
@@ -2428,6 +4181,15 @@
       "status": "recipe",
       "recipes": [
         "prosystem"
+      ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "GKD_PIXEL2",
+        "MIYOO_FLIP",
+        "OAKMOSS_A133P",
+        "TRIMUI_A133P",
+        "TRIMUI_SMART_PRO_S"
       ],
       "pin": {
         "url": "https://github.com/libretro/prosystem-libretro.git",
@@ -2448,6 +4210,15 @@
       "recipes": [
         "puae2021"
       ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "GKD_PIXEL2",
+        "MIYOO_FLIP",
+        "OAKMOSS_A133P",
+        "TRIMUI_A133P",
+        "TRIMUI_SMART_PRO_S"
+      ],
       "pin": {
         "url": "https://github.com/libretro/libretro-uae.git",
         "commit": "87cbcb27809c2800418bf81da21a766de28029a0",
@@ -2456,6 +4227,19 @@
         "verified": false
       },
       "evidence": "came with spruceOS 327c258ee (2025-05-17); the binary says May 5 2025, the same code and data sections as that import (only stripped since, in bd606af63); built 2025-05-05/06 (sibling builds embed those dates); no commit between 2025-05-04 and 05-07 on 2.6.1"
+    },
+    "RetroArch/.retroarch/cores64/puzzlescript_libretro.so": {
+      "sha256": "8ec8ae5139af18853604c3e8a8054734a6472c4e4ff869ca0b0266e8620a77b5",
+      "kind": "core",
+      "names": [
+        "puzzlescript"
+      ],
+      "status": "recipe",
+      "recipes": [
+        "puzzlescript"
+      ],
+      "families": [],
+      "spare": true
     },
     "RetroArch/.retroarch/cores64/px68k_libretro.so": {
       "sha256": "b0f4469381f726614b3fc648b0ef21d6af47627f236c5a856abfc24b28f634c0",
@@ -2467,6 +4251,15 @@
       "recipes": [
         "px68k"
       ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "GKD_PIXEL2",
+        "MIYOO_FLIP",
+        "OAKMOSS_A133P",
+        "TRIMUI_A133P",
+        "TRIMUI_SMART_PRO_S"
+      ],
       "pin": {
         "url": "https://github.com/libretro/px68k-libretro.git",
         "commit": "9dfa6abc25ddd6e597790f7a535cd0a1d7f9c385",
@@ -2475,6 +4268,19 @@
         "verified": false
       },
       "evidence": "came with spruceOS 327c258ee (2025-05-17), the same code and data sections as that import (only stripped since, in bd606af63); built 2025-05-05/06 (sibling builds embed those dates); no commit between 2025-05-04 and 05-07 on master"
+    },
+    "RetroArch/.retroarch/cores64/quasi88_libretro.so": {
+      "sha256": "1459a7ca788cb9d6070b8ceb54e48914aafdcfae4c8b0e693e5a8e9b50c1e88f",
+      "kind": "core",
+      "names": [
+        "quasi88"
+      ],
+      "status": "recipe",
+      "recipes": [
+        "quasi88"
+      ],
+      "families": [],
+      "spare": true
     },
     "RetroArch/.retroarch/cores64/quicknes_libretro.so": {
       "sha256": "9bc2a3d7f298041128935ff7a573a6e8086b168e8490fdd29b10bc882ae32e6e",
@@ -2485,6 +4291,15 @@
       "status": "recipe",
       "recipes": [
         "quicknes"
+      ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "GKD_PIXEL2",
+        "MIYOO_FLIP",
+        "OAKMOSS_A133P",
+        "TRIMUI_A133P",
+        "TRIMUI_SMART_PRO_S"
       ],
       "pin": {
         "url": "https://github.com/libretro/QuickNES_Core.git",
@@ -2504,7 +4319,42 @@
       "status": "recipe",
       "recipes": [
         "race"
+      ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "GKD_PIXEL2",
+        "MIYOO_FLIP",
+        "OAKMOSS_A133P",
+        "TRIMUI_A133P",
+        "TRIMUI_SMART_PRO_S"
       ]
+    },
+    "RetroArch/.retroarch/cores64/reminiscence_libretro.so": {
+      "sha256": "59ee6cfb2f4411bfc237994fc243aac6b0f3bd7fb1a8a39d4a62def8acf02d56",
+      "kind": "core",
+      "names": [
+        "reminiscence"
+      ],
+      "status": "recipe",
+      "recipes": [
+        "reminiscence"
+      ],
+      "families": [],
+      "spare": true
+    },
+    "RetroArch/.retroarch/cores64/retro8_libretro.so": {
+      "sha256": "f0c715cb666d1af56bad7934081bdbf922037e5558500aa64dd9b7653648d31d",
+      "kind": "core",
+      "names": [
+        "retro8"
+      ],
+      "status": "recipe",
+      "recipes": [
+        "retro8"
+      ],
+      "families": [],
+      "spare": true
     },
     "RetroArch/.retroarch/cores64/snes9x_libretro.so": {
       "sha256": "89c6342deac214c8076ba4177c11df186496465e5b08e2920fe7756054ad9fb4",
@@ -2515,6 +4365,15 @@
       "status": "recipe",
       "recipes": [
         "snes9x"
+      ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "GKD_PIXEL2",
+        "MIYOO_FLIP",
+        "OAKMOSS_A133P",
+        "TRIMUI_A133P",
+        "TRIMUI_SMART_PRO_S"
       ],
       "pin": {
         "url": "https://github.com/libretro/snes9x.git",
@@ -2535,6 +4394,15 @@
       "recipes": [
         "stella2014"
       ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "GKD_PIXEL2",
+        "MIYOO_FLIP",
+        "OAKMOSS_A133P",
+        "TRIMUI_A133P",
+        "TRIMUI_SMART_PRO_S"
+      ],
       "pin": {
         "url": "https://github.com/libretro/stella2014-libretro.git",
         "commit": "3cc89f0d316d6c924a5e3f4011d17421df58e615",
@@ -2554,6 +4422,15 @@
       "recipes": [
         "superwhizkid"
       ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "GKD_PIXEL2",
+        "MIYOO_FLIP",
+        "OAKMOSS_A133P",
+        "TRIMUI_A133P",
+        "TRIMUI_SMART_PRO_S"
+      ],
       "pin": {
         "recipe": "superwhizkid",
         "url": "https://github.com/ryanmsartor/superwhizkid.git",
@@ -2572,6 +4449,15 @@
       "recipes": [
         "swanstation"
       ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "GKD_PIXEL2",
+        "MIYOO_FLIP",
+        "OAKMOSS_A133P",
+        "TRIMUI_A133P",
+        "TRIMUI_SMART_PRO_S"
+      ],
       "pin": {
         "url": "https://github.com/libretro/swanstation.git",
         "commit": "b6c30a7b270a3f68ac41f268eafdfa678d17dea2",
@@ -2582,6 +4468,19 @@
       "evidence": "spruceOS 511363a3e (2026-09-24, SundownerSport: Rebuild ardens, arduous and swanstation; offer both Arduboy cores ever); Cores-spruce builds of it then: build-swanstation.yml run 36087822899 (2026-09-25T02:49Z), whose logs show a fresh clone of the branch, not the commit",
       "verified": "byte for byte: CE build at the pin with source_path /libretro-super/libretro-swanstation and git_abbrev 8 (the 8-character b6c30a7b libretro-super's full clone gave), run 44600598927, throwaway branch verify/nightly-pins-20261119b (the opt-in driver options of driver/source-path-describe-tags 1fbc39b)"
     },
+    "RetroArch/.retroarch/cores64/theodore_libretro.so": {
+      "sha256": "9c146117b9e72c557502f038bbfeffe2c6422832d05dc07053f246dd9352a4cb",
+      "kind": "core",
+      "names": [
+        "theodore"
+      ],
+      "status": "recipe",
+      "recipes": [
+        "theodore"
+      ],
+      "families": [],
+      "spare": true
+    },
     "RetroArch/.retroarch/cores64/tic80_libretro.so": {
       "sha256": "8be8b8eb19cd41a417b7903c6b4047c2f0460d5d650191118a1ef23488261478",
       "kind": "core",
@@ -2591,6 +4490,15 @@
       "status": "recipe",
       "recipes": [
         "tic80"
+      ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "GKD_PIXEL2",
+        "MIYOO_FLIP",
+        "OAKMOSS_A133P",
+        "TRIMUI_A133P",
+        "TRIMUI_SMART_PRO_S"
       ]
     },
     "RetroArch/.retroarch/cores64/tyrquake_libretro.so": {
@@ -2602,6 +4510,15 @@
       "status": "recipe",
       "recipes": [
         "tyrquake"
+      ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "GKD_PIXEL2",
+        "MIYOO_FLIP",
+        "OAKMOSS_A133P",
+        "TRIMUI_A133P",
+        "TRIMUI_SMART_PRO_S"
       ],
       "pin": {
         "url": "https://github.com/libretro/tyrquake.git",
@@ -2619,7 +4536,29 @@
         "uae4arm"
       ],
       "status": "no recipe",
-      "recipes": []
+      "recipes": [],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "GKD_PIXEL2",
+        "MIYOO_FLIP",
+        "OAKMOSS_A133P",
+        "TRIMUI_A133P",
+        "TRIMUI_SMART_PRO_S"
+      ]
+    },
+    "RetroArch/.retroarch/cores64/uzem_libretro.so": {
+      "sha256": "d9184c9ed0fc84634de0635f9644628ea4d4d8a7373a063c81ec3bba972c636b",
+      "kind": "core",
+      "names": [
+        "uzem"
+      ],
+      "status": "recipe",
+      "recipes": [
+        "uzem"
+      ],
+      "families": [],
+      "spare": true
     },
     "RetroArch/.retroarch/cores64/vecx_libretro.so": {
       "sha256": "ea4c17097a1b49c395b4145e20c98c6d43cbbd91f49a99dc801a1714a0faac35",
@@ -2630,7 +4569,29 @@
       "status": "recipe",
       "recipes": [
         "vecx"
+      ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "GKD_PIXEL2",
+        "MIYOO_FLIP",
+        "OAKMOSS_A133P",
+        "TRIMUI_A133P",
+        "TRIMUI_SMART_PRO_S"
       ]
+    },
+    "RetroArch/.retroarch/cores64/vemulator_libretro.so": {
+      "sha256": "69d3cf9173c8af1cb064dbffafbecd1edadb532b8cc361efe93746ae0303144d",
+      "kind": "core",
+      "names": [
+        "vemulator"
+      ],
+      "status": "recipe",
+      "recipes": [
+        "vemulator"
+      ],
+      "families": [],
+      "spare": true
     },
     "RetroArch/.retroarch/cores64/vice_x64_libretro.so": {
       "sha256": "83bfc2a66fba232dc8dc73858284056917d4d76f20137ba36be82e5e49cf0b16",
@@ -2641,6 +4602,15 @@
       "status": "recipe",
       "recipes": [
         "vice_x64"
+      ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "GKD_PIXEL2",
+        "MIYOO_FLIP",
+        "OAKMOSS_A133P",
+        "TRIMUI_A133P",
+        "TRIMUI_SMART_PRO_S"
       ],
       "pin": {
         "url": "https://github.com/libretro/vice-libretro.git",
@@ -2661,6 +4631,15 @@
       "recipes": [
         "vice_xvic"
       ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "GKD_PIXEL2",
+        "MIYOO_FLIP",
+        "OAKMOSS_A133P",
+        "TRIMUI_A133P",
+        "TRIMUI_SMART_PRO_S"
+      ],
       "pin": {
         "url": "https://github.com/libretro/vice-libretro.git",
         "commit": "e5b036f0be19f7a70fde75cc0e8b1b43476adc13",
@@ -2680,6 +4659,15 @@
       "recipes": [
         "virtualjaguar"
       ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "GKD_PIXEL2",
+        "MIYOO_FLIP",
+        "OAKMOSS_A133P",
+        "TRIMUI_A133P",
+        "TRIMUI_SMART_PRO_S"
+      ],
       "pin": {
         "url": "https://github.com/libretro/virtualjaguar-libretro.git",
         "commit": "2f210485d562a516e78906a7f20ce0765bb6927c",
@@ -2688,6 +4676,32 @@
         "verified": false
       },
       "evidence": "spruceOS 370467a2c (2026-08-28, Ryan Sartor: Add virtualjaguar cores; clean up some unneeded .opt and .cfg files); Cores-spruce builds of it then: build-virtualjaguar.yml run 33226083601 (2026-08-29T01:19Z), whose logs show a fresh clone of the branch, not the commit"
+    },
+    "RetroArch/.retroarch/cores64/x1_libretro.so": {
+      "sha256": "407c50ebcd70e7b23daaa7bcb0cc8a28483a81ef15e09072a904959d7459318b",
+      "kind": "core",
+      "names": [
+        "x1"
+      ],
+      "status": "recipe",
+      "recipes": [
+        "x1"
+      ],
+      "families": [],
+      "spare": true
+    },
+    "RetroArch/.retroarch/cores64/yabasanshiro_a133p_libretro.so": {
+      "sha256": "fadcef0729de15597318fe25c49f8b132c0faaec7c275e33cb36760757af5a01",
+      "kind": "core",
+      "names": [
+        "yabasanshiro_a133p"
+      ],
+      "status": "recipe",
+      "recipes": [
+        "standalone:yabasanshiro-libretro-trimui"
+      ],
+      "families": [],
+      "spare": true
     },
     "RetroArch/.retroarch/cores64/yabasanshiro_generic_libretro.so": {
       "sha256": "454f2e5977d8b70aaba9e6b8cd67541edc65c81474d1908dfb92008e289af601",
@@ -2698,6 +4712,14 @@
       "status": "reproduces",
       "recipes": [
         "standalone:yabasanshiro-libretro"
+      ],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "MIYOO_FLIP",
+        "OAKMOSS_A133P",
+        "TRIMUI_A133P",
+        "TRIMUI_SMART_PRO_S"
       ],
       "pin": {
         "recipe": "standalone:yabasanshiro-libretro",
@@ -2715,6 +4737,9 @@
       "recipes": [
         "yabasanshiro",
         "standalone:yabasanshiro-libretro-trimui"
+      ],
+      "families": [
+        "GKD_PIXEL2"
       ]
     }
   }

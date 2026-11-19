@@ -264,7 +264,9 @@ def cmd_coverage(repo: Repo, args) -> int:
     data = load_json(path)
     rows = inventory.coverage(data, names, repo.cores, standalone.buildable(standalone.load(repo)))
     print(json.dumps(rows, indent=2) if args.json else inventory.report(rows, data), end="" if not args.json else "\n")
-    return 1 if args.strict and any(row["status"] in ("no recipe", "unresolved") for row in rows) else 0
+    unused = inventory.spare(rows)  # nothing loads a spare file, so it is no gap
+    return 1 if args.strict and any(row["status"] in ("no recipe", "unresolved") and row["path"] not in unused
+                                    for row in rows) else 0
 
 
 def main(argv: list[str] | None = None) -> int:

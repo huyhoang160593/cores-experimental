@@ -507,13 +507,28 @@ class InventoryTest(unittest.TestCase):
             (repo / "Emu/SYS/bar").write_bytes(b"bar")
             (repo / "RetroArch/.retroarch/cores64").mkdir(parents=True)
             (repo / "RetroArch/.retroarch/cores64/foo_libretro.so").write_bytes(b"foo")
+            (repo / "spruce/scripts/platform/fam").mkdir(parents=True)
+            (repo / "spruce/scripts/helperFunctions.sh").write_text(
+                'device_names() {\n    case "$PLATFORM" in\n        Flip)    echo "MIYOO_FLIP" ;;\n'
+                '        Kid|KidS) echo "KID"; echo "FAMILY" ;;\n    esac\n}\n')
+            (repo / "spruce/scripts/platform/fam/FamCommon.cfg").write_text(
+                'export PLATFORM_ARCHITECTURE="aarch64"\nexport DEVICE_HAS_32_BIT_RA="true"\n')
+            (repo / "spruce/scripts/platform/fam/Kid.cfg").write_text(
+                ". /mnt/SDCARD/spruce/scripts/platform/fam/FamCommon.cfg\nexport PLATFORM_PARENT=Flip\n")
+            (repo / "spruce/scripts/platform/fam/Lone.cfg").write_text('export PLATFORM_ARCHITECTURE="armhf"\n')
             subprocess.run(["git", "-C", str(repo), "add", "."], check=True)
             subprocess.run(["git", "-C", str(repo), "-c", "user.name=t", "-c", "user.email=t@example.org",
                             "commit", "-q", "-m", "x"], check=True)
             data = inventory.generate(repo, "HEAD", {"bar-standalone": {"paths": ["Emu/SYS/bar"]}})
-        self.assertEqual(data["systems"]["SYS"], {"devices": ["A"], "default": "foo",
+        self.assertEqual(data["systems"]["SYS"], {"devices": ["A"], "default": "foo", "launch": "",
                                                   "options": {"Emulator_64": {"devices": ["B"],
                                                                               "options": ["foo", "bar-standalone"]}}})
+        # Includes are followed, Common cfgs are not platforms, and a platform device_names() lacks has no names.
+        self.assertEqual(data["devices"], [
+            {"unit": "Kid", "names": ["KID", "FAMILY"], "platform": "Kid", "parent": "Flip", "arch": "aarch64",
+             "dual_ra": True},
+            {"unit": "Lone", "names": [], "platform": "Lone", "parent": "", "arch": "armhf", "dual_ra": False}])
+        self.assertIn("not modelled: ['SYS']", " ".join(inventory.check({}, data)))
         self.assertEqual(data["files"], {"Emu/SYS/bar": hashlib.sha256(b"bar").hexdigest(),
                                          "RetroArch/.retroarch/cores64/foo_libretro.so": hashlib.sha256(b"foo").hexdigest()})
 
@@ -563,6 +578,41 @@ class InventoryTest(unittest.TestCase):
         standalones["c-new"] = {"output": {"files": [{"to": "c"}], "spruce": {"c": "Emu/S/c"}}}
         self.assertEqual(len(inventory.blacklist_problems(names, catalog, standalones)), 1)
         self.assertIn("S (default)", rows[("a", "RetroArch/.retroarch/cores64/a_libretro.so")]["where"])
+
+    def test_coverage_follows_the_folder_each_device_loads(self):
+        unit = lambda name, arch, dual: {"unit": name, "names": [name], "platform": name, "parent": "",  # noqa: E731
+                                         "arch": arch, "dual_ra": dual}
+        sha = hashlib.sha256(b"x").hexdigest()
+        inv = {"spruceos": {"commit": "0" * 40, "date": "2026-11-19"},
+               "devices": [unit("SMALL", "armhf", False), unit("BIG", "aarch64", False), unit("DUAL", "aarch64", True)],
+               "systems": {"S": {"devices": None, "default": "both", "launch": "standard_launch.sh",
+                                 "raBuild": {"devices": ["DUAL"], "options": ["64-bit", "32-bit"]},
+                                 "options": {"Emulator_SMALL": {"devices": ["SMALL"], "options": ["both", "small"]},
+                                             "Emulator_64": {"devices": ["BIG", "DUAL"], "options": ["both", "big"]},
+                                             "Emulator_32": {"devices": ["DUAL"], "options": ["both", "gap"]}}}},
+               "files": {f"RetroArch/.retroarch/{d}/{c}_libretro.so": sha
+                         for d, c in (("cores", "both"), ("cores64", "both"), ("cores", "small"), ("cores64", "small"),
+                                      ("cores64", "big"), ("cores64", "gap"), ("cores", "unoffered"))}}
+        self.assertEqual(inventory.launcher_key(inv["systems"]["S"], inv["devices"][2], "32-bit"), "Emulator_32")
+        self.assertEqual(inventory.launcher_key(inv["systems"]["S"], inv["devices"][2], "64-bit"), "Emulator_64")
+        self.assertEqual(inventory.launcher_key(inv["systems"]["S"], inv["devices"][0], ""), "Emulator_SMALL")
+        rows = {r["path"]: r for r in inventory.coverage(inv, {}, {}, {})}
+        cores, cores64 = "RetroArch/.retroarch/cores/", "RetroArch/.retroarch/cores64/"
+        self.assertEqual(rows[cores + "both_libretro.so"]["families"], ["DUAL", "SMALL"])
+        self.assertEqual(rows[cores64 + "both_libretro.so"]["families"], ["BIG", "DUAL"])
+        self.assertEqual(rows[cores64 + "small_libretro.so"]["families"], [])  # SMALL is armhf: cores/ only
+        self.assertEqual(rows[cores + "gap_libretro.so"]["status"], "not shipped")  # DUAL at 32-bit wants it there
+        self.assertEqual(rows[cores64 + "gap_libretro.so"]["families"], [])
+        self.assertEqual((rows[cores + "unoffered_libretro.so"]["name"], rows[cores + "unoffered_libretro.so"]["where"]),
+                         ("unoffered", []))
+        self.assertEqual(inventory.spare(list(rows.values())), {cores64 + "small_libretro.so", cores64 + "gap_libretro.so",
+                                                                cores + "unoffered_libretro.so"})
+        # A 32-bit build only counts on a device with a 32-bit RetroArch, and only where the system has the row.
+        del inv["systems"]["S"]["raBuild"]
+        rows = {r["path"]: r for r in inventory.coverage(inv, {}, {}, {})}
+        self.assertEqual(rows[cores + "both_libretro.so"]["families"], ["SMALL"])
+        self.assertNotIn(cores + "gap_libretro.so", rows)
+        self.assertIn("spare (shipped, no device loads it from there): 3", inventory.report(list(rows.values()), inv))
 
     def test_source_path_and_describe_tags_are_opt_in(self):
         spec = json.loads(json.dumps(REPO.cores["ardens"]))
