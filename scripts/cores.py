@@ -56,6 +56,7 @@ def expand(repo: Repo, args: argparse.Namespace, core: str) -> list[Variant]:
 def cmd_check(repo: Repo, args) -> int:
     path, names = _inventory_files(repo)
     errors = repo.check() + standalone.check(repo) + inventory.check(names, load_json(path))
+    errors += inventory.blacklist_problems(names, repo.cores, standalone.buildable(standalone.load(repo)))
     for error in errors:
         print(error)
     print(f"{len(repo.cores)} cores, {len(repo.boards)} boards, {len(repo.profiles)} profiles: "

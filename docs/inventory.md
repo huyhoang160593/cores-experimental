@@ -23,6 +23,8 @@ launcher scripts (`spruce/scripts/emu/`). An entry has one of these:
   `inventory` hashes it with `7zz` or `7z`;
 - `base_image`: the file comes with a device's base OS, not the card; the value names the base's package that
   builds it, which is its recipe;
+- `blacklisted`: why cores-experimental must not build it, with its `paths`; `check` fails if any recipe builds one
+  of them;
 - `closed_source`, `not_emulator` or `unresolved`: why there is nothing to build, with the reason.
 
 An optional `note` is shown in the report.
@@ -35,6 +37,7 @@ An optional `note` is shown in the report.
 | recipe | a recipe here builds this file, but no recorded sha256 matches what ships |
 | base image | the base OS of the devices that use it provides the file; the names map points at the base's recipe |
 | no recipe | the file ships, and nothing here builds it |
+| blacklisted | the file ships, but must not be rebuilt and shipped (for example a licence forbids redistributing it) |
 | not shipped | a menu offers it, but the file is not in the tree |
 | closed source, not an emulator, unresolved | from the names map |
 

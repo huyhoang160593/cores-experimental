@@ -17,8 +17,8 @@ from pathlib import Path
 CORE_DIRS = {"armhf": "RetroArch/.retroarch/cores", "arm64": "RetroArch/.retroarch/cores64"}
 CORE_FILE = re.compile(r"^RetroArch/\.retroarch/(cores64|cores)/(.+)_libretro\.so$")
 EMU_KEY = re.compile(r"^Emulator(_.+)?$")
-ORDER = ("reproduces", "recipe", "base image", "no recipe", "not shipped", "closed source", "not an emulator",
-         "unresolved")
+ORDER = ("reproduces", "recipe", "base image", "no recipe", "not shipped", "blacklisted", "closed source",
+         "not an emulator", "unresolved")
 
 
 def _git(repo: Path, *args: str, text: bool = True):
@@ -73,8 +73,8 @@ def generate(spruceos: Path, rev: str, names: dict) -> dict:
             "systems": systems, "files": files}
 
 
-NAME_KEYS = {"core", "paths", "base_image", "closed_source", "not_emulator", "unresolved", "note"}
-REASON_KEYS = (("base_image", "base image"), ("closed_source", "closed source"), ("not_emulator", "not an emulator"),
+NAME_KEYS = {"core", "paths", "base_image", "blacklisted", "closed_source", "not_emulator", "unresolved", "note"}
+REASON_KEYS = (("blacklisted", "blacklisted"), ("base_image", "base image"), ("closed_source", "closed source"), ("not_emulator", "not an emulator"),
                ("unresolved", "unresolved"))
 
 
@@ -87,14 +87,23 @@ def check(names: dict, inventory: dict) -> list[str]:
         if extra:
             problems.append(f"emulator-names {name}: unknown keys {sorted(extra)}")
         if not kinds:
-            problems.append(f"emulator-names {name}: needs core, paths, base_image, closed_source, not_emulator or "
-                            "unresolved")
+            problems.append(f"emulator-names {name}: needs core, paths, base_image, blacklisted, closed_source, "
+                            "not_emulator or unresolved")
         if "paths" in entry and not (isinstance(entry["paths"], list) and all(isinstance(p, str) for p in entry["paths"])):
             problems.append(f"emulator-names {name}: paths must be a list of card paths")
     named = {p for entry in names.values() for p in entry.get("paths", [])}
     if missing := sorted(p for p in named if "!" in p and inventory["files"].get(p) is None):
         problems.append(f"emulator-inventory: archive members not hashed (regenerate with 7-Zip installed): {missing}")
     return problems
+
+
+def blacklist_problems(names: dict, catalog: dict, standalones: dict) -> list[str]:
+    """A blacklisted name's card files must never be a recipe's output: the reason says why none may be built."""
+    banned = {path: (name, entry["blacklisted"]) for name, entry in names.items() if "blacklisted" in entry
+              for path in entry.get("paths", [])}
+    return [f"{recipe} builds {path}, which emulator-names blacklists ({banned[path][0]}: {banned[path][1]})"
+            for path, builders in recipes_by_path(catalog, standalones).items() if path in banned
+            for recipe, _ in builders]
 
 
 def offered(inventory: dict) -> dict:

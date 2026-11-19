@@ -38,7 +38,8 @@
       "paths": [
         "Emu/MEDIA/bin64/ffplay",
         "Emu/MEDIA/bin32/ffplay"
-      ]
+      ],
+      "blacklisted": "both shipped builds were configured with --enable-nonfree (bin64 FFmpeg 3.3.8, bin32 FFmpeg 4.4.4, each with --enable-gpl and libx264), and FFmpeg's terms make a nonfree build non-redistributable, so cores-experimental builds no ffplay. The candidate to replace it is the generic mpv (LGPL FFmpeg)"
     },
     "Flycast-libretro": {
       "core": "flycast"

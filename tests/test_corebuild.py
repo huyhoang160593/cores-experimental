@@ -522,13 +522,14 @@ class InventoryTest(unittest.TestCase):
         inv = {"spruceos": {"commit": "0" * 40, "date": "2026-11-18"},
                "systems": {"S": {"devices": None, "default": "a", "options": {
                    "Emulator": {"devices": ["X"], "options": ["a", "b", "c-standalone", "mystery", "Flycast-libretro",
-                                                              "d-standalone", "closed", "base"]}}}},
+                                                              "d-standalone", "closed", "base", "banned"]}}}},
                "files": {"RetroArch/.retroarch/cores64/a_libretro.so": sha["a"],
                          "RetroArch/.retroarch/cores/b_libretro.so": sha["b"],
                          "Emu/S/c": sha["c"], "Emu/S/d": sha["d"]}}
         names = {"c-standalone": {"paths": ["Emu/S/c"]}, "d-standalone": {"paths": ["Emu/S/d"]},
                  "Flycast-libretro": {"core": "flycast"}, "closed": {"closed_source": "no source"},
-                 "base": {"base_image": "a base OS package"}}
+                 "base": {"base_image": "a base OS package"},
+                 "banned": {"paths": ["Emu/S/c"], "blacklisted": "nonfree"}}
         catalog = {"a": {"targets": ["arm64"], "build": {"artifact_name": "a_libretro.so"},
                          "shipped": {"files": {"RetroArch/.retroarch/cores64/a_libretro.so": sha["a"]}}},
                    "b": {"targets": ["armhf"], "build": {"artifact_name": "b_libretro.so"}}}
@@ -555,6 +556,12 @@ class InventoryTest(unittest.TestCase):
         self.assertEqual(rows[("closed", "")]["status"], "closed source")
         self.assertEqual(rows[("base", "")]["status"], "base image")
         self.assertEqual(rows[("base", "")]["note"], "a base OS package")
+        self.assertEqual(rows[("banned", "")]["status"], "blacklisted")
+        self.assertEqual(rows[("banned", "")]["note"], "nonfree")
+        # c-old builds Emu/S/c under its old name only; a recipe at the blacklisted path itself is refused.
+        self.assertEqual(inventory.blacklist_problems(names, catalog, standalones), [])
+        standalones["c-new"] = {"output": {"files": [{"to": "c"}], "spruce": {"c": "Emu/S/c"}}}
+        self.assertEqual(len(inventory.blacklist_problems(names, catalog, standalones)), 1)
         self.assertIn("S (default)", rows[("a", "RetroArch/.retroarch/cores64/a_libretro.so")]["where"])
 
     def test_committed_inventory_and_names_are_consistent(self):
