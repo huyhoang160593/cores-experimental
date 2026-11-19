@@ -4813,8 +4813,8 @@
         "cd /build/ffmpeg-7.1.5 && make -j\"$(nproc)\" && make install DESTDIR='/opt/a30/arm-a30-linux-gnueabihf/sysroot'",
         "mkdir -p /tmp/cxx && ln -sf \"$(arm-a30-linux-gnueabihf-g++ -print-file-name=libstdc++.a)\" /tmp/cxx/libstdc++.a && ls -lL /tmp/cxx/libstdc++.a",
         "cd /build/libplacebo && meson setup --cross-file /tmp/cross.txt --prefix=/opt/mpv --buildtype=release -Ddefault_library=static -Dvulkan=disabled -Dopengl=disabled -Dd3d11=disabled -Dglslang=disabled -Dshaderc=disabled -Dlcms=disabled -Ddovi=disabled -Dlibdovi=disabled -Ddemos=false -Dtests=false -Dbench=false -Dfuzz=false -Dunwind=disabled -Dxxhash=disabled build && ninja -C build && meson install -C build --destdir '/opt/a30/arm-a30-linux-gnueabihf/sysroot'",
-        "sed -i '/^Libs:/ s/$/ -lstdc++/' /opt/a30/arm-a30-linux-gnueabihf/sysroot/opt/mpv/lib/pkgconfig/libplacebo.pc && grep '^Libs' /opt/a30/arm-a30-linux-gnueabihf/sysroot/opt/mpv/lib/pkgconfig/libplacebo.pc",
-        "cd \"$SOURCE\" && meson setup --cross-file /tmp/cross.txt --prefix=/opt/mpv --buildtype=release -Dbuild-date=false -Dcplayer=true -Dlibmpv=false -Dtests=false -Dlua=disabled -Djavascript=disabled -Dlibarchive=disabled -Dlibbluray=disabled -Ddvdnav=disabled -Dcdda=disabled -Ddvbin=disabled -Duchardet=disabled -Drubberband=disabled -Dlcms2=disabled -Dvapoursynth=disabled -Dzimg=disabled -Djpeg=disabled -Dlibavdevice=disabled -Dsdl2=enabled -Dsdl2-video=enabled -Dsdl2-audio=enabled -Dsdl2-gamepad=enabled -Dalsa=disabled -Dpulse=disabled -Dpipewire=disabled -Djack=disabled -Dopenal=disabled -Dsndio=disabled -Doss-audio=disabled -Dgl=disabled -Degl=disabled -Dvulkan=disabled -Dwayland=disabled -Dx11=disabled -Ddrm=disabled -Dgbm=disabled -Dvaapi=disabled -Dvdpau=disabled -Dcaca=disabled -Dsixel=disabled -Dmanpage-build=disabled -Dhtml-build=disabled -Dpdf-build=disabled -Dzlib=enabled -Dc_link_args=-L/tmp/cxx build && ninja -C build",
+        "sed -i \"/^Libs:/ s|$| /tmp/cxx/libstdc++.a|\" /opt/a30/arm-a30-linux-gnueabihf/sysroot/opt/mpv/lib/pkgconfig/libplacebo.pc && grep '^Libs' /opt/a30/arm-a30-linux-gnueabihf/sysroot/opt/mpv/lib/pkgconfig/libplacebo.pc",
+        "cd \"$SOURCE\" && meson setup --cross-file /tmp/cross.txt --prefix=/opt/mpv --buildtype=release -Dbuild-date=false -Dcplayer=true -Dlibmpv=false -Dtests=false -Dlua=disabled -Djavascript=disabled -Dlibarchive=disabled -Dlibbluray=disabled -Ddvdnav=disabled -Dcdda=disabled -Ddvbin=disabled -Duchardet=disabled -Drubberband=disabled -Dlcms2=disabled -Dvapoursynth=disabled -Dzimg=disabled -Djpeg=disabled -Dlibavdevice=disabled -Dsdl2=enabled -Dsdl2-video=enabled -Dsdl2-audio=enabled -Dsdl2-gamepad=enabled -Dalsa=disabled -Dpulse=disabled -Dpipewire=disabled -Djack=disabled -Dopenal=disabled -Dsndio=disabled -Doss-audio=disabled -Dgl=disabled -Degl=disabled -Dvulkan=disabled -Dwayland=disabled -Dx11=disabled -Ddrm=disabled -Dgbm=disabled -Dvaapi=disabled -Dvdpau=disabled -Dcaca=disabled -Dsixel=disabled -Dmanpage-build=disabled -Dhtml-build=disabled -Dpdf-build=disabled -Dzlib=enabled build && ninja -C build",
         "mkdir -p /tmp/stage/lib32-mpv && cp -a /opt/a30/arm-a30-linux-gnueabihf/sysroot/opt/mpv/lib/*.so.* /tmp/stage/lib32-mpv/",
         "for f in /tmp/stage/lib32-mpv/*; do [ -L \"$f\" ] || arm-a30-linux-gnueabihf-strip --strip-unneeded \"$f\"; done"
       ],
@@ -4846,10 +4846,11 @@
           "libm.so.6",
           "libpthread.so.0",
           "librt.so.1",
-          "libstdc++.so.6",
           "libz.so.1"
         ],
-        "forbidden": []
+        "forbidden": [
+          "libstdc++.so.6"
+        ]
       }
     },
     "mpv-arm64": {
