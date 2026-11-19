@@ -133,6 +133,7 @@ Built against spruceOS `73bb91a19` (2026-10-11); "match" is byte for byte.
 | `mupen64plus-a30` | `Emu/N64/mupen64plus-a30/` | match |
 | `scummvm-a30`, `scummvm-mini` | `Emu/SCUMMVM/scummvm.a30`, `scummvm.mini` and its 96 plugins (inside spruceOS's 7z files), `liba30/`, `fixjoy`, `libmini/libfluidlite.so` | match |
 | `scummvm-arm64` | `Emu/SCUMMVM/scummvm.64` (inside spruceOS's 7z), 12 libraries of `lib/` | match |
+| `gametank-arm64`, `gametank-a30` | `Emu/GAMETANK/gametank/GameTankEmulator`, `gametank-a30/GameTankEmulator` of spruceOS `7592638d0` | match (runs 44416840843, 44416866778) |
 
 Some files next to these in spruceOS come from elsewhere and are not compared:
 ScummVM's `lib/` extras and seven of `libmini/`'s libraries, among others.

@@ -4079,6 +4079,156 @@
           "azahar_libretro.so": "12c603223762d2d9a82248102559581a24f7f07ff0b49f54ff53cd0172c21634"
         }
       }
+    },
+    "gametank-arm64": {
+      "description": "GameTankEmulator (clydeshaffer's GameTank emulator) at GTE_VERSION 9896544: Emu/GAMETANK/gametank/GameTankEmulator on every 64-bit device. Built as spruceUI/GameTank-spruce@2734536's build.sh and Dockerfile (universal target) do: Ubuntu 20.04's GCC 10.5.0 cross compiler, SDL2 2.28.5 built to link against only (devices bring their own), libstdc++/libgcc static, stripped.; SRCS pins the link order of GameTank-spruce run 38068802352 (the makefile's unsorted find follows the build filesystem)",
+      "source": {
+        "url": "https://github.com/clydeshaffer/GameTankEmulator.git",
+        "commit": "9896544460d5bb7dd89c2d2bc0f5c97a6f31d2e0",
+        "tree": "a6136ca7825a87b83583132b9d78964a570bff94",
+        "requested_ref": "refs/heads/main (2026-09-28)",
+        "submodules": true
+      },
+      "downloads": [
+        {
+          "url": "https://github.com/libsdl-org/SDL/releases/download/release-2.28.5/SDL2-2.28.5.tar.gz",
+          "sha256": "332cb37d0be20cb9541739c61f79bae5a477427d79ae85e352089afdaf6666e4",
+          "path": "/build/SDL2-2.28.5.tar.gz"
+        }
+      ],
+      "toolchain": "standalone-dsperate",
+      "source_date_epoch": 1790604756,
+      "patches": [
+        {
+          "diff": "patches/standalone/gametank/0001-handheld-menu.patch"
+        },
+        {
+          "diff": "patches/standalone/gametank/0002-nintendo-layout.patch"
+        },
+        {
+          "diff": "patches/standalone/gametank/0003-rotate.patch"
+        }
+      ],
+      "env": {
+        "CC": "aarch64-linux-gnu-gcc-10",
+        "CXX": "aarch64-linux-gnu-g++-10"
+      },
+      "steps": [
+        "set +u +o pipefail",
+        "mkdir -p /opt/sdl2",
+        "tar xf /build/SDL2-2.28.5.tar.gz -C /build",
+        "cd /build/SDL2-2.28.5 && ./configure --host=aarch64-linux-gnu --build=x86_64-pc-linux-gnu CC=aarch64-linux-gnu-gcc-10 --prefix=/opt/sdl2 --disable-static --disable-video-x11 --disable-video-wayland --disable-video-kmsdrm --disable-video-opengl --disable-pulseaudio --disable-pipewire --disable-jack --disable-sndio",
+        "cd /build/SDL2-2.28.5 && make -j\"$(nproc)\" install",
+        "mkdir -p /tmp/bin",
+        "printf '%s\\n' '#!/bin/sh' 'case \"$1\" in' '    --cflags) [ -n \"$SDL_CFLAGS\" ] && echo \"$SDL_CFLAGS\" || exec pkg-config --cflags sdl2 ;;' '    --libs)   [ -n \"$SDL_LIBS\" ] && echo \"$SDL_LIBS\" || exec pkg-config --libs sdl2 ;;' 'esac' > /tmp/bin/sdl2-config && chmod +x /tmp/bin/sdl2-config",
+        "export PATH=\"/tmp/bin:$PATH\"",
+        "export SDL_CFLAGS=\"-I/opt/sdl2/include -I/opt/sdl2/include/SDL2 -D_REENTRANT\"",
+        "export SDL_LIBS=\"-L/opt/sdl2/lib -lSDL2 -lpthread\"",
+        "cd \"$SOURCE\"",
+        "make -j\"$(nproc)\" bin CC=\"ccache $CC\" CPPC=\"ccache $CXX\" OPTIM_FLAGS=\"-O2 -mcpu=cortex-a53\" LIBRARY_PATHS=\"-static-libstdc++ -static-libgcc\" SRCS='src/imgui/imgui_demo.cpp src/imgui/imgui_widgets.cpp src/imgui/ext/implot/implot_items.cpp src/imgui/ext/implot/implot_demo.cpp src/imgui/ext/implot/implot.cpp src/imgui/imgui_tables.cpp src/imgui/imgui.cpp src/imgui/backends/imgui_impl_sdlrenderer2.cpp src/imgui/backends/imgui_impl_sdl2.cpp src/imgui/imgui_draw.cpp src/font.cpp src/blitter.cpp src/timekeeper.cpp src/ui/ui_utils.cpp src/game_config.cpp src/emulator_config.cpp src/palette.cpp src/audio_coprocessor.cpp src/devtools/disassembler.cpp src/devtools/vram_window.cpp src/devtools/mem_browser_window.cpp src/devtools/memory_map.cpp src/devtools/debug_window.cpp src/devtools/base_window.cpp src/devtools/controller_options_window.cpp src/devtools/profiler.cpp src/devtools/patching_window.cpp src/devtools/source_map.cpp src/devtools/breakpoints.cpp src/devtools/profiler_window.cpp src/devtools/imgui-combo-filter.cpp src/devtools/stepping_window.cpp src/gte.cpp src/paddle.cpp src/mos6502/mos6502.cpp src/joystick_config.cpp src/joystick_adapter.cpp'"
+      ],
+      "output": {
+        "files": [
+          {
+            "from": "/src/build/GameTankEmulator",
+            "to": "GameTankEmulator",
+            "strip": "-s"
+          }
+        ],
+        "spruce": {
+          "GameTankEmulator": "Emu/GAMETANK/gametank/GameTankEmulator"
+        }
+      },
+      "needed": {
+        "device": [
+          "ld-linux-aarch64.so.1",
+          "libSDL2-2.0.so.0",
+          "libc.so.6",
+          "libm.so.6",
+          "libpthread.so.0"
+        ],
+        "forbidden": [
+          "libgcc_s.so.1",
+          "libstdc++.so.6"
+        ]
+      },
+      "shipped": {
+        "spruceos": "7592638d0",
+        "files": {
+          "GameTankEmulator": "3cf9cce0d1880597f8eded43acda121921d4539befd1b99e05774a085686cf61"
+        }
+      }
+    },
+    "gametank-a30": {
+      "description": "GameTankEmulator (clydeshaffer's GameTank emulator) at GTE_VERSION 9896544: Emu/GAMETANK/gametank-a30/GameTankEmulator on the Miyoo A30. Built as spruceUI/GameTank-spruce@2734536's build.sh and Dockerfile.a30 do: the A30 buildroot cross toolchain (GCC 13.2.0, glibc 2.23 sysroot) this repository already has as standalone-armhf, the sysroot's own SDL2 (no SDL2 build step), libstdc++/libgcc static, stripped.; SRCS pins the link order of GameTank-spruce run 38068802352 (the makefile's unsorted find follows the build filesystem)",
+      "source": {
+        "url": "https://github.com/clydeshaffer/GameTankEmulator.git",
+        "commit": "9896544460d5bb7dd89c2d2bc0f5c97a6f31d2e0",
+        "tree": "a6136ca7825a87b83583132b9d78964a570bff94",
+        "requested_ref": "refs/heads/main (2026-09-28)",
+        "submodules": true
+      },
+      "toolchain": "standalone-armhf",
+      "source_date_epoch": 1790604756,
+      "patches": [
+        {
+          "diff": "patches/standalone/gametank/0001-handheld-menu.patch"
+        },
+        {
+          "diff": "patches/standalone/gametank/0002-nintendo-layout.patch"
+        },
+        {
+          "diff": "patches/standalone/gametank/0003-rotate.patch"
+        }
+      ],
+      "env": {
+        "CC": "arm-a30-linux-gnueabihf-gcc",
+        "CXX": "arm-a30-linux-gnueabihf-g++",
+        "PKG_CONFIG_LIBDIR": "/opt/a30/arm-a30-linux-gnueabihf/sysroot/usr/lib/pkgconfig",
+        "PKG_CONFIG_SYSROOT_DIR": "/opt/a30/arm-a30-linux-gnueabihf/sysroot"
+      },
+      "steps": [
+        "set +u +o pipefail",
+        "cd /opt/a30/arm-a30-linux-gnueabihf/sysroot/usr/lib && ln -sf libSDL2-2.0.so.0.2800.5 libSDL2.so",
+        "mkdir -p /tmp/bin",
+        "printf '%s\\n' '#!/bin/sh' 'case \"$1\" in' '    --cflags) [ -n \"$SDL_CFLAGS\" ] && echo \"$SDL_CFLAGS\" || exec pkg-config --cflags sdl2 ;;' '    --libs)   [ -n \"$SDL_LIBS\" ] && echo \"$SDL_LIBS\" || exec pkg-config --libs sdl2 ;;' 'esac' > /tmp/bin/sdl2-config && chmod +x /tmp/bin/sdl2-config",
+        "export PATH=\"/tmp/bin:$PATH\"",
+        "export SDL_CFLAGS=\"-I/opt/a30/arm-a30-linux-gnueabihf/sysroot/usr/include/SDL2 -D_REENTRANT\"",
+        "export SDL_LIBS=\"-lSDL2 -lpthread\"",
+        "cd \"$SOURCE\"",
+        "make -j\"$(nproc)\" bin CC=\"ccache $CC\" CPPC=\"ccache $CXX\" OPTIM_FLAGS=\"-O2 -mcpu=cortex-a7 -mfpu=neon-vfpv4 -mfloat-abi=hard\" LIBRARY_PATHS=\"-static-libstdc++ -static-libgcc\" SRCS='src/imgui/imgui_demo.cpp src/imgui/imgui_widgets.cpp src/imgui/ext/implot/implot_items.cpp src/imgui/ext/implot/implot_demo.cpp src/imgui/ext/implot/implot.cpp src/imgui/imgui_tables.cpp src/imgui/imgui.cpp src/imgui/backends/imgui_impl_sdlrenderer2.cpp src/imgui/backends/imgui_impl_sdl2.cpp src/imgui/imgui_draw.cpp src/font.cpp src/blitter.cpp src/timekeeper.cpp src/ui/ui_utils.cpp src/game_config.cpp src/emulator_config.cpp src/palette.cpp src/audio_coprocessor.cpp src/devtools/disassembler.cpp src/devtools/vram_window.cpp src/devtools/mem_browser_window.cpp src/devtools/memory_map.cpp src/devtools/debug_window.cpp src/devtools/base_window.cpp src/devtools/controller_options_window.cpp src/devtools/profiler.cpp src/devtools/patching_window.cpp src/devtools/source_map.cpp src/devtools/breakpoints.cpp src/devtools/profiler_window.cpp src/devtools/imgui-combo-filter.cpp src/devtools/stepping_window.cpp src/gte.cpp src/paddle.cpp src/mos6502/mos6502.cpp src/joystick_config.cpp src/joystick_adapter.cpp'"
+      ],
+      "output": {
+        "files": [
+          {
+            "from": "/src/build/GameTankEmulator",
+            "to": "GameTankEmulator",
+            "strip": "-s"
+          }
+        ],
+        "spruce": {
+          "GameTankEmulator": "Emu/GAMETANK/gametank-a30/GameTankEmulator"
+        }
+      },
+      "needed": {
+        "device": [
+          "ld-linux-armhf.so.3",
+          "libSDL2-2.0.so.0",
+          "libc.so.6",
+          "libm.so.6",
+          "libpthread.so.0"
+        ],
+        "forbidden": [
+          "libgcc_s.so.1",
+          "libstdc++.so.6"
+        ]
+      },
+      "shipped": {
+        "spruceos": "7592638d0",
+        "files": {
+          "GameTankEmulator": "c895fe8a2a789013714733a8dd8de89e7f78a78db810acbe106b3d6bd12c5f17"
+        }
+      }
     }
   }
 }
