@@ -1,0 +1,11 @@
+--- a/yabause/src/libretro/Makefile
++++ b/yabause/src/libretro/Makefile
+@@ -106,6 +106,8 @@
+ 	fpic := -fPIC
+ 	SHARED := -shared -Wl,--no-undefined -Wl,--version-script=link.T
+ 	LDFLAGS += -lpthread
++	LDFLAGS += -L$(TRIMUI_SDK)/lib -lIMGegl -lglslcompiler -lsrv_um -lusc -ltmenu
++	FLAGS += -I$(TRIMUI_SDK)/include
+ 	ARCH_IS_LINUX = 1
+ 	HAVE_SSE = 0
+ 	FORCE_GLES = 1

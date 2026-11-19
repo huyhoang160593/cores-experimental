@@ -4743,6 +4743,73 @@
           "path": "/tmp/dl/SDL2.tar.gz"
         }
       ]
+    },
+    "yabasanshiro-libretro-trimui": {
+      "description": "TrimUI's own YabaSanshiro libretro core (libretro/yabause 7513c8459, v3.4.2): spruce's RetroArch/.retroarch/cores64/yabasanshiro_a133p_libretro.so, and yabasanshiro_libretro.so (the same file, stripped in spruceOS bd606af63), which only the Pixel 2's Saturn option still selects. It came with tenlevels' Brick MinUI paks (ryanmsartor/TrimUI-Brick-and-Smart-Pro-Custom-MinUI-Paks 06850b3e97). Built by raymanfeng with Linaro GCC 7.5 (glibc 2.25) against TrimUI's tg5040 SDK, linking its PowerVR libraries and libtmenu (nothing imported from them), so it loads only on TrimUI's A133P devices. The platform and the link order are reconstructed; first attempt.",
+      "source": {
+        "url": "https://github.com/libretro/yabause.git",
+        "commit": "7513c8459034a0fe415d3cae4d692a54d0f90296",
+        "tree": "2475d066573ef255bc024f07d091abefbc420645",
+        "requested_ref": "refs/heads/yabasanshiro (2023-06-03)"
+      },
+      "toolchain": "standalone-trimui",
+      "source_date_epoch": 1685817931,
+      "patches": [
+        {
+          "diff": "patches/standalone/yabasanshiro-trimui/0001-trimui-sdk-libraries.patch"
+        }
+      ],
+      "steps": [
+        "set +u +o pipefail",
+        "mkdir -p /home/raymanfeng/bin",
+        "ln -s /opt/aarch64-linux-gnu-7.5.0-linaro /home/raymanfeng/bin/aarch64-linux-gnu-7.5.0-linaro",
+        "export PATH=\"/home/raymanfeng/bin/aarch64-linux-gnu-7.5.0-linaro/bin:$PATH\"",
+        "aarch64-linux-gnu-gcc --version | head -1",
+        "cd \"$SOURCE/yabause/src/libretro\"",
+        "make -j\"$(nproc)\" platform=arm64_cortex_a53_gles3 CC=aarch64-linux-gnu-gcc CXX=aarch64-linux-gnu-g++ TRIMUI_SDK=/opt/smartpro-sdk/usr"
+      ],
+      "output": {
+        "files": [
+          {
+            "from": "/src/yabause/src/libretro/yabasanshiro_libretro.so",
+            "to": "yabasanshiro_a133p_libretro.so"
+          },
+          {
+            "from": "/src/yabause/src/libretro/yabasanshiro_libretro.so",
+            "to": "yabasanshiro_libretro.so",
+            "strip": "-s"
+          }
+        ],
+        "spruce": {
+          "yabasanshiro_a133p_libretro.so": "RetroArch/.retroarch/cores64/yabasanshiro_a133p_libretro.so",
+          "yabasanshiro_libretro.so": "RetroArch/.retroarch/cores64/yabasanshiro_libretro.so"
+        }
+      },
+      "needed": {
+        "device": [
+          "ld-linux-aarch64.so.1",
+          "libGLESv2.so.2",
+          "libIMGegl.so",
+          "libc.so.6",
+          "libgcc_s.so.1",
+          "libglslcompiler.so",
+          "libm.so.6",
+          "libpthread.so.0",
+          "libsrv_um.so",
+          "libstdc++.so.6",
+          "libtmenu.so",
+          "libusc.so"
+        ],
+        "forbidden": []
+      },
+      "shipped": {
+        "spruceos": "7592638d0",
+        "unverified": true,
+        "files": {
+          "yabasanshiro_a133p_libretro.so": "fadcef0729de15597318fe25c49f8b132c0faaec7c275e33cb36760757af5a01",
+          "yabasanshiro_libretro.so": "83af409c98ebdedb06688e3c72abc411c5dd4d9286d3f34e8d0c18a1abe0e15d"
+        }
+      }
     }
   }
 }
