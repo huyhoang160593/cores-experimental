@@ -146,6 +146,7 @@ Built against spruceOS `73bb91a19` (2026-10-11); "match" is byte for byte.
 | `xroar` | `Emu/COCO/xroar` of spruceOS `7592638d0` | built (run 44434199145), differs: same modules, NEEDED list and section sizes, but Debian's SDL2 links libpulse (and so libsndfile), so ld exports xroar's own `sf_*` compat functions and the code shifts; the original machine's SDL2 did not |
 | `gvu-arm64`, `gvu-a30` | `Emu/MEDIA/bin64/gvu`, `bin32/gvu` of spruceOS `7592638d0` | match (runs 44440415230, 44440434774) |
 | `pokedaisy-{arm64,armhf}-20261112`, `-20261113` | `RetroArch/.retroarch/cores{64,}/pokedaisy_{ds,gbc}` (11-12) and `pokedaisy_gba` (11-13) of spruceOS `7592638d0` | match, all six (runs 44571273959, 44571303318, 44571331513, 44571360523): Cores-spruce runs 43141364046 and 43467900814 at pokedaisy-lr 7af02b6, armGBA b1c4a69 / 4bd15f1, with the tree owned by the runner's uid as there |
+| `yabasanshiro-libretro-trimui` | `RetroArch/.retroarch/cores64/yabasanshiro_a133p_libretro.so`, `yabasanshiro_libretro.so` of spruceOS `7592638d0` | differs, as known: TrimUI's own changes (no libchdr, no Musashi) are not published; NEEDED list and compiler match (run 44567232442) |
 | `mupen64plus-pow2` | `Emu/N64/pow2/mupen64plus`, `data/` of spruceOS `7592638d0` | `data/` matches; the executable has the same code, data and build ID, and differs only in four linker veneer names (run 44447436936) |
 
 Some files next to these in spruceOS come from elsewhere and are not compared:
@@ -259,6 +260,17 @@ profile of a function whose code changed after training: `context_reset`,
 `retro_run` and the RBG generator's `init` and `update` in the core, the RBG
 generator's `init` and `update` in the standalone. The other
 `-Wcoverage-mismatch` warnings are line shifts, whose profiles GCC still uses.
+
+## Saturn on the Pixel 2: three cores
+
+The Pixel 2's Saturn option (spruceOS 32e36c798, 2026-02-15) selects `cores64/yabasanshiro_libretro.so`, a file
+three builds compete for:
+
+| core | where it comes from | pin | here |
+|---|---|---|---|
+| spruce's card file (shipped) | TrimUI's own build (raymanfeng, Linaro GCC 7.5, tg5040 SDK), via tenlevels' Brick paks; the stripped copy of `yabasanshiro_a133p` | libretro/yabause 7513c8459 plus TrimUI's unpublished changes | `yabasanshiro-libretro-trimui`: builds, differs as known. It links TrimUI's PowerVR libraries and `libtmenu`, so it cannot load on the Pixel 2 |
+| TwigUI-Next's card file | TwigUI-Next 1.2.0 (twig-base 0d4954c435) builds `yabasanshiro-lr` and writes it over spruce's: 5b669a8c…, GCC 15.2 | libretro/yabause 39535a6 with its `01-optimization.patch`, `FORCE_GLES=1` | built with TwigUI-Next's own toolchain, not here (a reproduction is requested on salusa) |
+| recommended | spruce's generic core, on every other 64-bit device since 2026-10-13 | libretro/yabause f448097, T3 PGO | `yabasanshiro-libretro`: reproduces. On paper it fits the Pixel 2 (glibc 2.33 against 2.41, GLES 3.1 against Panfrost's, ARMv8.0-safe atomics); untested there |
 
 ## OpenBOR (DCurrent) standalones
 

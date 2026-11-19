@@ -5027,7 +5027,7 @@
       }
     },
     "yabasanshiro-libretro-trimui": {
-      "description": "TrimUI's own YabaSanshiro libretro core (libretro/yabause 7513c8459, v3.4.2): spruce's RetroArch/.retroarch/cores64/yabasanshiro_a133p_libretro.so, and yabasanshiro_libretro.so (the same file, stripped in spruceOS bd606af63), which only the Pixel 2's Saturn option still selects. It came with tenlevels' Brick MinUI paks (ryanmsartor/TrimUI-Brick-and-Smart-Pro-Custom-MinUI-Paks 06850b3e97). Built by raymanfeng with Linaro GCC 7.5 (glibc 2.25) against TrimUI's tg5040 SDK, linking its PowerVR libraries and libtmenu (nothing imported from them), so it loads only on TrimUI's A133P devices. The platform and the link order are reconstructed; first attempt.",
+      "description": "TrimUI's own YabaSanshiro libretro core (libretro/yabause 7513c8459, v3.4.2): spruce's RetroArch/.retroarch/cores64/yabasanshiro_a133p_libretro.so, and yabasanshiro_libretro.so (the same file, stripped in spruceOS bd606af63), which only the Pixel 2's Saturn option still selects. It came with tenlevels' Brick MinUI paks (ryanmsartor/TrimUI-Brick-and-Smart-Pro-Custom-MinUI-Paks 06850b3e97). Built by raymanfeng with Linaro GCC 7.5 (glibc 2.25) against TrimUI's tg5040 SDK, linking its PowerVR libraries and libtmenu (nothing imported from them), so it loads only on TrimUI's A133P devices. The platform and link order are reconstructed and match (NEEDED list, compiler); TrimUI's own source changes are not published, so the build documents the file rather than reproducing it.",
       "source": {
         "url": "https://github.com/libretro/yabause.git",
         "commit": "7513c8459034a0fe415d3cae4d692a54d0f90296",
@@ -5086,10 +5086,13 @@
       },
       "shipped": {
         "spruceos": "7592638d0",
-        "unverified": true,
         "files": {
           "yabasanshiro_a133p_libretro.so": "fadcef0729de15597318fe25c49f8b132c0faaec7c275e33cb36760757af5a01",
           "yabasanshiro_libretro.so": "83af409c98ebdedb06688e3c72abc411c5dd4d9286d3f34e8d0c18a1abe0e15d"
+        },
+        "differs": {
+          "yabasanshiro_a133p_libretro.so": "TrimUI built a locally changed 7513c8459 tree: no libchdr (CHD, FLAC, zlib, Huffman) and no Musashi, which this commit's Makefile always builds, and much more inlining; the same compiler, SDK and link order give 1,943,232 B against 1,517,256 (run 44567232442). The changes are not published",
+          "yabasanshiro_libretro.so": "TrimUI built a locally changed 7513c8459 tree: no libchdr (CHD, FLAC, zlib, Huffman) and no Musashi, which this commit's Makefile always builds, and much more inlining; the same compiler, SDK and link order give 1,943,232 B against 1,517,256 (run 44567232442). The changes are not published; this copy is also stripped"
         }
       }
     }
