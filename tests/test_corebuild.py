@@ -564,6 +564,18 @@ class InventoryTest(unittest.TestCase):
         self.assertEqual(len(inventory.blacklist_problems(names, catalog, standalones)), 1)
         self.assertIn("S (default)", rows[("a", "RetroArch/.retroarch/cores64/a_libretro.so")]["where"])
 
+    def test_source_path_and_describe_tags_are_opt_in(self):
+        spec = json.loads(json.dumps(REPO.cores["ardens"]))
+        plain = "\n".join(recipe.direct_cmake(spec, "arm64"))
+        self.assertIn("mkdir -p /tmp/core-source", plain)
+        self.assertNotIn("ls-remote", plain)
+        spec["build"].update(source_path="/libretro-super/libretro-ardens", describe_tags=True)
+        text = "\n".join(recipe.direct_cmake(spec, "arm64"))
+        self.assertIn("cmake -S /libretro-super/libretro-ardens -B /tmp/core-build", text)
+        self.assertNotIn("/tmp/core-source", text)
+        self.assertIn(f"git -C /libretro-super/libretro-ardens ls-remote --tags origin | awk -v c={spec['source']['commit']}", text)
+        self.assertEqual(subprocess.run(["bash", "-n"], input=text, text=True).returncode, 0)
+
     def test_committed_inventory_and_names_are_consistent(self):
         names = json.loads((ROOT / "manifests/emulator-names.json").read_text())["names"]
         data = json.loads((ROOT / "manifests/emulator-inventory.json").read_text())

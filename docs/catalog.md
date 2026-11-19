@@ -52,6 +52,8 @@ Optional fields, for any driver:
 | `compile_definitions` | `{arch: ["NAME=VALUE", …]}`, passed as `-D` flags |
 | `source_date_epoch` | `true` for cores that embed the build date: the date becomes the commit's |
 | `git_abbrev` | for cores that embed a short git hash: fixes its length, which git otherwise grows as the upstream repository grows |
+| `describe_tags` | fetch the tags on the pinned commit, so a build's `git describe` gives the release name (`v0.25.9`) rather than the bare hash a tagless clone gives |
+| `source_path` | direct drivers: check the source out here instead of `/tmp/core-source`, for builds that embed their source path (assert strings), e.g. `/libretro-super/libretro-<core>` as libretro-super builds it |
 | `env` | `[[NAME, value], …]` exported before the build |
 | `makeflags` | exported as `MAKEFLAGS`; its variables override the core's makefile |
 | `command_env` | `[[NAME, value], …]` set only on the `libretro-build.sh` command |

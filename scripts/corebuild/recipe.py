@@ -199,6 +199,16 @@ def cargo_variant(variant: Variant) -> list[str]:
             for key, value in settings]
 
 
+def describe_tags(directory: str, commit: str) -> list[str]:
+    """Fetch the tags on the pinned commit, so a makefile's `git describe` names the release, not the hash."""
+    return [
+        f"for tag in $(git -C {directory} ls-remote --tags origin | awk -v c={commit} "
+        "'$1 == c { sub(\"refs/tags/\", \"\", $2); sub(/\\^\\{\\}$/, \"\", $2); print $2 }' | sort -u); do",
+        f'  git -C {directory} fetch --depth 1 --no-tags origin "refs/tags/$tag:refs/tags/$tag"',
+        "done",
+    ]
+
+
 def checkout_libretro(directory: str, commit: str, submodules: bool, recursive: str) -> list[str]:
     lines = [
         f"if ! git -C {directory} cat-file -e {commit}^{{commit}} 2>/dev/null; then",
@@ -214,16 +224,21 @@ def checkout_libretro(directory: str, commit: str, submodules: bool, recursive: 
     return lines + [f'test "$(git -C {directory} rev-parse HEAD)" = {commit}']
 
 
-def checkout_direct(url: str, commit: str, recursive: str) -> list[str]:
+def source_root(build: dict) -> str:
+    """Where a direct build checks its source out; some builds embed it (assert strings), so a recipe may set it."""
+    return build.get("source_path", SOURCE)
+
+
+def checkout_direct(url: str, commit: str, recursive: str, root: str = SOURCE) -> list[str]:
     return [
-        f"mkdir {SOURCE}",
-        f"git -C {SOURCE} init",
-        f"git -C {SOURCE} remote add origin {q(url)}",
-        f"git -C {SOURCE} fetch --depth 1 origin {commit}",
-        f"git -C {SOURCE} checkout --detach FETCH_HEAD",
-        f'test "$(git -C {SOURCE} rev-parse HEAD)" = {commit}',
-        f"git -C {SOURCE} submodule sync{recursive}",
-        f"git -C {SOURCE} submodule update --init{recursive}",
+        f"mkdir -p {q(root)}",
+        f"git -C {q(root)} init",
+        f"git -C {q(root)} remote add origin {q(url)}",
+        f"git -C {q(root)} fetch --depth 1 origin {commit}",
+        f"git -C {q(root)} checkout --detach FETCH_HEAD",
+        f'test "$(git -C {q(root)} rev-parse HEAD)" = {commit}',
+        f"git -C {q(root)} submodule sync{recursive}",
+        f"git -C {q(root)} submodule update --init{recursive}",
     ]
 
 
@@ -299,6 +314,7 @@ def libretro_super(spec: dict, arch: str) -> list[str]:
         "cd /libretro-super",
         f"./libretro-fetch.sh {key}",
         *checkout_libretro(directory, commit, submodules, recursive),
+        *(describe_tags(directory, commit) if build.get("describe_tags") else []),
         *provenance(directory, submodules, recursive),
         *environment(spec, directory),
         *overlays(build, arch, directory),
@@ -318,12 +334,14 @@ def direct_make(spec: dict, arch: str) -> list[str]:
         args += f"platform={q(build['platforms'][arch])} "
     args += "".join(f"{q(item)} " for item in build.get("make_args", []))
     output = build["output_path"]
+    root = source_root(build)
     return [
-        *checkout_direct(spec["source"]["url"], commit, recursive),
-        *provenance(SOURCE, True, recursive),
-        *environment(spec, SOURCE),
-        *overlays(build, arch, SOURCE),
-        f"cd {SOURCE}",
+        *checkout_direct(spec["source"]["url"], commit, recursive, root),
+        *(describe_tags(root, commit) if build.get("describe_tags") else []),
+        *provenance(root, True, recursive),
+        *environment(spec, root),
+        *overlays(build, arch, root),
+        f"cd {q(root)}",
         f"rm -f {q(output)}",
         f'make -j"$(nproc)" {args}CC="$CC" CXX="$CXX" AR="$AR" RANLIB="$RANLIB"',
         *install(output, build["artifact_name"]),
@@ -333,7 +351,8 @@ def direct_make(spec: dict, arch: str) -> list[str]:
 def direct_cmake(spec: dict, arch: str) -> list[str]:
     build, commit = spec["build"], spec["source"]["commit"]
     cmake = build["cmake"]
-    source = SOURCE + (f"/{cmake['source_subdir']}" if cmake.get("source_subdir") else "")
+    root = source_root(build)
+    source = root + (f"/{cmake['source_subdir']}" if cmake.get("source_subdir") else "")
     defines = {**cmake.get("defines", {}), **cmake.get("arch_defines", {}).get(arch, {})}
     tools = "".join(
         f' -DCMAKE_{name}:FILEPATH="$cmake_{var}"'
@@ -347,10 +366,11 @@ def direct_cmake(spec: dict, arch: str) -> list[str]:
         + "".join(f" -D{name}={q(value)}" for name, value in defines.items())
     )
     return [
-        *checkout_direct(spec["source"]["url"], commit, " --recursive"),
-        *provenance(SOURCE, True, " --recursive"),
-        *environment(spec, SOURCE),
-        *overlays(build, arch, SOURCE),
+        *checkout_direct(spec["source"]["url"], commit, " --recursive", root),
+        *(describe_tags(root, commit) if build.get("describe_tags") else []),
+        *provenance(root, True, " --recursive"),
+        *environment(spec, root),
+        *overlays(build, arch, root),
         *(f'cmake_{var}="$(command -v "${env}")"' for var, env in
           (("cc", "CC"), ("cxx", "CXX"), ("ar", "AR"), ("ranlib", "RANLIB"), ("strip", "STRIP"))),
         configure,
