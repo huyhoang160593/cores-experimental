@@ -85,7 +85,7 @@
       "note": "offered on the Miyoo Mini; no core file ships"
     },
     "mpv": {
-      "base_image": "TwigUI-Next's mpv package (spruceUI/twigUI-next 1.2.0 = twig-base 0d4954c435, projects/twigUI/packages/multimedia/mpv: mpv 0.38.0 @02254b92 with ffmpeg-rockchip); run_mpv starts its /usr/bin/mpv on the Pixel 2"
+      "base_image": "TwigUI-Next's mpv package (spruceUI/twigUI-next 1.2.0 = twig-base 0d4954c435, projects/twigUI/packages/multimedia/mpv: mpv 0.38.0 @02254b92 with ffmpeg-rockchip a63922000b, FFmpeg 7.1.5); run_mpv starts its /usr/bin/mpv (0eac0e36) on the Pixel 2. Reproduced on salusa (B412, B413, 2026-11-19) except meson's build-rpath placeholder: same code, .rodata and relocations, 119 bytes more .dynstr"
     },
     "mupen64plus-pow2": {
       "paths": [
