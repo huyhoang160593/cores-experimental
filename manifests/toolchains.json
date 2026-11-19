@@ -266,6 +266,17 @@
         "size": 443123820
       },
       "dockerfile": "Dockerfile.standalone.gvu-a30"
+    },
+    "standalone-mupen64plus-pow2": {
+      "image": "cores-standalone-mupen64plus-pow2:v2",
+      "image_id": "sha256:f7a123dc209d60850f7148db056fbd40a03a91554506bc784b02fb7e8bc68c6c",
+      "host_cc": "aarch64-linux-gnu",
+      "archive": {
+        "name": "cores-standalone-mupen64plus-pow2-v2.tar.gz",
+        "sha256": "fc6d2dde633f906fd28997b5df91b07e57e120bd43b14676ddad6f78baec62c5",
+        "size": 306180820
+      },
+      "dockerfile": "Dockerfile.standalone.mupen64plus-pow2"
     }
   }
 }

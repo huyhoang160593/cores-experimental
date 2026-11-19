@@ -1,0 +1,35 @@
+# cores-standalone-mupen64plus-pow2 v2: Ubuntu 20.04 with focal's gcc-10 cross compiler (10.5.0-1ubuntu1~20.04cross1)
+# as the unversioned aarch64-linux-gnu-gcc: the shipped binary's GCC banner and the gcc-10-cross-6ubuntu6 build path
+# in its static libgcc. Base digest shared with Dockerfile.arm64.base.
+FROM ubuntu:20.04@sha256:8feb4d8ca5354def3d8fce243717141ce31e2c428701f6682bd2fafe15388214
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Multiarch arm64, as Dockerfile.arm64.base sets it up.
+RUN dpkg --add-architecture arm64 && \
+    sed -i 's/^deb http/deb [arch=amd64] http/g' /etc/apt/sources.list && \
+    echo "deb [arch=arm64] http://ports.ubuntu.com/ubuntu-ports focal main restricted universe multiverse" >> /etc/apt/sources.list && \
+    echo "deb [arch=arm64] http://ports.ubuntu.com/ubuntu-ports focal-updates main restricted universe multiverse" >> /etc/apt/sources.list && \
+    apt-get update
+
+# gcc-10-aarch64-linux-gnu pinned to the version Launchpad shows as current for focal (updates/security); the
+# default aarch64-linux-gnu-gcc symlink is remapped to it so build-bundle.sh's unversioned CC="${X}gcc" picks it
+# up unmodified. g++/gcc-ar/gcc-ranlib get the same treatment for the armlet CMake build.
+RUN apt-get install -y --no-install-recommends \
+    gcc-10-aarch64-linux-gnu=10.5.0-1ubuntu1~20.04cross1 \
+    g++-10-aarch64-linux-gnu=10.5.0-1ubuntu1~20.04cross1 \
+    && update-alternatives --install /usr/bin/aarch64-linux-gnu-gcc aarch64-linux-gnu-gcc /usr/bin/aarch64-linux-gnu-gcc-10 100 \
+    && update-alternatives --install /usr/bin/aarch64-linux-gnu-g++ aarch64-linux-gnu-g++ /usr/bin/aarch64-linux-gnu-g++-10 100 \
+    && update-alternatives --install /usr/bin/aarch64-linux-gnu-gcc-ar aarch64-linux-gnu-gcc-ar /usr/bin/aarch64-linux-gnu-gcc-ar-10 100 \
+    && update-alternatives --install /usr/bin/aarch64-linux-gnu-gcc-ranlib aarch64-linux-gnu-gcc-ranlib /usr/bin/aarch64-linux-gnu-gcc-ranlib-10 100 \
+    && update-alternatives --install /usr/bin/aarch64-linux-gnu-gcc-nm aarch64-linux-gnu-gcc-nm /usr/bin/aarch64-linux-gnu-gcc-nm-10 100
+
+# build-bundle.sh's other needs: cmake + ninja (armlet), rsync, python3. SDL2 links dynamically; zlib and libpng
+# 1.6.37 (the version in the binary's strings) statically, as -l:libz.a and -l:libpng16.a.
+RUN apt-get install -y --no-install-recommends \
+    binutils make pkg-config git ca-certificates cmake ninja-build rsync python3 \
+    libsdl2-dev:arm64 zlib1g-dev:arm64 libpng-dev:arm64 \
+    && rm -rf /var/lib/apt/lists/*
+
+# The package manifest, as the core images record it.
+RUN dpkg -l > /apt-manifest.txt

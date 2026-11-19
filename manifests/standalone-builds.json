@@ -4672,6 +4672,75 @@
           "gvu64": "b3a05d23d5a7394af0a6be8edff7cd0c9d189a26d2d6a48f4e69c7d4b3ad9fe9"
         }
       }
+    },
+    "mupen64plus-pow2": {
+      "description": "mupen64plus-pow2: beebono's static LTO bundle (core 'dento', front-end 'inn', video 'foir', RSP 'arMLEt', audio 'altru', input 'suxty') as one executable, Emu/N64/pow2/mupen64plus plus its data/mupen64plus.ini and data/mupencheat.txt (byte for byte the core's own data/, confirmed by git blob hash). Added in spruceOS 126108c0e (2026-11-07); built with bundle/build-bundle.sh aarch64, the devel branch as of the last commit before that date (2026-11-01T23:56:46Z): later commits (2026-11-08) are after spruceOS took it and are absent from the binary's strings (no F3DLP.Rej), while this commit's features (RdpClockScale/RdpSyncClocks, FullSyncDelivered/DeferredDrain, TextureLod, F3DLX.Rej) are present. GPL-3.0-or-later as a whole (Licenses/Mupen64Plus-pow2/ in spruceOS); the per-component table is in that folder's NOTICE.; SDL2 2.28.5's headers are installed under the cross prefix, where build-bundle.sh looks: vidext.c's SDL_VERSION_ATLEAST(2,24,0) hint is in spruce's binary, so its build had headers >= 2.24, while focal's are 2.0.10",
+      "source": {
+        "url": "https://github.com/beebono/mupen64plus-pow2.git",
+        "commit": "a13db80ec6f8d162a546f3bd2f7c1392a7a72a83",
+        "tree": "7950ca62a6773c4ab564d9b9a56e21e68a73db88",
+        "requested_ref": "refs/heads/devel (2026-11-01 17:02, before F3DLX.Rej)",
+        "submodules": true
+      },
+      "toolchain": "standalone-mupen64plus-pow2",
+      "source_date_epoch": 1793552567,
+      "steps": [
+        "mkdir -p /tmp/sdl2 && tar -xzf /tmp/dl/SDL2.tar.gz -C /tmp/sdl2 --strip-components=1",
+        "(cd /tmp/sdl2 && ./configure --host=aarch64-linux-gnu --build=x86_64-pc-linux-gnu --prefix=/usr/aarch64-linux-gnu > /tmp/sdl2-configure.log && make install-hdrs > /dev/null)",
+        "test -f /usr/aarch64-linux-gnu/include/SDL2/SDL.h && grep -m1 -E 'define SDL_(MINOR_VERSION|PATCHLEVEL)' /usr/aarch64-linux-gnu/include/SDL2/SDL_version.h",
+        "bash bundle/build-bundle.sh aarch64"
+      ],
+      "output": {
+        "files": [
+          {
+            "from": "/src/out/aarch64/mupen64plus-pow2",
+            "to": "mupen64plus"
+          },
+          {
+            "from": "/src/ext/mupen64plus-core-dento/data/mupen64plus.ini",
+            "to": "data/mupen64plus.ini",
+            "mode": "0644"
+          },
+          {
+            "from": "/src/ext/mupen64plus-core-dento/data/mupencheat.txt",
+            "to": "data/mupencheat.txt",
+            "mode": "0644"
+          }
+        ],
+        "spruce": {
+          "mupen64plus": "Emu/N64/pow2/mupen64plus",
+          "data/": "Emu/N64/pow2/data/"
+        }
+      },
+      "needed": {
+        "device": [
+          "ld-linux-aarch64.so.1",
+          "libc.so.6",
+          "libdl.so.2",
+          "libm.so.6",
+          "libpthread.so.0",
+          "libSDL2-2.0.so.0"
+        ],
+        "forbidden": []
+      },
+      "shipped": {
+        "spruceos": "7592638d0",
+        "files": {
+          "mupen64plus": "acb0beb253163807931c3aba9f4a60616ee56148afdd59d428270848b9ecd204",
+          "data/mupen64plus.ini": "05c821816f4d91b25c8d586f81112f9cca74895c4202dab9ef1878247395cb86",
+          "data/mupencheat.txt": "d3206c3f5cf57a8ebcc29729837fb9f5c1645a6c571e68aa08a178db2e950b36"
+        },
+        "differs": {
+          "mupen64plus": "only the names of four linker-generated Cortex-A53 erratum 843419 veneers (10 bytes of .strtab; e843419@0183_... vs e843419@017f_...): the original link had four more input sections ahead of them. Code, data and the build ID are the same (runs 44447436936 and four other SDL2 versions)"
+        }
+      },
+      "downloads": [
+        {
+          "url": "https://github.com/libsdl-org/SDL/releases/download/release-2.28.5/SDL2-2.28.5.tar.gz",
+          "sha256": "332cb37d0be20cb9541739c61f79bae5a477427d79ae85e352089afdaf6666e4",
+          "path": "/tmp/dl/SDL2.tar.gz"
+        }
+      ]
     }
   }
 }
