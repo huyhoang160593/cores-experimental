@@ -163,6 +163,15 @@
       "metadata": {
         "artifact_name": "armgba_libretro.info",
         "repo_path": "metadata/armgba/spruceos-d14cdbefe.info"
+      },
+      "shipped": {
+        "spruceos": "e1eab6bfc",
+        "note": "matched byte for byte by CE CI run 44574194101 (main a725fb4), both arches",
+        "variant": "release-arm64-generic + release-armhf-generic",
+        "files": {
+          "RetroArch/.retroarch/cores64/armgba_libretro.so": "fffaedc7eb969631125a56622692454a6837ab4805f5edc278108b4cfa1de4bb",
+          "RetroArch/.retroarch/cores/armgba_libretro.so": "bbc3cca53fe60781cf115d814f7b7d83975939bbae35a8ac0d5d0d0a26a82244"
+        }
       }
     },
     "armn64": {
@@ -221,6 +230,15 @@
       "metadata": {
         "artifact_name": "armnes_libretro.info",
         "repo_path": "metadata/armnes/spruceos-d14cdbefe.info"
+      },
+      "shipped": {
+        "spruceos": "e1eab6bfc",
+        "note": "matched byte for byte by CE CI run 44574194101 (main a725fb4), both arches",
+        "variant": "release-arm64-generic + release-armhf-generic",
+        "files": {
+          "RetroArch/.retroarch/cores64/armnes_libretro.so": "cdb42d30ddc8d96e2a577a7800a23c23191d3ad3e6b466903f344e682ddfbd08",
+          "RetroArch/.retroarch/cores/armnes_libretro.so": "f840e12ec256fe9836c0bae0a37b275dc5354db78c8e2913fe53033ff0febfab"
+        }
       }
     },
     "armnes_arcade": {
