@@ -134,6 +134,8 @@ Built against spruceOS `73bb91a19` (2026-10-11); "match" is byte for byte.
 | `scummvm-a30`, `scummvm-mini` | `Emu/SCUMMVM/scummvm.a30`, `scummvm.mini` and its 96 plugins (inside spruceOS's 7z files), `liba30/`, `fixjoy`, `libmini/libfluidlite.so` | match |
 | `scummvm-arm64` | `Emu/SCUMMVM/scummvm.64` (inside spruceOS's 7z), 12 libraries of `lib/` | match |
 | `gametank-arm64`, `gametank-a30` | `Emu/GAMETANK/gametank/GameTankEmulator`, `gametank-a30/GameTankEmulator` of spruceOS `7592638d0` | match (runs 44416840843, 44416866778) |
+| `openbor-trimui` | `Emu/OPENBOR/OpenBOR_TrimUI` of spruceOS `7592638d0` | built (run 44431097991), differs: the shipped binary's compiler is TrimUI's Linaro GCC 7.5, not GCC 9.4 |
+| `openbor-new` | `Emu/OPENBOR/OpenBOR_new` of spruceOS `7592638d0` | built (run 44431121128), differs: same compiler, libraries and banner, but the shipped `.text` is 115 KB larger and has no RPATH, so the vendor's flags differ |
 
 Some files next to these in spruceOS come from elsewhere and are not compared:
 ScummVM's `lib/` extras and seven of `libmini/`'s libraries, among others.
@@ -246,3 +248,31 @@ profile of a function whose code changed after training: `context_reset`,
 `retro_run` and the RBG generator's `init` and `update` in the core, the RBG
 generator's `init` and `update` in the standalone. The other
 `-Wcoverage-mismatch` warnings are line shifts, whose profiles GCC still uses.
+
+## OpenBOR (DCurrent) standalones
+
+`openbor-trimui` and `openbor-new` rebuild two of the three DCurrent/OpenBOR commits spruce
+ships (`openbor_functions.sh` picks the binary). `OpenBOR_mod` and `OpenBOR_64_mod` are a
+separate "LNS" engine with no known source. No spruceUI wrapper repository for OpenBOR was
+found, so the build flags are inferred from the engine's `Makefile` (`BUILD_LINUX_LE_arm`)
+and from each binary's NEEDED list.
+
+- **No `OpenBOR_Flip` recipe.** It was built with the Flip's own RK3566 Buildroot SDK (GCC
+  11.3.0, Buildroot 2021.11) and links Vorbis, libvpx 7 and libpng16. steward-fu's Flip
+  sysroot in `standalone-flip` has none of those, so it cannot build here.
+- **Version banners.** `engine/version.sh` writes `#define VERSION_BUILD "<n>"` from
+  `git rev-list --count HEAD`. That gives b8303cc's shipped "Build 7144", so `openbor-trimui`
+  runs it and checks the define. At b00efbc it would give 7141, not the shipped "v4.0 Build
+  0", so `openbor-new` writes `version.h` by hand.
+- **`openbor-trimui`.** The shipped RPATH
+  `/home/raymanfeng/work/a133p/app/openbor/engine/../../../sdk//usr/lib` is the Makefile's
+  `-Wl,-rpath,"$(SDKPATH)/usr/lib"`. The recipe builds at that path, with a copy of the
+  sysroot three directories up. `CC` carries `--sysroot` for that copy (with its `lib/`), because
+  the `libpthread.so` and `libc.so` scripts name absolute paths, which ld maps only inside the sysroot. The shipped binary was built with TrimUI's
+  Linaro GCC 7.5, not this image's GCC 9.4, so it is not expected to match.
+- **`openbor-new`.** Its NEEDED list (`libvorbisidec.so.1`, no `libvpx`) means `BUILD_TREMOR=1`
+  without Vorbis or WebM. The binary says WebM playback is not supported, yet `sdl/video.h`
+  includes webmlib's `yuv.h` either way, so the recipe keeps `source/webmlib` on the include
+  path. It also drops the Makefile's `-Werror`, which GCC 13 trips on in `openbor.c`; warning
+  flags do not change the code. The shipped binary has the image's compiler (Buildroot
+  2024.02.1, GCC 13.2.0).
