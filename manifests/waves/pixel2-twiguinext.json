@@ -15,13 +15,212 @@
     "in": "twigUI_V1.2.0_update.tar.gz (release 1.2.0 asset, sha256 c74fa1ca723e1fe01cff6219943cb00bb4287c82f47426f193f44ed4d79dd24f)"
   },
   "compared_with": {
-    "spruceos": "7592638d0761656362cd6bef70e33473c2f4ae56"
+    "spruceos": "e1eab6bfca1889f3fd0fe87664cf7a162089cb3a"
   },
   "card_cores_not_from_twigui_next": [
     "gloopy_libretro.so",
     "mkxp-z_libretro.so"
   ],
   "files": {
+    "Emu/DC/flycast": {
+      "sha256": "c090a8d60ce16c956d04df51cebce736be1e8251dcff12d8b0a7e02a73d5c7fe",
+      "kind": "elf",
+      "status": "pinned",
+      "size": 30836624,
+      "package": "flycast-sa",
+      "package_dir": "projects/twigUI/packages/emulators/standalone/flycast-sa",
+      "version": "5aa091fde632fb332c8d8c34e280d62dc951954c",
+      "license": "GPLv2",
+      "site": "https://github.com/flyinghead/flycast",
+      "url": "https://github.com/flyinghead/flycast.git",
+      "patches": {
+        "projects/twigUI/packages/emulators/standalone/flycast-sa/patches/001-fix-building-with-gcc15.patch": "84157201e57f",
+        "projects/twigUI/packages/emulators/standalone/flycast-sa/patches/003-fix-sdl-controller.patch": "acdf902ef036"
+      },
+      "spruceos": "differs"
+    },
+    "Emu/DC/flycast2024": {
+      "sha256": "7fd408fbc1d898a60c9a59e2f3eb1ec5fa6904331eed447bce894d24c41ab131",
+      "kind": "elf",
+      "status": "pinned",
+      "size": 28037512,
+      "package": "flycast2024-sa",
+      "package_dir": "projects/twigUI/packages/emulators/standalone/flycast2024-sa",
+      "version": "8108e63907fc676f898522d20c762a4de3cd2a21",
+      "license": "GPLv2",
+      "site": "https://github.com/flyinghead/flycast",
+      "url": "https://github.com/flyinghead/flycast.git",
+      "patches": {
+        "projects/twigUI/packages/emulators/standalone/flycast2024-sa/patches/001-fix-building-with-gcc15.patch": "84157201e57f",
+        "projects/twigUI/packages/emulators/standalone/flycast2024-sa/patches/003-fix-sdl-controller.patch": "acdf902ef036",
+        "projects/twigUI/packages/emulators/standalone/flycast2024-sa/patches/004-deps-cmake-version.patch": "7a233b89d83c"
+      },
+      "spruceos": "absent"
+    },
+    "Emu/NDS/drastic": {
+      "sha256": "6e11511907f2188863f68434484d8e1fb70c6c4b597512bed02d38f60370ac11",
+      "kind": "elf",
+      "status": "pinned",
+      "size": 1390944,
+      "package": "drastic-trngaje-sa",
+      "package_dir": "projects/twigUI/packages/emulators/standalone/drastic-trngaje-sa",
+      "license": "Proprietary:DRASTIC.pdf",
+      "version": "rocknix",
+      "url": "https://github.com/trngaje/advanced_drastic/releases/download/rocknix/advanced_drastic_rocknix_260120.tar.gz",
+      "patches": {},
+      "spruceos": "same"
+    },
+    "Emu/NDS/dsperate": {
+      "sha256": "03ed23d031d7b8dc4fe3561b45cf3154d6e5b2291ccfddfb9ab2ae26d4b5ad9f",
+      "kind": "elf",
+      "status": "pinned",
+      "size": 5316344,
+      "package": "dsperate-sa",
+      "package_dir": "projects/twigUI/packages/emulators/standalone/dsperate-sa",
+      "version": "3.3.0",
+      "license": "GPL-3.0-or-later",
+      "site": "https://github.com/beebono/DSperate",
+      "url": "https://github.com/beebono/DSperate/releases/download/v3.3.0/dsperate-v3.3.0-linux-${TARGET_ARCH}.tar.gz",
+      "patches": {},
+      "spruceos": "differs"
+    },
+    "Emu/NDS/lib64_Pixel2_trngaje/libSDL2-2.0.so.0": {
+      "sha256": "36083b491dd20b629d93e1a8cb868e63c93457bf77ef631b00ff11947fc077c2",
+      "kind": "elf",
+      "status": "pinned",
+      "size": 2584552,
+      "package": "drastic-trngaje-sa",
+      "package_dir": "projects/twigUI/packages/emulators/standalone/drastic-trngaje-sa",
+      "license": "Proprietary:DRASTIC.pdf",
+      "version": "rocknix",
+      "url": "https://github.com/trngaje/advanced_drastic/releases/download/rocknix/advanced_drastic_rocknix_260120.tar.gz",
+      "patches": {},
+      "spruceos": "absent"
+    },
+    "Emu/NDS/lib64_Pixel2_trngaje/libadvdrastic.so": {
+      "sha256": "6dd88fee6f0b38d665d5d5416b137d87a47f7e72e7702689fee677783863ce24",
+      "kind": "elf",
+      "status": "pinned",
+      "size": 1284928,
+      "package": "drastic-trngaje-sa",
+      "package_dir": "projects/twigUI/packages/emulators/standalone/drastic-trngaje-sa",
+      "license": "Proprietary:DRASTIC.pdf",
+      "version": "rocknix",
+      "url": "https://github.com/trngaje/advanced_drastic/releases/download/rocknix/advanced_drastic_rocknix_260120.tar.gz",
+      "patches": {},
+      "spruceos": "absent"
+    },
+    "Emu/OPENBOR/OpenBOR_64_mod": {
+      "sha256": "a4d3ce85ad26e926670bc689eb8a147d3c9ee4b713e1030153549bf1da4947e7",
+      "kind": "elf",
+      "status": "pinned",
+      "size": 1287528,
+      "package": "openbor-mod",
+      "package_dir": "projects/twigUI/packages/emulators/standalone/openbor-mod",
+      "version": "4c8677c2a747b13dbf0e2f9162509ac14a138c9c",
+      "site": "https://github.com/gonzalomvp/openbor",
+      "url": "https://github.com/gonzalomvp/openbor.git",
+      "patches": {
+        "projects/twigUI/packages/emulators/standalone/openbor-mod/patches/openbor-02-addplatform.patch": "58aa70f477cf"
+      },
+      "spruceos": "differs"
+    },
+    "Emu/OPENBOR/OpenBOR_Pixel2": {
+      "sha256": "03888e2466d8779904ad774805ac3d5792c4cfe4e9ba1107b09f7b712cc45987",
+      "kind": "elf",
+      "status": "pinned",
+      "size": 1276192,
+      "package": "openbor",
+      "package_dir": "projects/twigUI/packages/emulators/standalone/openbor",
+      "version": "b8303cce992a0db93c3a465df3c943942fe322f8",
+      "site": "https://github.com/DCurrent/openbor",
+      "url": "https://github.com/DCurrent/openbor.git",
+      "patches": {
+        "projects/twigUI/packages/emulators/standalone/openbor/patches/openbor-02-addplatform.patch": "50473bdfaf02"
+      },
+      "spruceos": "absent"
+    },
+    "Emu/PSP/PPSSPPSDL_Pixel2": {
+      "sha256": "e3e4bb61d85ad4772c01641834614b499d5f0371841e15e1c55ad73d6e6ea03e",
+      "kind": "elf",
+      "status": "pinned",
+      "size": 19132704,
+      "package": "ppsspp-sa",
+      "package_dir": "projects/twigUI/packages/emulators/standalone/ppsspp-sa",
+      "version": "afbc66a318b86432642b532c575241f3716642ef",
+      "license": "GPL-2.0-or-later",
+      "site": "https://github.com/hrydgard/ppsspp",
+      "url": "https://github.com/hrydgard/ppsspp.git",
+      "patches": {
+        "projects/twigUI/packages/emulators/standalone/ppsspp-sa/patches/001-do-not-mute.patch": "8a0700bcde9a",
+        "projects/twigUI/packages/emulators/standalone/ppsspp-sa/patches/002-fullscreen-drm.patch": "d194f6bc368d",
+        "projects/twigUI/packages/emulators/standalone/ppsspp-sa/patches/003-disable-mouse.patch": "8bb2544ed3bb",
+        "projects/twigUI/packages/emulators/standalone/ppsspp-sa/patches/005-hide-unsupported-ui-items.patch": "2eb9bf170846",
+        "projects/twigUI/packages/emulators/standalone/ppsspp-sa/patches/007-disable-home-pause.patch": "d20f15fb027f",
+        "projects/twigUI/packages/emulators/standalone/ppsspp-sa/patches/008-spruce-gameswitcher.patch": "7768090f6800"
+      },
+      "spruceos": "absent"
+    },
+    "Emu/PSP/assets": {
+      "sha256": "24d941f4f6b065ca6a122685f50a0f61e29f8ab5fcd153bcb8ac1d66240473ae",
+      "kind": "directory",
+      "status": "pinned",
+      "files": 174,
+      "package": "ppsspp-sa",
+      "package_dir": "projects/twigUI/packages/emulators/standalone/ppsspp-sa",
+      "version": "afbc66a318b86432642b532c575241f3716642ef",
+      "license": "GPL-2.0-or-later",
+      "site": "https://github.com/hrydgard/ppsspp",
+      "url": "https://github.com/hrydgard/ppsspp.git",
+      "patches": {
+        "projects/twigUI/packages/emulators/standalone/ppsspp-sa/patches/001-do-not-mute.patch": "8a0700bcde9a",
+        "projects/twigUI/packages/emulators/standalone/ppsspp-sa/patches/002-fullscreen-drm.patch": "d194f6bc368d",
+        "projects/twigUI/packages/emulators/standalone/ppsspp-sa/patches/003-disable-mouse.patch": "8bb2544ed3bb",
+        "projects/twigUI/packages/emulators/standalone/ppsspp-sa/patches/005-hide-unsupported-ui-items.patch": "2eb9bf170846",
+        "projects/twigUI/packages/emulators/standalone/ppsspp-sa/patches/007-disable-home-pause.patch": "d20f15fb027f",
+        "projects/twigUI/packages/emulators/standalone/ppsspp-sa/patches/008-spruce-gameswitcher.patch": "7768090f6800"
+      },
+      "spruceos": "absent"
+    },
+    "Emu/PSP/default_configs/Cheats/cheat.db": {
+      "sha256": "dccabd721d9716b8a3f506c1f453ae57faaa1914c87faac2ff8fb5a9bbfa2bec",
+      "kind": "data",
+      "status": "pinned",
+      "size": 8731361,
+      "package": "ppsspp-sa",
+      "package_dir": "projects/twigUI/packages/emulators/standalone/ppsspp-sa",
+      "version": "afbc66a318b86432642b532c575241f3716642ef",
+      "license": "GPL-2.0-or-later",
+      "site": "https://github.com/hrydgard/ppsspp",
+      "url": "https://github.com/hrydgard/ppsspp.git",
+      "patches": {
+        "projects/twigUI/packages/emulators/standalone/ppsspp-sa/patches/001-do-not-mute.patch": "8a0700bcde9a",
+        "projects/twigUI/packages/emulators/standalone/ppsspp-sa/patches/002-fullscreen-drm.patch": "d194f6bc368d",
+        "projects/twigUI/packages/emulators/standalone/ppsspp-sa/patches/003-disable-mouse.patch": "8bb2544ed3bb",
+        "projects/twigUI/packages/emulators/standalone/ppsspp-sa/patches/005-hide-unsupported-ui-items.patch": "2eb9bf170846",
+        "projects/twigUI/packages/emulators/standalone/ppsspp-sa/patches/007-disable-home-pause.patch": "d20f15fb027f",
+        "projects/twigUI/packages/emulators/standalone/ppsspp-sa/patches/008-spruce-gameswitcher.patch": "7768090f6800"
+      },
+      "spruceos": "differs"
+    },
+    "Emu/SATURN/yabasanshiro": {
+      "sha256": "676822dd00fc4797614ae16e88cdab62123f36478474ce29010b96ab5c153df9",
+      "kind": "elf",
+      "status": "pinned",
+      "size": 4295176,
+      "package": "yabasanshiro-sa",
+      "package_dir": "projects/twigUI/packages/emulators/standalone/yabasanshiro-sa",
+      "license": "GPLv2",
+      "site": "https://github.com/sydarn/yabause",
+      "url": "https://github.com/sydarn/yabause.git",
+      "version": "a40dace1ae0af3ebd45848549fdf396f40e3930f",
+      "git_clone_branch": "pi4-update",
+      "patches": {
+        "projects/twigUI/packages/emulators/standalone/yabasanshiro-sa/patches/02-yabasanshiroSA-use-system-libpng.patch": "f0e83e263058",
+        "projects/twigUI/packages/emulators/standalone/yabasanshiro-sa/patches/05-cmake-fixes.patch": "666fa1426f81"
+      },
+      "spruceos": "differs"
+    },
     "RetroArch/.retroarch/cores64/a5200_libretro.so": {
       "sha256": "53270caac433cf6c72175848a05c4ae9f501d8786f3bdadd5b9144fceb879f81",
       "kind": "core",
@@ -1046,6 +1245,35 @@
       },
       "spruceos": "differs",
       "verified": "byte for byte: B412 (salusa, 2026-11-19, scripts/build_mt yabasanshiro-lr at 0d4954c435), record devices/builds/20261119-1042-twigui-next-mpv-yaba-repro"
+    },
+    "RetroArch/ra64.pixel2": {
+      "sha256": "7d7f62658ed9018838cad3ad36405acba840238c215cb3517a298cc9dc06596b",
+      "kind": "elf",
+      "status": "pinned",
+      "size": 15405104,
+      "package": "retroarch",
+      "package_dir": "projects/twigUI/packages/emulators/libretro/retroarch",
+      "version": "e5eff6db27cd37c3c318741ee8bb9a3b8b60ec62",
+      "site": "https://github.com/libretro/RetroArch",
+      "url": "https://github.com/libretro/RetroArch/archive/e5eff6db27cd37c3c318741ee8bb9a3b8b60ec62.tar.gz",
+      "license": "GPL-3.0-or-later",
+      "patches": {
+        "projects/twigUI/packages/emulators/libretro/retroarch/patches/0001-Increase-ozone-size.patch": "bf14adb730f4",
+        "projects/twigUI/packages/emulators/libretro/retroarch/patches/0001-Increase-ozone-widget_size.patch": "3dd774b0ba8f",
+        "projects/twigUI/packages/emulators/libretro/retroarch/patches/0002-quit-not-restart.patch": "0e345143099e",
+        "projects/twigUI/packages/emulators/libretro/retroarch/patches/0003-fix-oga-no-preferred.patch": "e5a77fe1d6b2",
+        "projects/twigUI/packages/emulators/libretro/retroarch/patches/0006-no-screen-brightness.patch": "9f88f70e6f35",
+        "projects/twigUI/packages/emulators/libretro/retroarch/patches/0008-disable_search.patch": "c15a8979ab56",
+        "projects/twigUI/packages/emulators/libretro/retroarch/patches/0009-hide-wayland-checkerboard.patch": "6c03def53789",
+        "projects/twigUI/packages/emulators/libretro/retroarch/patches/0010-paths.patch": "3173400a46b5",
+        "projects/twigUI/packages/emulators/libretro/retroarch/patches/0012-spruce-igm-0.patch": "27d3e3feaac1",
+        "projects/twigUI/packages/emulators/libretro/retroarch/patches/0012-spruce-igm-1.patch": "18b3c7c7a8c5",
+        "projects/twigUI/packages/emulators/libretro/retroarch/patches/0012-spruce-igm-2.patch": "ea812e66f623",
+        "projects/twigUI/packages/emulators/libretro/retroarch/patches/0013-tls-handshake-timeout.patch": "fbf0fbf37772",
+        "projects/twigUI/packages/emulators/libretro/retroarch/patches/0014-net-http-pool-idle-ttl.patch": "3f6698cd7570",
+        "projects/twigUI/packages/emulators/libretro/retroarch/patches/0015-net-http-stall-timeout.patch": "3a435e748cc2"
+      },
+      "spruceos": "absent"
     }
   },
   "base": {

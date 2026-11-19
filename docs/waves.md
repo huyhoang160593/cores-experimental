@@ -6,7 +6,7 @@ cores-experimental tracks four waves of cores, plus everything else it pins. Eac
 
 | wave | defined by | manifest |
 |---|---|---|
-| `pixel2-twiguinext` | a TwigUI-Next release's card (the cores it writes over spruce's) and the base-image files spruce uses | `waves/pixel2-twiguinext.json` ([details](twigui-next.md)) |
+| `pixel2-twiguinext` | a TwigUI-Next release's card (the cores and standalones it writes over spruce's) and the base-image files spruce uses | `waves/pixel2-twiguinext.json` ([details](twigui-next.md)) |
 | `spruce-nightly` | spruceOS `Development` at the inventory's commit | `waves/spruce-nightly.json` |
 | `spruce-stable46` | spruceOS `v4.6.0` | `waves/spruce-stable46.json` |
 | `edge` | each recipe source's newest release tag (`vN.N…` or `rN`) when its commit is newer than the recipe's pin, else the requested branch's tip | `waves/edge.json` |

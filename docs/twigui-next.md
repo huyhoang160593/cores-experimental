@@ -5,7 +5,7 @@ when it assembles a card: its `twig` package unpacks a pinned spruceOS (`PKG_VER
 `install/emulators.json` lists from each package's build. A Pixel 2 runs those cores until a spruce update writes
 spruce's copies over them.
 
-The `pixel2-twiguinext` wave (`manifests/waves/pixel2-twiguinext.json`, see [waves](waves.md)) pins the 71 cores of release 1.2.0 (twig-base 0d4954c435, device RK3326S, spruceOS
+The `pixel2-twiguinext` wave (`manifests/waves/pixel2-twiguinext.json`, see [waves](waves.md)) pins the 84 files release 1.2.0 writes onto the card, 71 cores and 13 standalone files (binaries, DraStic's two libraries, PPSSPP's data), (twig-base 0d4954c435, device RK3326S, spruceOS
 pin 04d2bdf97): for each card path, the sha256 and size in the release's `twigUI_SDCARD.7z`, the package and the
 `package.mk` the build system picks (device, then project, then `packages/`), its source pin (`version` is a commit or
 release, with `sha256` for a tarball), licence, and its patches by git blob. `spruceos` compares the card file with
@@ -26,7 +26,7 @@ copy of a TwigUI-Next build tree; B412's copy has since been removed).
 
 ```
 python3 scripts/waves.py twigui pixel2-twiguinext --twigui <twigUI-next checkout> --rev 0d4954c435 --release 1.2.0 \
-  --cores <the card's RetroArch/.retroarch/cores64, extracted from twigUI_SDCARD.7z> \
+  --card <twigUI_SDCARD.7z extracted: at least every path its install list names> \
   --archive "twigUI_SDCARD.7z <sha256> <size> <where it came from>" \
   --spruceos <spruceOS checkout> --spruce-rev 7592638d0 --base usr/bin/mpv:<sha256>:mpv
 ```

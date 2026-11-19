@@ -31,10 +31,21 @@ class TwiguiPinsTest(unittest.TestCase):
 
     def test_committed_pins_are_complete(self):
         data = json.loads((ROOT / "manifests/waves/pixel2-twiguinext.json").read_text())
-        self.assertEqual(len(data["files"]), 71)
-        for path, core in data["files"].items():
-            self.assertRegex(core["sha256"], r"^[0-9a-f]{64}$", path)
-            self.assertTrue(core["version"] and core["package_dir"].startswith("projects/twigUI/"), path)
+        kinds = [entry["kind"] for entry in data["files"].values()]
+        self.assertEqual(kinds.count("core"), 71)
+        self.assertEqual(len(kinds) - kinds.count("core"), 13)  # standalones, their libraries and data
+        for path, entry in data["files"].items():
+            self.assertRegex(entry["sha256"], r"^[0-9a-f]{64}$", path)
+            self.assertTrue(entry["version"] and entry["package_dir"].startswith("projects/twigUI/"), path)
+
+    def test_a_folder_is_fingerprinted_by_its_files(self):
+        import tempfile
+        with tempfile.TemporaryDirectory() as d:
+            Path(d, "a").write_text("1"); Path(d, "sub").mkdir(); Path(d, "sub", "b").write_text("2")
+            digest, count = twigui_pins.tree_sha256(Path(d))
+            self.assertEqual(count, 2)
+            Path(d, "sub", "b").write_text("3")
+            self.assertNotEqual(twigui_pins.tree_sha256(Path(d))[0], digest)
 
 
 if __name__ == "__main__":
