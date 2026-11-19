@@ -2804,9 +2804,8 @@
       },
       "shipped": {
         "spruceos": "e1eab6bfc",
-        "note": "spruceOS eeb16627c (2026-11-18): the v0.3.0 release asset superwhizkid_libretro.zip, byte for byte; a CE build has not matched it yet",
+        "note": "matched byte for byte by CE run 44598087394 (both arches), as spruceOS eeb16627c's v0.3.0 release asset",
         "variant": "release-arm64-generic + release-armhf-generic",
-        "unverified": true,
         "files": {
           "RetroArch/.retroarch/cores64/superwhizkid_libretro.so": "eed5a772e0e5fef5db0875d3baf2db7871ac05d3a1157ac757e6ce81038a1e63",
           "RetroArch/.retroarch/cores/superwhizkid_libretro.so": "89015de684074552667d809ddd4a0c67d2fac27f915fb6e33111f909007e2f02"
