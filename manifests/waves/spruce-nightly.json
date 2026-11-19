@@ -3,8 +3,8 @@
   "wave": "spruce-nightly",
   "defined_by": {
     "repo": "spruceUI/spruceOS",
-    "ref": "e1eab6bfca1889f3fd0fe87664cf7a162089cb3a",
-    "commit": "e1eab6bfca1889f3fd0fe87664cf7a162089cb3a",
+    "ref": "d7ce3dc52ae993d308a61d64f0e5231b64f5ca1b",
+    "commit": "d7ce3dc52ae993d308a61d64f0e5231b64f5ca1b",
     "date": "2026-11-19"
   },
   "files": {
@@ -1456,6 +1456,23 @@
         "url": "https://github.com/MagnominusGit/armNES.git",
         "commit": "13f04b0bc161af89834b7da858dcd9c22c101c7a"
       }
+    },
+    "RetroArch/.retroarch/cores64/armsnes_libretro.so": {
+      "sha256": "e939f1fb0a802f591156d3326def5ebf34a87d8ffd6ba597c40dc02ff253db74",
+      "kind": "core",
+      "names": [
+        "armsnes"
+      ],
+      "status": "no recipe",
+      "recipes": [],
+      "pin": {
+        "url": "https://github.com/MagnominusGit/armSNES.git",
+        "commit": "0ae21af7e02755c70a466d0c40217b6114ee74a7",
+        "basis": "branch tip at the import, 2026-11-19T19:55Z",
+        "confidence": "likely",
+        "verified": false
+      },
+      "evidence": "spruceOS d7ce3dc52 (2026-11-19, cobaltgit: add armSNES emulator for 64bit); main's tip 36 minutes before it; the shipped file is stripped and names no commit; no CE recipe yet"
     },
     "RetroArch/.retroarch/cores64/atari800_libretro.so": {
       "sha256": "26ba26a525b0a44aa7ea3f716de94635e4d6f646070460d498b313b823a95634",
