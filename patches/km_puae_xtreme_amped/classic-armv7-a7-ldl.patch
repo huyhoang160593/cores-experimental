@@ -1,0 +1,11 @@
+--- a/Makefile
++++ b/Makefile
+@@ -52,7 +52,7 @@
+ 	TARGET := $(TARGET_NAME)_libretro.so
+ 	fpic := -fPIC
+     SHARED := -shared -Wl,--version-script=$(CORE_DIR)/libretro/link.T -Wl,--no-undefined
+-    LDFLAGS += -lm -lpthread
++    LDFLAGS += -lm -lpthread -ldl
+     CFLAGS += -Ofast \
+ 	-flto=4 -fwhole-program -fuse-linker-plugin \
+ 	-fdata-sections -ffunction-sections -Wl,--gc-sections \
