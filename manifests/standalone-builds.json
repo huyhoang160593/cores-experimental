@@ -1205,6 +1205,9 @@
           "libs/libpng16.so.16": "14ba485f3a55c36893f372831d0445f78fc64f26073a8d7374dc89ac50b95edc",
           "libs/libz.so.1": "f7421fde8036391750dc2b1dd7299a0a3305a93cb95846fcc381590f565215c1",
           "libs/libboost_filesystem.so.1.71.0": "7009501be2148ef0edb8955c31848082cb3605a232d9bd9678db62d4c5148f79"
+        },
+        "differs": {
+          "yabasanshiro": "matched only as the local research build; on GitHub's runners the executable is 3994816 bytes, not 3990672, the same in cores-experimental run 44444954188 and Cores-spruce's test; cause not found"
         }
       },
       "output": {

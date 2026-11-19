@@ -131,7 +131,7 @@ Built against spruceOS `73bb91a19` (2026-10-11); "match" is byte for byte.
 | `ppsspp-h700`, `-a30`, `-trimui`, `-smartpros` | `Emu/PSP/PPSSPPSDL_*` | match |
 | `ppsspp-flip`, `-darkmoss3566`, `-darkmoss3326` | `Emu/PSP/PPSSPPSDL_Flip` (Vulkan), `_dArkMoss3566`, `_dArkMoss3326` of spruceOS `7592638d0` | match (runs 44403715782, 44403753952, 44403735142) |
 | `yabasanshiro-arm64` | `Emu/SATURN/yabasanshiro`, `lib64/` | match |
-| `yabasanshiro-arm64-pgo` | `Emu/SATURN/yabasanshiro`, `lib64/` of spruceOS `fcd5aca3d` (4.5.5, Development) | match |
+| `yabasanshiro-arm64-pgo` | `Emu/SATURN/yabasanshiro`, `lib64/` of spruceOS `fcd5aca3d` (4.5.5, Development) | `lib64/` matches; the executable matched as the local research build, but differs on GitHub's runners (run 44444954188) |
 | `yabasanshiro-libretro` | `RetroArch/.retroarch/cores64/yabasanshiro_generic_libretro.so` of spruceOS `fcd5aca3d` (4.5.5, Development) | match |
 | `mupen64plus-arm64-gliden64-ovl` | `Emu/N64/mupen64plus/mupen64plus-video-GLideN64.so` of spruceOS `f21a6faa5` (4.5.5, Development) | match |
 | `mupen64plus-arm64-20260404`, `mupen64plus-arm64` | `Emu/N64/mupen64plus/`: frontend, core, audio, input and RSP plugins from the first, video plugins and overlay settings from the second | match |
