@@ -1242,16 +1242,14 @@
       "names": [
         "superwhizkid"
       ],
-      "status": "recipe",
+      "status": "reproduces",
       "recipes": [
         "superwhizkid"
       ],
       "pin": {
+        "recipe": "superwhizkid",
         "url": "https://github.com/ryanmsartor/superwhizkid.git",
-        "commit": "38f692fa8cecb89c5a95741ddc891585b5af7042",
-        "basis": "tag v0.3.0",
-        "confidence": "unambiguous",
-        "verified": true
+        "commit": "38f692fa8cecb89c5a95741ddc891585b5af7042"
       },
       "evidence": "spruceOS eeb16627c (2026-11-18, ryanmsartor: update superwhizkid to v0.3.0)",
       "verified": "byte for byte: the v0.3.0 release asset superwhizkid_libretro.zip (both files); CE's recipe is still at v0.2.0"
@@ -1380,16 +1378,14 @@
       "names": [
         "ardens"
       ],
-      "status": "recipe",
+      "status": "reproduces",
       "recipes": [
         "ardens"
       ],
       "pin": {
+        "recipe": "ardens",
         "url": "https://github.com/tiberiusbrown/Ardens.git",
-        "commit": "661a7dd4febc8d00e790a4ecde44b936295adf97",
-        "basis": "branch tip at the import, 2026-09-24T20:05",
-        "confidence": "unambiguous",
-        "verified": true
+        "commit": "661a7dd4febc8d00e790a4ecde44b936295adf97"
       },
       "evidence": "spruceOS 511363a3e (2026-09-24, SundownerSport: Rebuild ardens, arduous and swanstation; offer both Arduboy cores ever); Cores-spruce builds of it then: build-ardens.yml run 36087818285 (2026-09-25T02:49Z), whose logs show a fresh clone of the branch, not the commit",
       "verified": "byte for byte: CE build at the pin with describe_tags (git describe gives v0.25.9), run 44596835123, throwaway branch verify/nightly-pins-20261119b (the opt-in driver options of driver/source-path-describe-tags 1fbc39b)"
@@ -2535,16 +2531,14 @@
       "names": [
         "superwhizkid"
       ],
-      "status": "recipe",
+      "status": "reproduces",
       "recipes": [
         "superwhizkid"
       ],
       "pin": {
+        "recipe": "superwhizkid",
         "url": "https://github.com/ryanmsartor/superwhizkid.git",
-        "commit": "38f692fa8cecb89c5a95741ddc891585b5af7042",
-        "basis": "tag v0.3.0",
-        "confidence": "unambiguous",
-        "verified": true
+        "commit": "38f692fa8cecb89c5a95741ddc891585b5af7042"
       },
       "evidence": "spruceOS eeb16627c (2026-11-18, ryanmsartor: update superwhizkid to v0.3.0)",
       "verified": "byte for byte: the v0.3.0 release asset superwhizkid_libretro.zip (both files); CE's recipe is still at v0.2.0"

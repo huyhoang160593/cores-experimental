@@ -93,11 +93,20 @@
         "driver": "direct-cmake",
         "output_path": "ardens_libretro.so",
         "source_date_epoch": true,
-        "source_dir": "ardens"
+        "source_dir": "ardens",
+        "describe_tags": true
       },
       "metadata": {
         "artifact_name": "ardens_libretro.info",
         "source_path": "/libretro-super/dist/info/ardens_libretro.info"
+      },
+      "shipped": {
+        "spruceos": "e1eab6bfc",
+        "note": "matched byte for byte by CE run 44596835123: this commit and recipe, describe_tags giving v0.25.9",
+        "variant": "release-arm64-generic",
+        "files": {
+          "RetroArch/.retroarch/cores64/ardens_libretro.so": "19006877e68d944fe5ae207fb6373bf80451127112f953d6bc2abc63f7a010a9"
+        }
       }
     },
     "arduous": {
@@ -2874,7 +2883,9 @@
           ]
         },
         "source_date_epoch": true,
-        "source_dir": "swanstation"
+        "source_dir": "swanstation",
+        "source_path": "/libretro-super/libretro-swanstation",
+        "git_abbrev": 8
       },
       "metadata": {
         "artifact_name": "swanstation_libretro.info",

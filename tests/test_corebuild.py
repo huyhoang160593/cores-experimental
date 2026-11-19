@@ -566,6 +566,8 @@ class InventoryTest(unittest.TestCase):
 
     def test_source_path_and_describe_tags_are_opt_in(self):
         spec = json.loads(json.dumps(REPO.cores["ardens"]))
+        for key in ("source_path", "describe_tags"):
+            spec["build"].pop(key, None)
         plain = "\n".join(recipe.direct_cmake(spec, "arm64"))
         self.assertIn("mkdir -p /tmp/core-source", plain)
         self.assertNotIn("ls-remote", plain)
