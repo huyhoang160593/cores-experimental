@@ -1,0 +1,13 @@
+diff --git a/build.xml b/build.xml
+index e7c578f..b24ff77 100644
+--- a/build.xml
++++ b/build.xml
+@@ -64,7 +64,7 @@
+ 
+ 	<echo message="Building JAR - Libretro" />
+ 	<jar
+-		destfile="build/freej2me_plus-lr.jar">
++		destfile="build/freej2me_plus-lr.jar" modificationtime="${jar.modificationtime}">
+ 		<fileset dir="build/classes" excludes="**/FJGUI*.class, **/FreeJ2ME*.class, org/recompile/freej2me/gamepad/**, **/ScreenShot*.class"/> <!-- Exclude GUI classes (FreeJ2ME.class is only needed for GUI) -->
+ 		<fileset dir="resources" />
+ 		<metainf dir="META-INF" />

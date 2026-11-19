@@ -5316,6 +5316,104 @@
         ],
         "forbidden": []
       }
+    },
+    "freej2me-plus-lr": {
+      "abstract": true,
+      "description": "FreeJ2ME-Plus's libretro jar (BIOS/freej2me_plus-lr.jar), which the freej2me_plus core runs with java. Built as upstream builds it: Ant 1.10.14 on Temurin JDK 8, with one patch that fixes the jar's entry dates at the commit time (Ant otherwise stamps the build's file times). Pair it with a core from the same commit: the two talk over an options line read by fixed index, with no version check.",
+      "toolchain": "arm64-standalone",
+      "env": {
+        "TZ": "UTC",
+        "ANT_OPTS": "-Duser.timezone=UTC"
+      },
+      "steps": [
+        "mkdir -p /opt/jdk /opt/ant",
+        "tar -xzf /build/jdk.tar.gz -C /opt/jdk --strip-components=1",
+        "tar -xzf /build/ant.tar.gz -C /opt/ant --strip-components=1",
+        "export JAVA_HOME=/opt/jdk ANT_HOME=/opt/ant PATH=/opt/jdk/bin:/opt/ant/bin:$PATH",
+        "java -version",
+        "ant -noinput -buildfile build.xml -Djar.modificationtime=\"${SOURCE_DATE_EPOCH}000\""
+      ],
+      "output": {
+        "files": [
+          {
+            "from": "/src/build/freej2me_plus-lr.jar",
+            "to": "freej2me_plus-lr.jar",
+            "mode": "0644"
+          }
+        ],
+        "spruce": {
+          "freej2me_plus-lr.jar": "BIOS/freej2me_plus-lr.jar"
+        }
+      },
+      "needed": {
+        "device": [],
+        "forbidden": []
+      }
+    },
+    "freej2me-plus-lr-2c15b3c1": {
+      "extends": "freej2me-plus-lr",
+      "description": "The jar Game Nursery's FreeJ2ME package installs (spruceUI/Ports-and-Free-Games a981c76, J2ME/FreeJ2ME/BIOS/), with its cores: freej2me-plus devel at 2c15b3c1, built by Cores-spruce's build-freej2me_plus.yml on 2026-09-12 (runs 34718822065, 34720547138, 34720952269) on Temurin 1.8.0_504-b01 and Ant 1.10.14, as its manifest records. Found by the Emu Inventory session.",
+      "source": {
+        "url": "https://github.com/TASEmulators/freej2me-plus.git",
+        "commit": "2c15b3c1a4f9f1f1319c79e8ae6f03db5b512ec2",
+        "tree": "46bc69222d8a76061ec9ee81ca58bdb173caf778",
+        "requested_ref": "refs/heads/devel (2026-09-12)"
+      },
+      "downloads": [
+        {
+          "url": "https://github.com/adoptium/temurin8-binaries/releases/download/jdk8u504-b01/OpenJDK8U-jdk_x64_linux_hotspot_8u504b01.tar.gz",
+          "sha256": "9c70e102f527ac674ac2fe9c7d47b9a04e2d19842ba5ab8e9b33f368bbadfaea",
+          "path": "/build/jdk.tar.gz"
+        },
+        {
+          "url": "https://archive.apache.org/dist/ant/binaries/apache-ant-1.10.14-bin.tar.gz",
+          "sha256": "e2852fddaaddc1ab76a099ca0d7b2ee47a907b8a91a64f70f6aa9e6a3d0dd504",
+          "path": "/build/ant.tar.gz"
+        }
+      ],
+      "patches": [
+        {
+          "diff": "patches/standalone/freej2me-plus/2c15b3c1-lr-jar-modificationtime.patch"
+        }
+      ],
+      "source_date_epoch": 1789244101,
+      "shipped": {
+        "source": "Game Nursery FreeJ2ME package: spruceUI/Ports-and-Free-Games a981c76, J2ME/FreeJ2ME/BIOS/freej2me_plus-lr.jar",
+        "files": {
+          "freej2me_plus-lr.jar": "5456389878cc0bb39c8c2c7070510ce4e73c8d1adc11bbea411484ab5dedaef4"
+        },
+        "differs": {
+          "freej2me_plus-lr.jar": "entry dates: the Nursery jar's are its build's file times (2026-09-12 21:02:48 to 21:03:04), which no rebuild can repeat; compare the entries' contents instead"
+        }
+      }
+    },
+    "freej2me-plus-lr-1.53": {
+      "extends": "freej2me-plus-lr",
+      "description": "The jar for the catalog's freej2me_plus core (release 1.53, 52b25f75), on Temurin 1.8.0_512-b09 and Ant 1.10.14 as upstream's own 1.53 jar records. That jar (in freej2me_plus-v1.53.zip) has sha256 77e48d873289e15dc60d35db2f66cf3d2e862e79661cac4c8fb48625615f1ea2; its entry dates are its build's file times. Not shipped by spruce or the Nursery yet.",
+      "source": {
+        "url": "https://github.com/TASEmulators/freej2me-plus.git",
+        "commit": "52b25f75824d247c23e352625be45157bfe87620",
+        "tree": "5e775755de42e9cdadcc9f6ae8f4cecedba0416b",
+        "requested_ref": "refs/tags/1.53"
+      },
+      "downloads": [
+        {
+          "url": "https://github.com/adoptium/temurin8-binaries/releases/download/jdk8u512-b09/OpenJDK8U-jdk_x64_linux_hotspot_8u512b09.tar.gz",
+          "sha256": "fb3bfa869012419b562bb4235d0d83ec4f8c1dda62ae432ba20c6c3a7e43f7e4",
+          "path": "/build/jdk.tar.gz"
+        },
+        {
+          "url": "https://archive.apache.org/dist/ant/binaries/apache-ant-1.10.14-bin.tar.gz",
+          "sha256": "e2852fddaaddc1ab76a099ca0d7b2ee47a907b8a91a64f70f6aa9e6a3d0dd504",
+          "path": "/build/ant.tar.gz"
+        }
+      ],
+      "patches": [
+        {
+          "diff": "patches/standalone/freej2me-plus/1.53-lr-jar-modificationtime.patch"
+        }
+      ],
+      "source_date_epoch": 1794763017
     }
   }
 }
