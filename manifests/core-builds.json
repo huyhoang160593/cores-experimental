@@ -853,7 +853,8 @@
         "requested_ref": "refs/tags/v1.2"
       },
       "targets": [
-        "arm64"
+        "arm64",
+        "armhf"
       ],
       "build": {
         "artifact_name": "flycast2021_libretro.so",
@@ -869,6 +870,9 @@
           "arch_defines": {
             "arm64": {
               "USE_GLES2": "ON"
+            },
+            "armhf": {
+              "USE_GLES2": "ON"
             }
           }
         },
@@ -878,6 +882,11 @@
         "source_dir": "flycast2021",
         "overlays": {
           "arm64": [
+            {
+              "patch": "patches/flycast2021/sigsegv-handler-repair.patch"
+            }
+          ],
+          "armhf": [
             {
               "patch": "patches/flycast2021/sigsegv-handler-repair.patch"
             }
@@ -896,7 +905,8 @@
         "requested_ref": "refs/tags/v2.4"
       },
       "targets": [
-        "arm64"
+        "arm64",
+        "armhf"
       ],
       "build": {
         "artifact_name": "flycast2024_libretro.so",
@@ -912,6 +922,9 @@
           "arch_defines": {
             "arm64": {
               "USE_GLES": "ON"
+            },
+            "armhf": {
+              "USE_GLES2": "ON"
             }
           }
         },
@@ -926,6 +939,18 @@
             },
             {
               "patch": "patches/flycast2024/fog-r8-internalformat.patch"
+            }
+          ],
+          "armhf": [
+            {
+              "patch": "patches/flycast2024/sigsegv-handler-repair.patch"
+            },
+            {
+              "patch": "patches/flycast2024/fog-r8-internalformat.patch"
+            },
+            {
+              "patch": "patches/flycast/lzma-hwcap2-guards.patch",
+              "submodule": "core/deps/libchdr"
             }
           ]
         }
