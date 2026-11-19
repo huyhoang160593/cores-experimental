@@ -38,7 +38,7 @@ python3 scripts/waves.py summary
 ## Notes
 
 - The spruce waves come from the emulator inventory, which follows spruce's emulator menus: a file no menu offers
-  (`armnes_arcade` at 7592638d0) and apps such as vTree are in no wave, so their recipes count as `custom`.
+  (`armnes_arcade`, at 7592638d0 and e1eab6bfc) and apps such as vTree are in no wave, so their recipes count as `custom`.
 - spruce-nightly's 49 GCC 9.4 cores without a reproducing recipe carry a hand-kept `pin`
   (`confidence`: `unambiguous`, `likely` or `ambiguous`; `verified: false`) and its `evidence`: 37 came with
   spruceOS 327c258ee (built 2025-05-05/06), one with 4a96070f8, the rest with their 2026 imports. A build at the pin
