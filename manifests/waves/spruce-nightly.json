@@ -368,6 +368,26 @@
         "TRIMUI_SMART_PRO_S"
       ]
     },
+    "Emu/OPENBOR/OpenBOR_Pixel2": {
+      "sha256": null,
+      "kind": "standalone",
+      "names": [
+        "OpenBOR"
+      ],
+      "status": "not shipped",
+      "recipes": [],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "GKD_PIXEL2",
+        "MIYOO_A30",
+        "MIYOO_FLIP",
+        "MIYOO_MINI_FAMILY",
+        "OAKMOSS_A133P",
+        "TRIMUI_A133P",
+        "TRIMUI_SMART_PRO_S"
+      ]
+    },
     "Emu/OPENBOR/OpenBOR_TrimUI": {
       "sha256": "01b22813e6aee1d439a6d79c68a97fb367e9182aa317fd36e333c8f379afc120",
       "kind": "standalone",
@@ -483,6 +503,25 @@
         "url": "https://github.com/hrydgard/ppsspp.git",
         "commit": "d357e6a32934800d3d80b49f910a603e1b069751"
       }
+    },
+    "Emu/PSP/PPSSPPSDL_Pixel2": {
+      "sha256": null,
+      "kind": "standalone",
+      "names": [
+        "PPSSPP-SA"
+      ],
+      "status": "not shipped",
+      "recipes": [],
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "GKD_PIXEL2",
+        "MIYOO_A30",
+        "MIYOO_FLIP",
+        "OAKMOSS_A133P",
+        "TRIMUI_A133P",
+        "TRIMUI_SMART_PRO_S"
+      ]
     },
     "Emu/PSP/PPSSPPSDL_SmartProS": {
       "sha256": "54c9e8b1f1de58d546a27793129052d2539805997047433f02de8780bbff00f0",

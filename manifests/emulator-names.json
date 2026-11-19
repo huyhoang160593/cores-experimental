@@ -59,7 +59,7 @@
       "paths": [
         "Emu/DC/flycast2024"
       ],
-      "note": "flycast_functions.sh runs ./flycast2024"
+      "note": "flycast_functions.sh runs ./flycast2024 (the Pixel 2 only); it comes from TwigUI-Next, not spruceOS"
     },
     "freej2me_plus": {
       "core": "freej2me_plus",
@@ -103,11 +103,12 @@
       "paths": [
         "Emu/OPENBOR/OpenBOR_64_mod",
         "Emu/OPENBOR/OpenBOR_Flip",
+        "Emu/OPENBOR/OpenBOR_Pixel2",
         "Emu/OPENBOR/OpenBOR_TrimUI",
         "Emu/OPENBOR/OpenBOR_mod",
         "Emu/OPENBOR/OpenBOR_new"
       ],
-      "note": "openbor_functions.sh picks the device's build"
+      "note": "openbor_functions.sh picks the device's build; OpenBOR_Pixel2 comes from TwigUI-Next, not spruceOS"
     },
     "pico8": {
       "closed_source": "PICO-8 is proprietary; users add their own copy"
@@ -116,13 +117,14 @@
       "paths": [
         "Emu/PSP/PPSSPPSDL_A30",
         "Emu/PSP/PPSSPPSDL_Flip",
+        "Emu/PSP/PPSSPPSDL_Pixel2",
         "Emu/PSP/PPSSPPSDL_SmartProS",
         "Emu/PSP/PPSSPPSDL_TrimUI",
         "Emu/PSP/PPSSPPSDL_dArkMoss3326",
         "Emu/PSP/PPSSPPSDL_dArkMoss3566",
         "Emu/PSP/PPSSPPSDL_h700"
       ],
-      "note": "PSP's default_emulator; ppsspp_functions.sh picks the device's build"
+      "note": "PSP's default_emulator; ppsspp_functions.sh runs the device cfg's PSP_BIN; PPSSPPSDL_Pixel2 comes from TwigUI-Next, not spruceOS"
     },
     "puae": {
       "core": "puae",
