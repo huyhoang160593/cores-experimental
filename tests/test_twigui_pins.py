@@ -30,9 +30,9 @@ class TwiguiPinsTest(unittest.TestCase):
                           "PKG_URL": "https://github.com/libretro/a5200/archive/23c1ea4.tar.gz"})
 
     def test_committed_pins_are_complete(self):
-        data = json.loads((ROOT / "manifests/twigui-next-1.2.0.json").read_text())
-        self.assertEqual(len(data["cores"]), 71)
-        for path, core in data["cores"].items():
+        data = json.loads((ROOT / "manifests/waves/pixel2-twiguinext.json").read_text())
+        self.assertEqual(len(data["files"]), 71)
+        for path, core in data["files"].items():
             self.assertRegex(core["sha256"], r"^[0-9a-f]{64}$", path)
             self.assertTrue(core["version"] and core["package_dir"].startswith("projects/twigUI/"), path)
 
