@@ -3247,7 +3247,7 @@
         "git_abbrev": 8,
         "output_path": "dist/unix/puae_libretro.so",
         "source_date_epoch": true,
-        "source_dir": "libretro-uae",
+        "source_dir": "libretro-puae",
         "source_key": "puae"
       },
       "metadata": {
@@ -3271,7 +3271,14 @@
         "platforms": {
           "armhf": "classic_armv7_a7"
         },
-        "source_dir": "km_puae_xtreme_amped"
+        "source_dir": "km_puae_xtreme_amped",
+        "overlays": {
+          "armhf": [
+            {
+              "patch": "patches/km_puae_xtreme_amped/classic-armv7-a7-ldl.patch"
+            }
+          ]
+        }
       },
       "metadata": {
         "artifact_name": "km_puae_xtreme_amped_libretro.info",
