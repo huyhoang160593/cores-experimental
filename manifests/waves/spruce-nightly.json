@@ -1225,7 +1225,8 @@
       ],
       "status": "not shipped",
       "recipes": [
-        "freej2me_plus"
+        "freej2me_plus",
+        "standalone:freej2me-plus-core-armhf-2c15b3c1"
       ],
       "families": [
         "MIYOO_A30",
@@ -3213,7 +3214,8 @@
       ],
       "status": "not shipped",
       "recipes": [
-        "freej2me_plus"
+        "freej2me_plus",
+        "standalone:freej2me-plus-core-arm64-2c15b3c1"
       ],
       "families": [
         "ANBERNIC_RGXX",

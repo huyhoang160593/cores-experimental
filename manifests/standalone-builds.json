@@ -5383,13 +5383,13 @@
           "freej2me_plus-lr.jar": "5456389878cc0bb39c8c2c7070510ce4e73c8d1adc11bbea411484ab5dedaef4"
         },
         "differs": {
-          "freej2me_plus-lr.jar": "entry dates: the Nursery jar's are its build's file times (2026-09-12 21:02:48 to 21:03:04), which no rebuild can repeat; compare the entries' contents instead"
+          "freej2me_plus-lr.jar": "entry dates only: the Nursery jar's are its build's file times (2026-09-12 21:02:48 to 21:03:04), which no rebuild can repeat. CE run 44639730185 (6a484b9) matched all 1556 entries' names, order, CRC32, sizes and compressed sizes, and the jar's size"
         }
       }
     },
     "freej2me-plus-lr-1.53": {
       "extends": "freej2me-plus-lr",
-      "description": "The jar for the catalog's freej2me_plus core (release 1.53, 52b25f75), on Temurin 1.8.0_512-b09 and Ant 1.10.14 as upstream's own 1.53 jar records. That jar (in freej2me_plus-v1.53.zip) has sha256 77e48d873289e15dc60d35db2f66cf3d2e862e79661cac4c8fb48625615f1ea2; its entry dates are its build's file times. Not shipped by spruce or the Nursery yet.",
+      "description": "The jar for the catalog's freej2me_plus core (release 1.53, 52b25f75), on Temurin 1.8.0_512-b09 and Ant 1.10.14 as upstream's own 1.53 jar records. That jar (in freej2me_plus-v1.53.zip) has sha256 77e48d873289e15dc60d35db2f66cf3d2e862e79661cac4c8fb48625615f1ea2; its entry dates are its build's file times. CE run 44639735529 (6a484b9) matched all 1625 of its entries' names, order, CRC32, sizes and compressed sizes, and its size; only the dates differ. Not shipped by spruce or the Nursery yet.",
       "source": {
         "url": "https://github.com/TASEmulators/freej2me-plus.git",
         "commit": "52b25f75824d247c23e352625be45157bfe87620",
@@ -5414,6 +5414,92 @@
         }
       ],
       "source_date_epoch": 1794763017
+    },
+    "freej2me-plus-core-2c15b3c1": {
+      "abstract": true,
+      "description": "FreeJ2ME-Plus's libretro core as Game Nursery's FreeJ2ME package ships it: freej2me-plus devel at 2c15b3c1, built by Cores-spruce's build-freej2me_plus.yml on 2026-09-12 (runs 34718822065 and 34720547138 at b1cc561, 34720952269 at 68ddcba) with `make platform=unix CC=<gcc> CXX=<gcc>` in /work/freej2me/src/libretro, unstripped. Cores-spruce's images were rebuilt on 09-25 (871d607 added only CMake 3.31 and a toolchain file), and these use CE's copies of those. Pair with freej2me-plus-lr-2c15b3c1. Found by the Emu Inventory session.",
+      "source": {
+        "url": "https://github.com/TASEmulators/freej2me-plus.git",
+        "commit": "2c15b3c1a4f9f1f1319c79e8ae6f03db5b512ec2",
+        "tree": "46bc69222d8a76061ec9ee81ca58bdb173caf778",
+        "requested_ref": "refs/heads/devel (2026-09-12)",
+        "path": "/work/freej2me"
+      },
+      "source_date_epoch": 1789244101
+    },
+    "freej2me-plus-core-arm64-2c15b3c1": {
+      "extends": "freej2me-plus-core-2c15b3c1",
+      "description": "FreeJ2ME-Plus's libretro core as Game Nursery's FreeJ2ME package ships it: freej2me-plus devel at 2c15b3c1, built by Cores-spruce's build-freej2me_plus.yml on 2026-09-12 (runs 34718822065 and 34720547138 at b1cc561, 34720952269 at 68ddcba) with `make platform=unix CC=<gcc> CXX=<gcc>` in /work/freej2me/src/libretro, unstripped. Cores-spruce's images were rebuilt on 09-25 (871d607 added only CMake 3.31 and a toolchain file), and these use CE's copies of those. Pair with freej2me-plus-lr-2c15b3c1. Found by the Emu Inventory session. This is the cores64/ build.",
+      "toolchain": "cores-spruce-arm64",
+      "steps": [
+        "cd src/libretro",
+        "make platform=unix CC=aarch64-linux-gnu-gcc CXX=aarch64-linux-gnu-gcc"
+      ],
+      "output": {
+        "files": [
+          {
+            "from": "/work/freej2me/src/libretro/freej2me_plus_libretro.so",
+            "to": "cores64/freej2me_plus_libretro.so"
+          }
+        ],
+        "spruce": {
+          "cores64/freej2me_plus_libretro.so": "RetroArch/.retroarch/cores64/freej2me_plus_libretro.so"
+        }
+      },
+      "needed": {
+        "device": [
+          "ld-linux-aarch64.so.1",
+          "libc.so.6",
+          "libdl.so.2",
+          "libm.so.6",
+          "libpthread.so.0"
+        ],
+        "forbidden": []
+      },
+      "shipped": {
+        "source": "Game Nursery FreeJ2ME package: spruceUI/Ports-and-Free-Games a981c76, J2ME/FreeJ2ME/RetroArch/.retroarch/cores64/freej2me_plus_libretro.so",
+        "unverified": true,
+        "files": {
+          "cores64/freej2me_plus_libretro.so": "a6e0ed3527abfd5ec7d96f9ec232f3f92716c923230208fa5b5094b83575972c"
+        }
+      }
+    },
+    "freej2me-plus-core-armhf-2c15b3c1": {
+      "extends": "freej2me-plus-core-2c15b3c1",
+      "description": "FreeJ2ME-Plus's libretro core as Game Nursery's FreeJ2ME package ships it: freej2me-plus devel at 2c15b3c1, built by Cores-spruce's build-freej2me_plus.yml on 2026-09-12 (runs 34718822065 and 34720547138 at b1cc561, 34720952269 at 68ddcba) with `make platform=unix CC=<gcc> CXX=<gcc>` in /work/freej2me/src/libretro, unstripped. Cores-spruce's images were rebuilt on 09-25 (871d607 added only CMake 3.31 and a toolchain file), and these use CE's copies of those. Pair with freej2me-plus-lr-2c15b3c1. Found by the Emu Inventory session. This is the cores/ build.",
+      "toolchain": "cores-spruce-armhf",
+      "steps": [
+        "cd src/libretro",
+        "make platform=unix CC=arm-a30-linux-gnueabihf-gcc CXX=arm-a30-linux-gnueabihf-gcc"
+      ],
+      "output": {
+        "files": [
+          {
+            "from": "/work/freej2me/src/libretro/freej2me_plus_libretro.so",
+            "to": "cores/freej2me_plus_libretro.so"
+          }
+        ],
+        "spruce": {
+          "cores/freej2me_plus_libretro.so": "RetroArch/.retroarch/cores/freej2me_plus_libretro.so"
+        }
+      },
+      "needed": {
+        "device": [
+          "ld-linux-armhf.so.3",
+          "libc.so.6",
+          "libdl.so.2",
+          "libm.so.6",
+          "libpthread.so.0"
+        ],
+        "forbidden": []
+      },
+      "shipped": {
+        "source": "Game Nursery FreeJ2ME package: spruceUI/Ports-and-Free-Games a981c76, J2ME/FreeJ2ME/RetroArch/.retroarch/cores/freej2me_plus_libretro.so",
+        "unverified": true,
+        "files": {
+          "cores/freej2me_plus_libretro.so": "a61cacd93531883009a50f42b56cbad6c420c7006368bf364ac4ad1ffaae2a79"
+        }
+      }
     }
   }
 }

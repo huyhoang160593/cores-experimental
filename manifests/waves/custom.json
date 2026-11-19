@@ -7,6 +7,14 @@
       "url": "https://github.com/dwbrite/gametank-sdk.git",
       "commit": "f3f5a3b3e67e96a115cc87ddfd3e5921ac59b197"
     },
+    "standalone:freej2me-plus-lr-1.53": {
+      "url": "https://github.com/TASEmulators/freej2me-plus.git",
+      "commit": "52b25f75824d247c23e352625be45157bfe87620"
+    },
+    "standalone:freej2me-plus-lr-2c15b3c1": {
+      "url": "https://github.com/TASEmulators/freej2me-plus.git",
+      "commit": "2c15b3c1a4f9f1f1319c79e8ae6f03db5b512ec2"
+    },
     "standalone:moonlight": {
       "url": "https://github.com/moonlight-stream/moonlight-embedded.git",
       "commit": "274d3db34da764344a7a402ee74e6080350ac0cd"
