@@ -123,6 +123,15 @@
       "metadata": {
         "artifact_name": "arduous_libretro.info",
         "source_path": "/libretro-super/dist/info/arduous_libretro.info"
+      },
+      "shipped": {
+        "spruceos": "7592638d0",
+        "note": "matched byte for byte by CE CI run 44574194101 (main a725fb4), both arches",
+        "variant": "release-arm64-generic + release-armhf-generic",
+        "files": {
+          "RetroArch/.retroarch/cores64/arduous_libretro.so": "8c6ae81054dee32bd68ff479507dd3c836a49acf07b6c0e6e59c455243bd7c0b",
+          "RetroArch/.retroarch/cores/arduous_libretro.so": "6f9b772aebb88661a6e25cbd7b71dd0f3dff1bb8a1505cff2f1615694f765982"
+        }
       }
     },
     "armgba": {
@@ -2774,6 +2783,15 @@
       "metadata": {
         "artifact_name": "superwhizkid_libretro.info",
         "repo_path": "metadata/superwhizkid/spruceos-d14cdbefe.info"
+      },
+      "shipped": {
+        "spruceos": "7592638d0",
+        "note": "matched byte for byte by CE CI run 44574194101 (main a725fb4), both arches",
+        "variant": "release-arm64-generic + release-armhf-generic",
+        "files": {
+          "RetroArch/.retroarch/cores64/superwhizkid_libretro.so": "547fec42b93b7b55d9cf8b223b53d6517b04c8330e5efce114f861bb049e20f8",
+          "RetroArch/.retroarch/cores/superwhizkid_libretro.so": "4976d00b2c74fe11f80911b40fe20444b86c6eef1003311fdf83c2bbf9a39a5e"
+        }
       }
     },
     "swanstation": {

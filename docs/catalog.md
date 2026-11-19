@@ -72,7 +72,7 @@ builds it when the current commit fails; nothing else uses it.
 
 **`shipped`**: what spruceOS ships from this recipe, which [AUDIT.md](../AUDIT.md)
 compares each nightly with: `spruceos` (the spruceOS commit), `variant` (the
-build whose artifact ships, as `plan` names it), `files` (`{card path: sha256}`)
+build whose artifact ships, as `plan` names it; both, joined by ` + `, when both arches ship), `files` (`{card path: sha256}`)
 a `note`, and `unverified: true` while no build has matched the files (coverage then
 counts them as `recipe`). The build does not use it.
 
