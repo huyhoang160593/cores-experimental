@@ -280,7 +280,8 @@ def build_one(repo: Repo, name: str, out: Path) -> dict:
     if not build.image_present(toolchain["image_id"]):
         raise RuntimeError(f"toolchain image {spec['toolchain']} is not loaded")
     target = out / name
-    exit_code = build.run_container(repo, toolchain["image_id"], render(name, spec, toolchain), target)
+    exit_code = build.run_container(repo, toolchain["image_id"], render(name, spec, toolchain), target,
+                                    platform=toolchain.get("platform"))
     files = inventory(target / "dist")
     elf = read_elf(target / "elf.tsv")
     problems = [f"{item['to']} was not produced" for item in spec["output"]["files"]

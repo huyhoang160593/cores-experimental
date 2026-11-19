@@ -29,9 +29,15 @@ jobs:
         run: |
           python3 scripts/cores.py check
           found="$(python3 scripts/cores.py standalone toolchain "$RECIPE")"
-          read -r toolchain archive <<< "$found"
+          read -r toolchain archive platform <<< "$found"
           echo "toolchain=$toolchain" >> "$GITHUB_OUTPUT"
           echo "archive=$archive" >> "$GITHUB_OUTPUT"
+          echo "platform=$platform" >> "$GITHUB_OUTPUT"
+      - name: Set up qemu for an image of another architecture
+        if: ${{ steps.recipe.outputs.platform != '' }}
+        uses: docker/setup-qemu-action@99012661954931238ded8c8b007157a8430204e1 # v4.4.0
+        with:
+          platforms: ${{ steps.recipe.outputs.platform }}
       - name: Download, verify and load the toolchain image
         env:
           GH_TOKEN: ${{ github.token }}

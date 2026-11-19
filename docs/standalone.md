@@ -71,6 +71,10 @@ from pinned parts (`Dockerfile.standalone.<name>`, loaded by `manifests/toolchai
 | `standalone-mini` | `pcsx_rearmed-mini`, `scummvm-mini` | the armhf base (Ubuntu 24.04) with steward-fu's Onion toolchain (GCC 8.3, glibc 2.28) |
 | `standalone-miyoomini` | `vtree-mini` | `aemiii91/miyoomini-toolchain`, by the digest its `latest` tag has had since 2026-01-20 |
 | `standalone-azahar` | `azahar-libretro` | ArkOS's Debian trixie build chroot as an amd64 cross toolchain: the dated image and snapshot.debian.org of 2026-10-27, clang 19, and trixie's arm64 glibc, libstdc++ and binutils |
+| `standalone-xroar` | `xroar` | native arm64 Debian buster, run under qemu: the dated `buster-20240612` image and `snapshot.debian.org` of that day, with buster's own gcc-8 8.3.0-6, which the binary's banner names |
+
+A toolchain with a `platform` (`standalone-xroar`: `linux/arm64`) is an image for another architecture: Build a
+standalone registers qemu for it first, and the build runs it with `docker run --platform`.
 
 The arm64 base is Ubuntu 20.04, whose archive no longer changes, so a package list
 pins its versions. Libraries a wrapper built from source inside its image are built
@@ -136,6 +140,7 @@ Built against spruceOS `73bb91a19` (2026-10-11); "match" is byte for byte.
 | `gametank-arm64`, `gametank-a30` | `Emu/GAMETANK/gametank/GameTankEmulator`, `gametank-a30/GameTankEmulator` of spruceOS `7592638d0` | match (runs 44416840843, 44416866778) |
 | `openbor-trimui` | `Emu/OPENBOR/OpenBOR_TrimUI` of spruceOS `7592638d0` | built (run 44431097991), differs: the shipped binary's compiler is TrimUI's Linaro GCC 7.5, not GCC 9.4 |
 | `openbor-new` | `Emu/OPENBOR/OpenBOR_new` of spruceOS `7592638d0` | built (run 44431121128), differs: same compiler, libraries and banner, but the shipped `.text` is 115 KB larger and has no RPATH, so the vendor's flags differ |
+| `xroar` | `Emu/COCO/xroar` of spruceOS `7592638d0` | built (run 44434199145), differs: same modules, NEEDED list and section sizes, but Debian's SDL2 links libpulse (and so libsndfile), so ld exports xroar's own `sf_*` compat functions and the code shifts; the original machine's SDL2 did not |
 
 Some files next to these in spruceOS come from elsewhere and are not compared:
 ScummVM's `lib/` extras and seven of `libmini/`'s libraries, among others.

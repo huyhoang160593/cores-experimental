@@ -129,7 +129,7 @@ def load_toolchain(archive: Path, image_id: str) -> str:
 
 
 def run_container(repo: Repo, image_id: str, script: recipe.Script, out: Path,
-                  cpus: str | None = None) -> int:
+                  cpus: str | None = None, platform: str | None = None) -> int:
     ref = image_ref(image_id)
     if ref is None:
         raise RuntimeError(f"toolchain image {image_id} is not loaded")
@@ -139,6 +139,8 @@ def run_container(repo: Repo, image_id: str, script: recipe.Script, out: Path,
                "-e", f"OUTPUT_GID={os.getgid()}", "-v", f"{out.resolve()}:/output"]
     if cpus:
         command += ["--cpuset-cpus", cpus]
+    if platform:  # an image for another architecture, run under qemu
+        command += ["--platform", platform]
     for host, container in script.mounts:
         command += ["-v", f"{(repo.root / host).resolve()}:{container}:ro"]
     command += [ref, "bash", "-lc", script.text]

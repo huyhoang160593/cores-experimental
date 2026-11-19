@@ -1,0 +1,25 @@
+# cores-standalone-xroar v1: native arm64 Debian buster (CE's amd64 runners run it under qemu), as XRoar 1.11 was built
+# by hand with buster's own gcc-8 8.3.0-6 (its GCC banner; buster kept that revision throughout). Base and packages
+# from the dated buster-20240612 image and snapshot.debian.org of that day.
+FROM --platform=linux/arm64 debian:buster-20240612@sha256:fba020fe61e2b15959ef887ea67c7fc61f77943d074889debe8d92e29402191f
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN printf '%s\n' \
+    'deb [check-valid-until=no] http://snapshot.debian.org/archive/debian/20240612T000000Z buster main' \
+    'deb [check-valid-until=no] http://snapshot.debian.org/archive/debian/20240612T000000Z buster-updates main' \
+    'deb [check-valid-until=no] http://snapshot.debian.org/archive/debian-security/20240612T000000Z buster/updates main' \
+    > /etc/apt/sources.list
+
+# What 1.11's default ./configure finds, as the shipped binary's NEEDED list shows (SDL2, GL, libpng16, zlib, ALSA,
+# libevdev); the release tarball's configure needs no autotools.
+RUN apt-get -o Acquire::Retries=5 update && apt-get install -y --no-install-recommends \
+    ca-certificates git python3 make pkg-config binutils libc6-dev \
+    gcc=4:8.3.0-1 gcc-8=8.3.0-6 cpp-8=8.3.0-6 libgcc-8-dev=8.3.0-6 \
+    libsdl2-dev libpng-dev zlib1g-dev libasound2-dev libevdev-dev libgl1-mesa-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+# The standalone renderer calls ${host_cc}-strip and -readelf; native Debian ships those triplet names already.
+RUN for t in gcc ar ranlib strip readelf; do command -v "aarch64-linux-gnu-$t"; done
+
+RUN dpkg -l > /apt-manifest.txt

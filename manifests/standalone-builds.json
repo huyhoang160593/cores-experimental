@@ -4229,6 +4229,180 @@
           "GameTankEmulator": "c895fe8a2a789013714733a8dd8de89e7f78a78db810acbe106b3d6bd12c5f17"
         }
       }
+    },
+    "openbor-trimui": {
+      "description": "OpenBOR engine (DCurrent/OpenBOR) v3.0 Build 7144: Emu/OPENBOR/OpenBOR_TrimUI on the TrimUI Brick, Smart Pro and Smart Pro S. The shipped binary was built directly with TrimUI's own A133P SDK compiler (Linaro GCC 7.5-2019.12) at /home/raymanfeng/work/a133p/app/openbor, not this image's Ubuntu 20.04 GCC 9.4 wrapper over the same SDK's glibc; its RPATH ('.../engine/../../../sdk//usr/lib') is reproduced here by checking out at the same absolute path and pointing SDKPATH at a copy of the image's sysroot three directories up, matching the engine Makefile's own -Wl,-rpath construction. No spruceUI wrapper repository for OpenBOR was found; flags are inferred from the engine's Makefile (BUILD_LINUX_LE_arm).",
+      "source": {
+        "url": "https://github.com/DCurrent/OpenBOR.git",
+        "commit": "b8303cce992a0db93c3a465df3c943942fe322f8",
+        "tree": "24e7c67808844e7e97186ba06d19e5bb17c5a5b7",
+        "requested_ref": "b8303cce992a0db93c3a465df3c943942fe322f8",
+        "path": "/home/raymanfeng/work/a133p/app/openbor"
+      },
+      "toolchain": "standalone-trimui",
+      "source_date_epoch": 1700568000,
+      "steps": [
+        "set +u +o pipefail",
+        "mkdir -p /home/raymanfeng/work/a133p/sdk/usr",
+        "cp -a /opt/sysroot/usr/include /opt/sysroot/usr/lib /home/raymanfeng/work/a133p/sdk/usr/",
+        "cp -a /opt/sysroot/lib /home/raymanfeng/work/a133p/sdk/",
+        "cd engine",
+        "bash version.sh",
+        "export SDKPATH=\"$PWD/../../../sdk/\"",
+        "grep -q '^#define VERSION_BUILD \"7144\"$' version.h",
+        "make -j\"$(nproc)\" BUILD_LINUX_LE_arm=1 NO_STRIP=1 CC='/usr/bin/aarch64-linux-gnu-gcc --sysroot=/home/raymanfeng/work/a133p/sdk' SDKPATH=\"$SDKPATH\""
+      ],
+      "output": {
+        "files": [
+          {
+            "from": "/home/raymanfeng/work/a133p/app/openbor/engine/OpenBOR",
+            "to": "OpenBOR_TrimUI",
+            "strip": "-s"
+          }
+        ],
+        "spruce": {
+          "OpenBOR_TrimUI": "Emu/OPENBOR/OpenBOR_TrimUI"
+        }
+      },
+      "needed": {
+        "device": [
+          "ld-linux-aarch64.so.1",
+          "libSDL2-2.0.so.0",
+          "libc.so.6",
+          "libm.so.6",
+          "libogg.so.0",
+          "libpng12.so.0",
+          "libpthread.so.0",
+          "libvorbis.so.0",
+          "libvorbisfile.so.3",
+          "libvpx.so.4",
+          "libz.so.1"
+        ],
+        "forbidden": []
+      },
+      "shipped": {
+        "unverified": true,
+        "spruceos": "7592638d0",
+        "files": {
+          "OpenBOR_TrimUI": "01b22813e6aee1d439a6d79c68a97fb367e9182aa317fd36e333c8f379afc120"
+        },
+        "note": "spruce also ships Emu/OPENBOR/lib64/libpng12.so.0 beside this binary; this recipe does not build it (no source pinned), so it is listed under needed.device instead"
+      }
+    },
+    "openbor-new": {
+      "description": "OpenBOR engine (DCurrent/OpenBOR) at b00efbc7: Emu/OPENBOR/OpenBOR_new on the Miyoo A30. The shipped binary's version banner ('v4.0 Build 0') does not match what the engine's own version.sh produces at this commit (v3.0 Build 7141, verified against the upstream history), so spruce's vendor hand-wrote version.h instead of running version.sh; this recipe does the same. Its Tremor vorbis and missing WebM support point at a BUILD_LINUX_LE_arm build with BUILD_VORBIS/BUILD_WEBM turned off and BUILD_TREMOR on. No spruceUI wrapper repository for OpenBOR was found; flags are inferred, not sourced from a build script.; without WebM (the binary says playback is not supported), but with source/webmlib on the include path, since sdl/video.h includes its yuv.h either way; and without -Werror, which GCC 13 trips on in openbor.c",
+      "source": {
+        "url": "https://github.com/DCurrent/OpenBOR.git",
+        "commit": "b00efbc7752cb55709dfc9fdfdfc7cfe78ddfb90",
+        "tree": "49fa213af1b9fb69dd98253496ed1f7c4f99dcc4",
+        "requested_ref": "b00efbc7752cb55709dfc9fdfdfc7cfe78ddfb90"
+      },
+      "toolchain": "standalone-armhf",
+      "source_date_epoch": 1718971200,
+      "steps": [
+        "set +u +o pipefail",
+        "cd engine",
+        "printf '%s\\n' '#ifndef VERSION_H' '#define VERSION_H' '#define VERSION_NAME \"OpenBOR\"' '#define VERSION_MAJOR \"4\"' '#define VERSION_MINOR \"0\"' '#define VERSION_BUILD \"0\"' '#define VERSION_BUILD_INT 0' '#define VERSION_COMMIT \"b00efbc\"' '#define VERSION \"v\"VERSION_MAJOR\".\"VERSION_MINOR\" Build \"VERSION_BUILD\" (commit hash: \"VERSION_COMMIT\")\"' '#endif' > version.h",
+        "sed -n 304p Makefile | grep -qx 'ifdef BUILD_WEBM' && sed -n 305p Makefile | grep -q 'source/webmlib'",
+        "sed -i '304i INCS += source/webmlib' Makefile",
+        "test \"$(grep -c -- '+= -g -Wall -Werror ' Makefile)\" = 1",
+        "sed -i 's/+= -g -Wall -Werror /+= -g -Wall /' Makefile",
+        "make -j\"$(nproc)\" BUILD_LINUX_LE_arm=1 BUILD_VORBIS= BUILD_WEBM= BUILD_TREMOR=1 NO_STRIP=1 CC=/opt/a30/bin/arm-a30-linux-gnueabihf-gcc SDKPATH=/opt/a30/arm-a30-linux-gnueabihf/sysroot"
+      ],
+      "output": {
+        "files": [
+          {
+            "from": "/src/engine/OpenBOR",
+            "to": "OpenBOR_new",
+            "strip": "-s"
+          }
+        ],
+        "spruce": {
+          "OpenBOR_new": "Emu/OPENBOR/OpenBOR_new"
+        }
+      },
+      "needed": {
+        "device": [
+          "ld-linux-armhf.so.3",
+          "libSDL2-2.0.so.0",
+          "libc.so.6",
+          "libm.so.6",
+          "libogg.so.0",
+          "libpng16.so.16",
+          "libpthread.so.0",
+          "libvorbisidec.so.1",
+          "libz.so.1"
+        ],
+        "forbidden": []
+      },
+      "shipped": {
+        "unverified": true,
+        "spruceos": "7592638d0",
+        "files": {
+          "OpenBOR_new": "7d2bc15997d8472202b59daecb8f0552b2e0c3fa438665c314097f5a71bb01a4"
+        },
+        "note": "spruce also ships Emu/OPENBOR/lib/{libSDL2-2.0.so.0,libpng16.so.16,libz.so.1} beside this binary; this recipe does not build them (no source pinned), so they are listed under needed.device instead"
+      }
+    },
+    "xroar": {
+      "description": "XRoar 1.11 (Dragon/Tandy Color Computer emulator): Emu/COCO/xroar on every 64-bit device, built by hand from the official release tarball, not a fresh checkout (the shipped binary's debug info names /tmp/xroar-1.11/src and /tmp/xroar-1.11/portalib, the tarball's own extracted layout). source pins the author's git (mirrored at stahta01/xroar, its own commit 1:1 with the tarball's configure.ac by blob hash) for provenance; the actual build steps extract the pinned tarball over that checkout so the build sees the release's own pre-generated configure/Makefile.in, not a freshly autoreconf'd one. Plain native ./configure && make, no flags: XRoar's defaults already match what the binary needs (SDL2/ALSA/evdev/GL/libpng/zlib; no GTK, SDL3, PulseAudio, JACK, OSS, libsndfile or TRE), and autoconf's own default CFLAGS (-g -O2, unstripped) matches it being shipped with debug_info. GPL-3.0-or-later (Licenses/xroar/LICENSE.xroar.txt in spruceOS).; without X11, PulseAudio and OSS, as the shipped binary's modules show (alsa, evdev, null, sdl, sdl2, wav), although libsdl2-dev brings their headers",
+      "source": {
+        "url": "https://github.com/stahta01/xroar.git",
+        "commit": "9e929dba135fbdaa7c4e5c58a55729b0b0e272f0",
+        "tree": "0a677b1dbf12c3ab5c4c0ed0eec2ea1d3a773f22",
+        "requested_ref": "Version 1.11 (2026-05-12)",
+        "path": "/tmp/xroar-1.11"
+      },
+      "downloads": [
+        {
+          "url": "https://www.6809.org.uk/xroar/dl/1.11/xroar-1.11.tar.gz",
+          "sha256": "70270805ebd52c0b62237cc2f28b32b5c7df9764d10a7c7190de584cfc6e95af",
+          "path": "/tmp/dl/xroar-1.11.tar.gz"
+        }
+      ],
+      "toolchain": "standalone-xroar",
+      "source_date_epoch": 1778611680,
+      "env": {
+        "CC": "aarch64-linux-gnu-gcc"
+      },
+      "steps": [
+        "tar -xzf /tmp/dl/xroar-1.11.tar.gz --strip-components=1 -C /tmp/xroar-1.11",
+        "./configure --without-x --without-pulse --without-oss",
+        "make -j \"$(nproc)\""
+      ],
+      "output": {
+        "files": [
+          {
+            "from": "/tmp/xroar-1.11/src/xroar",
+            "to": "xroar"
+          }
+        ],
+        "spruce": {
+          "xroar": "Emu/COCO/xroar"
+        }
+      },
+      "needed": {
+        "device": [
+          "ld-linux-aarch64.so.1",
+          "libc.so.6",
+          "libm.so.6",
+          "libpthread.so.0",
+          "libz.so.1",
+          "libpng16.so.16",
+          "libasound.so.2",
+          "libevdev.so.2",
+          "libSDL2-2.0.so.0",
+          "libGL.so.1"
+        ],
+        "forbidden": []
+      },
+      "shipped": {
+        "unverified": true,
+        "spruceos": "7592638d0",
+        "files": {
+          "xroar": "58b665c41da16841c0d7993f1e2a9d79ab4f2514ff9d1662a5da7e01ca190c1c"
+        }
+      }
     }
   }
 }

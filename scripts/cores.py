@@ -237,7 +237,7 @@ def cmd_standalone(repo: Repo, args) -> int:
         return 0
     if args.action == "toolchain":
         name = builds[args.name]["toolchain"]
-        print(name, repo.toolchains[name]["archive"]["name"])
+        print(name, repo.toolchains[name]["archive"]["name"], repo.toolchains[name].get("platform", ""))
         return 0
     record = standalone.build_one(repo, args.name, Path(args.out))
     print(f"{args.name}: {record['status']}" + "".join(f"\n  {p}" for p in record["problems"]))

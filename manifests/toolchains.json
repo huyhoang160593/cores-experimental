@@ -232,6 +232,18 @@
         "size": 247797730
       },
       "dockerfile": "Dockerfile.standalone.azahar"
+    },
+    "standalone-xroar": {
+      "image": "cores-standalone-xroar:v1",
+      "image_id": "sha256:3e4a00b728eca4a7dbdfc5059f24a6c0cf07cafa2a4834feab3378770ed29467",
+      "host_cc": "aarch64-linux-gnu",
+      "platform": "linux/arm64",
+      "archive": {
+        "name": "cores-standalone-xroar-v1.tar.gz",
+        "sha256": "7b117b69f3e6474e7d79f1d5819471729278e8281d8a6d7a77fa997a4380c6cf",
+        "size": 206268696
+      },
+      "dockerfile": "Dockerfile.standalone.xroar"
     }
   }
 }
