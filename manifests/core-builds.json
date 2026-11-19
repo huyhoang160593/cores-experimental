@@ -2776,8 +2776,8 @@
     "superwhizkid": {
       "source": {
         "url": "https://github.com/ryanmsartor/superwhizkid.git",
-        "commit": "d210018543262c3f6c8b70651c29a24e0eb129fd",
-        "requested_ref": "refs/tags/v0.2.0"
+        "commit": "38f692fa8cecb89c5a95741ddc891585b5af7042",
+        "requested_ref": "refs/tags/v0.3.0"
       },
       "targets": [
         "arm64",
@@ -2803,12 +2803,39 @@
         "repo_path": "metadata/superwhizkid/spruceos-d14cdbefe.info"
       },
       "shipped": {
-        "spruceos": "7592638d0",
-        "note": "matched byte for byte by CE CI run 44574194101 (main a725fb4), both arches",
+        "spruceos": "e1eab6bfc",
+        "note": "spruceOS eeb16627c (2026-11-18): the v0.3.0 release asset superwhizkid_libretro.zip, byte for byte; a CE build has not matched it yet",
         "variant": "release-arm64-generic + release-armhf-generic",
+        "unverified": true,
         "files": {
-          "RetroArch/.retroarch/cores64/superwhizkid_libretro.so": "547fec42b93b7b55d9cf8b223b53d6517b04c8330e5efce114f861bb049e20f8",
-          "RetroArch/.retroarch/cores/superwhizkid_libretro.so": "4976d00b2c74fe11f80911b40fe20444b86c6eef1003311fdf83c2bbf9a39a5e"
+          "RetroArch/.retroarch/cores64/superwhizkid_libretro.so": "eed5a772e0e5fef5db0875d3baf2db7871ac05d3a1157ac757e6ce81038a1e63",
+          "RetroArch/.retroarch/cores/superwhizkid_libretro.so": "89015de684074552667d809ddd4a0c67d2fac27f915fb6e33111f909007e2f02"
+        }
+      },
+      "known_good": {
+        "source": {
+          "url": "https://github.com/ryanmsartor/superwhizkid.git",
+          "commit": "d210018543262c3f6c8b70651c29a24e0eb129fd",
+          "requested_ref": "refs/tags/v0.2.0"
+        },
+        "build": {
+          "artifact_name": "superwhizkid_libretro.so",
+          "driver": "direct-cmake",
+          "output_path": "superwhizkid_libretro.so",
+          "source_date_epoch": true,
+          "source_dir": "superwhizkid",
+          "cmake": {
+            "target": "superwhizkid_libretro",
+            "arch_defines": {
+              "armhf": {
+                "CMAKE_C_FLAGS": "-mcpu=cortex-a7 -mfpu=neon-vfpv4 -mfloat-abi=hard"
+              }
+            }
+          }
+        },
+        "metadata": {
+          "artifact_name": "superwhizkid_libretro.info",
+          "repo_path": "metadata/superwhizkid/spruceos-d14cdbefe.info"
         }
       }
     },
