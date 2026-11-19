@@ -4809,7 +4809,6 @@
       },
       "shipped": {
         "spruceos": "7592638d0",
-        "unverified": true,
         "files": {
           "cores64/pokedaisy_ds_libretro.so": "5ea2a7118f6b5306049e45f23b327ffc8a137ae4716c99ee003a3f8467efae8a",
           "cores64/pokedaisy_gbc_libretro.so": "29d075de2209af0c30e5f91fef3eba8f58c31e52d2e911e95d130e1f90d11b16"
@@ -4881,7 +4880,6 @@
       },
       "shipped": {
         "spruceos": "7592638d0",
-        "unverified": true,
         "files": {
           "cores/pokedaisy_ds_libretro.so": "4eaa6d2b65cd4b4de4a22a5817bc03918fdad27889016b6450e46f3d58cb5d78",
           "cores/pokedaisy_gbc_libretro.so": "3428aa7c99495aa9fff0880223a605960a6c7104ea069b6d1c331b2474c8c122"
@@ -4953,7 +4951,6 @@
       },
       "shipped": {
         "spruceos": "7592638d0",
-        "unverified": true,
         "files": {
           "cores64/pokedaisy_gba_libretro.so": "21035f4d954670f8a6f9c85dc80ee288d44aeb2f3ddffbf3fa34da2d8429e4f6"
         }
@@ -5024,7 +5021,6 @@
       },
       "shipped": {
         "spruceos": "7592638d0",
-        "unverified": true,
         "files": {
           "cores/pokedaisy_gba_libretro.so": "50d09ade9f48024ea0fa137190a6ffc86297c4347d3f9f9a16b19810ba732b9f"
         }

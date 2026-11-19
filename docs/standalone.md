@@ -145,7 +145,7 @@ Built against spruceOS `73bb91a19` (2026-10-11); "match" is byte for byte.
 | `openbor-new` | `Emu/OPENBOR/OpenBOR_new` of spruceOS `7592638d0` | built (run 44431121128), differs: same compiler, libraries and banner, but the shipped `.text` is 115 KB larger and has no RPATH, so the vendor's flags differ |
 | `xroar` | `Emu/COCO/xroar` of spruceOS `7592638d0` | built (run 44434199145), differs: same modules, NEEDED list and section sizes, but Debian's SDL2 links libpulse (and so libsndfile), so ld exports xroar's own `sf_*` compat functions and the code shifts; the original machine's SDL2 did not |
 | `gvu-arm64`, `gvu-a30` | `Emu/MEDIA/bin64/gvu`, `bin32/gvu` of spruceOS `7592638d0` | match (runs 44440415230, 44440434774) |
-| `pokedaisy-{arm64,armhf}-20261112`, `-20261113` | `RetroArch/.retroarch/cores{64,}/pokedaisy_{ds,gbc}` (11-12) and `pokedaisy_gba` (11-13) of spruceOS `7592638d0` | not built yet: Cores-spruce runs 43141364046 and 43467900814 at pokedaisy-lr 7af02b6, armGBA b1c4a69 / 4bd15f1 |
+| `pokedaisy-{arm64,armhf}-20261112`, `-20261113` | `RetroArch/.retroarch/cores{64,}/pokedaisy_{ds,gbc}` (11-12) and `pokedaisy_gba` (11-13) of spruceOS `7592638d0` | match, all six (runs 44571273959, 44571303318, 44571331513, 44571360523): Cores-spruce runs 43141364046 and 43467900814 at pokedaisy-lr 7af02b6, armGBA b1c4a69 / 4bd15f1, with the tree owned by the runner's uid as there |
 | `mupen64plus-pow2` | `Emu/N64/pow2/mupen64plus`, `data/` of spruceOS `7592638d0` | `data/` matches; the executable has the same code, data and build ID, and differs only in four linker veneer names (run 44447436936) |
 
 Some files next to these in spruceOS come from elsewhere and are not compared:
