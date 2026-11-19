@@ -267,7 +267,7 @@ three builds compete for:
 | core | where it comes from | pin | here |
 |---|---|---|---|
 | spruce's card file (shipped) | TrimUI's own build (raymanfeng, Linaro GCC 7.5, tg5040 SDK), via tenlevels' Brick paks; the stripped copy of `yabasanshiro_a133p` | libretro/yabause 7513c8459 plus TrimUI's unpublished changes | `yabasanshiro-libretro-trimui`: builds, differs as known. It links TrimUI's PowerVR libraries and `libtmenu`, so it cannot load on the Pixel 2 |
-| TwigUI-Next's card file | TwigUI-Next 1.2.0 (twig-base 0d4954c435) builds `yabasanshiro-lr` and writes it over spruce's: 5b669a8c…, GCC 15.2 | libretro/yabause 39535a6 with its `01-optimization.patch`, `FORCE_GLES=1` | built with TwigUI-Next's own toolchain, not here (a reproduction is requested on salusa) |
+| TwigUI-Next's card file | TwigUI-Next 1.2.0 (twig-base 0d4954c435) builds `yabasanshiro-lr` and writes it over spruce's: 5b669a8c…, GCC 15.2 | libretro/yabause 39535a6 with its `01-optimization.patch`, `FORCE_GLES=1` | built with TwigUI-Next's own toolchain, not here: B412 (salusa, 2026-11-19, `scripts/build_mt yabasanshiro-lr` at 0d4954c435) reproduced it byte for byte (record `devices/builds/20261119-1042-twigui-next-mpv-yaba-repro`) |
 | recommended | spruce's generic core, on every other 64-bit device since 2026-10-13 | libretro/yabause f448097, T3 PGO | `yabasanshiro-libretro`: reproduces. On paper it fits the Pixel 2 (glibc 2.33 against 2.41, GLES 3.1 against Panfrost's, ARMv8.0-safe atomics); untested there |
 
 ## OpenBOR (DCurrent) standalones
