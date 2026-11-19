@@ -3369,6 +3369,46 @@
         "artifact_name": "km_mame2003_xtreme_libretro.info",
         "source_path": "/tmp/core-source/info/km_mame2003_xtreme_amped_libretro.info"
       }
+    },
+    "armsnes": {
+      "source": {
+        "url": "https://github.com/MagnominusGit/armSNES.git",
+        "commit": "0ae21af7e02755c70a466d0c40217b6114ee74a7",
+        "requested_ref": "refs/heads/main"
+      },
+      "targets": [
+        "arm64",
+        "armhf"
+      ],
+      "build": {
+        "artifact_name": "armsnes_libretro.so",
+        "driver": "direct-cmake",
+        "output_path": "armsnes_libretro.so",
+        "source_date_epoch": true,
+        "source_dir": "armsnes",
+        "cmake": {
+          "target": "armsnes_libretro",
+          "arch_defines": {
+            "armhf": {
+              "CMAKE_C_FLAGS": "-mcpu=cortex-a7 -mfpu=neon-vfpv4 -mfloat-abi=hard",
+              "CMAKE_CXX_FLAGS": "-mcpu=cortex-a7 -mfpu=neon-vfpv4 -mfloat-abi=hard"
+            }
+          }
+        }
+      },
+      "metadata": {
+        "artifact_name": "armsnes_libretro.info",
+        "source_path": "/tmp/core-source/libretro/armsnes_libretro.info"
+      },
+      "shipped": {
+        "spruceos": "d7ce3dc52",
+        "unverified": true,
+        "note": "spruceOS d7ce3dc52 (cobaltgit, 2026-11-19) ships the 64-bit core only; the pin is main's tip at that import",
+        "variant": "release-arm64-generic",
+        "files": {
+          "RetroArch/.retroarch/cores64/armsnes_libretro.so": "e939f1fb0a802f591156d3326def5ebf34a87d8ffd6ba597c40dc02ff253db74"
+        }
+      }
     }
   }
 }
