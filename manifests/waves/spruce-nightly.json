@@ -1389,10 +1389,10 @@
         "commit": "661a7dd4febc8d00e790a4ecde44b936295adf97",
         "basis": "branch tip at the import, 2026-09-24T20:05",
         "confidence": "unambiguous",
-        "verified": false
+        "verified": true
       },
       "evidence": "spruceOS 511363a3e (2026-09-24, SundownerSport: Rebuild ardens, arduous and swanstation; offer both Arduboy cores ever); Cores-spruce builds of it then: build-ardens.yml run 36087818285 (2026-09-25T02:49Z), whose logs show a fresh clone of the branch, not the commit",
-      "verified": "near: CE build at the pin, run 44594308904 (throwaway branch verify/nightly-pins-20261119, arm64 release-generic) differs only in the version string, v0.25.9 against 661a7dd (the pin is tag v0.25.9; CE's clone fetches no tags, so git describe gives the hash) and so in the build id"
+      "verified": "byte for byte: CE build at the pin with describe_tags (git describe gives v0.25.9), run 44596835123, throwaway branch verify/nightly-pins-20261119b (the opt-in driver options of driver/source-path-describe-tags 1fbc39b)"
     },
     "RetroArch/.retroarch/cores64/arduous_libretro.so": {
       "sha256": "8c6ae81054dee32bd68ff479507dd3c836a49acf07b6c0e6e59c455243bd7c0b",
@@ -2564,10 +2564,10 @@
         "commit": "b6c30a7b270a3f68ac41f268eafdfa678d17dea2",
         "basis": "branch tip at the import, 2026-09-24T20:05",
         "confidence": "unambiguous",
-        "verified": false
+        "verified": true
       },
       "evidence": "spruceOS 511363a3e (2026-09-24, SundownerSport: Rebuild ardens, arduous and swanstation; offer both Arduboy cores ever); Cores-spruce builds of it then: build-swanstation.yml run 36087822899 (2026-09-25T02:49Z), whose logs show a fresh clone of the branch, not the commit",
-      "verified": "near: CE build at the pin, run 44594308904 (throwaway branch verify/nightly-pins-20261119, arm64 release-generic) differs by the build path in assert strings (/libretro-super/libretro-swanstation against CE's /tmp/core-source), which moves everything after it"
+      "verified": "byte for byte: CE build at the pin with source_path /libretro-super/libretro-swanstation and git_abbrev 8 (the 8-character b6c30a7b libretro-super's full clone gave), run 44600598927, throwaway branch verify/nightly-pins-20261119b (the opt-in driver options of driver/source-path-describe-tags 1fbc39b)"
     },
     "RetroArch/.retroarch/cores64/tic80_libretro.so": {
       "sha256": "8be8b8eb19cd41a417b7903c6b4047c2f0460d5d650191118a1ef23488261478",
