@@ -3231,6 +3231,75 @@
         "artifact_name": "yabasanshiro_libretro.info",
         "source_path": "/libretro-super/dist/info/yabasanshiro_libretro.info"
       }
+    },
+    "puae": {
+      "source": {
+        "url": "https://github.com/libretro/libretro-uae.git",
+        "commit": "d366f77c60e5a5f059f129cc3773d3048306083b",
+        "requested_ref": "refs/heads/master"
+      },
+      "targets": [
+        "armhf"
+      ],
+      "build": {
+        "artifact_name": "puae_libretro.so",
+        "driver": "libretro-super",
+        "git_abbrev": 8,
+        "output_path": "dist/unix/puae_libretro.so",
+        "source_date_epoch": true,
+        "source_dir": "libretro-uae",
+        "source_key": "puae"
+      },
+      "metadata": {
+        "artifact_name": "puae_libretro.info",
+        "source_path": "/libretro-super/dist/info/puae_libretro.info"
+      }
+    },
+    "km_puae_xtreme_amped": {
+      "source": {
+        "url": "https://github.com/KMFDManic/libretro-uae.git",
+        "commit": "a1c867f9a5145910cd8116e363d19265884dfe9c",
+        "requested_ref": "refs/heads/master"
+      },
+      "targets": [
+        "armhf"
+      ],
+      "build": {
+        "artifact_name": "km_puae_xtreme_amped_libretro.so",
+        "driver": "direct-make",
+        "output_path": "km_puae_xtreme_amped_2k24_libretro.so",
+        "platforms": {
+          "armhf": "classic_armv7_a7"
+        },
+        "source_dir": "km_puae_xtreme_amped"
+      },
+      "metadata": {
+        "artifact_name": "km_puae_xtreme_amped_libretro.info",
+        "source_path": "/tmp/core-source/info/km_puae_xtreme_amped_2k24_libretro.info"
+      }
+    },
+    "km_mame2003_xtreme": {
+      "source": {
+        "url": "https://github.com/KMFDManic/mame2003-xtreme.git",
+        "commit": "9c034c4b704baca5d4c41c4a74147ff60d6314ce",
+        "requested_ref": "refs/heads/master"
+      },
+      "targets": [
+        "armhf"
+      ],
+      "build": {
+        "artifact_name": "km_mame2003_xtreme_libretro.so",
+        "driver": "direct-make",
+        "output_path": "km_mame2003_xtreme_amped_libretro.so",
+        "platforms": {
+          "armhf": "rpi2"
+        },
+        "source_dir": "km_mame2003_xtreme"
+      },
+      "metadata": {
+        "artifact_name": "km_mame2003_xtreme_libretro.info",
+        "source_path": "/tmp/core-source/info/km_mame2003_xtreme_amped_libretro.info"
+      }
     }
   }
 }
