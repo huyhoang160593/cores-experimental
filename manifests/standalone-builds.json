@@ -4405,10 +4405,12 @@
         "forbidden": []
       },
       "shipped": {
-        "unverified": true,
         "spruceos": "7592638d0",
         "files": {
           "xroar": "58b665c41da16841c0d7993f1e2a9d79ab4f2514ff9d1662a5da7e01ca190c1c"
+        },
+        "differs": {
+          "xroar": "Debian buster's SDL2 links libpulse, and through it libsndfile, so ld exports xroar's own sf_* compat functions; that shifts .dynsym and the code that indexes it. Modules, NEEDED list and section sizes are the same, and the original machine's SDL2 did not link libpulse (run 44434199145)"
         }
       }
     },
