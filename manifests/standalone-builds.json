@@ -5458,7 +5458,7 @@
       },
       "shipped": {
         "source": "Game Nursery FreeJ2ME package: spruceUI/Ports-and-Free-Games a981c76, J2ME/FreeJ2ME/RetroArch/.retroarch/cores64/freej2me_plus_libretro.so",
-        "unverified": true,
+        "note": "matched byte for byte by CE run 44640420624 (00a750f)",
         "files": {
           "cores64/freej2me_plus_libretro.so": "a6e0ed3527abfd5ec7d96f9ec232f3f92716c923230208fa5b5094b83575972c"
         }
@@ -5495,7 +5495,7 @@
       },
       "shipped": {
         "source": "Game Nursery FreeJ2ME package: spruceUI/Ports-and-Free-Games a981c76, J2ME/FreeJ2ME/RetroArch/.retroarch/cores/freej2me_plus_libretro.so",
-        "unverified": true,
+        "note": "matched byte for byte by CE run 44640425342 (00a750f)",
         "files": {
           "cores/freej2me_plus_libretro.so": "a61cacd93531883009a50f42b56cbad6c420c7006368bf364ac4ad1ffaae2a79"
         }
