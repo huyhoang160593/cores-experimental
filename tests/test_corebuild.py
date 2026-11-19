@@ -522,12 +522,13 @@ class InventoryTest(unittest.TestCase):
         inv = {"spruceos": {"commit": "0" * 40, "date": "2026-11-18"},
                "systems": {"S": {"devices": None, "default": "a", "options": {
                    "Emulator": {"devices": ["X"], "options": ["a", "b", "c-standalone", "mystery", "Flycast-libretro",
-                                                              "d-standalone", "closed"]}}}},
+                                                              "d-standalone", "closed", "base"]}}}},
                "files": {"RetroArch/.retroarch/cores64/a_libretro.so": sha["a"],
                          "RetroArch/.retroarch/cores/b_libretro.so": sha["b"],
                          "Emu/S/c": sha["c"], "Emu/S/d": sha["d"]}}
         names = {"c-standalone": {"paths": ["Emu/S/c"]}, "d-standalone": {"paths": ["Emu/S/d"]},
-                 "Flycast-libretro": {"core": "flycast"}, "closed": {"closed_source": "no source"}}
+                 "Flycast-libretro": {"core": "flycast"}, "closed": {"closed_source": "no source"},
+                 "base": {"base_image": "a base OS package"}}
         catalog = {"a": {"targets": ["arm64"], "build": {"artifact_name": "a_libretro.so"},
                          "shipped": {"files": {"RetroArch/.retroarch/cores64/a_libretro.so": sha["a"]}}},
                    "b": {"targets": ["armhf"], "build": {"artifact_name": "b_libretro.so"}}}
@@ -552,6 +553,8 @@ class InventoryTest(unittest.TestCase):
         self.assertEqual(rows[("mystery", "")]["status"], "unresolved")
         self.assertEqual(rows[("Flycast-libretro", "")]["status"], "not shipped")
         self.assertEqual(rows[("closed", "")]["status"], "closed source")
+        self.assertEqual(rows[("base", "")]["status"], "base image")
+        self.assertEqual(rows[("base", "")]["note"], "a base OS package")
         self.assertIn("S (default)", rows[("a", "RetroArch/.retroarch/cores64/a_libretro.so")]["where"])
 
     def test_committed_inventory_and_names_are_consistent(self):

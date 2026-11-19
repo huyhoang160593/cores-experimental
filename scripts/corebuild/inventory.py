@@ -17,7 +17,8 @@ from pathlib import Path
 CORE_DIRS = {"armhf": "RetroArch/.retroarch/cores", "arm64": "RetroArch/.retroarch/cores64"}
 CORE_FILE = re.compile(r"^RetroArch/\.retroarch/(cores64|cores)/(.+)_libretro\.so$")
 EMU_KEY = re.compile(r"^Emulator(_.+)?$")
-ORDER = ("reproduces", "recipe", "no recipe", "not shipped", "closed source", "not an emulator", "unresolved")
+ORDER = ("reproduces", "recipe", "base image", "no recipe", "not shipped", "closed source", "not an emulator",
+         "unresolved")
 
 
 def _git(repo: Path, *args: str, text: bool = True):
@@ -72,7 +73,9 @@ def generate(spruceos: Path, rev: str, names: dict) -> dict:
             "systems": systems, "files": files}
 
 
-NAME_KEYS = {"core", "paths", "closed_source", "not_emulator", "unresolved", "note"}
+NAME_KEYS = {"core", "paths", "base_image", "closed_source", "not_emulator", "unresolved", "note"}
+REASON_KEYS = (("base_image", "base image"), ("closed_source", "closed source"), ("not_emulator", "not an emulator"),
+               ("unresolved", "unresolved"))
 
 
 def check(names: dict, inventory: dict) -> list[str]:
@@ -80,11 +83,12 @@ def check(names: dict, inventory: dict) -> list[str]:
     problems = []
     for name, entry in names.items():
         extra = set(entry) - NAME_KEYS
-        kinds = [key for key in ("core", "paths", "closed_source", "not_emulator", "unresolved") if key in entry]
+        kinds = [key for key in ("core", "paths", *(key for key, _ in REASON_KEYS)) if key in entry]
         if extra:
             problems.append(f"emulator-names {name}: unknown keys {sorted(extra)}")
         if not kinds:
-            problems.append(f"emulator-names {name}: needs core, paths, closed_source, not_emulator or unresolved")
+            problems.append(f"emulator-names {name}: needs core, paths, base_image, closed_source, not_emulator or "
+                            "unresolved")
         if "paths" in entry and not (isinstance(entry["paths"], list) and all(isinstance(p, str) for p in entry["paths"])):
             problems.append(f"emulator-names {name}: paths must be a list of card paths")
     named = {p for entry in names.values() for p in entry.get("paths", [])}
@@ -116,7 +120,7 @@ def resolve(name: str, inventory: dict, names: dict) -> dict:
         if paths:
             return {"kind": "core", "paths": paths}
         return {"kind": "unresolved" if not entry else "core", "paths": [], "note": entry.get("note", "")}
-    for key, kind in (("closed_source", "closed source"), ("not_emulator", "not an emulator"), ("unresolved", "unresolved")):
+    for key, kind in REASON_KEYS:
         if key in entry:
             return {"kind": kind, "paths": entry.get("paths", []), "note": entry[key]}
     return {"kind": "standalone", "paths": entry["paths"], "note": entry.get("note", "")}
@@ -187,7 +191,7 @@ def coverage(inventory: dict, names: dict, catalog: dict, standalones: dict) -> 
     rows = []
     for name, where in sorted(offered(inventory).items(), key=lambda item: item[0].lower()):
         target = resolve(name, inventory, names)
-        if target["kind"] in ("closed source", "not an emulator", "unresolved") or not target["paths"]:
+        if target["kind"] in {kind for _, kind in REASON_KEYS} or not target["paths"]:
             status = target["kind"] if target["kind"] != "core" else "not shipped"
             rows.append({"name": name, "where": where, "kind": target["kind"], "path": "", "status": status,
                          "recipes": [], "note": target.get("note", "")})

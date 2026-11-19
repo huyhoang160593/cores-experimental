@@ -85,7 +85,7 @@
       "note": "offered on the Miyoo Mini; no core file ships"
     },
     "mpv": {
-      "unresolved": "run_mpv (media_functions.sh) starts an mpv that is not in the card tree"
+      "base_image": "TwigUI-Next's mpv package (spruceUI/twigUI-next 1.2.0 = twig-base 0d4954c435, projects/twigUI/packages/multimedia/mpv: mpv 0.38.0 @02254b92 with ffmpeg-rockchip); run_mpv starts its /usr/bin/mpv on the Pixel 2"
     },
     "mupen64plus-pow2": {
       "paths": [

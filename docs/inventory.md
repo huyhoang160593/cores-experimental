@@ -21,6 +21,8 @@ launcher scripts (`spruce/scripts/emu/`). An entry has one of these:
 - `core`: the core it launches, for names such as `Flycast-libretro`;
 - `paths`: the card paths of a standalone emulator's binaries. A file inside a `.7z` is written `archive!member`, and
   `inventory` hashes it with `7zz` or `7z`;
+- `base_image`: the file comes with a device's base OS, not the card; the value names the base's package that
+  builds it, which is its recipe;
 - `closed_source`, `not_emulator` or `unresolved`: why there is nothing to build, with the reason.
 
 An optional `note` is shown in the report.
@@ -31,6 +33,7 @@ An optional `note` is shown in the report.
 |---|---|
 | reproduces | a recipe records this file's exact sha256 as shipped, the record is not marked `unverified`, and the file is not in its `differs`. The card path may be one spruceOS has since renamed; the report then names it |
 | recipe | a recipe here builds this file, but no recorded sha256 matches what ships |
+| base image | the base OS of the devices that use it provides the file; the names map points at the base's recipe |
 | no recipe | the file ships, and nothing here builds it |
 | not shipped | a menu offers it, but the file is not in the tree |
 | closed source, not an emulator, unresolved | from the names map |
