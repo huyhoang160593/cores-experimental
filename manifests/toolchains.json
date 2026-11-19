@@ -277,6 +277,28 @@
         "size": 306180820
       },
       "dockerfile": "Dockerfile.standalone.mupen64plus-pow2"
+    },
+    "cores-spruce-arm64": {
+      "image": "cores-spruce-arm64:20260925",
+      "image_id": "sha256:63f40dda7ac2047f415e40ef0e16c9acfbea98d68b2f693bca828b2ebfc49f31",
+      "host_cc": "aarch64-linux-gnu",
+      "archive": {
+        "name": "cores-spruce-arm64-20260925.tar.gz",
+        "sha256": "dd836c1dd9372af07a46ac6e39ebd196690f661bf235794ae5a2c3ed3cae5d73",
+        "size": 288336248
+      },
+      "dockerfile": "Dockerfile.arm64 in spruceUI/Cores-spruce 871d60759 (build-docker.yml run 36087575366, 2026-09-25)"
+    },
+    "cores-spruce-armhf": {
+      "image": "cores-spruce-armhf:20260925",
+      "image_id": "sha256:122b2008f771b9e7ea657a4631c7d3db79a8dc7dbc02f89179412eabb0434ff8",
+      "host_cc": "arm-a30-linux-gnueabihf",
+      "archive": {
+        "name": "cores-spruce-armhf-20260925.tar.gz",
+        "sha256": "5d2e09e2535b9fc75da2983b74fc3fa79be21c1fdfb746d06193afb48d46a6b7",
+        "size": 654251130
+      },
+      "dockerfile": "Dockerfile.armhf in spruceUI/Cores-spruce 871d60759 (build-docker.yml run 36087575366, 2026-09-25)"
     }
   }
 }

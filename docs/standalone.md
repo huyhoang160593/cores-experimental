@@ -74,6 +74,7 @@ from pinned parts (`Dockerfile.standalone.<name>`, loaded by `manifests/toolchai
 | `standalone-xroar` | `xroar` | native arm64 Debian buster, run under qemu: the dated `buster-20240612` image and `snapshot.debian.org` of that day, with buster's own gcc-8 8.3.0-6, which the binary's banner names |
 | `standalone-gvu-arm64`, `-a30` | `gvu-arm64`, `gvu-a30` | Sundownersport/GVU's GHCR builder images (`gvu-builder-brick`, `gvu-builder-a30`, created 2026-04-11), which its workflow says can no longer be rebuilt: their `debian:bullseye-20260406` base by digest and their apt install from `snapshot.debian.org` at 2026-04-11 19:00 UTC (GCC 10.2.1-6cross1, binutils 2.35.2) |
 | `standalone-mupen64plus-pow2` | `mupen64plus-pow2` | plain focal, with `gcc-10-aarch64-linux-gnu` (the `gcc-10-cross` source package, focal `6ubuntu6`) instead of the default gcc-9 cross: the shipped binary's GCC banner and its statically linked libgcc's build path both name that package |
+| `cores-spruce-arm64`, `-armhf` | `pokedaisy-*` | not rebuilt: Cores-spruce's own core images (its `build-docker.yml` run 36087575366 at 871d60759, 2026-09-25; Ubuntu 20.04 with the GCC 9.4 aarch64 cross, and the A30 buildroot GCC 13.2), copied from its release and retagged, because its pokedaisy builds ran in them |
 
 A toolchain with a `platform` (`standalone-xroar`: `linux/arm64`) is an image for another architecture: Build a
 standalone registers qemu for it first, and the build runs it with `docker run --platform`.
@@ -144,6 +145,7 @@ Built against spruceOS `73bb91a19` (2026-10-11); "match" is byte for byte.
 | `openbor-new` | `Emu/OPENBOR/OpenBOR_new` of spruceOS `7592638d0` | built (run 44431121128), differs: same compiler, libraries and banner, but the shipped `.text` is 115 KB larger and has no RPATH, so the vendor's flags differ |
 | `xroar` | `Emu/COCO/xroar` of spruceOS `7592638d0` | built (run 44434199145), differs: same modules, NEEDED list and section sizes, but Debian's SDL2 links libpulse (and so libsndfile), so ld exports xroar's own `sf_*` compat functions and the code shifts; the original machine's SDL2 did not |
 | `gvu-arm64`, `gvu-a30` | `Emu/MEDIA/bin64/gvu`, `bin32/gvu` of spruceOS `7592638d0` | match (runs 44440415230, 44440434774) |
+| `pokedaisy-{arm64,armhf}-20261112`, `-20261113` | `RetroArch/.retroarch/cores{64,}/pokedaisy_{ds,gbc}` (11-12) and `pokedaisy_gba` (11-13) of spruceOS `7592638d0` | not built yet: Cores-spruce runs 43141364046 and 43467900814 at pokedaisy-lr 7af02b6, armGBA b1c4a69 / 4bd15f1 |
 | `mupen64plus-pow2` | `Emu/N64/pow2/mupen64plus`, `data/` of spruceOS `7592638d0` | `data/` matches; the executable has the same code, data and build ID, and differs only in four linker veneer names (run 44447436936) |
 
 Some files next to these in spruceOS come from elsewhere and are not compared:

@@ -9,6 +9,7 @@ on the `toolchains` release; a build refuses to run on any other image.
 | arm64 | `538411e2759c` | `cores-arm64.tar.gz` | `Dockerfile.arm64` on base `c9c1332ce018` |
 | armhf | `3c5f1e9c40cb` (v4) | `cores-armhf-v4.tar.gz` | `Dockerfile.armhf` on base `6ac154886195` |
 | rust | `aa42a12ced6b` | `cores-rust.tar.gz` | `Dockerfile.rust` (on Ubuntu, no base) |
+| cores-spruce-arm64, -armhf | `63f40dda7ac2`, `122b2008f771` | `cores-spruce-{arm64,armhf}-20260925.tar.gz` | none here: spruceUI/Cores-spruce's `cores-arm64.tar.gz` (ab6f8297…) and `cores-armhf.tar.gz` (8a8bc83b…) of 2026-09-25 (`Dockerfile.arm64`/`.armhf` at 871d60759), retagged `cores-spruce-*:20260925` so they never move the `cores-arm64`/`cores-armhf` tags; config and layers unchanged |
 | arm64-standalone | `6b659a1984d3` (v2) | `cores-arm64-standalone-v2.tar.gz` | `Dockerfile.arm64.standalone.v2` on v1 `c630f837fad0` (`Dockerfile.arm64.standalone` on the arm64 image `538411e2759c`, `cores-arm64-standalone-v1.tar.gz`) ([standalone emulators](../docs/standalone.md)) |
 | standalone-* | see `manifests/toolchains.json` | `cores-standalone-<name>-v1.tar.gz` | `Dockerfile.standalone.<name>`, one per spruceUI wrapper build environment, on base `c9c1332ce018` or `6ac154886195` (Flip: Debian bookworm by digest) |
 

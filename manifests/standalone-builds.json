@@ -4743,6 +4743,284 @@
           "path": "/tmp/dl/SDL2.tar.gz"
         }
       ]
+    },
+    "pokedaisy-arm64-20261112": {
+      "description": "PokeDaisy's pokedaisy_ds and pokedaisy_gbc libretro cores (RetroArch/.retroarch/cores64/) for every 64-bit device, as Cores-spruce's build-pokedaisy.yml run 43141364046 (2026-11-12 02:25Z), which spruceOS 0b73cca16 imported built them: thwonp/pokedaisy-lr main at 7af02b6, armGBA moved to b1c4a69 by `submodule update --remote`, in Cores-spruce's own arm64 image. It builds all three cores in that workflow's order; spruce ships pokedaisy_ds and pokedaisy_gbc from this run.",
+      "source": {
+        "url": "https://github.com/thwonp/pokedaisy-lr.git",
+        "commit": "7af02b60e038b464ce28d4e89ebc85c517b5fad9",
+        "tree": "f6ba8d89721d395f1eee7d916bf2a29929b9f6ed",
+        "requested_ref": "refs/heads/main (2026-11-11 21:49Z to 2026-11-14 07:18Z)",
+        "path": "/pokedaisy"
+      },
+      "toolchain": "cores-spruce-arm64",
+      "source_date_epoch": 1794433783,
+      "env": {
+        "CMAKE_TOOLCHAIN_FILE": "/opt/toolchain.cmake",
+        "ARMGBA": "b1c4a69c99797d93f0f96901b69b9fd7bf7917c3"
+      },
+      "steps": [
+        "git submodule update --init third_party/mgba third_party/armgba third_party/zlib",
+        "git -C third_party/armgba fetch -q origin \"$ARMGBA\"",
+        "git -C third_party/armgba checkout -q --detach \"$ARMGBA\"",
+        "git submodule update --init --recursive third_party/dsperate-lr",
+        "cmake -S libretro -B build-arm64 -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE=/pokedaisy/libretro/aarch64.cmake",
+        "cmake --build build-arm64 --target pokedaisy_gbc_libretro -j$(nproc)",
+        "cmake -S libretro/armgba -B build-armgba-arm64 -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE=/pokedaisy/libretro/aarch64.cmake",
+        "cmake --build build-armgba-arm64 --target pokedaisy_gba_libretro -j$(nproc)",
+        "git -C third_party/zlib checkout -- .",
+        "apt-get update",
+        "apt-get install -y --no-install-recommends python3",
+        "cmake -S linux/libretro-ds -B build-ds-arm64 -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF -DCMAKE_TOOLCHAIN_FILE=/pokedaisy/libretro/aarch64.cmake",
+        "cmake --build build-ds-arm64 --target pokedaisy_ds_libretro -j$(nproc)"
+      ],
+      "output": {
+        "files": [
+          {
+            "from": "/pokedaisy/build-arm64/pokedaisy_gbc_libretro.so",
+            "to": "cores64/pokedaisy_gbc_libretro.so"
+          },
+          {
+            "from": "/pokedaisy/build-armgba-arm64/pokedaisy_gba_libretro.so",
+            "to": "cores64/pokedaisy_gba_libretro.so"
+          },
+          {
+            "from": "/pokedaisy/build-ds-arm64/pokedaisy_ds_libretro.so",
+            "to": "cores64/pokedaisy_ds_libretro.so"
+          }
+        ],
+        "spruce": {
+          "cores64/pokedaisy_gbc_libretro.so": "RetroArch/.retroarch/cores64/pokedaisy_gbc_libretro.so",
+          "cores64/pokedaisy_gba_libretro.so": "RetroArch/.retroarch/cores64/pokedaisy_gba_libretro.so",
+          "cores64/pokedaisy_ds_libretro.so": "RetroArch/.retroarch/cores64/pokedaisy_ds_libretro.so"
+        }
+      },
+      "needed": {
+        "device": [
+          "ld-linux-aarch64.so.1",
+          "libc.so.6",
+          "libdl.so.2",
+          "libm.so.6",
+          "libpthread.so.0"
+        ],
+        "forbidden": []
+      },
+      "shipped": {
+        "spruceos": "7592638d0",
+        "unverified": true,
+        "files": {
+          "cores64/pokedaisy_ds_libretro.so": "5ea2a7118f6b5306049e45f23b327ffc8a137ae4716c99ee003a3f8467efae8a",
+          "cores64/pokedaisy_gbc_libretro.so": "29d075de2209af0c30e5f91fef3eba8f58c31e52d2e911e95d130e1f90d11b16"
+        }
+      }
+    },
+    "pokedaisy-armhf-20261112": {
+      "description": "PokeDaisy's pokedaisy_ds and pokedaisy_gbc libretro cores (RetroArch/.retroarch/cores/) for the 32-bit devices, as Cores-spruce's build-pokedaisy.yml run 43141364046 (2026-11-12 02:25Z), which spruceOS 0b73cca16 imported built them: thwonp/pokedaisy-lr main at 7af02b6, armGBA moved to b1c4a69 by `submodule update --remote`, in Cores-spruce's own armhf image. It builds all three cores in that workflow's order; spruce ships pokedaisy_ds and pokedaisy_gbc from this run.",
+      "source": {
+        "url": "https://github.com/thwonp/pokedaisy-lr.git",
+        "commit": "7af02b60e038b464ce28d4e89ebc85c517b5fad9",
+        "tree": "f6ba8d89721d395f1eee7d916bf2a29929b9f6ed",
+        "requested_ref": "refs/heads/main (2026-11-11 21:49Z to 2026-11-14 07:18Z)",
+        "path": "/pokedaisy"
+      },
+      "toolchain": "cores-spruce-armhf",
+      "source_date_epoch": 1794433783,
+      "env": {
+        "CMAKE_TOOLCHAIN_FILE": "/opt/toolchain.cmake",
+        "ARMGBA": "b1c4a69c99797d93f0f96901b69b9fd7bf7917c3"
+      },
+      "steps": [
+        "git submodule update --init third_party/mgba third_party/armgba third_party/zlib",
+        "git -C third_party/armgba fetch -q origin \"$ARMGBA\"",
+        "git -C third_party/armgba checkout -q --detach \"$ARMGBA\"",
+        "git submodule update --init --recursive third_party/dsperate-lr",
+        "cmake -S libretro -B build-armhf -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_FLAGS=\"-mcpu=cortex-a7 -mfpu=neon-vfpv4 -mfloat-abi=hard\" -DCMAKE_CXX_FLAGS=\"-mcpu=cortex-a7 -mfpu=neon-vfpv4 -mfloat-abi=hard\"",
+        "cmake --build build-armhf --target pokedaisy_gbc_libretro -j$(nproc)",
+        "cmake -S libretro/armgba -B build-armgba-armhf -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_FLAGS=\"-mcpu=cortex-a7 -mfpu=neon-vfpv4 -mfloat-abi=hard\" -DCMAKE_CXX_FLAGS=\"-mcpu=cortex-a7 -mfpu=neon-vfpv4 -mfloat-abi=hard\"",
+        "cmake --build build-armgba-armhf --target pokedaisy_gba_libretro -j$(nproc)",
+        "git -C third_party/zlib checkout -- .",
+        "apt-get update",
+        "apt-get install -y --no-install-recommends python3",
+        "cmake -S linux/libretro-ds -B build-ds-armhf -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF -DCMAKE_C_FLAGS=\"-mcpu=cortex-a7 -mfpu=neon-vfpv4 -mfloat-abi=hard\" -DCMAKE_CXX_FLAGS=\"-mcpu=cortex-a7 -mfpu=neon-vfpv4 -mfloat-abi=hard\"",
+        "cmake --build build-ds-armhf --target pokedaisy_ds_libretro -j$(nproc)"
+      ],
+      "output": {
+        "files": [
+          {
+            "from": "/pokedaisy/build-armhf/pokedaisy_gbc_libretro.so",
+            "to": "cores/pokedaisy_gbc_libretro.so"
+          },
+          {
+            "from": "/pokedaisy/build-armgba-armhf/pokedaisy_gba_libretro.so",
+            "to": "cores/pokedaisy_gba_libretro.so"
+          },
+          {
+            "from": "/pokedaisy/build-ds-armhf/pokedaisy_ds_libretro.so",
+            "to": "cores/pokedaisy_ds_libretro.so"
+          }
+        ],
+        "spruce": {
+          "cores/pokedaisy_gbc_libretro.so": "RetroArch/.retroarch/cores/pokedaisy_gbc_libretro.so",
+          "cores/pokedaisy_gba_libretro.so": "RetroArch/.retroarch/cores/pokedaisy_gba_libretro.so",
+          "cores/pokedaisy_ds_libretro.so": "RetroArch/.retroarch/cores/pokedaisy_ds_libretro.so"
+        }
+      },
+      "needed": {
+        "device": [
+          "ld-linux-armhf.so.3",
+          "libc.so.6",
+          "libdl.so.2",
+          "libm.so.6",
+          "libpthread.so.0"
+        ],
+        "forbidden": []
+      },
+      "shipped": {
+        "spruceos": "7592638d0",
+        "unverified": true,
+        "files": {
+          "cores/pokedaisy_ds_libretro.so": "4eaa6d2b65cd4b4de4a22a5817bc03918fdad27889016b6450e46f3d58cb5d78",
+          "cores/pokedaisy_gbc_libretro.so": "3428aa7c99495aa9fff0880223a605960a6c7104ea069b6d1c331b2474c8c122"
+        }
+      }
+    },
+    "pokedaisy-arm64-20261113": {
+      "description": "PokeDaisy's pokedaisy_gba libretro core (RetroArch/.retroarch/cores64/) for every 64-bit device, as Cores-spruce's build-pokedaisy.yml run 43467900814 (2026-11-13 16:57Z), which spruceOS e138c9482 imported built them: thwonp/pokedaisy-lr main at 7af02b6, armGBA moved to 4bd15f1 by `submodule update --remote`, in Cores-spruce's own arm64 image. It builds all three cores in that workflow's order; spruce ships pokedaisy_gba from this run.",
+      "source": {
+        "url": "https://github.com/thwonp/pokedaisy-lr.git",
+        "commit": "7af02b60e038b464ce28d4e89ebc85c517b5fad9",
+        "tree": "f6ba8d89721d395f1eee7d916bf2a29929b9f6ed",
+        "requested_ref": "refs/heads/main (2026-11-11 21:49Z to 2026-11-14 07:18Z)",
+        "path": "/pokedaisy"
+      },
+      "toolchain": "cores-spruce-arm64",
+      "source_date_epoch": 1794433783,
+      "env": {
+        "CMAKE_TOOLCHAIN_FILE": "/opt/toolchain.cmake",
+        "ARMGBA": "4bd15f1c231c397dbf9e0859e5b7abb57593d546"
+      },
+      "steps": [
+        "git submodule update --init third_party/mgba third_party/armgba third_party/zlib",
+        "git -C third_party/armgba fetch -q origin \"$ARMGBA\"",
+        "git -C third_party/armgba checkout -q --detach \"$ARMGBA\"",
+        "git submodule update --init --recursive third_party/dsperate-lr",
+        "cmake -S libretro -B build-arm64 -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE=/pokedaisy/libretro/aarch64.cmake",
+        "cmake --build build-arm64 --target pokedaisy_gbc_libretro -j$(nproc)",
+        "cmake -S libretro/armgba -B build-armgba-arm64 -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE=/pokedaisy/libretro/aarch64.cmake",
+        "cmake --build build-armgba-arm64 --target pokedaisy_gba_libretro -j$(nproc)",
+        "git -C third_party/zlib checkout -- .",
+        "apt-get update",
+        "apt-get install -y --no-install-recommends python3",
+        "cmake -S linux/libretro-ds -B build-ds-arm64 -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF -DCMAKE_TOOLCHAIN_FILE=/pokedaisy/libretro/aarch64.cmake",
+        "cmake --build build-ds-arm64 --target pokedaisy_ds_libretro -j$(nproc)"
+      ],
+      "output": {
+        "files": [
+          {
+            "from": "/pokedaisy/build-arm64/pokedaisy_gbc_libretro.so",
+            "to": "cores64/pokedaisy_gbc_libretro.so"
+          },
+          {
+            "from": "/pokedaisy/build-armgba-arm64/pokedaisy_gba_libretro.so",
+            "to": "cores64/pokedaisy_gba_libretro.so"
+          },
+          {
+            "from": "/pokedaisy/build-ds-arm64/pokedaisy_ds_libretro.so",
+            "to": "cores64/pokedaisy_ds_libretro.so"
+          }
+        ],
+        "spruce": {
+          "cores64/pokedaisy_gbc_libretro.so": "RetroArch/.retroarch/cores64/pokedaisy_gbc_libretro.so",
+          "cores64/pokedaisy_gba_libretro.so": "RetroArch/.retroarch/cores64/pokedaisy_gba_libretro.so",
+          "cores64/pokedaisy_ds_libretro.so": "RetroArch/.retroarch/cores64/pokedaisy_ds_libretro.so"
+        }
+      },
+      "needed": {
+        "device": [
+          "ld-linux-aarch64.so.1",
+          "libc.so.6",
+          "libdl.so.2",
+          "libm.so.6",
+          "libpthread.so.0"
+        ],
+        "forbidden": []
+      },
+      "shipped": {
+        "spruceos": "7592638d0",
+        "unverified": true,
+        "files": {
+          "cores64/pokedaisy_gba_libretro.so": "21035f4d954670f8a6f9c85dc80ee288d44aeb2f3ddffbf3fa34da2d8429e4f6"
+        }
+      }
+    },
+    "pokedaisy-armhf-20261113": {
+      "description": "PokeDaisy's pokedaisy_gba libretro core (RetroArch/.retroarch/cores/) for the 32-bit devices, as Cores-spruce's build-pokedaisy.yml run 43467900814 (2026-11-13 16:57Z), which spruceOS e138c9482 imported built them: thwonp/pokedaisy-lr main at 7af02b6, armGBA moved to 4bd15f1 by `submodule update --remote`, in Cores-spruce's own armhf image. It builds all three cores in that workflow's order; spruce ships pokedaisy_gba from this run.",
+      "source": {
+        "url": "https://github.com/thwonp/pokedaisy-lr.git",
+        "commit": "7af02b60e038b464ce28d4e89ebc85c517b5fad9",
+        "tree": "f6ba8d89721d395f1eee7d916bf2a29929b9f6ed",
+        "requested_ref": "refs/heads/main (2026-11-11 21:49Z to 2026-11-14 07:18Z)",
+        "path": "/pokedaisy"
+      },
+      "toolchain": "cores-spruce-armhf",
+      "source_date_epoch": 1794433783,
+      "env": {
+        "CMAKE_TOOLCHAIN_FILE": "/opt/toolchain.cmake",
+        "ARMGBA": "4bd15f1c231c397dbf9e0859e5b7abb57593d546"
+      },
+      "steps": [
+        "git submodule update --init third_party/mgba third_party/armgba third_party/zlib",
+        "git -C third_party/armgba fetch -q origin \"$ARMGBA\"",
+        "git -C third_party/armgba checkout -q --detach \"$ARMGBA\"",
+        "git submodule update --init --recursive third_party/dsperate-lr",
+        "cmake -S libretro -B build-armhf -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_FLAGS=\"-mcpu=cortex-a7 -mfpu=neon-vfpv4 -mfloat-abi=hard\" -DCMAKE_CXX_FLAGS=\"-mcpu=cortex-a7 -mfpu=neon-vfpv4 -mfloat-abi=hard\"",
+        "cmake --build build-armhf --target pokedaisy_gbc_libretro -j$(nproc)",
+        "cmake -S libretro/armgba -B build-armgba-armhf -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_FLAGS=\"-mcpu=cortex-a7 -mfpu=neon-vfpv4 -mfloat-abi=hard\" -DCMAKE_CXX_FLAGS=\"-mcpu=cortex-a7 -mfpu=neon-vfpv4 -mfloat-abi=hard\"",
+        "cmake --build build-armgba-armhf --target pokedaisy_gba_libretro -j$(nproc)",
+        "git -C third_party/zlib checkout -- .",
+        "apt-get update",
+        "apt-get install -y --no-install-recommends python3",
+        "cmake -S linux/libretro-ds -B build-ds-armhf -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF -DCMAKE_C_FLAGS=\"-mcpu=cortex-a7 -mfpu=neon-vfpv4 -mfloat-abi=hard\" -DCMAKE_CXX_FLAGS=\"-mcpu=cortex-a7 -mfpu=neon-vfpv4 -mfloat-abi=hard\"",
+        "cmake --build build-ds-armhf --target pokedaisy_ds_libretro -j$(nproc)"
+      ],
+      "output": {
+        "files": [
+          {
+            "from": "/pokedaisy/build-armhf/pokedaisy_gbc_libretro.so",
+            "to": "cores/pokedaisy_gbc_libretro.so"
+          },
+          {
+            "from": "/pokedaisy/build-armgba-armhf/pokedaisy_gba_libretro.so",
+            "to": "cores/pokedaisy_gba_libretro.so"
+          },
+          {
+            "from": "/pokedaisy/build-ds-armhf/pokedaisy_ds_libretro.so",
+            "to": "cores/pokedaisy_ds_libretro.so"
+          }
+        ],
+        "spruce": {
+          "cores/pokedaisy_gbc_libretro.so": "RetroArch/.retroarch/cores/pokedaisy_gbc_libretro.so",
+          "cores/pokedaisy_gba_libretro.so": "RetroArch/.retroarch/cores/pokedaisy_gba_libretro.so",
+          "cores/pokedaisy_ds_libretro.so": "RetroArch/.retroarch/cores/pokedaisy_ds_libretro.so"
+        }
+      },
+      "needed": {
+        "device": [
+          "ld-linux-armhf.so.3",
+          "libc.so.6",
+          "libdl.so.2",
+          "libm.so.6",
+          "libpthread.so.0"
+        ],
+        "forbidden": []
+      },
+      "shipped": {
+        "spruceos": "7592638d0",
+        "unverified": true,
+        "files": {
+          "cores/pokedaisy_gba_libretro.so": "50d09ade9f48024ea0fa137190a6ffc86297c4347d3f9f9a16b19810ba732b9f"
+        }
+      }
     }
   }
 }
