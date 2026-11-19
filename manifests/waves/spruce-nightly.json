@@ -1224,7 +1224,9 @@
         "freej2me_plus"
       ],
       "status": "not shipped",
-      "recipes": [],
+      "recipes": [
+        "freej2me_plus"
+      ],
       "families": [
         "MIYOO_A30",
         "MIYOO_MINI_FAMILY"
@@ -3210,7 +3212,9 @@
         "freej2me_plus"
       ],
       "status": "not shipped",
-      "recipes": [],
+      "recipes": [
+        "freej2me_plus"
+      ],
       "families": [
         "ANBERNIC_RGXX",
         "DARKMOSS",

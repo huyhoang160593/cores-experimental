@@ -1029,6 +1029,28 @@
         "source_path": "/libretro-super/dist/info/freeintv_libretro.info"
       }
     },
+    "freej2me_plus": {
+      "source": {
+        "url": "https://github.com/TASEmulators/freej2me-plus.git",
+        "commit": "52b25f75824d247c23e352625be45157bfe87620",
+        "requested_ref": "refs/tags/1.53"
+      },
+      "targets": [
+        "arm64",
+        "armhf"
+      ],
+      "build": {
+        "artifact_name": "freej2me_plus_libretro.so",
+        "driver": "direct-make",
+        "make_subdir": "src/libretro",
+        "output_path": "src/libretro/freej2me_plus_libretro.so",
+        "source_dir": "freej2me_plus"
+      },
+      "metadata": {
+        "artifact_name": "freej2me_plus_libretro.info",
+        "source_path": "/tmp/core-source/src/libretro/freej2me_plus_libretro.info"
+      }
+    },
     "frodo": {
       "source": {
         "url": "https://github.com/libretro/frodo-libretro.git",
