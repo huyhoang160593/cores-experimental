@@ -72,16 +72,15 @@
       "pin": "a06ea8c3c91606935f12457cec9a00549afa8983",
       "pin_date": "2026-11-17T05:29:48Z",
       "newest_tag": {
-        "tag": "v1.8",
-        "commit": "a06ea8c3c91606935f12457cec9a00549afa8983",
-        "date": "2026-11-17T05:29:48Z"
+        "tag": "v1.8.1",
+        "commit": "df6b2631291f249d54a00dd14f49bc893e438feb",
+        "date": "2026-11-19T19:10:52Z"
       },
       "edge": {
-        "kind": "tip",
-        "ref": "refs/heads/main",
-        "commit": "a06ea8c3c91606935f12457cec9a00549afa8983",
-        "date": "2026-11-17T05:29:48Z",
-        "why": "newest tag is not newer than the pin"
+        "kind": "tag",
+        "tag": "v1.8.1",
+        "commit": "df6b2631291f249d54a00dd14f49bc893e438feb",
+        "date": "2026-11-19T19:10:52Z"
       }
     },
     "armn64": {
@@ -132,6 +131,18 @@
         "commit": "13f04b0bc161af89834b7da858dcd9c22c101c7a",
         "date": "2026-11-17T06:52:15Z",
         "why": "newest tag is not newer than the pin"
+      }
+    },
+    "armsnes": {
+      "url": "https://github.com/MagnominusGit/armSNES.git",
+      "pin": "0ae21af7e02755c70a466d0c40217b6114ee74a7",
+      "pin_date": "2026-11-19T19:19:06Z",
+      "edge": {
+        "kind": "tip",
+        "ref": "refs/heads/main",
+        "commit": "64973cf7c4df29d8a650dd9eb6e7ad048d00fe1e",
+        "date": "2026-11-19T20:37:35Z",
+        "why": "no release tag"
       }
     },
     "atari800": {
@@ -448,6 +459,23 @@
         "why": "no release tag"
       }
     },
+    "freej2me_plus": {
+      "url": "https://github.com/TASEmulators/freej2me-plus.git",
+      "pin": "52b25f75824d247c23e352625be45157bfe87620",
+      "pin_date": "2026-11-15T17:16:57Z",
+      "newest_tag": {
+        "tag": "1.53",
+        "commit": "52b25f75824d247c23e352625be45157bfe87620",
+        "date": "2026-11-15T17:16:57Z"
+      },
+      "edge": {
+        "kind": "tip",
+        "ref": "HEAD",
+        "commit": "2ad0901c0a4e22a0fb42e5a145a8c422ba6c9fd5",
+        "date": "2026-11-19T20:45:24Z",
+        "why": "newest tag is not newer than the pin"
+      }
+    },
     "frodo": {
       "url": "https://github.com/libretro/frodo-libretro.git",
       "pin": "29dd1864b89d903ed93f1d86d85636ef9e194359",
@@ -686,6 +714,18 @@
         "why": "no release tag"
       }
     },
+    "km_mame2003_xtreme": {
+      "url": "https://github.com/KMFDManic/mame2003-xtreme.git",
+      "pin": "9c034c4b704baca5d4c41c4a74147ff60d6314ce",
+      "pin_date": "2026-10-22T20:41:21Z",
+      "edge": {
+        "kind": "tip",
+        "ref": "refs/heads/master",
+        "commit": "9c034c4b704baca5d4c41c4a74147ff60d6314ce",
+        "date": "2026-10-22T20:41:21Z",
+        "why": "no release tag"
+      }
+    },
     "km_parallel_n64_xtreme_amped_turbo": {
       "url": "https://github.com/KMFDManic/parallel-n64.git",
       "pin": "be8d13e6fddec4eaf705cb04e755e0cf3687d842",
@@ -695,6 +735,18 @@
         "ref": "refs/heads/master",
         "commit": "be8d13e6fddec4eaf705cb04e755e0cf3687d842",
         "date": "2022-12-19T20:42:54Z",
+        "why": "no release tag"
+      }
+    },
+    "km_puae_xtreme_amped": {
+      "url": "https://github.com/KMFDManic/libretro-uae.git",
+      "pin": "a1c867f9a5145910cd8116e363d19265884dfe9c",
+      "pin_date": "2025-12-14T12:16:57Z",
+      "edge": {
+        "kind": "tip",
+        "ref": "refs/heads/master",
+        "commit": "a1c867f9a5145910cd8116e363d19265884dfe9c",
+        "date": "2025-12-14T12:16:57Z",
         "why": "no release tag"
       }
     },
@@ -1081,6 +1133,18 @@
         "why": "no release tag"
       }
     },
+    "puae": {
+      "url": "https://github.com/libretro/libretro-uae.git",
+      "pin": "d366f77c60e5a5f059f129cc3773d3048306083b",
+      "pin_date": "2026-11-08T22:46:08Z",
+      "edge": {
+        "kind": "tip",
+        "ref": "refs/heads/master",
+        "commit": "d366f77c60e5a5f059f129cc3773d3048306083b",
+        "date": "2026-11-08T22:46:08Z",
+        "why": "no release tag"
+      }
+    },
     "puae2021": {
       "url": "https://github.com/libretro/libretro-uae.git",
       "pin": "0fece7d9514e2224530cd252489c8928d49eebca",
@@ -1419,8 +1483,8 @@
       "edge": {
         "kind": "tip",
         "ref": "refs/heads/main",
-        "commit": "1caf09e36ad4f3856ebe3deeccef6f2adff913e4",
-        "date": "2026-11-13T20:46:06Z",
+        "commit": "69bd00313fc0c7957502bad007bfed8022e2f6f2",
+        "date": "2026-11-19T19:15:54Z",
         "why": "newest tag is not newer than the pin"
       }
     },
@@ -1436,8 +1500,8 @@
       "edge": {
         "kind": "tip",
         "ref": "refs/heads/main",
-        "commit": "1caf09e36ad4f3856ebe3deeccef6f2adff913e4",
-        "date": "2026-11-13T20:46:06Z",
+        "commit": "69bd00313fc0c7957502bad007bfed8022e2f6f2",
+        "date": "2026-11-19T19:15:54Z",
         "why": "newest tag is not newer than the pin"
       }
     },
@@ -1479,6 +1543,38 @@
         "tag": "v2.7.1",
         "commit": "775444287305849ebdf4736c75298ad0713e2d5d",
         "date": "2025-11-30T22:38:13Z"
+      }
+    },
+    "standalone:mpv-arm64": {
+      "url": "https://github.com/mpv-player/mpv.git",
+      "pin": "02254b92dd237f03aa0a151c2a68778c4ea848f9",
+      "pin_date": "2024-04-17T19:18:44Z",
+      "newest_tag": {
+        "tag": "v0.42.0",
+        "commit": "b0841e8c4d156b8403dc1876c4cbd9011eb583f3",
+        "date": "2026-11-04T23:33:41Z"
+      },
+      "edge": {
+        "kind": "tag",
+        "tag": "v0.42.0",
+        "commit": "b0841e8c4d156b8403dc1876c4cbd9011eb583f3",
+        "date": "2026-11-04T23:33:41Z"
+      }
+    },
+    "standalone:mpv-armhf": {
+      "url": "https://github.com/mpv-player/mpv.git",
+      "pin": "02254b92dd237f03aa0a151c2a68778c4ea848f9",
+      "pin_date": "2024-04-17T19:18:44Z",
+      "newest_tag": {
+        "tag": "v0.42.0",
+        "commit": "b0841e8c4d156b8403dc1876c4cbd9011eb583f3",
+        "date": "2026-11-04T23:33:41Z"
+      },
+      "edge": {
+        "kind": "tag",
+        "tag": "v0.42.0",
+        "commit": "b0841e8c4d156b8403dc1876c4cbd9011eb583f3",
+        "date": "2026-11-04T23:33:41Z"
       }
     },
     "standalone:mupen64plus-a30": {
@@ -2157,18 +2253,19 @@
     },
     "superwhizkid": {
       "url": "https://github.com/ryanmsartor/superwhizkid.git",
-      "pin": "d210018543262c3f6c8b70651c29a24e0eb129fd",
-      "pin_date": "2026-11-18T14:55:02Z",
+      "pin": "38f692fa8cecb89c5a95741ddc891585b5af7042",
+      "pin_date": "2026-11-18T21:46:37Z",
       "newest_tag": {
         "tag": "v0.3.0",
         "commit": "38f692fa8cecb89c5a95741ddc891585b5af7042",
         "date": "2026-11-18T21:46:37Z"
       },
       "edge": {
-        "kind": "tag",
-        "tag": "v0.3.0",
-        "commit": "38f692fa8cecb89c5a95741ddc891585b5af7042",
-        "date": "2026-11-18T21:46:37Z"
+        "kind": "tip",
+        "ref": "HEAD",
+        "commit": "f3f851b26bda19f28c2364fe7776319dc9075a57",
+        "date": "2026-11-19T21:47:15Z",
+        "why": "newest tag is not newer than the pin"
       }
     },
     "swanstation": {
@@ -2334,16 +2431,15 @@
       "pin": "767e1d347ef8b476a9be38497180736c7997d044",
       "pin_date": "2026-11-17T07:33:05Z",
       "newest_tag": {
-        "tag": "v3.13.0",
-        "commit": "767e1d347ef8b476a9be38497180736c7997d044",
-        "date": "2026-11-17T07:33:05Z"
+        "tag": "v3.13.1",
+        "commit": "4e27ea44da58978d7f02a68a4d6bf36553cc25a2",
+        "date": "2026-11-19T19:00:47Z"
       },
       "edge": {
-        "kind": "tip",
-        "ref": "refs/heads/master",
-        "commit": "767e1d347ef8b476a9be38497180736c7997d044",
-        "date": "2026-11-17T07:33:05Z",
-        "why": "newest tag is not newer than the pin"
+        "kind": "tag",
+        "tag": "v3.13.1",
+        "commit": "4e27ea44da58978d7f02a68a4d6bf36553cc25a2",
+        "date": "2026-11-19T19:00:47Z"
       }
     },
     "x1": {
