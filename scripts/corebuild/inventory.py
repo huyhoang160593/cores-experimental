@@ -123,9 +123,11 @@ def resolve(name: str, inventory: dict, names: dict) -> dict:
 
 
 def _matched(spec: dict) -> dict:
-    """The shipped files a build has matched: none while the record is marked unverified."""
+    """The shipped files a build has matched: none while the record is unverified, and none it knows differ."""
     shipped = spec.get("shipped", {})
-    return {} if shipped.get("unverified") else shipped.get("files", {})
+    if shipped.get("unverified"):
+        return {}
+    return {path: digest for path, digest in shipped.get("files", {}).items() if path not in shipped.get("differs", {})}
 
 
 def recipes_by_path(catalog: dict, standalones: dict) -> dict:

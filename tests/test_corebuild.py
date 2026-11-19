@@ -391,6 +391,8 @@ class StandaloneTest(unittest.TestCase):
         spec = {"shipped": {"files": {"emu": "1" * 64, "lib/x.so": "2" * 64, "gone": "3" * 64}}}
         files = {"emu": {"sha256": "1" * 64}, "lib/x.so": {"sha256": "9" * 64}}
         self.assertEqual(standalone.compare_shipped(spec, files), {"emu": "match", "lib/x.so": "differs", "gone": "missing"})
+        spec["shipped"]["differs"] = {"lib/x.so": "a build date in the image"}
+        self.assertEqual(standalone.compare_shipped(spec, files)["lib/x.so"], "differs, as known")
 
 
 # A docker stand-in: the classic store names an image by its config digest, the containerd store by another digest.
@@ -543,6 +545,10 @@ class InventoryTest(unittest.TestCase):
         rows = {(r["name"], r["path"]): r for r in inventory.coverage(inv, names, catalog, standalones)}
         self.assertEqual(rows[("d-standalone", "Emu/S/d")]["status"], "recipe")
         self.assertEqual(rows[("c-standalone", "Emu/S/c")]["status"], "no recipe")
+        # A file the record knows the build does not reproduce counts as a recipe, never as reproduced.
+        standalones["d-new"]["shipped"] = {"differs": {"d": "a build date in the image"}, "files": {"d": sha["d"]}}
+        rows = {(r["name"], r["path"]): r for r in inventory.coverage(inv, names, catalog, standalones)}
+        self.assertEqual(rows[("d-standalone", "Emu/S/d")]["status"], "recipe")
         self.assertEqual(rows[("mystery", "")]["status"], "unresolved")
         self.assertEqual(rows[("Flycast-libretro", "")]["status"], "not shipped")
         self.assertEqual(rows[("closed", "")]["status"], "closed source")

@@ -39,7 +39,7 @@ script, `build.log`, `elf.tsv` (every shipped ELF's SONAME and NEEDED entries) a
 | `output.files` | what ships: `from` (a path in the container), `to` (under `dist/`), `strip` (`-s` or `--strip-unneeded`), `mode`, or `dir: true` to copy a directory |
 | `output.spruce` | where `dist/` paths go on the card: a key ending in `/` maps a folder, and a file's own key wins over its folder's |
 | `needed` | `device`: libraries the target devices provide; `forbidden`: libraries no shipped ELF may need (some devices lack them, or they must be opened at run time) |
-| `shipped` | the spruceOS commit and the sha256 of each file spruce ships, to compare a build with (`match`, `differs` or `missing` in `record.json`). `unverified: true` until a build has matched them: coverage then counts the files as `recipe`, not `reproduces` |
+| `shipped` | the spruceOS commit and the sha256 of each file spruce ships, to compare a build with (`match`, `differs` or `missing` in `record.json`). `unverified: true` until a build has matched them: coverage then counts the files as `recipe`, not `reproduces`. `differs` names files spruce ships that the build is known not to reproduce, with the reason: compared as `differs, as known`, never counted as reproduced |
 
 Python patch scripts from the spruceUI wrapper repositories are kept as diffs,
 generated once against the pinned source: a script that no longer matches does

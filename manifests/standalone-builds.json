@@ -110,12 +110,14 @@
       },
       "shipped": {
         "spruceos": "73bb91a19",
-        "note": "libcrypto.so.1.1 differs only in OpenSSL's embedded build date: the image did not pin it",
         "files": {
           "flycast": "d96cfdd5e684aac200ba7cf1a54523183aa45a9e06c8fac302d026747d4f7387",
           "lib64/libcurl.so.4": "07a17f0f376dc5767ec9a08088f74eea7020101c2863cf695584e3174b6a284f",
           "lib64/libssl.so.1.1": "29df77584de812438fd363ede4f07f767effeb8cc29e74b68f52286bd5bf66ad",
           "lib64/libcrypto.so.1.1": "729642980ae72bee91d7a9ce76577b366b5eab422d4d8acc82069db1c03f8afe"
+        },
+        "differs": {
+          "lib64/libcrypto.so.1.1": "OpenSSL's embedded build date and the build ID derived from it: the image builds OpenSSL when it is built, and spruce's copy comes from an earlier build of the same image recipe"
         }
       }
     },
@@ -210,12 +212,15 @@
       },
       "shipped": {
         "spruceos": "e6bcaae8c",
-        "note": "spruceOS Development (merged in #1875); built first as t3-lto in the research record 20261014-0002-flycast-sa-fanout. libcrypto.so.1.1 differs only in OpenSSL's embedded build date, as for flycast-standalone",
+        "note": "spruceOS Development (merged in #1875); built first as t3-lto in the research record 20261014-0002-flycast-sa-fanout.",
         "files": {
           "flycast": "3fc30ddfe89f6655c356c32eecb081c34be15f2e63932126acd283c9283ec0d4",
           "lib64/libcurl.so.4": "07a17f0f376dc5767ec9a08088f74eea7020101c2863cf695584e3174b6a284f",
           "lib64/libssl.so.1.1": "29df77584de812438fd363ede4f07f767effeb8cc29e74b68f52286bd5bf66ad",
           "lib64/libcrypto.so.1.1": "729642980ae72bee91d7a9ce76577b366b5eab422d4d8acc82069db1c03f8afe"
+        },
+        "differs": {
+          "lib64/libcrypto.so.1.1": "OpenSSL's embedded build date and the build ID derived from it: the image builds OpenSSL when it is built, and spruce's copy comes from an earlier build of the same image recipe"
         }
       }
     },
