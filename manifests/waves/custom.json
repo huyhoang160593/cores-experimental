@@ -39,6 +39,14 @@
       "url": "https://github.com/libretro/Genesis-Plus-GX-Wide.git",
       "commit": "29d9d104338f46bc2e65438fb207bcf54f701e92"
     },
+    "km_mame2003_xtreme": {
+      "url": "https://github.com/KMFDManic/mame2003-xtreme.git",
+      "commit": "9c034c4b704baca5d4c41c4a74147ff60d6314ce"
+    },
+    "km_puae_xtreme_amped": {
+      "url": "https://github.com/KMFDManic/libretro-uae.git",
+      "commit": "a1c867f9a5145910cd8116e363d19265884dfe9c"
+    },
     "libgametank": {
       "url": "https://github.com/dwbrite/gametank-sdk.git",
       "commit": "f3f5a3b3e67e96a115cc87ddfd3e5921ac59b197"
@@ -66,6 +74,10 @@
     "opera": {
       "url": "https://github.com/libretro/opera-libretro.git",
       "commit": "5a4eb964e687ad029f3df51cf535a6e63b414181"
+    },
+    "puae": {
+      "url": "https://github.com/libretro/libretro-uae.git",
+      "commit": "d366f77c60e5a5f059f129cc3773d3048306083b"
     },
     "puzzlescript": {
       "url": "https://github.com/nwhitehead/pzretro.git",
@@ -102,6 +114,14 @@
     "standalone:moonlight": {
       "url": "https://github.com/moonlight-stream/moonlight-embedded.git",
       "commit": "274d3db34da764344a7a402ee74e6080350ac0cd"
+    },
+    "standalone:mpv-arm64": {
+      "url": "https://github.com/mpv-player/mpv.git",
+      "commit": "02254b92dd237f03aa0a151c2a68778c4ea848f9"
+    },
+    "standalone:mpv-armhf": {
+      "url": "https://github.com/mpv-player/mpv.git",
+      "commit": "02254b92dd237f03aa0a151c2a68778c4ea848f9"
     },
     "standalone:mupen64plus-arm64": {
       "url": "https://github.com/mupen64plus/mupen64plus-core.git",
