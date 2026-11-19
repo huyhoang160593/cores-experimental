@@ -4073,7 +4073,6 @@
         ]
       },
       "shipped": {
-        "unverified": true,
         "spruceos": "7592638d0",
         "note": "first shipped in spruceOS b6c964642 (2026-11-10); built 2026-10-29T08:51:26Z (its BUILD_DATE)",
         "files": {
