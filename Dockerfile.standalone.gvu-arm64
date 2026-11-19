@@ -1,0 +1,24 @@
+# cores-standalone-gvu-arm64 v2: the GHCR image ghcr.io/sundownersport/gvu-builder-brick that built the gvu spruce
+# ships (Sundownersport/GVU@da3e0337 cross-compile/*/Dockerfile.gvu, created 2026-04-11): its dated bullseye base and
+# its unpinned apt install, replayed against snapshot.debian.org at that hour; the compiler is pinned as it resolved.
+FROM debian:bullseye-20260406@sha256:bf53effcacca31b60ce97dabc67578f37e43075d716dc90804d3da3a80d2996c
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN printf '%s\n' \
+    'deb [check-valid-until=no] http://snapshot.debian.org/archive/debian/20260411T190000Z bullseye main' \
+    'deb [check-valid-until=no] http://snapshot.debian.org/archive/debian/20260411T190000Z bullseye-updates main' \
+    'deb [check-valid-until=no] http://snapshot.debian.org/archive/debian-security/20260411T190000Z bullseye-security main' \
+    > /etc/apt/sources.list
+
+RUN dpkg --add-architecture arm64 && \
+    apt-get -o Acquire::Retries=5 update && apt-get install -y \
+    make cmake git wget ca-certificates xz-utils python3 zip \
+    gcc-aarch64-linux-gnu=4:10.2.1-1 gcc-10-aarch64-linux-gnu=10.2.1-6cross1 \
+    g++-aarch64-linux-gnu=4:10.2.1-1 binutils-aarch64-linux-gnu=2.35.2-2 \
+    pkg-config \
+    zlib1g-dev:arm64 \
+    libasound2-dev:arm64 \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN dpkg -l > /apt-manifest.txt

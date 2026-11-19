@@ -244,6 +244,28 @@
         "size": 206268696
       },
       "dockerfile": "Dockerfile.standalone.xroar"
+    },
+    "standalone-gvu-arm64": {
+      "image": "cores-standalone-gvu-arm64:v2",
+      "image_id": "sha256:bcd3aae33cd2a8cb88053f153e1f34aa25b4c011c5c4df49bfcdc57fbbfca762",
+      "host_cc": "aarch64-linux-gnu",
+      "archive": {
+        "name": "cores-standalone-gvu-arm64-v2.tar.gz",
+        "sha256": "b705634f9b1169c57deecb9bbc0c9b07baa4df4941d9d91d0896788a5fa4c556",
+        "size": 462645913
+      },
+      "dockerfile": "Dockerfile.standalone.gvu-arm64"
+    },
+    "standalone-gvu-a30": {
+      "image": "cores-standalone-gvu-a30:v2",
+      "image_id": "sha256:c7cba54664d2518bffddd4c09cb3f8daec177cf34f7c3b8e4a90cc4730b1de5a",
+      "host_cc": "arm-linux-gnueabihf",
+      "archive": {
+        "name": "cores-standalone-gvu-a30-v2.tar.gz",
+        "sha256": "18a547876cbdc0b70106539d1338bbe5c0b9f90eca2281b3af3efc79b417884b",
+        "size": 443123820
+      },
+      "dockerfile": "Dockerfile.standalone.gvu-a30"
     }
   }
 }

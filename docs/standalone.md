@@ -72,6 +72,7 @@ from pinned parts (`Dockerfile.standalone.<name>`, loaded by `manifests/toolchai
 | `standalone-miyoomini` | `vtree-mini` | `aemiii91/miyoomini-toolchain`, by the digest its `latest` tag has had since 2026-01-20 |
 | `standalone-azahar` | `azahar-libretro` | ArkOS's Debian trixie build chroot as an amd64 cross toolchain: the dated image and snapshot.debian.org of 2026-10-27, clang 19, and trixie's arm64 glibc, libstdc++ and binutils |
 | `standalone-xroar` | `xroar` | native arm64 Debian buster, run under qemu: the dated `buster-20240612` image and `snapshot.debian.org` of that day, with buster's own gcc-8 8.3.0-6, which the binary's banner names |
+| `standalone-gvu-arm64`, `-a30` | `gvu-arm64`, `gvu-a30` | Sundownersport/GVU's GHCR builder images (`gvu-builder-brick`, `gvu-builder-a30`, created 2026-04-11), which its workflow says can no longer be rebuilt: their `debian:bullseye-20260406` base by digest and their apt install from `snapshot.debian.org` at 2026-04-11 19:00 UTC (GCC 10.2.1-6cross1, binutils 2.35.2) |
 
 A toolchain with a `platform` (`standalone-xroar`: `linux/arm64`) is an image for another architecture: Build a
 standalone registers qemu for it first, and the build runs it with `docker run --platform`.
@@ -141,6 +142,7 @@ Built against spruceOS `73bb91a19` (2026-10-11); "match" is byte for byte.
 | `openbor-trimui` | `Emu/OPENBOR/OpenBOR_TrimUI` of spruceOS `7592638d0` | built (run 44431097991), differs: the shipped binary's compiler is TrimUI's Linaro GCC 7.5, not GCC 9.4 |
 | `openbor-new` | `Emu/OPENBOR/OpenBOR_new` of spruceOS `7592638d0` | built (run 44431121128), differs: same compiler, libraries and banner, but the shipped `.text` is 115 KB larger and has no RPATH, so the vendor's flags differ |
 | `xroar` | `Emu/COCO/xroar` of spruceOS `7592638d0` | built (run 44434199145), differs: same modules, NEEDED list and section sizes, but Debian's SDL2 links libpulse (and so libsndfile), so ld exports xroar's own `sf_*` compat functions and the code shifts; the original machine's SDL2 did not |
+| `gvu-arm64`, `gvu-a30` | `Emu/MEDIA/bin64/gvu`, `bin32/gvu` of spruceOS `7592638d0` | match (runs 44440415230, 44440434774) |
 
 Some files next to these in spruceOS come from elsewhere and are not compared:
 ScummVM's `lib/` extras and seven of `libmini/`'s libraries, among others.

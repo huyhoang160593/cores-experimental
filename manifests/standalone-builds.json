@@ -4403,6 +4403,267 @@
           "xroar": "58b665c41da16841c0d7993f1e2a9d79ab4f2514ff9d1662a5da7e01ca190c1c"
         }
       }
+    },
+    "gvu-a30": {
+      "description": "GVU (SundownerSport's video player, a fork of amruthwo/GVU), branch universal: Emu/MEDIA/bin32/gvu on the Miyoo A30. Built as Sundownersport/GVU@da3e0337's cross-compile/miyoo-a30/Dockerfile.gvu and build_inside_docker.sh do: Debian bullseye's default GCC 10.2.1-6, FFmpeg 5.1.6, SDL2 2.26.5 (SDL2_image/SDL2_ttf/libpng/libjpeg-turbo/freetype static), OpenSSL 1.1.1w and curl 8.7.1 static (for fetch_subs, not shipped by spruce). GHCR's own builder image can no longer be rebuilt (bullseye-security's pool is gone); this rebuilds its Debian 11 (GCC 10.2.1-6) environment from snapshot.debian.org instead.; the dependencies build from /, as the builder's did (their debug info names that path)",
+      "source": {
+        "url": "https://github.com/Sundownersport/GVU.git",
+        "commit": "da3e0337ae65b6a12883f36fe7d222de0f4653a8",
+        "tree": "e2571481f81b0e94e1a9a987b65088950a25d1d5",
+        "requested_ref": "refs/heads/universal"
+      },
+      "downloads": [
+        {
+          "url": "https://libsdl.org/release/SDL2-2.26.5.tar.gz",
+          "sha256": "ad8fea3da1be64c83c45b1d363a6b4ba8fd60f5bde3b23ec73855709ec5eabf7",
+          "path": "/build/SDL2-2.26.5.tar.gz"
+        },
+        {
+          "url": "https://github.com/libjpeg-turbo/libjpeg-turbo/releases/download/2.1.5.1/libjpeg-turbo-2.1.5.1.tar.gz",
+          "sha256": "2fdc3feb6e9deb17adec9bafa3321419aa19f8f4e5dea7bf8486844ca22207bf",
+          "path": "/build/libjpeg-turbo-2.1.5.1.tar.gz"
+        },
+        {
+          "url": "https://download.sourceforge.net/libpng/libpng-1.6.39.tar.gz",
+          "sha256": "af4fb7f260f839919e5958e5ab01a275d4fe436d45442a36ee62f73e5beb75ba",
+          "path": "/build/libpng-1.6.39.tar.gz"
+        },
+        {
+          "url": "https://download.savannah.gnu.org/releases/freetype/freetype-2.13.0.tar.gz",
+          "sha256": "a7aca0e532a276ea8d85bd31149f0a74c33d19c8d287116ef8f5f8357b4f1f80",
+          "path": "/build/freetype-2.13.0.tar.gz"
+        },
+        {
+          "url": "https://libsdl.org/projects/SDL_image/release/SDL2_image-2.6.3.tar.gz",
+          "sha256": "931c9be5bf1d7c8fae9b7dc157828b7eee874e23c7f24b44ba7eff6b4836312c",
+          "path": "/build/SDL2_image-2.6.3.tar.gz"
+        },
+        {
+          "url": "https://libsdl.org/projects/SDL_ttf/release/SDL2_ttf-2.20.2.tar.gz",
+          "sha256": "9dc71ed93487521b107a2c4a9ca6bf43fb62f6bddd5c26b055e6b91418a22053",
+          "path": "/build/SDL2_ttf-2.20.2.tar.gz"
+        },
+        {
+          "url": "https://ffmpeg.org/releases/ffmpeg-5.1.6.tar.gz",
+          "sha256": "2a963f9f627dc55cac7ce4d2bb2e063ce52c8ab57185d2b592a631c36be56fda",
+          "path": "/build/ffmpeg-5.1.6.tar.gz"
+        },
+        {
+          "url": "https://github.com/openssl/openssl/releases/download/OpenSSL_1_1_1w/openssl-1.1.1w.tar.gz",
+          "sha256": "cf3098950cb4d853ad95c0841f1f9c6d3dc102dccfcacd521d93925208b76ac8",
+          "path": "/build/openssl-1.1.1w.tar.gz"
+        },
+        {
+          "url": "https://curl.se/download/curl-8.7.1.tar.gz",
+          "sha256": "f91249c87f68ea00cf27c44fdfa5a78423e41e71b7d408e5901a9896d905c495",
+          "path": "/build/curl-8.7.1.tar.gz"
+        }
+      ],
+      "toolchain": "standalone-gvu-a30",
+      "source_date_epoch": 1793410942,
+      "env": {
+        "PREFIX": "/opt/a30",
+        "PKG_CONFIG_PATH": "/opt/a30/lib/pkgconfig",
+        "PKG_CONFIG_LIBDIR": "/opt/a30/lib/pkgconfig"
+      },
+      "steps": [
+        "set +u +o pipefail",
+        "mkdir -p /opt/a30",
+        "tar xf /build/SDL2-2.26.5.tar.gz -C /",
+        "mkdir -p /SDL2-2.26.5/bld",
+        "cd /SDL2-2.26.5/bld && ../configure --host=$CROSS --build=x86_64-pc-linux-gnu --prefix=/opt/a30 --enable-static --enable-shared --disable-video-opengl --disable-video-opengles --disable-video-x11 --disable-video-wayland --disable-video-kmsdrm --disable-video-directfb --disable-pulseaudio --disable-nas --disable-esd --disable-jack --disable-pipewire --disable-dbus --enable-alsa --disable-hidapi --disable-ime CC=$CROSS-gcc CFLAGS=\"-march=armv7-a -mfpu=neon-vfpv3 -mfloat-abi=hard -O2\"",
+        "cd /SDL2-2.26.5/bld && make -j\"$(nproc)\" install",
+        "tar xf /build/libjpeg-turbo-2.1.5.1.tar.gz -C /",
+        "cmake -S /libjpeg-turbo-2.1.5.1 -B /ljt-bld -DCMAKE_C_COMPILER=$CROSS-gcc -DCMAKE_SYSTEM_NAME=Linux -DCMAKE_SYSTEM_PROCESSOR=arm -DCMAKE_C_FLAGS=\"-march=armv7-a -mfpu=neon-vfpv3 -mfloat-abi=hard -O2\" -DCMAKE_INSTALL_PREFIX=/opt/a30 -DENABLE_SHARED=OFF -DENABLE_STATIC=ON -DWITH_TURBOJPEG=OFF",
+        "cmake --build /ljt-bld -j\"$(nproc)\" && cmake --install /ljt-bld",
+        "tar xf /build/libpng-1.6.39.tar.gz -C /",
+        "mkdir -p /libpng-1.6.39/bld",
+        "cd /libpng-1.6.39/bld && ../configure --host=$CROSS --build=x86_64-pc-linux-gnu --prefix=/opt/a30 --enable-static --disable-shared CC=$CROSS-gcc CFLAGS=\"-march=armv7-a -mfpu=neon-vfpv3 -mfloat-abi=hard -O2\"",
+        "cd /libpng-1.6.39/bld && make -j\"$(nproc)\" install",
+        "tar xf /build/freetype-2.13.0.tar.gz -C /",
+        "mkdir -p /freetype-2.13.0/bld",
+        "cd /freetype-2.13.0/bld && ../configure --host=$CROSS --build=x86_64-pc-linux-gnu --prefix=/opt/a30 --enable-static --disable-shared --without-harfbuzz CC=$CROSS-gcc CFLAGS=\"-march=armv7-a -mfpu=neon-vfpv3 -mfloat-abi=hard -O2\"",
+        "cd /freetype-2.13.0/bld && make -j\"$(nproc)\" install",
+        "tar xf /build/SDL2_image-2.6.3.tar.gz -C /",
+        "mkdir -p /SDL2_image-2.6.3/bld",
+        "cd /SDL2_image-2.6.3/bld && ../configure --host=$CROSS --build=x86_64-pc-linux-gnu --prefix=/opt/a30 --enable-static --disable-shared --disable-jpg-shared --enable-jpg --disable-png-shared --enable-png --disable-webp --disable-avif --disable-jxl --disable-tif CC=$CROSS-gcc CFLAGS=\"-march=armv7-a -mfpu=neon-vfpv3 -mfloat-abi=hard -O2 -I/opt/a30/include\" LDFLAGS=\"-L/opt/a30/lib\" SDL2_CFLAGS=\"$(pkg-config --cflags sdl2)\" SDL2_LIBS=\"$(pkg-config --libs sdl2)\"",
+        "cd /SDL2_image-2.6.3/bld && make -j\"$(nproc)\" install",
+        "tar xf /build/SDL2_ttf-2.20.2.tar.gz -C /",
+        "mkdir -p /SDL2_ttf-2.20.2/bld",
+        "cd /SDL2_ttf-2.20.2/bld && ../configure --host=$CROSS --build=x86_64-pc-linux-gnu --prefix=/opt/a30 --enable-static --disable-shared CC=$CROSS-gcc CXX=$CROSS-g++ CFLAGS=\"-march=armv7-a -mfpu=neon-vfpv3 -mfloat-abi=hard -O2 -I/opt/a30/include\" CXXFLAGS=\"-march=armv7-a -mfpu=neon-vfpv3 -mfloat-abi=hard -O2 -I/opt/a30/include\" LDFLAGS=\"-L/opt/a30/lib\" SDL2_CFLAGS=\"$(pkg-config --cflags sdl2)\" SDL2_LIBS=\"$(pkg-config --libs sdl2)\" FT2_CFLAGS=\"$(pkg-config --cflags freetype2)\" FT2_LIBS=\"$(pkg-config --libs freetype2)\"",
+        "cd /SDL2_ttf-2.20.2/bld && make -j\"$(nproc)\" install",
+        "tar xf /build/ffmpeg-5.1.6.tar.gz -C /",
+        "cd /ffmpeg-5.1.6 && ./configure --arch=arm --target-os=linux --cross-prefix=$CROSS- --enable-cross-compile --cpu=cortex-a7 --enable-runtime-cpudetect --prefix=/opt/a30 --enable-static --disable-shared --disable-programs --disable-doc --disable-everything --enable-decoder=h264 --enable-decoder=hevc --enable-decoder=vp8 --enable-decoder=vp9 --enable-decoder=av1 --enable-decoder=mpeg4 --enable-decoder=mpeg2video --enable-decoder=mjpeg --enable-decoder=aac --enable-decoder=mp3float --enable-decoder=mp3 --enable-decoder=vorbis --enable-decoder=flac --enable-decoder=opus --enable-decoder=ac3 --enable-decoder=eac3 --enable-decoder=dca --enable-decoder=truehd --enable-decoder=pcm_s16le --enable-decoder=pcm_s24le --enable-decoder=pcm_f32le --enable-decoder=pcm_s16be --enable-decoder=subrip --enable-decoder=ass --enable-decoder=ssa --enable-decoder=webvtt --enable-demuxer=mov --enable-demuxer=matroska --enable-demuxer=mp4 --enable-demuxer=avi --enable-demuxer=flv --enable-demuxer=ogg --enable-demuxer=mp3 --enable-demuxer=wav --enable-demuxer=flac --enable-demuxer=aac --enable-demuxer=mpegts --enable-demuxer=mpegvideo --enable-demuxer=srt --enable-demuxer=webvtt --enable-demuxer=hls --enable-demuxer=pcm_s16le --enable-parser=h264 --enable-parser=hevc --enable-parser=vp8 --enable-parser=vp9 --enable-parser=av1 --enable-parser=mpeg4video --enable-parser=aac --enable-parser=mpegaudio --enable-parser=vorbis --enable-parser=flac --enable-parser=opus --enable-parser=ac3 --enable-protocol=file --enable-swscale --enable-swresample --enable-avformat --enable-avcodec --enable-avutil --extra-cflags=\"-march=armv7-a -mfpu=neon-vfpv3 -mfloat-abi=hard -O2\" --extra-ldflags=\"-march=armv7-a -mfpu=neon-vfpv3 -mfloat-abi=hard -O2\"",
+        "cd /ffmpeg-5.1.6 && make -j\"$(nproc)\" install",
+        "tar xf /build/openssl-1.1.1w.tar.gz -C /",
+        "cd /openssl-1.1.1w && ./Configure linux-armv4 --cross-compile-prefix=$CROSS- --prefix=/opt/a30 --openssldir=/opt/a30/ssl no-shared no-tests -march=armv7-a -mfpu=neon-vfpv3 -mfloat-abi=hard -O2",
+        "cd /openssl-1.1.1w && make -j\"$(nproc)\" && make install_sw",
+        "tar xf /build/curl-8.7.1.tar.gz -C /",
+        "mkdir -p /curl-8.7.1/bld",
+        "cd /curl-8.7.1/bld && ../configure --host=$CROSS --build=x86_64-pc-linux-gnu --prefix=/opt/a30 --enable-static --disable-shared --with-openssl=/opt/a30 --with-ca-bundle=/mnt/SDCARD/spruce/etc/ca-certificates.crt --without-gnutls --disable-ftp --disable-ldap --disable-ldaps --disable-rtsp --disable-dict --disable-telnet --disable-tftp --disable-pop3 --disable-imap --disable-smtp --disable-gopher --disable-mqtt --disable-manual --disable-docs --without-libidn2 --without-libpsl CC=$CROSS-gcc CFLAGS=\"-march=armv7-a -mfpu=neon-vfpv3 -mfloat-abi=hard -O2\" CPPFLAGS=\"-I/opt/a30/include\" LDFLAGS=\"-L/opt/a30/lib\"",
+        "cd /curl-8.7.1/bld && make -j\"$(nproc)\" install",
+        "cd \"$SOURCE\"",
+        "make miyoo-a30-build",
+        "python3 cross-compile/miyoo-a30/patch_verneed.py gvu32"
+      ],
+      "output": {
+        "files": [
+          {
+            "from": "/src/gvu32",
+            "to": "gvu32"
+          }
+        ],
+        "spruce": {
+          "gvu32": "Emu/MEDIA/bin32/gvu"
+        }
+      },
+      "needed": {
+        "device": [
+          "ld-linux-armhf.so.3",
+          "libSDL2-2.0.so.0",
+          "libc.so.6",
+          "libm.so.6",
+          "libpthread.so.0",
+          "libz.so.1"
+        ],
+        "forbidden": []
+      },
+      "shipped": {
+        "spruceos": "7592638d0",
+        "files": {
+          "gvu32": "10b1ebdcbcfeea5e43417f2f88639526cfe0f87f4c12e3c02d0f08dedb8e445b"
+        }
+      }
+    },
+    "gvu-arm64": {
+      "description": "GVU (SundownerSport's video player, a fork of amruthwo/GVU), branch universal: Emu/MEDIA/bin64/gvu on every 64-bit device. Built as Sundownersport/GVU@da3e0337's cross-compile/trimui-brick/Dockerfile.gvu and build_inside_docker.sh do: Debian bullseye's default GCC 10.2.1-6, FFmpeg 5.1.6, SDL2 2.26.5 (SDL2_image/SDL2_ttf/libpng/libjpeg-turbo/freetype static), OpenSSL 1.1.1w and curl 8.7.1 static (for fetch_subs, not shipped by spruce). GHCR's own builder image can no longer be rebuilt (bullseye-security's pool is gone); this rebuilds its Debian 11 (GCC 10.2.1-6) environment from snapshot.debian.org instead.; the dependencies build from /, as the builder's did (their debug info names that path)",
+      "source": {
+        "url": "https://github.com/Sundownersport/GVU.git",
+        "commit": "da3e0337ae65b6a12883f36fe7d222de0f4653a8",
+        "tree": "e2571481f81b0e94e1a9a987b65088950a25d1d5",
+        "requested_ref": "refs/heads/universal"
+      },
+      "downloads": [
+        {
+          "url": "https://libsdl.org/release/SDL2-2.26.5.tar.gz",
+          "sha256": "ad8fea3da1be64c83c45b1d363a6b4ba8fd60f5bde3b23ec73855709ec5eabf7",
+          "path": "/build/SDL2-2.26.5.tar.gz"
+        },
+        {
+          "url": "https://github.com/libjpeg-turbo/libjpeg-turbo/releases/download/2.1.5.1/libjpeg-turbo-2.1.5.1.tar.gz",
+          "sha256": "2fdc3feb6e9deb17adec9bafa3321419aa19f8f4e5dea7bf8486844ca22207bf",
+          "path": "/build/libjpeg-turbo-2.1.5.1.tar.gz"
+        },
+        {
+          "url": "https://download.sourceforge.net/libpng/libpng-1.6.39.tar.gz",
+          "sha256": "af4fb7f260f839919e5958e5ab01a275d4fe436d45442a36ee62f73e5beb75ba",
+          "path": "/build/libpng-1.6.39.tar.gz"
+        },
+        {
+          "url": "https://download.savannah.gnu.org/releases/freetype/freetype-2.13.0.tar.gz",
+          "sha256": "a7aca0e532a276ea8d85bd31149f0a74c33d19c8d287116ef8f5f8357b4f1f80",
+          "path": "/build/freetype-2.13.0.tar.gz"
+        },
+        {
+          "url": "https://libsdl.org/projects/SDL_image/release/SDL2_image-2.6.3.tar.gz",
+          "sha256": "931c9be5bf1d7c8fae9b7dc157828b7eee874e23c7f24b44ba7eff6b4836312c",
+          "path": "/build/SDL2_image-2.6.3.tar.gz"
+        },
+        {
+          "url": "https://libsdl.org/projects/SDL_ttf/release/SDL2_ttf-2.20.2.tar.gz",
+          "sha256": "9dc71ed93487521b107a2c4a9ca6bf43fb62f6bddd5c26b055e6b91418a22053",
+          "path": "/build/SDL2_ttf-2.20.2.tar.gz"
+        },
+        {
+          "url": "https://ffmpeg.org/releases/ffmpeg-5.1.6.tar.gz",
+          "sha256": "2a963f9f627dc55cac7ce4d2bb2e063ce52c8ab57185d2b592a631c36be56fda",
+          "path": "/build/ffmpeg-5.1.6.tar.gz"
+        },
+        {
+          "url": "https://github.com/openssl/openssl/releases/download/OpenSSL_1_1_1w/openssl-1.1.1w.tar.gz",
+          "sha256": "cf3098950cb4d853ad95c0841f1f9c6d3dc102dccfcacd521d93925208b76ac8",
+          "path": "/build/openssl-1.1.1w.tar.gz"
+        },
+        {
+          "url": "https://curl.se/download/curl-8.7.1.tar.gz",
+          "sha256": "f91249c87f68ea00cf27c44fdfa5a78423e41e71b7d408e5901a9896d905c495",
+          "path": "/build/curl-8.7.1.tar.gz"
+        }
+      ],
+      "toolchain": "standalone-gvu-arm64",
+      "source_date_epoch": 1793410942,
+      "env": {
+        "PREFIX": "/opt/brick",
+        "PKG_CONFIG_PATH": "/opt/brick/lib/pkgconfig",
+        "PKG_CONFIG_LIBDIR": "/opt/brick/lib/pkgconfig"
+      },
+      "steps": [
+        "set +u +o pipefail",
+        "mkdir -p /opt/brick",
+        "tar xf /build/SDL2-2.26.5.tar.gz -C /",
+        "mkdir -p /SDL2-2.26.5/bld",
+        "cd /SDL2-2.26.5/bld && ../configure --host=$CROSS --build=x86_64-pc-linux-gnu --prefix=/opt/brick --enable-static --disable-shared --disable-video-opengl --disable-video-opengles --disable-video-x11 --disable-video-wayland --disable-video-kmsdrm --disable-video-directfb --disable-pulseaudio --disable-nas --disable-esd --disable-jack --disable-pipewire --disable-dbus --enable-alsa --disable-hidapi --disable-ime CC=$CROSS-gcc CFLAGS=\"-march=armv8-a -O2\"",
+        "cd /SDL2-2.26.5/bld && make -j\"$(nproc)\" install",
+        "tar xf /build/libjpeg-turbo-2.1.5.1.tar.gz -C /",
+        "cmake -S /libjpeg-turbo-2.1.5.1 -B /ljt-bld -DCMAKE_C_COMPILER=$CROSS-gcc -DCMAKE_SYSTEM_NAME=Linux -DCMAKE_SYSTEM_PROCESSOR=aarch64 -DCMAKE_C_FLAGS=\"-march=armv8-a -O2\" -DCMAKE_INSTALL_PREFIX=/opt/brick -DENABLE_SHARED=OFF -DENABLE_STATIC=ON -DWITH_TURBOJPEG=OFF",
+        "cmake --build /ljt-bld -j\"$(nproc)\" && cmake --install /ljt-bld",
+        "tar xf /build/libpng-1.6.39.tar.gz -C /",
+        "mkdir -p /libpng-1.6.39/bld",
+        "cd /libpng-1.6.39/bld && ../configure --host=$CROSS --build=x86_64-pc-linux-gnu --prefix=/opt/brick --enable-static --disable-shared CC=$CROSS-gcc CFLAGS=\"-march=armv8-a -O2\"",
+        "cd /libpng-1.6.39/bld && make -j\"$(nproc)\" install",
+        "tar xf /build/freetype-2.13.0.tar.gz -C /",
+        "mkdir -p /freetype-2.13.0/bld",
+        "cd /freetype-2.13.0/bld && ../configure --host=$CROSS --build=x86_64-pc-linux-gnu --prefix=/opt/brick --enable-static --disable-shared --without-harfbuzz CC=$CROSS-gcc CFLAGS=\"-march=armv8-a -O2\"",
+        "cd /freetype-2.13.0/bld && make -j\"$(nproc)\" install",
+        "tar xf /build/SDL2_image-2.6.3.tar.gz -C /",
+        "mkdir -p /SDL2_image-2.6.3/bld",
+        "cd /SDL2_image-2.6.3/bld && ../configure --host=$CROSS --build=x86_64-pc-linux-gnu --prefix=/opt/brick --enable-static --disable-shared --disable-jpg-shared --enable-jpg --disable-png-shared --enable-png --disable-webp --disable-avif --disable-jxl --disable-tif CC=$CROSS-gcc CFLAGS=\"-march=armv8-a -O2 -I/opt/brick/include\" LDFLAGS=\"-L/opt/brick/lib\" SDL2_CFLAGS=\"$(pkg-config --cflags sdl2)\" SDL2_LIBS=\"$(pkg-config --libs sdl2)\"",
+        "cd /SDL2_image-2.6.3/bld && make -j\"$(nproc)\" install",
+        "tar xf /build/SDL2_ttf-2.20.2.tar.gz -C /",
+        "mkdir -p /SDL2_ttf-2.20.2/bld",
+        "cd /SDL2_ttf-2.20.2/bld && ../configure --host=$CROSS --build=x86_64-pc-linux-gnu --prefix=/opt/brick --enable-static --disable-shared CC=$CROSS-gcc CXX=$CROSS-g++ CFLAGS=\"-march=armv8-a -O2 -I/opt/brick/include\" CXXFLAGS=\"-march=armv8-a -O2 -I/opt/brick/include\" LDFLAGS=\"-L/opt/brick/lib\" SDL2_CFLAGS=\"$(pkg-config --cflags sdl2)\" SDL2_LIBS=\"$(pkg-config --libs sdl2)\" FT2_CFLAGS=\"$(pkg-config --cflags freetype2)\" FT2_LIBS=\"$(pkg-config --libs freetype2)\"",
+        "cd /SDL2_ttf-2.20.2/bld && make -j\"$(nproc)\" install",
+        "tar xf /build/ffmpeg-5.1.6.tar.gz -C /",
+        "cd /ffmpeg-5.1.6 && ./configure --arch=aarch64 --target-os=linux --cross-prefix=$CROSS- --enable-cross-compile --cpu=cortex-a55 --enable-runtime-cpudetect --prefix=/opt/brick --enable-static --disable-shared --disable-programs --disable-doc --disable-everything --enable-decoder=h264 --enable-decoder=hevc --enable-decoder=vp8 --enable-decoder=vp9 --enable-decoder=av1 --enable-decoder=mpeg4 --enable-decoder=mpeg2video --enable-decoder=mjpeg --enable-decoder=aac --enable-decoder=mp3float --enable-decoder=mp3 --enable-decoder=vorbis --enable-decoder=flac --enable-decoder=opus --enable-decoder=ac3 --enable-decoder=eac3 --enable-decoder=dca --enable-decoder=truehd --enable-decoder=pcm_s16le --enable-decoder=pcm_s24le --enable-decoder=pcm_f32le --enable-decoder=pcm_s16be --enable-decoder=subrip --enable-decoder=ass --enable-decoder=ssa --enable-decoder=webvtt --enable-demuxer=mov --enable-demuxer=matroska --enable-demuxer=mp4 --enable-demuxer=avi --enable-demuxer=flv --enable-demuxer=ogg --enable-demuxer=mp3 --enable-demuxer=wav --enable-demuxer=flac --enable-demuxer=aac --enable-demuxer=mpegts --enable-demuxer=mpegvideo --enable-demuxer=srt --enable-demuxer=webvtt --enable-demuxer=hls --enable-demuxer=pcm_s16le --enable-parser=h264 --enable-parser=hevc --enable-parser=vp8 --enable-parser=vp9 --enable-parser=av1 --enable-parser=mpeg4video --enable-parser=aac --enable-parser=mpegaudio --enable-parser=vorbis --enable-parser=flac --enable-parser=opus --enable-parser=ac3 --enable-protocol=file --enable-swscale --enable-swresample --enable-avformat --enable-avcodec --enable-avutil --extra-cflags=\"-march=armv8-a -O2\" --extra-ldflags=\"-march=armv8-a -O2\"",
+        "cd /ffmpeg-5.1.6 && make -j\"$(nproc)\" install",
+        "tar xf /build/openssl-1.1.1w.tar.gz -C /",
+        "cd /openssl-1.1.1w && ./Configure linux-aarch64 --cross-compile-prefix=$CROSS- --prefix=/opt/brick --openssldir=/opt/brick/ssl no-shared no-tests -march=armv8-a -O2",
+        "cd /openssl-1.1.1w && make -j\"$(nproc)\" && make install_sw",
+        "tar xf /build/curl-8.7.1.tar.gz -C /",
+        "mkdir -p /curl-8.7.1/bld",
+        "cd /curl-8.7.1/bld && ../configure --host=$CROSS --build=x86_64-pc-linux-gnu --prefix=/opt/brick --enable-static --disable-shared --with-openssl=/opt/brick --with-ca-bundle=/mnt/SDCARD/spruce/etc/ca-certificates.crt --without-gnutls --disable-ftp --disable-ldap --disable-ldaps --disable-rtsp --disable-dict --disable-telnet --disable-tftp --disable-pop3 --disable-imap --disable-smtp --disable-gopher --disable-mqtt --disable-manual --disable-docs --without-libidn2 --without-libpsl CC=$CROSS-gcc CFLAGS=\"-march=armv8-a -O2\" CPPFLAGS=\"-I/opt/brick/include\" LDFLAGS=\"-L/opt/brick/lib\"",
+        "cd /curl-8.7.1/bld && make -j\"$(nproc)\" install",
+        "cd \"$SOURCE\"",
+        "make trimui-brick-build"
+      ],
+      "output": {
+        "files": [
+          {
+            "from": "/src/gvu64",
+            "to": "gvu64"
+          }
+        ],
+        "spruce": {
+          "gvu64": "Emu/MEDIA/bin64/gvu"
+        }
+      },
+      "needed": {
+        "device": [
+          "ld-linux-aarch64.so.1",
+          "libc.so.6",
+          "libdl.so.2",
+          "libm.so.6",
+          "libpthread.so.0",
+          "libz.so.1"
+        ],
+        "forbidden": []
+      },
+      "shipped": {
+        "spruceos": "7592638d0",
+        "files": {
+          "gvu64": "b3a05d23d5a7394af0a6be8edff7cd0c9d189a26d2d6a48f4e69c7d4b3ad9fe9"
+        }
+      }
     }
   }
 }
