@@ -1463,8 +1463,10 @@
       "names": [
         "armsnes"
       ],
-      "status": "no recipe",
-      "recipes": [],
+      "status": "recipe",
+      "recipes": [
+        "armsnes"
+      ],
       "pin": {
         "url": "https://github.com/MagnominusGit/armSNES.git",
         "commit": "0ae21af7e02755c70a466d0c40217b6114ee74a7",
@@ -1472,7 +1474,7 @@
         "confidence": "likely",
         "verified": false
       },
-      "evidence": "spruceOS d7ce3dc52 (2026-11-19, cobaltgit: add armSNES emulator for 64bit); main's tip 36 minutes before it; the shipped file is stripped and names no commit; no CE recipe yet"
+      "evidence": "spruceOS d7ce3dc52 (2026-11-19, cobaltgit: add armSNES emulator for 64bit); main's tip 36 minutes before it; the shipped file is stripped and names no commit; no CE recipe yet; built by cobaltgit with an LLVM toolchain (lld .relro_padding, static libc++), not GCC: CE's GCC build at the pin (run 44613807205) and the v0.1a release (GCC) differ"
     },
     "RetroArch/.retroarch/cores64/atari800_libretro.so": {
       "sha256": "26ba26a525b0a44aa7ea3f716de94635e4d6f646070460d498b313b823a95634",

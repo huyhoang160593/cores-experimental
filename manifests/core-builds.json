@@ -3402,11 +3402,13 @@
       },
       "shipped": {
         "spruceos": "d7ce3dc52",
-        "unverified": true,
         "note": "spruceOS d7ce3dc52 (cobaltgit, 2026-11-19) ships the 64-bit core only; the pin is main's tip at that import",
         "variant": "release-arm64-generic",
         "files": {
           "RetroArch/.retroarch/cores64/armsnes_libretro.so": "e939f1fb0a802f591156d3326def5ebf34a87d8ffd6ba597c40dc02ff253db74"
+        },
+        "differs": {
+          "RetroArch/.retroarch/cores64/armsnes_libretro.so": "spruce's copy (cobaltgit, d7ce3dc52) was built with an LLVM toolchain: lld's .relro_padding, a static libc++ (__lcxx_override), no .comment, glibc 2.17 exactly; this GCC 9.4 build (run 44613807205) and the v0.1a release asset (GCC) both differ, and neither the toolchain nor the commit is recorded"
         }
       }
     }
