@@ -1388,10 +1388,11 @@
         "url": "https://github.com/tiberiusbrown/Ardens.git",
         "commit": "661a7dd4febc8d00e790a4ecde44b936295adf97",
         "basis": "branch tip at the import, 2026-09-24T20:05",
-        "confidence": "likely",
+        "confidence": "unambiguous",
         "verified": false
       },
-      "evidence": "spruceOS 511363a3e (2026-09-24, SundownerSport: Rebuild ardens, arduous and swanstation; offer both Arduboy cores ever); Cores-spruce builds of it then: build-ardens.yml run 36087818285 (2026-09-25T02:49Z), whose logs show a fresh clone of the branch, not the commit"
+      "evidence": "spruceOS 511363a3e (2026-09-24, SundownerSport: Rebuild ardens, arduous and swanstation; offer both Arduboy cores ever); Cores-spruce builds of it then: build-ardens.yml run 36087818285 (2026-09-25T02:49Z), whose logs show a fresh clone of the branch, not the commit",
+      "verified": "near: CE build at the pin, run 44594308904 (throwaway branch verify/nightly-pins-20261119, arm64 release-generic) differs only in the version string, v0.25.9 against 661a7dd (the pin is tag v0.25.9; CE's clone fetches no tags, so git describe gives the hash) and so in the build id"
     },
     "RetroArch/.retroarch/cores64/arduous_libretro.so": {
       "sha256": "8c6ae81054dee32bd68ff479507dd3c836a49acf07b6c0e6e59c455243bd7c0b",
@@ -1512,7 +1513,8 @@
         "confidence": "unambiguous",
         "verified": false
       },
-      "evidence": "came with spruceOS 327c258ee (2025-05-17), the same code and data sections as that import (only stripped since, in bd606af63); built 2025-05-05/06 (sibling builds embed those dates); no commit between 2025-05-04 and 05-07 on master"
+      "evidence": "came with spruceOS 327c258ee (2025-05-17), the same code and data sections as that import (only stripped since, in bd606af63); built 2025-05-05/06 (sibling builds embed those dates); no commit between 2025-05-04 and 05-07 on master",
+      "verified": "same .text, .rodata, .data, .data.rel.ro and .init_array: CE build at the pin, run 44594308904 (throwaway branch verify/nightly-pins-20261119, arm64 release-generic); spruce's copy was stripped in bd606af63"
     },
     "RetroArch/.retroarch/cores64/cap32_libretro.so": {
       "sha256": "e29d6b0f1ede813233c5ae065756370dd1d0b64be40dd64012c7dd900d25b31b",
@@ -1637,7 +1639,7 @@
         "confidence": "unambiguous",
         "verified": false
       },
-      "evidence": "came with spruceOS 327c258ee (2025-05-17), the same code and data sections as that import (only stripped since, in bd606af63); built 2025-05-05/06 (sibling builds embed those dates); no commit between 2025-05-04 and 05-07 on master"
+      "evidence": "came with spruceOS 327c258ee (2025-05-17), the same code and data sections as that import (only stripped since, in bd606af63); built 2025-05-05/06 (sibling builds embed those dates); no commit between 2025-05-04 and 05-07 on master; CE's current recipe does not build at the pin (run 44594308904)"
     },
     "RetroArch/.retroarch/cores64/fake08_libretro.so": {
       "sha256": "4795fc4f9f3d96f75eac74e8768aa137c290957d5a277e4ab8830e5c033ffd97",
@@ -1686,7 +1688,7 @@
         "confidence": "ambiguous",
         "verified": false
       },
-      "evidence": "came with spruceOS 327c258ee (2025-05-17); built 2025-05-05/06; 20 commits on master between 2025-05-04 and 05-07 (b0ed94b952, e1fa5b0421, 1d9e31f8d6, 660ccf519a, 29589467f8...), so the build may be one of those"
+      "evidence": "came with spruceOS 327c258ee (2025-05-17); built 2025-05-05/06; 20 commits on master between 2025-05-04 and 05-07 (b0ed94b952, e1fa5b0421, 1d9e31f8d6, 660ccf519a, 29589467f8...), so the build may be one of those; CE's current recipe does not build at the pin (run 44594308904)"
     },
     "RetroArch/.retroarch/cores64/fceumm_libretro.so": {
       "sha256": "6431b35e902bf41921a6deddd1529621ff608ba26c55d4d6b98e919b5bc6b68d",
@@ -1845,9 +1847,10 @@
         "commit": "77f2567d718b8973d02caa2daa8dce4953faf811",
         "basis": "branch tip at the import, 2026-11-05T12:46",
         "confidence": "likely",
-        "verified": false
+        "verified": true
       },
-      "evidence": "spruceOS 597adbcac (2026-11-05, Ryan Sartor: attempt to rebuild gambatte with network functions); Cores-spruce builds of it then: build-gambatte.yml run 42085915526 (2026-11-05T18:36Z), whose logs show a fresh clone of the branch, not the commit"
+      "evidence": "spruceOS 597adbcac (2026-11-05, Ryan Sartor: attempt to rebuild gambatte with network functions); Cores-spruce builds of it then: build-gambatte.yml run 42085915526 (2026-11-05T18:36Z), whose logs show a fresh clone of the branch, not the commit",
+      "verified": "byte for byte: CE build at the pin, run 44594308904 (throwaway branch verify/nightly-pins-20261119, arm64 release-generic)"
     },
     "RetroArch/.retroarch/cores64/gametank_libretro.so": {
       "sha256": "9c618026c07849c1c4ce757f0e40eff6f11a4ede1bf98c87fe894266c0ddb5cf",
@@ -1915,7 +1918,7 @@
         "confidence": "unambiguous",
         "verified": false
       },
-      "evidence": "came with spruceOS 327c258ee (2025-05-17), the same code and data sections as that import (only stripped since, in bd606af63); built 2025-05-05/06 (sibling builds embed those dates); no commit between 2025-05-04 and 05-07 on master"
+      "evidence": "came with spruceOS 327c258ee (2025-05-17), the same code and data sections as that import (only stripped since, in bd606af63); built 2025-05-05/06 (sibling builds embed those dates); no commit between 2025-05-04 and 05-07 on master; CE's current recipe does not build at the pin (run 44594308904)"
     },
     "RetroArch/.retroarch/cores64/gloopy_libretro.so": {
       "sha256": "493be2506365435e3e455e3de4074f80a54fba59cffe9ef1a859d32c53164f0f",
@@ -1962,9 +1965,10 @@
         "commit": "5819380c2ffb0900219d700a382ee68c464ebb99",
         "basis": "branch tip at the import, 2026-09-21T14:56",
         "confidence": "likely",
-        "verified": false
+        "verified": true
       },
-      "evidence": "spruceOS bb5fa963e (2026-09-21, Ryan Sartor: Update gpsp core to v1.1.0.); Cores-spruce builds of it then: build-gpsp.yml run 35646144484 (2026-09-21T19:39Z), whose logs show a fresh clone of the branch, not the commit"
+      "evidence": "spruceOS bb5fa963e (2026-09-21, Ryan Sartor: Update gpsp core to v1.1.0.); Cores-spruce builds of it then: build-gpsp.yml run 35646144484 (2026-09-21T19:39Z), whose logs show a fresh clone of the branch, not the commit",
+      "verified": "byte for byte: CE build at the pin, run 44594308904 (throwaway branch verify/nightly-pins-20261119, arm64 release-generic)"
     },
     "RetroArch/.retroarch/cores64/gw_libretro.so": {
       "sha256": "95910edb443e73749c694549daf224eff9043c196c831d2fc6f5202f20179faf",
@@ -2559,10 +2563,11 @@
         "url": "https://github.com/libretro/swanstation.git",
         "commit": "b6c30a7b270a3f68ac41f268eafdfa678d17dea2",
         "basis": "branch tip at the import, 2026-09-24T20:05",
-        "confidence": "likely",
+        "confidence": "unambiguous",
         "verified": false
       },
-      "evidence": "spruceOS 511363a3e (2026-09-24, SundownerSport: Rebuild ardens, arduous and swanstation; offer both Arduboy cores ever); Cores-spruce builds of it then: build-swanstation.yml run 36087822899 (2026-09-25T02:49Z), whose logs show a fresh clone of the branch, not the commit"
+      "evidence": "spruceOS 511363a3e (2026-09-24, SundownerSport: Rebuild ardens, arduous and swanstation; offer both Arduboy cores ever); Cores-spruce builds of it then: build-swanstation.yml run 36087822899 (2026-09-25T02:49Z), whose logs show a fresh clone of the branch, not the commit",
+      "verified": "near: CE build at the pin, run 44594308904 (throwaway branch verify/nightly-pins-20261119, arm64 release-generic) differs by the build path in assert strings (/libretro-super/libretro-swanstation against CE's /tmp/core-source), which moves everything after it"
     },
     "RetroArch/.retroarch/cores64/tic80_libretro.so": {
       "sha256": "8be8b8eb19cd41a417b7903c6b4047c2f0460d5d650191118a1ef23488261478",
@@ -2592,7 +2597,7 @@
         "confidence": "unambiguous",
         "verified": false
       },
-      "evidence": "came with spruceOS 327c258ee (2025-05-17), the same code and data sections as that import (only stripped since, in bd606af63); built 2025-05-05/06 (sibling builds embed those dates); no commit between 2025-05-04 and 05-07 on master"
+      "evidence": "came with spruceOS 327c258ee (2025-05-17), the same code and data sections as that import (only stripped since, in bd606af63); built 2025-05-05/06 (sibling builds embed those dates); no commit between 2025-05-04 and 05-07 on master; CE's current recipe does not build at the pin (run 44594308904)"
     },
     "RetroArch/.retroarch/cores64/uae4arm_libretro.so": {
       "sha256": "19dcb3d58b17456ec77a6fc2f2ed8680449b3806f08443f05bf143b50404f106",
