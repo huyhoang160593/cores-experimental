@@ -4811,8 +4811,9 @@
         "cd /build/libass-0.17.3 && meson setup --cross-file /tmp/cross.txt --prefix=/opt/mpv --buildtype=release -Ddefault_library=shared -Dfontconfig=disabled -Drequire-system-font-provider=false -Dasm=disabled -Dlibunibreak=disabled -Dtest=false -Dprofile=false build && ninja -C build && meson install -C build --destdir '/opt/a30/arm-a30-linux-gnueabihf/sysroot'",
         "cd /build/ffmpeg-7.1.5 && ./configure --prefix=/opt/mpv --enable-cross-compile --cross-prefix=arm-a30-linux-gnueabihf- --arch=arm --cpu=cortex-a7 --enable-neon --target-os=linux --sysroot=/opt/a30/arm-a30-linux-gnueabihf/sysroot --pkg-config=pkg-config --extra-cflags='-mcpu=cortex-a7 -mfpu=neon-vfpv4 -mfloat-abi=hard -O2' --disable-autodetect --enable-zlib --enable-shared --disable-static --enable-pic --disable-programs --disable-doc --disable-encoders --disable-muxers --disable-devices --disable-avdevice --disable-network",
         "cd /build/ffmpeg-7.1.5 && make -j\"$(nproc)\" && make install DESTDIR='/opt/a30/arm-a30-linux-gnueabihf/sysroot'",
+        "mkdir -p /tmp/cxx && ln -sf \"$(arm-a30-linux-gnueabihf-g++ -print-file-name=libstdc++.a)\" /tmp/cxx/libstdc++.a && ls -lL /tmp/cxx/libstdc++.a",
         "cd /build/libplacebo && meson setup --cross-file /tmp/cross.txt --prefix=/opt/mpv --buildtype=release -Ddefault_library=static -Dvulkan=disabled -Dopengl=disabled -Dd3d11=disabled -Dglslang=disabled -Dshaderc=disabled -Dlcms=disabled -Ddovi=disabled -Dlibdovi=disabled -Ddemos=false -Dtests=false -Dbench=false -Dfuzz=false -Dunwind=disabled -Dxxhash=disabled build && ninja -C build && meson install -C build --destdir '/opt/a30/arm-a30-linux-gnueabihf/sysroot'",
-        "cd \"$SOURCE\" && meson setup --cross-file /tmp/cross.txt --prefix=/opt/mpv --buildtype=release -Dbuild-date=false -Dcplayer=true -Dlibmpv=false -Dtests=false -Dlua=disabled -Djavascript=disabled -Dlibarchive=disabled -Dlibbluray=disabled -Ddvdnav=disabled -Dcdda=disabled -Ddvbin=disabled -Duchardet=disabled -Drubberband=disabled -Dlcms2=disabled -Dvapoursynth=disabled -Dzimg=disabled -Djpeg=disabled -Dlibavdevice=disabled -Dsdl2=enabled -Dsdl2-video=enabled -Dsdl2-audio=enabled -Dsdl2-gamepad=enabled -Dalsa=disabled -Dpulse=disabled -Dpipewire=disabled -Djack=disabled -Dopenal=disabled -Dsndio=disabled -Doss-audio=disabled -Dgl=disabled -Degl=disabled -Dvulkan=disabled -Dwayland=disabled -Dx11=disabled -Ddrm=disabled -Dgbm=disabled -Dvaapi=disabled -Dvdpau=disabled -Dcaca=disabled -Dsixel=disabled -Dmanpage-build=disabled -Dhtml-build=disabled -Dpdf-build=disabled -Dzlib=enabled build && ninja -C build",
+        "cd \"$SOURCE\" && meson setup --cross-file /tmp/cross.txt --prefix=/opt/mpv --buildtype=release -Dbuild-date=false -Dcplayer=true -Dlibmpv=false -Dtests=false -Dlua=disabled -Djavascript=disabled -Dlibarchive=disabled -Dlibbluray=disabled -Ddvdnav=disabled -Dcdda=disabled -Ddvbin=disabled -Duchardet=disabled -Drubberband=disabled -Dlcms2=disabled -Dvapoursynth=disabled -Dzimg=disabled -Djpeg=disabled -Dlibavdevice=disabled -Dsdl2=enabled -Dsdl2-video=enabled -Dsdl2-audio=enabled -Dsdl2-gamepad=enabled -Dalsa=disabled -Dpulse=disabled -Dpipewire=disabled -Djack=disabled -Dopenal=disabled -Dsndio=disabled -Doss-audio=disabled -Dgl=disabled -Degl=disabled -Dvulkan=disabled -Dwayland=disabled -Dx11=disabled -Ddrm=disabled -Dgbm=disabled -Dvaapi=disabled -Dvdpau=disabled -Dcaca=disabled -Dsixel=disabled -Dmanpage-build=disabled -Dhtml-build=disabled -Dpdf-build=disabled -Dzlib=enabled -Dc_link_args=-L/tmp/cxx build && ninja -C build",
         "mkdir -p /tmp/stage/lib32-mpv && cp -a /opt/a30/arm-a30-linux-gnueabihf/sysroot/opt/mpv/lib/*.so.* /tmp/stage/lib32-mpv/",
         "for f in /tmp/stage/lib32-mpv/*; do [ -L \"$f\" ] || arm-a30-linux-gnueabihf-strip --strip-unneeded \"$f\"; done"
       ],
@@ -4844,7 +4845,8 @@
           "libm.so.6",
           "libpthread.so.0",
           "librt.so.1",
-          "libstdc++.so.6"
+          "libstdc++.so.6",
+          "libz.so.1"
         ],
         "forbidden": []
       }
@@ -4955,7 +4957,8 @@
           "libm.so.6",
           "libpthread.so.0",
           "librt.so.1",
-          "libstdc++.so.6"
+          "libstdc++.so.6",
+          "libz.so.1"
         ],
         "forbidden": []
       }
