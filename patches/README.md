@@ -30,3 +30,11 @@ fbneo, fceumm, ffmpeg, genesis_plus_gx, genesis_plus_gx_wide, lowresnx,
 mednafen_supergrafx, np2kai, puzzlescript, retro8, x1) sort the makefile's
 source list, so the link order and therefore the output do not depend on file
 system order.
+
+`standalone/<name>/` holds what the [standalone recipes](../docs/standalone.md)
+use (patches, toolchain files, helper scripts). A standalone build mounts this
+folder at `/recipe/patches`. `standalone/batch1/` does the
+opposite of the sort patches above: it lists each core's sources in the order
+the 2025-05-06 builder's file system gave them, so the link reproduces spruce's
+file ([how](../docs/waves.md#notes)). `standalone/mkxp-z/rezip.py` rewrites
+the built ZIPs in the CI runner's entry order, times and owners.

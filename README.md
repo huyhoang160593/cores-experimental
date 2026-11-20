@@ -109,16 +109,18 @@ Docker 29) names images by another digest, so there the image is also tagged
 - chailove, km_ludicrousn64, km_parallel_n64 and picodrive (armhf) ask for an
   executable stack, which glibc 2.41 and later refuse
   ([details](docs/flags.md#executable-stack)).
-- Shipped by spruceOS but not built here: mkxp-z (the hyphen in its name breaks
-  libretro-super), mupen64plus (removed from libretro-super) and km_flycast_xtreme
-  (assembles with a bare `as`).
+- Shipped by spruceOS but not in the catalog: mkxp-z (the hyphen in its name breaks
+  libretro-super; a standalone recipe comes close, see [waves](docs/waves.md#notes)),
+  mupen64plus (removed from libretro-super) and km_flycast_xtreme (assembles with a
+  bare `as`).
 
 ## Layout
 
 | path | contents |
 |---|---|
 | `manifests/core-builds.json` | one recipe per core |
-| `manifests/standalone-builds.json` | standalone emulators spruce ships, such as Flycast's `Emu/DC/flycast` ([how](docs/standalone.md)) |
+| `manifests/standalone-builds.json` | standalone emulators spruce ships, such as Flycast's `Emu/DC/flycast`, and shipped cores rebuilt the way their original build ran ([how](docs/standalone.md)) |
+| `manifests/waves/` | which files each wave means (spruce nightly, stable 4.6, the Pixel 2's TwigUI-Next, edge, custom) and which recipe reproduces each ([how](docs/waves.md)) |
 | `manifests/boards.json`, `manifests/optimization-profiles.json` | board and profile flags |
 | `manifests/toolchains.json` | the toolchain images: archive digests and image IDs |
 | `manifests/emulator-inventory.json`, `manifests/emulator-names.json` | what spruceOS offers and ships, and what its option names stand for; `scripts/cores.py coverage` says which of it the recipes here build ([how](docs/inventory.md)) |

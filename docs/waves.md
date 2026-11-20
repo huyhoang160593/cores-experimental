@@ -37,6 +37,18 @@ python3 scripts/waves.py custom                              # after the others
 python3 scripts/waves.py summary
 ```
 
+## Status
+
+At CE `70c1089` (2026-11-20), from `waves.py summary`:
+
+| wave | files | reproduces | recipe | not shipped | no recipe | spare |
+|---|---|---|---|---|---|---|
+| `spruce-nightly` (spruceOS `d7ce3dc52`) | 245 | 98 | 134 | 10 | 3 | 44 |
+| `spruce-stable46` (`v4.6.0`) | 233 | 74 | 144 | 10 | 5 | 42 |
+
+`recipe` counts the files a recipe builds but does not reproduce yet. `pixel2-twiguinext`: 85 files, 83 pinned,
+one reproduced and one near. `edge`: 172 recipes (143 at a branch tip, 29 at a tag). `custom`: 21 recipes.
+
 ## Notes
 
 - The spruce waves come from the emulator inventory, which follows spruce's emulator menus and the folder each
@@ -45,10 +57,11 @@ python3 scripts/waves.py summary
   cores (43 that no menu offers, plus `cores64/mupen64plus`: N64 offers `mupen64plus` only on 32-bit lists), and 7
   folder gaps: `cores/` flycast2021 and flycast2024 (the 32-bit RA Build on the Flip, the XX and dArkMoss), the
   Mini's puae, km_puae_xtreme_amped and km_mame2003_xtreme, and freej2me_plus in both folders.
-- spruce-nightly's 49 GCC 9.4 cores without a reproducing recipe carry a hand-kept `pin`
-  (`confidence`: `unambiguous`, `likely` or `ambiguous`; `verified: false`) and its `evidence`: 37 came with
-  spruceOS 327c258ee (built 2025-05-05/06), one with 4a96070f8, the rest with their 2026 imports. A build at the pin
-  that matches would make them `reproduces`.
+- A core without a reproducing recipe carries a hand-kept `pin` (`confidence`: `unambiguous`, `likely` or
+  `ambiguous`; `verified`) and its `evidence`. A build at the pin that matches makes it `reproduces`. On 11-19
+  spruce-nightly had 49 such GCC 9.4 cores, 37 of them from spruceOS 327c258ee (built 2025-05-05/06). Nine pins
+  are left: bluemsx, px68k (verified code, build ID differs) and km_ludicrousn64_2k22_xtreme_amped of
+  cobaltgit's builds, the two Flycast-campaign cores, armsnes (`likely`), and the three vendor files below.
 - The 2025-05-06 batch (41 cores) was cobaltgit's local libretro-super build, at `/root/libretro-super`, with
   Ubuntu's GCC 9.4 and exported `-mcpu=cortex-a53 -fomit-frame-pointer`, plus `-ffast-math` for some cores.
   Their short hashes are 8 characters in big repos (full clones), and vice and puae2021 embed their build time.
@@ -73,11 +86,17 @@ python3 scripts/waves.py summary
   (`cores-spruce-arm64`, `cores-spruce-armhf`), repeating the run's commands. Two traps: CE's build script clears
   the image's `CMAKE_TOOLCHAIN_FILE`, which CMake cores need back; and a workflow that builds a runner-owned
   checkout as root gets no git hash (git refuses the checkout), which `chown -R 1001:1001 <source>` reproduces.
-- The nightly files without a recipe (9 at d7ce3dc52, traced with the Emu Inventory session on 11-19) carry their
-  provenance as `evidence` (and a source `pin` where one is known). Three now reproduce byte for byte: `OpenBOR_mod`
-  (steward-fu's A30 port), advmame and `OpenBOR_64_mod` (wakeboxer's CI builds, in their builder images); so does
-  `OpenBOR_new`, steward-fu's DCurrent port. The rest are vendor or third-party binaries whose toolchain is not published: Miyoo's
-  `OpenBOR_Flip` and A30 `cores/mupen64plus`, and TrimUI's `cores64/mupen64plus` (spare). mkxp-z (PR #255's CI) has a
-  recipe that comes close (same code and ZIPs, parked on 300 KB of .rodata), and the 15 third-party core files with a
-  catalog recipe that does not reproduce them carry their provenance too (Flycast campaign builds, christianhaitian
-  and Onion prebuilts, KMFDManic's builds, private LLVM builds).
+- The nightly files that had no recipe (traced with the Emu Inventory session on 11-19 and 11-20) carry their
+  provenance as `evidence` (and a source `pin` where one is known). These now reproduce byte for byte: `OpenBOR_mod`
+  and `OpenBOR_new` (steward-fu's A30 ports), advmame and `OpenBOR_64_mod` (wakeboxer's CI builds, in their builder
+  images), and `cores64/uae4arm` (Lakka v4.x's RPi3-Composite build, rebuilt with Lakka's own build system). Three
+  are vendor binaries whose toolchain is not published, so they stay `no recipe`: Miyoo's `OpenBOR_Flip` and A30
+  `cores/mupen64plus`, and TrimUI's `cores64/mupen64plus` (spare).
+- Parked, recipe kept: mkxp-z (PR #255's CI) has the same code and ZIPs but differs in about 300 KB of unnamed
+  .rodata. GameTank's arm64 core differs too: in CE's container zig adds outline atomics and all of compiler-rt.
+  Its armhf core matches.
+- The 15 third-party core files with a catalog recipe that does not reproduce them carry their provenance too
+  (Flycast campaign builds, christianhaitian and Onion prebuilts, KMFDManic's builds, private LLVM builds). One is a
+  risk on the device: `cores64/np2kai_libretro.so` needs `GLIBC_2.34`, above the TrimUI devices' 2.33.
+- DSperate v3.4.0 reproduces on both builds of 504e78012: the A30 build at the v3.4.0 tag, and the aarch64 build
+  at 109ecfd5 with upstream's PGO profile, in `standalone-dsperate-v2` ([standalone](standalone.md#status)).

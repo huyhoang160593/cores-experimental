@@ -11,7 +11,7 @@ on the `toolchains` release; a build refuses to run on any other image.
 | rust | `aa42a12ced6b` | `cores-rust.tar.gz` | `Dockerfile.rust` (on Ubuntu, no base) |
 | cores-spruce-arm64, -armhf | `63f40dda7ac2`, `122b2008f771` | `cores-spruce-{arm64,armhf}-20260925.tar.gz` | none here: spruceUI/Cores-spruce's `cores-arm64.tar.gz` (ab6f8297…) and `cores-armhf.tar.gz` (8a8bc83b…) of 2026-09-25 (`Dockerfile.arm64`/`.armhf` at 871d60759), retagged `cores-spruce-*:20260925` so they never move the `cores-arm64`/`cores-armhf` tags; config and layers unchanged |
 | arm64-standalone | `6b659a1984d3` (v2) | `cores-arm64-standalone-v2.tar.gz` | `Dockerfile.arm64.standalone.v2` on v1 `c630f837fad0` (`Dockerfile.arm64.standalone` on the arm64 image `538411e2759c`, `cores-arm64-standalone-v1.tar.gz`) ([standalone emulators](../docs/standalone.md)) |
-| standalone-* | see `manifests/toolchains.json` | `cores-standalone-<name>-v1.tar.gz` | `Dockerfile.standalone.<name>`, one per spruceUI wrapper build environment, on base `c9c1332ce018` or `6ac154886195` (Flip: Debian bookworm by digest) |
+| standalone-* | see `manifests/toolchains.json` | `cores-standalone-<name>-v<N>.tar.gz` | `Dockerfile.standalone.<name>[.v<N>]`, one per wrapper or CI build environment, mostly on base `c9c1332ce018` or `6ac154886195`; the others start from the original environment's own image by digest (the Flip, advmame, OpenBOR fflns, mkxp-z, Lakka, …; [images](../docs/standalone.md#images)) |
 
 `cores-armhf.tar.gz` (armhf v2, `393a23661c41`) stays on the release because
 older commits pin it. Never replace a published archive: give a new image a new
@@ -60,6 +60,10 @@ DOCKER_BUILDKIT=0 docker build -f Dockerfile.armhf -t cores-armhf:v5 toolchain-i
 docker save cores-armhf:v5 | gzip -n > cores-armhf-v5.tar.gz
 docker image inspect -f '{{.Id}}' cores-armhf:v5; sha256sum cores-armhf-v5.tar.gz; stat -c %s cores-armhf-v5.tar.gz
 ```
+
+`DOCKER_BUILDKIT=0` selects the legacy builder, which resolves `FROM sha256:<image ID>`
+to the local image. BuildKit, Docker 29's default, reads it as a registry name and
+fails ("pull access denied").
 
 1. Put the new image ID, archive name, size and sha256 in `manifests/toolchains.json`.
 2. Build every core of that arch (`python3 scripts/cores.py plan --arch armhf`
@@ -112,3 +116,6 @@ too (`cores-<arch>-base-<id>.tar.gz`).
   focal's arm64 boost, freetype and EGL, and a link-only SDL2 2.28.5 and SDL2_ttf 2.0.15 (from focal's
   packages, unpacked so focal's SDL2 never installs) in `/opt/standalone-deps-arm64`, for the Saturn and N64
   standalones. Both Flycast recipes build in it byte for byte as before. Its build context needs Arm's tarball.
+- 2026-11-19/20: `standalone-advmame`, `-openbor-fflns`, `-mkxpz`, `-lakka-focal` (v1) and `standalone-dsperate`
+  v2 (v1 plus CMake 4.4.5, `libvulkan-dev:arm64` and Vulkan-Headers, for DSperate v3.4.0), each on the release
+  and checked by its asset digest ([images](../docs/standalone.md#images)).

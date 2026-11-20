@@ -62,7 +62,7 @@ from pinned parts (`Dockerfile.standalone.<name>`, loaded by `manifests/toolchai
 |---|---|---|
 | `arm64-standalone` (v2) | `flycast-standalone`, `flycast-standalone-t3-lto`, `yabasanshiro-standalone`, `mupen64plus-standalone` | the arm64 image, with OpenSSL, curl and SDL2 built in (v1); v2 adds Arm's GNU Toolchain 10.3-2021.07 at `/opt/arm-gnu-10.3`, focal's arm64 boost, freetype and EGL, and a link-only SDL2 2.28.5 and SDL2_ttf 2.0.15 in `/opt/standalone-deps-arm64` ([Saturn and N64](#saturn-and-n64-the-way-flycast-builds)) |
 | `standalone-vtree`, `-pcsx_rearmed`, `-moonlight`, `-gl4es`, `-ppsspp`, `-mupen64plus`, `-scummvm` | the 64-bit build of that emulator (`gl4es`: BigPEmu; `ppsspp`: H700) | the pinned arm64 base plus the wrapper's package list |
-| `standalone-dsperate`, `standalone-yabasanshiro` | `dsperate-arm64`, `yabasanshiro-arm64` | the same, plus the Kitware CMake release the wrapper's build used |
+| `standalone-dsperate`, `standalone-yabasanshiro` | `dsperate-arm64`, `gametank-arm64`, `yabasanshiro-arm64` | the same, plus the Kitware CMake release the wrapper's build used |
 | `standalone-armhf` | every `-a30` recipe | the pinned armhf base (the A30 GCC 13.2 toolchain and its glibc 2.23 sysroot) plus the tools the wrappers' `Dockerfile.a30` install |
 | `standalone-flip` | `ppsspp-flip`, `ppsspp-darkmoss3566`, `ppsspp-darkmoss3326` | Debian bookworm (by digest) with steward-fu's Flip toolchain (GCC 13.3) |
 | `standalone-trimui` | `ppsspp-trimui` | the arm64 base's GCC 9.4 over Linaro 7.5's glibc and TrimUI's tg5040 SDK |
@@ -74,15 +74,9 @@ from pinned parts (`Dockerfile.standalone.<name>`, loaded by `manifests/toolchai
 | `standalone-xroar` | `xroar` | native arm64 Debian buster, run under qemu: the dated `buster-20240612` image and `snapshot.debian.org` of that day, with buster's own gcc-8 8.3.0-6, which the binary's banner names |
 | `standalone-gvu-arm64`, `-a30` | `gvu-arm64`, `gvu-a30` | Sundownersport/GVU's GHCR builder images (`gvu-builder-brick`, `gvu-builder-a30`, created 2026-04-11), which its workflow says can no longer be rebuilt: their `debian:bullseye-20260406` base by digest and their apt install from `snapshot.debian.org` at 2026-04-11 19:00 UTC (GCC 10.2.1-6cross1, binutils 2.35.2) |
 | `standalone-mupen64plus-pow2` | `mupen64plus-pow2` | plain focal, with `gcc-10-aarch64-linux-gnu` (the `gcc-10-cross` source package, focal `6ubuntu6`) instead of the default gcc-9 cross: the shipped binary's GCC banner and its statically linked libgcc's build path both name that package |
-| `cores-spruce-arm64`, `-armhf` | `pokedaisy-*` | not rebuilt: Cores-spruce's own core images (its `build-docker.yml` run 36087575366 at 871d60759, 2026-09-25; Ubuntu 20.04 with the GCC 9.4 aarch64 cross, and the A30 buildroot GCC 13.2), copied from its release and retagged, because its pokedaisy builds ran in them |
+| `cores-spruce-arm64`, `-armhf` | the 25 recipes that repeat a Cores-spruce run (`pokedaisy-*`, `picodrive-*`, `easyrpg-*`, `armn64-*`, `armnes_arcade-*`, `freej2me-plus-core-*` and more) | not rebuilt: Cores-spruce's own core images (its `build-docker.yml` run 36087575366 at 871d60759, 2026-09-25; Ubuntu 20.04 with the GCC 9.4 aarch64 cross, and the A30 buildroot GCC 13.2), copied from its release and retagged, because its core builds ran in them |
 | `standalone-advmame` | `advmame-arm64-20260328` | not rebuilt: wakeboxer's GHCR image `ljhmd0825/advmame-builder-64` by digest, the one his Build_Spruce_Advmame run 23674203493 built and then built spruce's advmame in (Ubuntu 20.04, the GCC 9.4 aarch64 cross, focal's arm64 dev packages, SDL 2.26.2 from source, and his `/patches/iremga20_fix.patch`), with its `ENTRYPOINT` cleared |
-| `armn64-arm64-20261115`, `armnes_arcade-{arm64,armhf}-20261117` | `cores64/armn64_libretro.so`, `cores{64,}/armnes_arcade_libretro.so` of spruceOS `d7ce3dc52` (Cores-spruce's 11-18 'Build All Cores (3/3 — Custom)' run 44392754831: armN64 49d1298c, armNES 13f04b0b) | match, all three (runs 44693682545, 44693686345, 44693689950) |
-| `dsperate-a30-v3.4.0` | `Emu/NDS/dsperate.a30` of spruceOS `504e78012` (DSperate-spruce 0610b1fa2's A30 run) | match (run 44693693813) |
-| `dsperate-arm64-v3.4.0` | `Emu/NDS/dsperate` of spruceOS `504e78012` (DSperate-spruce 0610b1fa2's aarch64 run 42516048883: DSperate 109ecfd5, upstream's PGO profile `aarch64-gcc10.5.0`) | match (run 44748218492) |
-| `gametank-libretro-1.0.3` | `cores{,64}/gametank_libretro.so` of spruceOS `f71fa7877` (Sundownersport/gametank-libretro b9d0436, zig 0.14.1) | armhf match (run 44693373666, `zig objcopy --strip-all`); arm64 differs as known: in CE's container zig adds outline atomics and all of compiler-rt (parked) |
-| `mkxp-z-libretro-20260114` | `cores{,64}/mkxp-z_libretro.so` of spruceOS `f32f064ab` (mkxp-z PR #255 run 21002574259, merge commit 402a68bc) | differs (parked): same code and the same embedded ZIPs (rebuilt in the runner's order, times and owner by `patches/standalone/mkxp-z/rezip.py`), but ~300 KB of unnamed .rodata differs (run 44693737469) |
-| `uae4arm-lakka-rpi3-composite-20240502` | `cores64/uae4arm_libretro.so` of spruceOS `275a89035` (Lakka-v4.x RPi3-Composite, via metallic77) | match (run 44695265600): Lakka's build of its toolchain, flac, mpg123, zlib and uae4arm 177c2f0e, with gmp, alsa-lib and configtools seeded where Lakka can no longer fetch them |
-| `standalone-openbor-fflns` | `openbor-fflns-arm64-20260512` | wakeboxer's OpenBoR-spruce `Dockerfile` (53ba4100), which his workflow never pushed: `ubuntu:focal-20250404` by digest, the GCC 9.4 aarch64 cross and focal's arm64 SDL2, SDL2_gfx, Vorbis, libvpx 6 and libpng from focal and focal-updates, plus python3 for the recipe's download. Reproducible in practice: apt resolves on the build day |
+| `standalone-openbor-fflns` | `openbor-fflns-arm64-20260512`, `gametank-libretro-1.0.3` (for its python3: zig is downloaded, not installed) | wakeboxer's OpenBoR-spruce `Dockerfile` (53ba4100), which his workflow never pushed: `ubuntu:focal-20250404` by digest, the GCC 9.4 aarch64 cross and focal's arm64 SDL2, SDL2_gfx, Vorbis, libvpx 6 and libpng from focal and focal-updates, plus python3 for the recipe's download. Reproducible in practice: apt resolves on the build day |
 | `standalone-mkxpz` | `mkxp-z-libretro-20260114` | the environment of mkxp-z's libretro CI jobs of 2026-01-14 (PR #255 run 21002574259): `ubuntu:noble-20251013` by digest with apt from snapshot.ubuntu.com 20260114T170000Z (clang/LLD 18.1.3, meson 1.3.2, binaryen 108), wasi-sdk 29, and Xenial armhf/arm64 cloud-image sysroots with the toolchain PPA's gcc-9 (its two signing keys pinned by fingerprint), built under qemu in the richese Lima VM |
 | `standalone-lakka-focal` | `uae4arm-lakka-rpi3-composite-20240502` | Lakka's own build environment (ToKe79/Lakka-LibreELEC v4.x/rpi-composite faf53a97 `tools/docker/focal`), focal by digest, kept root so recipes run Lakka's scripts as its `docker` user; Lakka then builds its own GCC 10.2.0 toolchain |
 | `standalone-dsperate-v2` | `dsperate-arm64-v3.4.0` | v1 plus Kitware CMake 4.4.5, `libvulkan-dev:arm64` and Vulkan-Headers 1.4.363.0 by commit, as DSperate-spruce 0610b1fa2's Dockerfile has. Built with `DOCKER_BUILDKIT=0`: BuildKit reads `FROM sha256:…` as a registry name |
@@ -115,18 +109,28 @@ by the recipe instead, from pinned sources or checked downloads.
   sorts it.
 - **Which run shipped.** A wrapper's latest release asset is not always what spruce
   ships: spruceOS's import commit dates the run it took. spruce's 64-bit
-  mupen64plus mixes two runs, so it takes two recipes.
+  mupen64plus mixes two runs, so it takes two recipes. A per-core run and a
+  build-all run of the same commit can differ: spruce's armN64 and armNES_arcade
+  came from Cores-spruce's build-all run.
+- **Pull-request CI** builds the merge commit, not the PR's head, and a version string
+  embeds that merge commit's hash (mkxp-z PR #255: `402a68bc`). Info-ZIP archives
+  record their entries' directory order, times and owners.
+- **Stripping.** The stripping tool shows in the bytes: `zig objcopy --strip-all`
+  keeps the names of removed sections in `.shstrtab`, and GNU strip does not.
 - **The A30 toolchain's `python3`** comes first on that image's PATH and has no SSL
   module; downloads use the system one.
 - **PGO builds** need the compiler at the path their training build used: GCC
   resolves a symlinked install to its real path, and header paths go into the
   profile's function ids, so a different path matches the profile differently
   and changes inlining and LTO partitioning. `standalone-yabasanshiro-pgo` keeps
-  the compiler at both paths its two builds were trained with.
+  the compiler at both paths its two builds were trained with. DSperate keeps its
+  profiles in its tree, keyed on the compiler version and the compile flags, so
+  `dsperate-arm64-v3.4.0` passes only `-pthread`, as the training build did.
 
 ## Status
 
-Built against spruceOS `73bb91a19` (2026-10-11); "match" is byte for byte.
+A row that names no spruceOS commit was compared with `73bb91a19` (2026-10-11); "match" is byte for byte.
+[docs/waves.md](waves.md) has the count for each wave.
 
 | recipe | ships | result |
 |---|---|---|
@@ -162,6 +166,14 @@ Built against spruceOS `73bb91a19` (2026-10-11); "match" is byte for byte.
 | `pokedaisy-{arm64,armhf}-20261112`, `-20261113` | `RetroArch/.retroarch/cores{64,}/pokedaisy_{ds,gbc}` (11-12) and `pokedaisy_gba` (11-13) of spruceOS `7592638d0` | match, all six (runs 44571273959, 44571303318, 44571331513, 44571360523): Cores-spruce runs 43141364046 and 43467900814 at pokedaisy-lr 7af02b6, armGBA b1c4a69 / 4bd15f1, with the tree owned by the runner's uid as there |
 | `yabasanshiro-libretro-trimui` | `RetroArch/.retroarch/cores64/yabasanshiro_a133p_libretro.so`, `yabasanshiro_libretro.so` of spruceOS `7592638d0` | differs, as known: TrimUI's own changes (no libchdr, no Musashi) are not published; NEEDED list and compiler match (run 44567232442) |
 | `mupen64plus-pow2` | `Emu/N64/pow2/mupen64plus`, `data/` of spruceOS `7592638d0` | `data/` matches; the executable has the same code, data and build ID, and differs only in four linker veneer names (run 44447436936) |
+| `armn64-arm64-20261115`, `armnes_arcade-{arm64,armhf}-20261117` | `cores64/armn64_libretro.so`, `cores{64,}/armnes_arcade_libretro.so` of spruceOS `d7ce3dc52` (Cores-spruce's 11-18 'Build All Cores (3/3 — Custom)' run 44392754831: armN64 49d1298c, armNES 13f04b0b) | match, all three (runs 44693682545, 44693686345, 44693689950) |
+| `dsperate-a30-v3.4.0` | `Emu/NDS/dsperate.a30` of spruceOS `504e78012` (DSperate-spruce 0610b1fa2's A30 run) | match (run 44693693813) |
+| `dsperate-arm64-v3.4.0` | `Emu/NDS/dsperate` of spruceOS `504e78012` (DSperate-spruce 0610b1fa2's aarch64 run 42516048883: DSperate 109ecfd5, upstream's PGO profile `aarch64-gcc10.5.0`) | match (run 44748218492) |
+| `gametank-libretro-1.0.3` | `cores{,64}/gametank_libretro.so` of spruceOS `f71fa7877` (Sundownersport/gametank-libretro b9d0436, zig 0.14.1) | armhf match (run 44693373666, `zig objcopy --strip-all`); arm64 differs as known: in CE's container zig adds outline atomics and all of compiler-rt (parked) |
+| `mkxp-z-libretro-20260114` | `cores{,64}/mkxp-z_libretro.so` of spruceOS `f32f064ab` (mkxp-z PR #255 run 21002574259, merge commit 402a68bc) | differs (parked): same code and the same embedded ZIPs (rebuilt in the runner's order, times and owner by `patches/standalone/mkxp-z/rezip.py`), but ~300 KB of unnamed .rodata differs (run 44693737469) |
+| `uae4arm-lakka-rpi3-composite-20240502` | `cores64/uae4arm_libretro.so` of spruceOS `275a89035` (Lakka-v4.x RPi3-Composite, via metallic77) | match (run 44695265600): Lakka's build of its toolchain, flac, mpg123, zlib and uae4arm 177c2f0e, with gmp, alsa-lib and configtools seeded where Lakka can no longer fetch them |
+| `picodrive-*`, `easyrpg-*`, `ardens-armhf`, `gambatte-*`, `gloopy-*`, `gpsp-*`, `swanstation-*`, `virtualjaguar-*`, `yabadabadoo-armhf`, `freej2me-plus-core-*` | `cores{64,}/` files built by Cores-spruce workflows (each recipe's `shipped` names its spruceOS commit) | match, each in its recipe's `shipped.note` |
+| `<core>-arm64-20250506` (36, on `batch1-arm64-20250506`) | `cores64/` files of cobaltgit's 2025-05-06 libretro-super build (spruceOS `327c258ee`) | 35 match; `px68k` differs only in its build ID, as known ([how](waves.md#notes)) |
 
 Some files next to these in spruceOS come from elsewhere and are not compared:
 ScummVM's `lib/` extras and seven of `libmini/`'s libraries, among others.
