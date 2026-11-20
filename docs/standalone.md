@@ -313,16 +313,19 @@ found, so the DCurrent build flags are inferred from the engine's `Makefile`
 - **Version banners.** `engine/version.sh` writes `#define VERSION_BUILD "<n>"` from
   `git rev-list --count HEAD`. That gives b8303cc's shipped "Build 7144", so `openbor-trimui`
   runs it and checks the define. At b00efbc it would give 7141, not the shipped "v4.0 Build
-  0", so `openbor-new` writes `version.h` by hand.
+  0": `OpenBOR_new`'s builder wrote `version.h` by hand, and `openbor-new` takes that file.
 - **`openbor-trimui`.** The shipped RPATH
   `/home/raymanfeng/work/a133p/app/openbor/engine/../../../sdk//usr/lib` is the Makefile's
   `-Wl,-rpath,"$(SDKPATH)/usr/lib"`. The recipe builds at that path, with a copy of the
   sysroot three directories up. `CC` carries `--sysroot` for that copy (with its `lib/`), because
   the `libpthread.so` and `libc.so` scripts name absolute paths, which ld maps only inside the sysroot. The shipped binary was built with TrimUI's
   Linaro GCC 7.5, not this image's GCC 9.4, so it is not expected to match.
-- **`openbor-new`.** Its NEEDED list (`libvorbisidec.so.1`, no `libvpx`) means `BUILD_TREMOR=1`
-  without Vorbis or WebM. The binary says WebM playback is not supported, yet `sdl/video.h`
-  includes webmlib's `yuv.h` either way, so the recipe keeps `source/webmlib` on the include
-  path. It also drops the Makefile's `-Werror`, which GCC 13 trips on in `openbor.c`; warning
-  flags do not change the code. The shipped binary has the image's compiler (Buildroot
-  2024.02.1, GCC 13.2.0).
+- **`openbor-new`.** `OpenBOR_new` is steward-fu's A30 port too: `rel_openbor-v1.2.zip` of the
+  same release (2024-06-20; v1.1's is another build). `src_openbor-v1.2.zip`'s `src_openbor_new`
+  is b00efbc7 with `engine/Makefile` (a `BUILD_A30` target: SDL, GFX, Tremor, `source/webmlib` on
+  the include path, `-Wno-error=address -Wno-error=enum-int-mismatch` for GCC 13),
+  `sdl/control.c`, `sdl/menu.c` and `sdl/video.c` changed, and the hand-written `version.h`.
+  The zip also holds that tree's own build, whose `engine/OpenBOR` is spruce's file byte for
+  byte. The recipe takes those five files from the zip and runs `make BUILD_A30=1`, as
+  `openbor-lns-a30` does. (Before this source was found, the recipe inferred a
+  `BUILD_LINUX_LE_arm` build from the binary, which differed: run 44431121128.)
