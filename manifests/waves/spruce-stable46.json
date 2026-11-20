@@ -4160,8 +4160,10 @@
       "names": [
         "uae4arm"
       ],
-      "status": "no recipe",
-      "recipes": [],
+      "status": "reproduces",
+      "recipes": [
+        "standalone:uae4arm-lakka-rpi3-composite-20240502"
+      ],
       "families": [
         "ANBERNIC_RGXX",
         "DARKMOSS",
@@ -4170,7 +4172,12 @@
         "OAKMOSS_A133P",
         "TRIMUI_A133P",
         "TRIMUI_SMART_PRO_S"
-      ]
+      ],
+      "pin": {
+        "recipe": "standalone:uae4arm-lakka-rpi3-composite-20240502",
+        "url": "https://github.com/ToKe79/Lakka-LibreELEC.git",
+        "commit": "faf53a9754f4184a69a51c7e31ec042b555a5056"
+      }
     },
     "RetroArch/.retroarch/cores64/uzem_libretro.so": {
       "sha256": "d9184c9ed0fc84634de0635f9644628ea4d4d8a7373a063c81ec3bba972c636b",

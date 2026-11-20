@@ -4578,8 +4578,10 @@
       "names": [
         "uae4arm"
       ],
-      "status": "no recipe",
-      "recipes": [],
+      "status": "reproduces",
+      "recipes": [
+        "standalone:uae4arm-lakka-rpi3-composite-20240502"
+      ],
       "families": [
         "ANBERNIC_RGXX",
         "DARKMOSS",
@@ -4590,13 +4592,10 @@
         "TRIMUI_SMART_PRO_S"
       ],
       "pin": {
-        "url": "https://github.com/Chips-fr/uae4arm-rpi.git",
-        "commit": "177c2f0e892adf2603ada9b150e31beffe0f76c3",
-        "basis": "Lakka-v4.x's uae4arm package pins this commit (make -f Makefile.libretro platform=unix-aarch64)",
-        "confidence": "likely",
-        "verified": false
-      },
-      "evidence": "metallic77 supplied it (275a89035, 2024-12-26) from Lakka's community RPi3-Composite aarch64 build on the Lakka-v4.x branch: Lakka's own GCC 10.2.0, and the libmpg123.so.0 it came with embeds that build's path. Not byte-checked: Lakka deleted the old release images (Emu Inventory, nightly9-provenance-20261119.md in CFW/Spruce/docs/research/emulator-arch-inventory-20261111)"
+        "recipe": "standalone:uae4arm-lakka-rpi3-composite-20240502",
+        "url": "https://github.com/ToKe79/Lakka-LibreELEC.git",
+        "commit": "faf53a9754f4184a69a51c7e31ec042b555a5056"
+      }
     },
     "RetroArch/.retroarch/cores64/uzem_libretro.so": {
       "sha256": "d9184c9ed0fc84634de0635f9644628ea4d4d8a7373a063c81ec3bba972c636b",

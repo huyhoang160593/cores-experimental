@@ -1,0 +1,41 @@
+# cores-standalone-lakka-focal v1: Lakka's own build environment, tools/docker/focal/Dockerfile of ToKe79/Lakka-LibreELEC
+# branch v4.x/rpi-composite at faf53a97 (the branch of the 2024-05-02 Lakka RPi Composite community release, whose
+# aarch64 uae4arm spruce ships). Its `FROM ubuntu:focal` is pinned to focal-20250404 by digest; focal's archive no longer
+# changes, so the image is reproducible in practice (apt resolves on the build day). Unlike Lakka's file it stays root,
+# so CE's build script runs as usual; recipes run Lakka's scripts as its `docker` user, since Lakka refuses root.
+FROM ubuntu:focal-20250404@sha256:8feb4d8ca5354def3d8fce243717141ce31e2c428701f6682bd2fafe15388214
+
+ARG DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update \
+ && apt-get dist-upgrade -y \
+ && apt-get install -y locales sudo \
+ && rm -rf /var/lib/apt/lists/*
+
+RUN locale-gen en_US.UTF-8 \
+ && update-locale LANG=en_US.UTF-8 LANGUAGE=en_US:en
+
+ENV LANG=en_US.UTF-8 \
+    LANGUAGE=en_US:en \
+    LC_ALL=en_US.UTF-8
+
+RUN adduser --disabled-password --gecos '' docker \
+ && adduser docker sudo \
+ && echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+
+RUN apt-get update && apt-get install -y \
+    wget bash bc gcc-10 sed patch patchutils tar bzip2 gzip xz-utils zstd perl gawk gperf zip \
+      unzip diffutils lzop make file g++-10 xfonts-utils xsltproc default-jre-headless python3 \
+      libc6-dev libncurses5-dev libjson-perl libxml-parser-perl libparse-yapp-perl \
+      golang-go git openssh-client \
+    --no-install-recommends \
+ && rm -rf /var/lib/apt/lists/*
+
+RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-10 100 \
+    --slave /usr/bin/cpp cpp /usr/bin/cpp-10 \
+    --slave /usr/bin/g++ g++ /usr/bin/g++-10 \
+    --slave /usr/bin/gcov gcov /usr/bin/gcov-10
+
+RUN update-alternatives --config gcc
+
+RUN command -v git && command -v python3 && command -v sha256sum && command -v sudo && dpkg -l > /apt-manifest.txt

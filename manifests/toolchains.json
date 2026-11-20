@@ -332,6 +332,17 @@
         "size": 1152207810
       },
       "dockerfile": "Dockerfile.standalone.mkxpz"
+    },
+    "standalone-lakka-focal": {
+      "image": "cores-standalone-lakka-focal:v1",
+      "image_id": "sha256:c051400677a7833729221dae81dcdcfa1a1fca63b9fb59dd5347423b31f139c9",
+      "host_cc": "aarch64-libreelec-linux-gnueabi",
+      "archive": {
+        "name": "cores-standalone-lakka-focal-v1.tar.gz",
+        "sha256": "8d885bd14dd9e1f7219daf3be29becf18211dfdd6a6cb8b18ee54b457599f494",
+        "size": 344124477
+      },
+      "dockerfile": "Dockerfile.standalone.lakka-focal"
     }
   }
 }
