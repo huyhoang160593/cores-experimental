@@ -8119,6 +8119,245 @@
         },
         "note": "matched byte for byte by CE run 44678882412 (23ea6de)"
       }
+    },
+    "gpsp-arm64-20260921": {
+      "description": "gpsp as spruce ships it in cores64/ since bb5fa963e: the arm64 half of the same Cores-spruce run as gpsp-armhf-20260921 (its workflow's 'Build arm64' step), in Cores-spruce's arm64 image (Ubuntu 20.04, the GCC 9.4 aarch64 cross). Mirrors gpsp-armhf-20260921, with the arm64 command.",
+      "source": {
+        "url": "https://github.com/libretro/gpsp.git",
+        "commit": "5819380c2ffb0900219d700a382ee68c464ebb99",
+        "tree": "aa956b7c1f9bc3c0621b25de435f4b8916fc0976",
+        "requested_ref": "master tip at the run; the file embeds v1.1.0-5819380",
+        "path": "/tmp/gpsp"
+      },
+      "toolchain": "cores-spruce-arm64",
+      "source_date_epoch": 1789844424,
+      "env": {
+        "GIT_CONFIG_PARAMETERS": "'core.abbrev=7'"
+      },
+      "steps": [
+        "make -j\"$(nproc)\" platform=arm64 CC=aarch64-linux-gnu-gcc CXX=aarch64-linux-gnu-g++"
+      ],
+      "output": {
+        "files": [
+          {
+            "from": "/tmp/gpsp/gpsp_libretro.so",
+            "to": "cores64/gpsp_libretro.so"
+          }
+        ],
+        "spruce": {
+          "cores64/gpsp_libretro.so": "RetroArch/.retroarch/cores64/gpsp_libretro.so"
+        }
+      },
+      "needed": {
+        "device": [
+          "ld-linux-aarch64.so.1",
+          "libc.so.6"
+        ],
+        "forbidden": []
+      },
+      "shipped": {
+        "unverified": true,
+        "spruceos": "bb5fa963e",
+        "source": "spruceOS bb5fa963e (Ryan Sartor: Update gpsp core to v1.1.0.)",
+        "files": {
+          "cores64/gpsp_libretro.so": "e90ef024933b7a307404eea17c4ff225896a3fd9586c460709be3732660260b5"
+        }
+      }
+    },
+    "swanstation-arm64-20260925": {
+      "description": "swanstation as spruce ships it in cores64/ since 511363a3e: the arm64 half of the same Cores-spruce run as swanstation-armhf-20260925 (its workflow's 'Build arm64' step), in Cores-spruce's arm64 image (Ubuntu 20.04, the GCC 9.4 aarch64 cross). Mirrors swanstation-armhf-20260925, with the arm64 command.",
+      "source": {
+        "url": "https://github.com/libretro/swanstation.git",
+        "commit": "b6c30a7b270a3f68ac41f268eafdfa678d17dea2",
+        "tree": "95cb749f6bbd129664fecb3ef53013342ec9e2de",
+        "requested_ref": "branch tip at the run; the file embeds 1.0.0 b6c30a7b",
+        "path": "/libretro-super/libretro-swanstation",
+        "submodules": true
+      },
+      "toolchain": "cores-spruce-arm64",
+      "source_date_epoch": 1789665892,
+      "env": {
+        "GIT_CONFIG_PARAMETERS": "'core.abbrev=8'",
+        "CMAKE_TOOLCHAIN_FILE": "/opt/toolchain.cmake"
+      },
+      "steps": [
+        "cd /libretro-super",
+        "./libretro-build.sh swanstation"
+      ],
+      "output": {
+        "files": [
+          {
+            "from": "/libretro-super/dist/unix/swanstation_libretro.so",
+            "to": "cores64/swanstation_libretro.so"
+          }
+        ],
+        "spruce": {
+          "cores64/swanstation_libretro.so": "RetroArch/.retroarch/cores64/swanstation_libretro.so"
+        }
+      },
+      "needed": {
+        "device": [
+          "ld-linux-aarch64.so.1",
+          "libc.so.6",
+          "libdl.so.2",
+          "libgcc_s.so.1",
+          "libm.so.6",
+          "libpthread.so.0",
+          "librt.so.1",
+          "libstdc++.so.6"
+        ],
+        "forbidden": []
+      },
+      "shipped": {
+        "unverified": true,
+        "spruceos": "511363a3e",
+        "source": "spruceOS 511363a3e (SundownerSport: Rebuild ardens, arduous and swanstation)",
+        "files": {
+          "cores64/swanstation_libretro.so": "b72a1c72254fe0d6be9f6890bad0c7011018ac5dcef0a7897d38809e107a3749"
+        }
+      }
+    },
+    "gloopy-arm64-20261011": {
+      "description": "gloopy as spruce ships it in cores64/ since 6487538b0: the arm64 half of the same Cores-spruce run as gloopy-armhf-20261011 (its workflow's 'Build arm64' step), in Cores-spruce's arm64 image (Ubuntu 20.04, the GCC 9.4 aarch64 cross). Mirrors gloopy-armhf-20261011, with the arm64 command.",
+      "source": {
+        "url": "https://github.com/seriamaugenlicher/gloopy.git",
+        "commit": "408c1f092405da472875598549516f409876c524",
+        "tree": "5ce72746a676329f7a69aef005287d601482984e",
+        "requested_ref": "default branch tip at the run (2026-10-11 02:45Z)",
+        "path": "/gloopy"
+      },
+      "toolchain": "cores-spruce-arm64",
+      "source_date_epoch": 1790532919,
+      "env": {
+        "GIT_CONFIG_PARAMETERS": "'core.abbrev=7'"
+      },
+      "steps": [
+        "chown -R 1001:1001 /gloopy",
+        "make -f Makefile.libretro platform=unix BUILD_TAG=arm64 -j\"$(nproc)\" CC=\"aarch64-linux-gnu-gcc -march=armv8-a+crc+crypto+simd -mtune=cortex-a53\" CXX=\"aarch64-linux-gnu-g++ -march=armv8-a+crc+crypto+simd -mtune=cortex-a53\""
+      ],
+      "output": {
+        "files": [
+          {
+            "from": "/gloopy/gloopy_libretro.so",
+            "to": "cores64/gloopy_libretro.so"
+          }
+        ],
+        "spruce": {
+          "cores64/gloopy_libretro.so": "RetroArch/.retroarch/cores64/gloopy_libretro.so"
+        }
+      },
+      "needed": {
+        "device": [
+          "ld-linux-aarch64.so.1",
+          "libc.so.6",
+          "libgcc_s.so.1",
+          "libm.so.6",
+          "libstdc++.so.6"
+        ],
+        "forbidden": []
+      },
+      "shipped": {
+        "unverified": true,
+        "spruceos": "6487538b0",
+        "source": "spruceOS 6487538b0 (SundownerSport: Add Casio Loopy (Gloopy))",
+        "files": {
+          "cores64/gloopy_libretro.so": "493be2506365435e3e455e3de4074f80a54fba59cffe9ef1a859d32c53164f0f"
+        }
+      }
+    },
+    "gambatte-arm64-20261105": {
+      "description": "gambatte as spruce ships it in cores64/ since 597adbcac: the arm64 half of the same Cores-spruce run as gambatte-armhf-20261105 (its workflow's 'Build arm64' step), in Cores-spruce's arm64 image (Ubuntu 20.04, the GCC 9.4 aarch64 cross). Mirrors gambatte-armhf-20261105, with the arm64 command.",
+      "source": {
+        "url": "https://github.com/libretro/gambatte-libretro.git",
+        "commit": "77f2567d718b8973d02caa2daa8dce4953faf811",
+        "tree": "f6099f09c012d305a87241ee51ab9b32860e695d",
+        "requested_ref": "branch tip at the run; the file embeds v0.5.0-netlink 77f2567",
+        "path": "/libretro-super/libretro-gambatte",
+        "submodules": true
+      },
+      "toolchain": "cores-spruce-arm64",
+      "source_date_epoch": 1793357598,
+      "env": {
+        "GIT_CONFIG_PARAMETERS": "'core.abbrev=7'"
+      },
+      "steps": [
+        "cd /libretro-super",
+        "HAVE_NETWORK=1 ./libretro-build.sh gambatte"
+      ],
+      "output": {
+        "files": [
+          {
+            "from": "/libretro-super/dist/unix/gambatte_libretro.so",
+            "to": "cores64/gambatte_libretro.so"
+          }
+        ],
+        "spruce": {
+          "cores64/gambatte_libretro.so": "RetroArch/.retroarch/cores64/gambatte_libretro.so"
+        }
+      },
+      "needed": {
+        "device": [
+          "ld-linux-aarch64.so.1",
+          "libc.so.6",
+          "libm.so.6",
+          "libstdc++.so.6"
+        ],
+        "forbidden": []
+      },
+      "shipped": {
+        "unverified": true,
+        "spruceos": "597adbcac",
+        "source": "spruceOS 597adbcac (Ryan Sartor: attempt to rebuild gambatte with network functions)",
+        "files": {
+          "cores64/gambatte_libretro.so": "56b887601b2cc5b2c57a74e3ca30402a09ec676d6ed45382d3e65bdb794784e5"
+        }
+      }
+    },
+    "virtualjaguar-arm64-20260829": {
+      "description": "virtualjaguar as spruce ships it in cores64/ since 370467a2c: the arm64 half of the same Cores-spruce run as virtualjaguar-armhf-20260829 (its workflow's 'Build arm64' step), in Cores-spruce's arm64 image (Ubuntu 20.04, the GCC 9.4 aarch64 cross). Mirrors virtualjaguar-armhf-20260829, with the arm64 command.",
+      "source": {
+        "url": "https://github.com/libretro/virtualjaguar-libretro.git",
+        "commit": "9a42b528c5c37f580578d46595b9cf38ae9673f8",
+        "tree": "1e4577e1b6acb43d1ab477e3465c3dd1d2a5d924",
+        "requested_ref": "branch tip at the run; the file embeds v3.5.1 9a42b52",
+        "path": "/libretro-super/libretro-virtualjaguar",
+        "submodules": true
+      },
+      "toolchain": "cores-spruce-arm64",
+      "source_date_epoch": 1787802636,
+      "env": {
+        "GIT_CONFIG_PARAMETERS": "'core.abbrev=7'"
+      },
+      "steps": [
+        "cd /libretro-super",
+        "./libretro-build.sh virtualjaguar"
+      ],
+      "output": {
+        "files": [
+          {
+            "from": "/libretro-super/dist/unix/virtualjaguar_libretro.so",
+            "to": "cores64/virtualjaguar_libretro.so"
+          }
+        ],
+        "spruce": {
+          "cores64/virtualjaguar_libretro.so": "RetroArch/.retroarch/cores64/virtualjaguar_libretro.so"
+        }
+      },
+      "needed": {
+        "device": [
+          "ld-linux-aarch64.so.1",
+          "libc.so.6"
+        ],
+        "forbidden": []
+      },
+      "shipped": {
+        "unverified": true,
+        "spruceos": "370467a2c",
+        "source": "spruceOS 370467a2c (Ryan Sartor: Add virtualjaguar cores)",
+        "files": {
+          "cores64/virtualjaguar_libretro.so": "8a729aa724c5d724faa73b8f61302a3966e2eed47e1eddae786d881f6359f7f3"
+        }
+      }
     }
   }
 }

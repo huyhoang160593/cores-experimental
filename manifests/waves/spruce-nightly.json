@@ -3293,7 +3293,8 @@
       ],
       "status": "recipe",
       "recipes": [
-        "gambatte"
+        "gambatte",
+        "standalone:gambatte-arm64-20261105"
       ],
       "families": [
         "ANBERNIC_RGXX",
@@ -3443,7 +3444,8 @@
       ],
       "status": "recipe",
       "recipes": [
-        "gloopy"
+        "gloopy",
+        "standalone:gloopy-arm64-20261011"
       ],
       "families": [
         "ANBERNIC_RGXX",
@@ -3491,7 +3493,8 @@
       ],
       "status": "recipe",
       "recipes": [
-        "gpsp"
+        "gpsp",
+        "standalone:gpsp-arm64-20260921"
       ],
       "families": [
         "ANBERNIC_RGXX",
@@ -4473,7 +4476,8 @@
       ],
       "status": "recipe",
       "recipes": [
-        "swanstation"
+        "swanstation",
+        "standalone:swanstation-arm64-20260925"
       ],
       "families": [
         "ANBERNIC_RGXX",
@@ -4682,7 +4686,8 @@
       ],
       "status": "recipe",
       "recipes": [
-        "virtualjaguar"
+        "virtualjaguar",
+        "standalone:virtualjaguar-arm64-20260829"
       ],
       "families": [
         "ANBERNIC_RGXX",
