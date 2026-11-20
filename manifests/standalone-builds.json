@@ -7499,6 +7499,64 @@
         }
       }
     },
+    "chailove-arm64-20250506": {
+      "extends": "batch1-arm64-20250506",
+      "description": "chailove as spruce ships it since 327c258ee, from cobaltgit's 2025-05-06 build (batch1-arm64-20250506), with SOURCES_CXX's $(wildcard) groups listed in the builder's order. Recovered from spruce's file by simulating ld's C++ placement (cold, startup and main blocks; an inline function stays in the first object that links it), checked first against CE's own build and linker map (diagnostic run 44669030737, throwaway branch verify/chailove-diag-20261120).",
+      "source": {
+        "url": "https://github.com/libretro/ChaiLove.git",
+        "commit": "467cd453e3b1761c5c3611746b35e709328a2ced",
+        "tree": "d3800d7b3d6739dbd6fb2119f46403f2293864b8",
+        "requested_ref": "refs/heads/master",
+        "path": "/libretro-super/libretro-chailove",
+        "submodules": true
+      },
+      "source_date_epoch": 1739479478,
+      "env": {
+        "CFLAGS": "-mcpu=cortex-a53 -fomit-frame-pointer -ffast-math",
+        "CXXFLAGS": "-mcpu=cortex-a53 -fomit-frame-pointer -ffast-math",
+        "BATCH1_KEY": "chailove",
+        "GIT_CONFIG_SYSTEM": "/dev/null",
+        "GIT_CONFIG_GLOBAL": "/dev/null",
+        "GIT_CONFIG_PARAMETERS": "'core.abbrev=7'"
+      },
+      "output": {
+        "files": [
+          {
+            "from": "/libretro-super/dist/unix/chailove_libretro.so",
+            "to": "cores64/chailove_libretro.so",
+            "mode": "0644",
+            "strip": "--strip-unneeded"
+          }
+        ],
+        "spruce": {
+          "cores64/chailove_libretro.so": "RetroArch/.retroarch/cores64/chailove_libretro.so"
+        }
+      },
+      "needed": {
+        "device": [
+          "ld-linux-aarch64.so.1",
+          "libc.so.6",
+          "libgcc_s.so.1",
+          "libm.so.6",
+          "libpthread.so.0",
+          "libstdc++.so.6"
+        ],
+        "forbidden": []
+      },
+      "shipped": {
+        "spruceos": "327c258ee",
+        "source": "spruceOS 327c258ee (Ry with cobaltgit, 2025-05-17, \"Update 64-bit cores\")",
+        "unverified": true,
+        "files": {
+          "cores64/chailove_libretro.so": "3c57433ee6850e8d52db2a0109743f4a970429c96769212f80cf8c12ec8987d1"
+        }
+      },
+      "patches": [
+        {
+          "diff": "patches/standalone/batch1/chailove-link-order.patch"
+        }
+      ]
+    },
     "crocods-arm64-20250506": {
       "extends": "batch1-arm64-20250506",
       "description": "crocods as spruce ships it since 327c258ee, from cobaltgit's 2025-05-06 build (batch1-arm64-20250506), with its sources linked in the builder's order: Makefile.common's $(wildcard) groups listed explicitly, in the order recovered from spruce's file (function sizes for code objects, data offsets for data-only ones, .dynstr for the ROM files). The order proof matched byte for byte in CE run 44666628070 (throwaway branch verify/linkorder-crocods-20261120, 06125a5).",

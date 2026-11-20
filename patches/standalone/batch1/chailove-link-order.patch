@@ -1,0 +1,48 @@
+diff --git a/Makefile.common b/Makefile.common
+--- a/Makefile.common
++++ b/Makefile.common
+@@ -1,13 +1,35 @@
+ # ChaiLove
+-SOURCES_CXX := $(wildcard \
+-	$(CORE_DIR)/src/*.cpp \
+-	$(CORE_DIR)/src/love/*.cpp \
+-	$(CORE_DIR)/src/love/Types/Audio/*.cpp \
+-	$(CORE_DIR)/src/love/Types/Config/*.cpp \
+-	$(CORE_DIR)/src/love/Types/FileSystem/*.cpp \
+-	$(CORE_DIR)/src/love/Types/Graphics/*.cpp \
+-	$(CORE_DIR)/src/love/Types/Input/*.cpp \
+-)
++SOURCES_CXX := \
++	$(CORE_DIR)/src/main.cpp \
++	$(CORE_DIR)/src/ChaiLove.cpp \
++	$(CORE_DIR)/src/love/keyboard.cpp \
++	$(CORE_DIR)/src/love/graphics.cpp \
++	$(CORE_DIR)/src/love/data.cpp \
++	$(CORE_DIR)/src/love/image.cpp \
++	$(CORE_DIR)/src/love/timer.cpp \
++	$(CORE_DIR)/src/love/font.cpp \
++	$(CORE_DIR)/src/love/filesystem.cpp \
++	$(CORE_DIR)/src/love/script.cpp \
++	$(CORE_DIR)/src/love/math.cpp \
++	$(CORE_DIR)/src/love/config.cpp \
++	$(CORE_DIR)/src/love/system.cpp \
++	$(CORE_DIR)/src/love/sound.cpp \
++	$(CORE_DIR)/src/love/audio.cpp \
++	$(CORE_DIR)/src/love/mouse.cpp \
++	$(CORE_DIR)/src/love/window.cpp \
++	$(CORE_DIR)/src/love/event.cpp \
++	$(CORE_DIR)/src/love/joystick.cpp \
++	$(CORE_DIR)/src/love/Types/Audio/SoundData.cpp \
++	$(CORE_DIR)/src/love/Types/Config/WindowConfig.cpp \
++	$(CORE_DIR)/src/love/Types/Config/ModuleConfig.cpp \
++	$(CORE_DIR)/src/love/Types/FileSystem/FileInfo.cpp \
++	$(CORE_DIR)/src/love/Types/FileSystem/FileData.cpp \
++	$(CORE_DIR)/src/love/Types/Graphics/Color.cpp \
++	$(CORE_DIR)/src/love/Types/Graphics/Image.cpp \
++	$(CORE_DIR)/src/love/Types/Graphics/Quad.cpp \
++	$(CORE_DIR)/src/love/Types/Graphics/Font.cpp \
++	$(CORE_DIR)/src/love/Types/Graphics/Point.cpp \
++	$(CORE_DIR)/src/love/Types/Input/Joystick.cpp
+ SOURCES_S =
+ FLAGS += -Wfatal-errors
+ 
