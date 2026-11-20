@@ -4252,10 +4252,10 @@
         "commit": "9dfa6abc25ddd6e597790f7a535cd0a1d7f9c385",
         "basis": "master tip at 2025-05-06T10:00:00Z",
         "confidence": "unambiguous",
-        "verified": false
+        "verified": true
       },
       "evidence": "came with spruceOS 327c258ee (2025-05-17), the same code and data sections as that import (only stripped since, in bd606af63); built 2025-05-05/06 (sibling builds embed those dates); no commit between 2025-05-04 and 05-07 on master",
-      "verified": "same .text, .rodata, .data, .data.rel.ro and .init_array: CE build at the pin with -mcpu=cortex-a53 -fomit-frame-pointer, run 44650873132 (throwaway branch verify/flags-20261119c, 426e32a)"
+      "verified": "same stripped file except the 20-byte build ID (the .note.gnu.build-id descriptor): CE build at the pin with cobaltgit's batch-1 setup, fan-out round 7 run 44659355511 (throwaway branch verify/flags-20261120c, 3b3cc47). No symbol count, local-symbol count or string-table size gives spruce's ID, so the original link had input that strip removed"
     },
     "RetroArch/.retroarch/cores64/quasi88_libretro.so": {
       "sha256": "1459a7ca788cb9d6070b8ceb54e48914aafdcfae4c8b0e693e5a8e9b50c1e88f",
