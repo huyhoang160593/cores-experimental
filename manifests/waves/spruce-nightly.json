@@ -3369,9 +3369,8 @@
       "names": [
         "genesis_plus_gx"
       ],
-      "status": "recipe",
+      "status": "reproduces",
       "recipes": [
-        "genesis_plus_gx",
         "standalone:genesis_plus_gx-arm64-20250506"
       ],
       "families": [
@@ -3384,13 +3383,10 @@
         "TRIMUI_SMART_PRO_S"
       ],
       "pin": {
+        "recipe": "standalone:genesis_plus_gx-arm64-20250506",
         "url": "https://github.com/libretro/Genesis-Plus-GX.git",
-        "commit": "f64e0a1e04a67a5edf79026c07dc5094f8df74bc",
-        "basis": "master tip at 2025-05-06T10:00:00Z",
-        "confidence": "unambiguous",
-        "verified": false
-      },
-      "evidence": "came with spruceOS 327c258ee (2025-05-17), the same code and data sections as that import (only stripped since, in bd606af63); built 2025-05-05/06 (sibling builds embed those dates); no commit between 2025-05-04 and 05-07 on master; CE's current recipe does not build at the pin (run 44594308904)"
+        "commit": "f64e0a1e04a67a5edf79026c07dc5094f8df74bc"
+      }
     },
     "RetroArch/.retroarch/cores64/genesis_plus_gx_wide_libretro.so": {
       "sha256": "96eb5e2771e03ae3c867b31db8d8413e951c2dff4e3fb4b7ac8b1749b3f44742",
@@ -3727,9 +3723,9 @@
       "names": [
         "mednafen_supergrafx"
       ],
-      "status": "recipe",
+      "status": "reproduces",
       "recipes": [
-        "mednafen_supergrafx"
+        "standalone:mednafen_supergrafx-arm64-20250506"
       ],
       "families": [
         "ANBERNIC_RGXX",
@@ -3741,13 +3737,10 @@
         "TRIMUI_SMART_PRO_S"
       ],
       "pin": {
+        "recipe": "standalone:mednafen_supergrafx-arm64-20250506",
         "url": "https://github.com/libretro/beetle-supergrafx-libretro.git",
-        "commit": "a776133c34ae8da5daf7d9ccb43e3e292e2b07b0",
-        "basis": "master tip at 2025-05-06T10:00:00Z",
-        "confidence": "unambiguous",
-        "verified": false
-      },
-      "evidence": "came with spruceOS 327c258ee (2025-05-17), the same code and data sections as that import (only stripped since, in bd606af63); built 2025-05-05/06 (sibling builds embed those dates); no commit between 2025-05-04 and 05-07 on master"
+        "commit": "a776133c34ae8da5daf7d9ccb43e3e292e2b07b0"
+      }
     },
     "RetroArch/.retroarch/cores64/mednafen_vb_libretro.so": {
       "sha256": "2064ec06323fb9948056aacba62558c3c21bd604fbbb821815ce8b53a0eb5e3b",

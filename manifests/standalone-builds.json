@@ -7437,7 +7437,7 @@
       "shipped": {
         "spruceos": "327c258ee",
         "source": "spruceOS 327c258ee (Ry with cobaltgit, 2025-05-17, \"Update 64-bit cores\")",
-        "unverified": true,
+        "note": "matched byte for byte by CE run 44668660372 (0409d55)",
         "files": {
           "cores64/genesis_plus_gx_libretro.so": "d4cbc507414db7e587352fda530918abed1945f6a1a3efea61ad776e9da8e1b9"
         }
@@ -7604,7 +7604,7 @@
       "shipped": {
         "spruceos": "327c258ee",
         "source": "spruceOS 327c258ee (Ry with cobaltgit, 2025-05-17, \"Update 64-bit cores\")",
-        "unverified": true,
+        "note": "matched byte for byte by CE run 44668663855 (0409d55)",
         "files": {
           "cores64/mednafen_supergrafx_libretro.so": "410fbf0151d0c19d72e966548f84a54d8452abfa17baf8d4e20197f578f71da9"
         }
