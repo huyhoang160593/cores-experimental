@@ -55,10 +55,12 @@ python3 scripts/waves.py summary
   At those flags (flag fan-out rounds 1-4, 11-19/20), eight cores have spruce's code and data sections. Such an
   entry's `verified` says so, and its status stays `recipe`. CE's catalog recipes keep their portable flags.
 - The build was native: GNU ld's build ID covers `.strtab`'s size, and the native linker's `crti.o`/`crtn.o` paths are
-  20 characters shorter than the cross ones. Rebuilding with CE's cross toolchain and `-B` pointing at the native
-  paths reproduces seven files byte for byte: chimerasnes, ecwolf, fmsx, freechaf, handy, neocd and stella2014
-  (round 5). Their `<core>-arm64-20250506` standalone recipes carry that build: the flags on every compiler call,
-  the native paths, `--strip-unneeded`, and no `SOURCE_DATE_EPOCH`.
+  20 characters shorter than the cross ones. With CFLAGS/CXXFLAGS `-mcpu=cortex-a53 -fomit-frame-pointer
+  -ffast-math` exported, which a Makefile adds to compiles but rarely to the link (so `crtfastmath.o` stays out),
+  and a wrapper that adds `-B` pointing at the native paths, CE's cross toolchain reproduces 22 cores byte for byte
+  (round 7). Their `<core>-arm64-20250506` recipes extend `batch1-arm64-20250506`, which carries that build. Of the
+  rest, px68k matches in code only; a5200, nestopia, prosystem, quicknes, snes9x and tyrquake match in `.text`
+  size; chailove, crocods, fbalpha2012, fbneo, genesis_plus_gx, mednafen_supergrafx and vice_xvic are further off.
 - Files that Cores-spruce workflows built are reproduced by standalone recipes in CE's copies of its images
   (`cores-spruce-arm64`, `cores-spruce-armhf`), repeating the run's commands. Two traps: CE's build script clears
   the image's `CMAKE_TOOLCHAIN_FILE`, which CMake cores need back; and a workflow that builds a runner-owned
