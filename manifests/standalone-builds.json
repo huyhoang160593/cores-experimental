@@ -7788,6 +7788,121 @@
           "cores64/mednafen_supergrafx_libretro.so": "410fbf0151d0c19d72e966548f84a54d8452abfa17baf8d4e20197f578f71da9"
         }
       }
+    },
+    "fbneo-arm64-20250506": {
+      "extends": "batch1-arm64-20250506",
+      "description": "fbneo as spruce ships it since 327c258ee, from cobaltgit's 2025-05-06 build (batch1-arm64-20250506), with its $(wildcard) sources listed in the builder's order. Recovered from spruce's file by simulating ld's C++ placement (cold, startup and main blocks; an inline function stays in the first object that links it), checked first against CE's own build and linker map (diagnostic run 44670614176, throwaway branch verify/fbneo-diag-20261120).",
+      "source": {
+        "url": "https://github.com/libretro/FBNeo.git",
+        "commit": "87f78d3408c248b7bbfbcba2cffc5382b3060fa9",
+        "tree": "fa585155fd0be843179d827341152358c76ae235",
+        "requested_ref": "refs/heads/master",
+        "path": "/libretro-super/libretro-fbneo",
+        "submodules": true
+      },
+      "source_date_epoch": 1746363432,
+      "env": {
+        "CFLAGS": "-mcpu=cortex-a53 -fomit-frame-pointer -ffast-math",
+        "CXXFLAGS": "-mcpu=cortex-a53 -fomit-frame-pointer -ffast-math",
+        "BATCH1_KEY": "fbneo",
+        "GIT_CONFIG_SYSTEM": "/dev/null",
+        "GIT_CONFIG_GLOBAL": "/dev/null",
+        "GIT_CONFIG_PARAMETERS": "'core.abbrev=9'"
+      },
+      "output": {
+        "files": [
+          {
+            "from": "/libretro-super/dist/unix/fbneo_libretro.so",
+            "to": "cores64/fbneo_libretro.so",
+            "mode": "0644",
+            "strip": "--strip-unneeded"
+          }
+        ],
+        "spruce": {
+          "cores64/fbneo_libretro.so": "RetroArch/.retroarch/cores64/fbneo_libretro.so"
+        }
+      },
+      "needed": {
+        "device": [
+          "ld-linux-aarch64.so.1",
+          "libc.so.6",
+          "libgcc_s.so.1",
+          "libm.so.6",
+          "libpthread.so.0",
+          "libstdc++.so.6"
+        ],
+        "forbidden": []
+      },
+      "shipped": {
+        "spruceos": "327c258ee",
+        "source": "spruceOS 327c258ee (Ry with cobaltgit, 2025-05-17, \"Update 64-bit cores\")",
+        "unverified": true,
+        "files": {
+          "cores64/fbneo_libretro.so": "a95ba36668f1421ac09f1c43d4fabd62494ddcf2c67a9d793eeb4e792a8781d2"
+        }
+      },
+      "patches": [
+        {
+          "diff": "patches/standalone/batch1/fbneo-link-order.patch"
+        }
+      ]
+    },
+    "fbalpha2012-arm64-20250506": {
+      "extends": "batch1-arm64-20250506",
+      "description": "fbalpha2012 as spruce ships it since 327c258ee, from cobaltgit's 2025-05-06 build (batch1-arm64-20250506), with its $(wildcard) sources listed in the builder's order. Recovered from spruce's file by simulating ld's C++ placement (cold, startup and main blocks; an inline function stays in the first object that links it), checked first against CE's own build and linker map (diagnostic run 44670619547, throwaway branch verify/fbalpha2012-diag-20261120).",
+      "source": {
+        "url": "https://github.com/libretro/fbalpha2012.git",
+        "commit": "77167cea72e808384c136c8c163a6b4975ce7a84",
+        "tree": "98d9bec3153646e422697494979f7f48f4271499",
+        "requested_ref": "refs/heads/master",
+        "path": "/libretro-super/libretro-fbalpha2012",
+        "submodules": true
+      },
+      "source_date_epoch": 1729546784,
+      "env": {
+        "CFLAGS": "-mcpu=cortex-a53 -fomit-frame-pointer -ffast-math",
+        "CXXFLAGS": "-mcpu=cortex-a53 -fomit-frame-pointer -ffast-math",
+        "BATCH1_KEY": "fbalpha2012",
+        "GIT_CONFIG_SYSTEM": "/dev/null",
+        "GIT_CONFIG_GLOBAL": "/dev/null",
+        "GIT_CONFIG_PARAMETERS": "'core.abbrev=8'"
+      },
+      "output": {
+        "files": [
+          {
+            "from": "/libretro-super/dist/unix/fbalpha2012_libretro.so",
+            "to": "cores64/fbalpha2012_libretro.so",
+            "mode": "0644",
+            "strip": "--strip-unneeded"
+          }
+        ],
+        "spruce": {
+          "cores64/fbalpha2012_libretro.so": "RetroArch/.retroarch/cores64/fbalpha2012_libretro.so"
+        }
+      },
+      "needed": {
+        "device": [
+          "ld-linux-aarch64.so.1",
+          "libc.so.6",
+          "libgcc_s.so.1",
+          "libm.so.6",
+          "libstdc++.so.6"
+        ],
+        "forbidden": []
+      },
+      "shipped": {
+        "spruceos": "327c258ee",
+        "source": "spruceOS 327c258ee (Ry with cobaltgit, 2025-05-17, \"Update 64-bit cores\")",
+        "unverified": true,
+        "files": {
+          "cores64/fbalpha2012_libretro.so": "437f37526dad9f68e728c50f23e7ed3b9acab0d1b9912ffcf6834fbc5ce6811c"
+        }
+      },
+      "patches": [
+        {
+          "diff": "patches/standalone/batch1/fbalpha2012-link-order.patch"
+        }
+      ]
     }
   }
 }
