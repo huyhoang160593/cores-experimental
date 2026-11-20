@@ -58,9 +58,11 @@ python3 scripts/waves.py summary
   20 characters shorter than the cross ones. With CFLAGS/CXXFLAGS `-mcpu=cortex-a53 -fomit-frame-pointer
   -ffast-math` exported, which a Makefile adds to compiles but rarely to the link (so `crtfastmath.o` stays out),
   and a wrapper that adds `-B` pointing at the native paths, CE's cross toolchain reproduces 22 cores byte for byte
-  (round 7). Their `<core>-arm64-20250506` recipes extend `batch1-arm64-20250506`, which carries that build. Of the
-  rest, px68k matches in code only; a5200, nestopia, prosystem, quicknes, snes9x and tyrquake match in `.text`
-  size; chailove, crocods, fbalpha2012, fbneo, genesis_plus_gx, mednafen_supergrafx and vice_xvic are further off.
+  (round 7). Their `<core>-arm64-20250506` recipes extend `batch1-arm64-20250506`, which carries that build; six more
+  (a5200, nestopia, prosystem, quicknes, snes9x, tyrquake) match with the Makefiles' own `" <hash>"` version strings
+  and tyrquake's embedded build time, 28 in all. Of the rest, chailove, crocods, fbalpha2012, fbneo, genesis_plus_gx
+  and mednafen_supergrafx have spruce's functions in another link order (the builder filesystem's `$(wildcard)`
+  order); px68k differs only in its build ID; vice_xvic's source differs (options text, nine functions).
 - Files that Cores-spruce workflows built are reproduced by standalone recipes in CE's copies of its images
   (`cores-spruce-arm64`, `cores-spruce-armhf`), repeating the run's commands. Two traps: CE's build script clears
   the image's `CMAKE_TOOLCHAIN_FILE`, which CMake cores need back; and a workflow that builds a runner-owned
