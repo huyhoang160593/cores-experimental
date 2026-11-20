@@ -7136,6 +7136,363 @@
           "cores64/vice_x64_libretro.so": "83bfc2a66fba232dc8dc73858284056917d4d76f20137ba36be82e5e49cf0b16"
         }
       }
+    },
+    "a5200-arm64-20250506": {
+      "extends": "batch1-arm64-20250506",
+      "description": "a5200 as spruce ships it since 327c258ee, from cobaltgit's 2025-05-06 build (batch1-arm64-20250506), with the Makefile's own GIT_VERSION (\" <hash>\").",
+      "source": {
+        "url": "https://github.com/libretro/a5200.git",
+        "commit": "526404072821bb2021fab16f8c5dbbca300512c8",
+        "tree": "237a9147198f764f34c5e567327077a417413a45",
+        "requested_ref": "refs/heads/master",
+        "path": "/libretro-super/libretro-a5200",
+        "submodules": true
+      },
+      "source_date_epoch": 1729530122,
+      "env": {
+        "CFLAGS": "-mcpu=cortex-a53 -fomit-frame-pointer -ffast-math",
+        "CXXFLAGS": "-mcpu=cortex-a53 -fomit-frame-pointer -ffast-math",
+        "BATCH1_KEY": "a5200",
+        "GIT_CONFIG_SYSTEM": "/dev/null",
+        "GIT_CONFIG_GLOBAL": "/dev/null",
+        "GIT_CONFIG_PARAMETERS": "'core.abbrev=7'"
+      },
+      "output": {
+        "files": [
+          {
+            "from": "/libretro-super/dist/unix/a5200_libretro.so",
+            "to": "cores64/a5200_libretro.so",
+            "mode": "0644",
+            "strip": "--strip-unneeded"
+          }
+        ],
+        "spruce": {
+          "cores64/a5200_libretro.so": "RetroArch/.retroarch/cores64/a5200_libretro.so"
+        }
+      },
+      "needed": {
+        "device": [
+          "ld-linux-aarch64.so.1",
+          "libc.so.6",
+          "libm.so.6"
+        ],
+        "forbidden": []
+      },
+      "shipped": {
+        "spruceos": "327c258ee",
+        "source": "spruceOS 327c258ee (Ry with cobaltgit, 2025-05-17, \"Update 64-bit cores\")",
+        "unverified": true,
+        "files": {
+          "cores64/a5200_libretro.so": "b42ae6eee8178c0eed9c0fe361112161ba081c8481076b06647e1a54c8a94d72"
+        }
+      }
+    },
+    "nestopia-arm64-20250506": {
+      "extends": "batch1-arm64-20250506",
+      "description": "nestopia as spruce ships it since 327c258ee, from cobaltgit's 2025-05-06 build (batch1-arm64-20250506), with the Makefile's own GIT_VERSION (\" <hash>\").",
+      "source": {
+        "url": "https://github.com/libretro/nestopia.git",
+        "commit": "d2eefab298b0b9152d2934d6f0227b6803c877b3",
+        "tree": "c6205709908062bc3fcc3b6a14c7f21cd84a8ad3",
+        "requested_ref": "refs/heads/master",
+        "path": "/libretro-super/libretro-nestopia",
+        "submodules": true
+      },
+      "source_date_epoch": 1745454345,
+      "env": {
+        "CFLAGS": "-mcpu=cortex-a53 -fomit-frame-pointer -ffast-math",
+        "CXXFLAGS": "-mcpu=cortex-a53 -fomit-frame-pointer -ffast-math",
+        "BATCH1_KEY": "nestopia",
+        "GIT_CONFIG_SYSTEM": "/dev/null",
+        "GIT_CONFIG_GLOBAL": "/dev/null",
+        "GIT_CONFIG_PARAMETERS": "'core.abbrev=7'"
+      },
+      "output": {
+        "files": [
+          {
+            "from": "/libretro-super/dist/unix/nestopia_libretro.so",
+            "to": "cores64/nestopia_libretro.so",
+            "mode": "0644",
+            "strip": "--strip-unneeded"
+          }
+        ],
+        "spruce": {
+          "cores64/nestopia_libretro.so": "RetroArch/.retroarch/cores64/nestopia_libretro.so"
+        }
+      },
+      "needed": {
+        "device": [
+          "ld-linux-aarch64.so.1",
+          "libc.so.6",
+          "libgcc_s.so.1",
+          "libm.so.6",
+          "libstdc++.so.6"
+        ],
+        "forbidden": []
+      },
+      "shipped": {
+        "spruceos": "327c258ee",
+        "source": "spruceOS 327c258ee (Ry with cobaltgit, 2025-05-17, \"Update 64-bit cores\")",
+        "unverified": true,
+        "files": {
+          "cores64/nestopia_libretro.so": "2eef711950e5c4fe3dee40fd65a5fe6c78aef8dc9fa887f023d8906fbe1b1bab"
+        }
+      }
+    },
+    "prosystem-arm64-20250506": {
+      "extends": "batch1-arm64-20250506",
+      "description": "prosystem as spruce ships it since 327c258ee, from cobaltgit's 2025-05-06 build (batch1-arm64-20250506), with the Makefile's own GIT_VERSION (\" <hash>\").",
+      "source": {
+        "url": "https://github.com/libretro/prosystem-libretro.git",
+        "commit": "acae250da8d98b8b9707cd499e2a0bf6d8500652",
+        "tree": "b3b324182906ef632c1ba7b9b0f4b86961d485c1",
+        "requested_ref": "refs/heads/master",
+        "path": "/libretro-super/libretro-prosystem",
+        "submodules": true
+      },
+      "source_date_epoch": 1729547325,
+      "env": {
+        "CFLAGS": "-mcpu=cortex-a53 -fomit-frame-pointer -ffast-math",
+        "CXXFLAGS": "-mcpu=cortex-a53 -fomit-frame-pointer -ffast-math",
+        "BATCH1_KEY": "prosystem",
+        "GIT_CONFIG_SYSTEM": "/dev/null",
+        "GIT_CONFIG_GLOBAL": "/dev/null",
+        "GIT_CONFIG_PARAMETERS": "'core.abbrev=7'"
+      },
+      "output": {
+        "files": [
+          {
+            "from": "/libretro-super/dist/unix/prosystem_libretro.so",
+            "to": "cores64/prosystem_libretro.so",
+            "mode": "0644",
+            "strip": "--strip-unneeded"
+          }
+        ],
+        "spruce": {
+          "cores64/prosystem_libretro.so": "RetroArch/.retroarch/cores64/prosystem_libretro.so"
+        }
+      },
+      "needed": {
+        "device": [
+          "ld-linux-aarch64.so.1",
+          "libc.so.6",
+          "libm.so.6"
+        ],
+        "forbidden": []
+      },
+      "shipped": {
+        "spruceos": "327c258ee",
+        "source": "spruceOS 327c258ee (Ry with cobaltgit, 2025-05-17, \"Update 64-bit cores\")",
+        "unverified": true,
+        "files": {
+          "cores64/prosystem_libretro.so": "093aed3a329637bb57124504ba988b77998d813d3fddc5731a1746633d330c28"
+        }
+      }
+    },
+    "quicknes-arm64-20250506": {
+      "extends": "batch1-arm64-20250506",
+      "description": "quicknes as spruce ships it since 327c258ee, from cobaltgit's 2025-05-06 build (batch1-arm64-20250506), with the Makefile's own GIT_VERSION (\" <hash>\").",
+      "source": {
+        "url": "https://github.com/libretro/QuickNES_Core.git",
+        "commit": "dbf19f73e3eb9701d1c7f5898f57c097e05c9fbd",
+        "tree": "6db9ac6cf6a540828d1600befcc5a127098b8249",
+        "requested_ref": "refs/heads/master",
+        "path": "/libretro-super/libretro-quicknes",
+        "submodules": true
+      },
+      "source_date_epoch": 1729547018,
+      "env": {
+        "CFLAGS": "-mcpu=cortex-a53 -fomit-frame-pointer -ffast-math",
+        "CXXFLAGS": "-mcpu=cortex-a53 -fomit-frame-pointer -ffast-math",
+        "BATCH1_KEY": "quicknes",
+        "GIT_CONFIG_SYSTEM": "/dev/null",
+        "GIT_CONFIG_GLOBAL": "/dev/null",
+        "GIT_CONFIG_PARAMETERS": "'core.abbrev=7'"
+      },
+      "output": {
+        "files": [
+          {
+            "from": "/libretro-super/dist/unix/quicknes_libretro.so",
+            "to": "cores64/quicknes_libretro.so",
+            "mode": "0644",
+            "strip": "--strip-unneeded"
+          }
+        ],
+        "spruce": {
+          "cores64/quicknes_libretro.so": "RetroArch/.retroarch/cores64/quicknes_libretro.so"
+        }
+      },
+      "needed": {
+        "device": [
+          "ld-linux-aarch64.so.1",
+          "libc.so.6",
+          "libgcc_s.so.1",
+          "libm.so.6",
+          "libstdc++.so.6"
+        ],
+        "forbidden": []
+      },
+      "shipped": {
+        "spruceos": "327c258ee",
+        "source": "spruceOS 327c258ee (Ry with cobaltgit, 2025-05-17, \"Update 64-bit cores\")",
+        "unverified": true,
+        "files": {
+          "cores64/quicknes_libretro.so": "9bc2a3d7f298041128935ff7a573a6e8086b168e8490fdd29b10bc882ae32e6e"
+        }
+      }
+    },
+    "snes9x-arm64-20250506": {
+      "extends": "batch1-arm64-20250506",
+      "description": "snes9x as spruce ships it since 327c258ee, from cobaltgit's 2025-05-06 build (batch1-arm64-20250506), with the Makefile's own GIT_VERSION (\" <hash>\").",
+      "source": {
+        "url": "https://github.com/libretro/snes9x.git",
+        "commit": "49f484569ff2aec7ff08e7598a97d6c9e6eae72d",
+        "tree": "2fc160cffc5c4ad0765e6b32b78a9308614c9107",
+        "requested_ref": "refs/heads/master",
+        "path": "/libretro-super/libretro-snes9x",
+        "submodules": true
+      },
+      "source_date_epoch": 1729547200,
+      "env": {
+        "CFLAGS": "-mcpu=cortex-a53 -fomit-frame-pointer -ffast-math",
+        "CXXFLAGS": "-mcpu=cortex-a53 -fomit-frame-pointer -ffast-math",
+        "BATCH1_KEY": "snes9x",
+        "GIT_CONFIG_SYSTEM": "/dev/null",
+        "GIT_CONFIG_GLOBAL": "/dev/null",
+        "GIT_CONFIG_PARAMETERS": "'core.abbrev=8'"
+      },
+      "output": {
+        "files": [
+          {
+            "from": "/libretro-super/dist/unix/snes9x_libretro.so",
+            "to": "cores64/snes9x_libretro.so",
+            "mode": "0644",
+            "strip": "--strip-unneeded"
+          }
+        ],
+        "spruce": {
+          "cores64/snes9x_libretro.so": "RetroArch/.retroarch/cores64/snes9x_libretro.so"
+        }
+      },
+      "needed": {
+        "device": [
+          "ld-linux-aarch64.so.1",
+          "libc.so.6",
+          "libm.so.6",
+          "libstdc++.so.6",
+          "libz.so.1"
+        ],
+        "forbidden": []
+      },
+      "shipped": {
+        "spruceos": "327c258ee",
+        "source": "spruceOS 327c258ee (Ry with cobaltgit, 2025-05-17, \"Update 64-bit cores\")",
+        "unverified": true,
+        "files": {
+          "cores64/snes9x_libretro.so": "89c6342deac214c8076ba4177c11df186496465e5b08e2920fe7756054ad9fb4"
+        }
+      }
+    },
+    "genesis_plus_gx-arm64-20250506": {
+      "extends": "batch1-arm64-20250506",
+      "description": "genesis_plus_gx as spruce ships it since 327c258ee, from cobaltgit's 2025-05-06 build (batch1-arm64-20250506), with the Makefile's own GIT_VERSION (\" <hash>\").",
+      "source": {
+        "url": "https://github.com/libretro/Genesis-Plus-GX.git",
+        "commit": "f64e0a1e04a67a5edf79026c07dc5094f8df74bc",
+        "tree": "832e9544b441809c58f5be2ddaef89cda12697a0",
+        "requested_ref": "refs/heads/master",
+        "path": "/libretro-super/libretro-genesis_plus_gx",
+        "submodules": true
+      },
+      "source_date_epoch": 1746198934,
+      "env": {
+        "CFLAGS": "-mcpu=cortex-a53 -fomit-frame-pointer -ffast-math",
+        "CXXFLAGS": "-mcpu=cortex-a53 -fomit-frame-pointer -ffast-math",
+        "BATCH1_KEY": "genesis_plus_gx",
+        "GIT_CONFIG_SYSTEM": "/dev/null",
+        "GIT_CONFIG_GLOBAL": "/dev/null",
+        "GIT_CONFIG_PARAMETERS": "'core.abbrev=7'"
+      },
+      "output": {
+        "files": [
+          {
+            "from": "/libretro-super/dist/unix/genesis_plus_gx_libretro.so",
+            "to": "cores64/genesis_plus_gx_libretro.so",
+            "mode": "0644",
+            "strip": "--strip-unneeded"
+          }
+        ],
+        "spruce": {
+          "cores64/genesis_plus_gx_libretro.so": "RetroArch/.retroarch/cores64/genesis_plus_gx_libretro.so"
+        }
+      },
+      "needed": {
+        "device": [
+          "ld-linux-aarch64.so.1",
+          "libc.so.6",
+          "libm.so.6"
+        ],
+        "forbidden": []
+      },
+      "shipped": {
+        "spruceos": "327c258ee",
+        "source": "spruceOS 327c258ee (Ry with cobaltgit, 2025-05-17, \"Update 64-bit cores\")",
+        "unverified": true,
+        "files": {
+          "cores64/genesis_plus_gx_libretro.so": "d4cbc507414db7e587352fda530918abed1945f6a1a3efea61ad776e9da8e1b9"
+        }
+      }
+    },
+    "tyrquake-arm64-20250506": {
+      "extends": "batch1-arm64-20250506",
+      "description": "tyrquake as spruce ships it since 327c258ee, from cobaltgit's 2025-05-06 build (batch1-arm64-20250506), with the Makefile's own GIT_VERSION (\" <hash>\") and the build time the file embeds.",
+      "source": {
+        "url": "https://github.com/libretro/tyrquake.git",
+        "commit": "9dcc3ff4ccf96d2f7aa029b738f2c90685b9257f",
+        "tree": "63ac33f81b24a46f93963829380a6a57dbf20b70",
+        "requested_ref": "refs/heads/master",
+        "path": "/libretro-super/libretro-tyrquake",
+        "submodules": true
+      },
+      "source_date_epoch": 1746530601,
+      "env": {
+        "CFLAGS": "-mcpu=cortex-a53 -fomit-frame-pointer -ffast-math",
+        "CXXFLAGS": "-mcpu=cortex-a53 -fomit-frame-pointer -ffast-math",
+        "BATCH1_KEY": "tyrquake",
+        "GIT_CONFIG_SYSTEM": "/dev/null",
+        "GIT_CONFIG_GLOBAL": "/dev/null",
+        "GIT_CONFIG_PARAMETERS": "'core.abbrev=7'",
+        "BATCH1_DATE": "keep"
+      },
+      "output": {
+        "files": [
+          {
+            "from": "/libretro-super/dist/unix/tyrquake_libretro.so",
+            "to": "cores64/tyrquake_libretro.so",
+            "mode": "0644",
+            "strip": "--strip-unneeded"
+          }
+        ],
+        "spruce": {
+          "cores64/tyrquake_libretro.so": "RetroArch/.retroarch/cores64/tyrquake_libretro.so"
+        }
+      },
+      "needed": {
+        "device": [
+          "ld-linux-aarch64.so.1",
+          "libc.so.6",
+          "libm.so.6"
+        ],
+        "forbidden": []
+      },
+      "shipped": {
+        "spruceos": "327c258ee",
+        "source": "spruceOS 327c258ee (Ry with cobaltgit, 2025-05-17, \"Update 64-bit cores\")",
+        "unverified": true,
+        "files": {
+          "cores64/tyrquake_libretro.so": "f7d3b252e56e39401ab5fb7474430bf2632edec3dd783d6b4efb9b520eeb40e1"
+        }
+      }
     }
   }
 }
