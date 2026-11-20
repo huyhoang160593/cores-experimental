@@ -422,7 +422,7 @@
       "names": [
         "OpenBOR"
       ],
-      "status": "recipe",
+      "status": "reproduces",
       "recipes": [
         "standalone:openbor-new"
       ],
@@ -436,7 +436,12 @@
         "OAKMOSS_A133P",
         "TRIMUI_A133P",
         "TRIMUI_SMART_PRO_S"
-      ]
+      ],
+      "pin": {
+        "recipe": "standalone:openbor-new",
+        "url": "https://github.com/DCurrent/OpenBOR.git",
+        "commit": "b00efbc7752cb55709dfc9fdfdfc7cfe78ddfb90"
+      }
     },
     "Emu/PSP/PPSSPPSDL_A30": {
       "sha256": "f90781d39e82f0e4c7b71f2ec097414bddc195a45336ead87cfa0625a44516b9",

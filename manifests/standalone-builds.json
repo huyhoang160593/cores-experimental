@@ -4343,12 +4343,11 @@
         "forbidden": []
       },
       "shipped": {
-        "unverified": true,
         "spruceos": "7592638d0",
         "files": {
           "OpenBOR_new": "7d2bc15997d8472202b59daecb8f0552b2e0c3fa438665c314097f5a71bb01a4"
         },
-        "note": "spruce also ships Emu/OPENBOR/lib/{libSDL2-2.0.so.0,libpng16.so.16,libz.so.1} beside this binary; this recipe does not build them (no source pinned), so they are listed under needed.device instead"
+        "note": "matched byte for byte by CE run 44677757936 (6fe0279). spruce also ships Emu/OPENBOR/lib/{libSDL2-2.0.so.0,libpng16.so.16,libz.so.1} beside this binary; this recipe does not build them (no source pinned), so they are listed under needed.device instead"
       },
       "downloads": [
         {
@@ -4359,7 +4358,7 @@
       ]
     },
     "openbor-lns-a30": {
-      "description": "OpenBOR \"LNS\" engine ('v3.0 Build 6330 LNS v0.10g', the build Final Fight LNS needs): Emu/OPENBOR/OpenBOR_mod on the Miyoo A30, which is steward-fu's A30 port (steward-fu/website release miyoo-a30, rel_openbor-v1.1.zip, 2024-06-13; v1.2 has the same binary). Its source, src_openbor-v1.1.zip's src_openbor_mod, is gonzalomvp/openbor v6330-fflns at 4c8677c2 with two files changed: engine/Makefile gains BUILD_A30 and BUILD_MMIYOO targets, and engine/openbor.c starts the options menu at entry 0. The recipe takes those two files from the zip and runs its 'make BUILD_A30=1' with steward-fu's A30 toolchain (Buildroot 2024.02.1, GCC 13.2), and uses its own arm-linux-gcc: the archive's Buildroot toolchain-wrapper, which adds -fstack-protector-strong, -fPIE/-pie and -Wl,-z,now -Wl,-z,relro (the shipped binaries are PIE with BIND_NOW and the stack protector). The image replaced only the arm-a30-linux-gnueabihf-* names with a --sysroot-only script, which other A30 recipes use.",
+      "description": "OpenBOR \"LNS\" engine ('v3.0 Build 6330 LNS v0.10g', the build Final Fight LNS needs): Emu/OPENBOR/OpenBOR_mod on the Miyoo A30, which is steward-fu's A30 port (steward-fu/website release miyoo-a30, rel_openbor-v1.1.zip, 2024-06-13; v1.2 has the same binary). Its source, src_openbor-v1.1.zip's src_openbor_mod, is gonzalomvp/openbor v6330-fflns at 4c8677c2 with six files changed: engine/Makefile (BUILD_A30 and BUILD_MMIYOO targets), engine/openbor.c (the options menu starts at entry 0), engine/sdl/control.c, control.h and joysticks.h, and engine/source/openborscript/constants.c; the zip also holds that tree's own build, whose OpenBOR is spruce's file byte for byte. The recipe takes those six files from the zip and runs its 'make BUILD_A30=1' with steward-fu's A30 toolchain (Buildroot 2024.02.1, GCC 13.2), and uses its own arm-linux-gcc: the archive's Buildroot toolchain-wrapper, which adds -fstack-protector-strong, -fPIE/-pie and -Wl,-z,now -Wl,-z,relro (the shipped binaries are PIE with BIND_NOW and the stack protector). The image replaced only the arm-a30-linux-gnueabihf-* names with a --sysroot-only script, which other A30 recipes use.",
       "source": {
         "url": "https://github.com/gonzalomvp/openbor.git",
         "commit": "4c8677c2a747b13dbf0e2f9162509ac14a138c9c",
@@ -4370,8 +4369,8 @@
       "source_date_epoch": 1718280000,
       "steps": [
         "set +u +o pipefail",
-        "python3 -c 'import sys, zipfile; z = zipfile.ZipFile(sys.argv[1]); [open(\"engine/\" + n, \"wb\").write(z.read(\"src_openbor_mod/engine/\" + n)) for n in (\"Makefile\", \"openbor.c\")]' /tmp/src_openbor-v1.1.zip",
-        "test \"$(git status --porcelain | sort | tr '\\n' ' ')\" = ' M engine/Makefile  M engine/openbor.c '",
+        "python3 -c 'import sys, zipfile; z = zipfile.ZipFile(sys.argv[1]); [open(n, \"wb\").write(z.read(\"src_openbor_mod/\" + n)) for n in (\"engine/Makefile\", \"engine/openbor.c\", \"engine/sdl/control.c\", \"engine/sdl/control.h\", \"engine/sdl/joysticks.h\", \"engine/source/openborscript/constants.c\")]' /tmp/src_openbor-v1.1.zip",
+        "test \"$(git status --porcelain | sort | tr '\\n' ' ')\" = ' M engine/Makefile  M engine/openbor.c  M engine/sdl/control.c  M engine/sdl/control.h  M engine/sdl/joysticks.h  M engine/source/openborscript/constants.c '",
         "grep -q '^ifdef BUILD_A30' engine/Makefile && grep -q 'int selector = 0; // 0' engine/openbor.c",
         "test \"$(readlink /opt/a30/bin/arm-linux-gcc)\" = toolchain-wrapper && test -x /opt/a30/bin/arm-linux-gcc.br_real",
         "cd engine",

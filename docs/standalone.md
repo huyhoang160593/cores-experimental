@@ -144,7 +144,7 @@ Built against spruceOS `73bb91a19` (2026-10-11); "match" is byte for byte.
 | `scummvm-arm64` | `Emu/SCUMMVM/scummvm.64` (inside spruceOS's 7z), 12 libraries of `lib/` | match |
 | `gametank-arm64`, `gametank-a30` | `Emu/GAMETANK/gametank/GameTankEmulator`, `gametank-a30/GameTankEmulator` of spruceOS `7592638d0` | match (runs 44416840843, 44416866778) |
 | `openbor-trimui` | `Emu/OPENBOR/OpenBOR_TrimUI` of spruceOS `7592638d0` | built (run 44431097991), differs: the shipped binary's compiler is TrimUI's Linaro GCC 7.5, not GCC 9.4 |
-| `openbor-new` | `Emu/OPENBOR/OpenBOR_new` of spruceOS `7592638d0` | built (run 44431121128), differs: same compiler, libraries and banner, but the shipped `.text` is 115 KB larger and has no RPATH, so the vendor's flags differ |
+| `openbor-new` | `Emu/OPENBOR/OpenBOR_new` of spruceOS `7592638d0` (steward-fu's A30 port, rel_openbor-v1.2) | match (run 44677757936) |
 | `xroar` | `Emu/COCO/xroar` of spruceOS `7592638d0` | built (run 44434199145), differs: same modules, NEEDED list and section sizes, but Debian's SDL2 links libpulse (and so libsndfile), so ld exports xroar's own `sf_*` compat functions and the code shifts; the original machine's SDL2 did not |
 | `gvu-arm64`, `gvu-a30` | `Emu/MEDIA/bin64/gvu`, `bin32/gvu` of spruceOS `7592638d0` | match (runs 44440415230, 44440434774) |
 | `pokedaisy-{arm64,armhf}-20261112`, `-20261113` | `RetroArch/.retroarch/cores{64,}/pokedaisy_{ds,gbc}` (11-12) and `pokedaisy_gba` (11-13) of spruceOS `7592638d0` | match, all six (runs 44571273959, 44571303318, 44571331513, 44571360523): Cores-spruce runs 43141364046 and 43467900814 at pokedaisy-lr 7af02b6, armGBA b1c4a69 / 4bd15f1, with the tree owned by the runner's uid as there |
@@ -301,12 +301,16 @@ found, so the DCurrent build flags are inferred from the engine's `Makefile`
   steward-fu's A30 port: `rel_openbor-v1.1.zip` of the
   [steward-fu/website `miyoo-a30`](https://github.com/steward-fu/website/releases/tag/miyoo-a30)
   release (2024-06-13; v1.2 has the same binary), found by the Emu Inventory session. Its source,
-  `src_openbor-v1.1.zip`'s `src_openbor_mod`, is the same commit with two files changed: the
+  `src_openbor-v1.1.zip`'s `src_openbor_mod`, is the same commit with six files changed. The
   `Makefile` gains `BUILD_A30` (and `BUILD_MMIYOO`) targets, which set SDL, GFX and Tremor, an
   empty `LIBRARIES` (hence the binary's empty RPATH) and `CC = arm-linux-gcc` from `/opt/a30/bin`;
-  and `openbor.c` starts the options menu at entry 0. The recipe downloads that zip (pinned by
-  sha256), takes those two files from it and runs `make BUILD_A30=1` with steward-fu's A30
-  toolchain.
+  `openbor.c` starts the options menu at entry 0; and `sdl/control.c`, `control.h`,
+  `joysticks.h` and `source/openborscript/constants.c` change the controls. The zip also holds
+  that tree's own build, whose `engine/OpenBOR` is spruce's file byte for byte. The recipe
+  downloads that zip (pinned by sha256), takes those six files from it and runs
+  `make BUILD_A30=1` with steward-fu's A30 toolchain. A first try with only the `Makefile` and
+  `openbor.c` (run 44677755329) gave the right size but code 56 bytes shorter: `clearbuttons`,
+  the joystick functions in `sdl/control.c` and `SB_setvolume`/`SB_updatevolume` differed.
 - **The A30 toolchain's own wrapper.** steward-fu's builds call `arm-linux-gcc`, which in
   `a30_toolchain-v1.0.tar.gz` links to its Buildroot `toolchain-wrapper`. That wrapper adds
   `-fstack-protector-strong`, `-fPIE`/`-pie` and `-Wl,-z,now -Wl,-z,relro`, so both shipped LNS
