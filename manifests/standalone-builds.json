@@ -7543,7 +7543,7 @@
       "shipped": {
         "spruceos": "327c258ee",
         "source": "spruceOS 327c258ee (Ry with cobaltgit, 2025-05-17, \"Update 64-bit cores\")",
-        "unverified": true,
+        "note": "matched byte for byte by CE run 44667105551 (ca8acc4)",
         "files": {
           "cores64/crocods_libretro.so": "3ff111f46772d541668a6b0b5f97d76742cf88fe6eb04f8beda58242ee1e26ef"
         }
