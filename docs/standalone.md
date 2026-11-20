@@ -272,13 +272,36 @@ three builds compete for:
 | TwigUI-Next's card file | TwigUI-Next 1.2.0 (twig-base 0d4954c435) builds `yabasanshiro-lr` and writes it over spruce's: 5b669a8c…, GCC 15.2 | libretro/yabause 39535a6 with its `01-optimization.patch`, `FORCE_GLES=1` | built with TwigUI-Next's own toolchain, not here: B412 (salusa, 2026-11-19, `scripts/build_mt yabasanshiro-lr` at 0d4954c435) reproduced it byte for byte (record `devices/builds/20261119-1042-twigui-next-mpv-yaba-repro`) |
 | recommended | spruce's generic core, on every other 64-bit device since 2026-10-13 | libretro/yabause f448097, T3 PGO | `yabasanshiro-libretro`: reproduces. On paper it fits the Pixel 2 (glibc 2.33 against 2.41, GLES 3.1 against Panfrost's, ARMv8.0-safe atomics); untested there |
 
-## OpenBOR (DCurrent) standalones
+## OpenBOR standalones (DCurrent and LNS)
 
 `openbor-trimui` and `openbor-new` rebuild two of the three DCurrent/OpenBOR commits spruce
-ships (`openbor_functions.sh` picks the binary). `OpenBOR_mod` and `OpenBOR_64_mod` are a
-separate "LNS" engine with no known source. No spruceUI wrapper repository for OpenBOR was
-found, so the build flags are inferred from the engine's `Makefile` (`BUILD_LINUX_LE_arm`)
-and from each binary's NEEDED list.
+ships (`openbor_functions.sh` picks the binary). `OpenBOR_mod` and `OpenBOR_64_mod` are the
+"LNS" engine that Final Fight LNS needs (below). No spruceUI wrapper repository for OpenBOR was
+found, so the DCurrent build flags are inferred from the engine's `Makefile`
+(`BUILD_LINUX_LE_arm`) and from each binary's NEEDED list.
+
+- **The LNS engine.** Both banners say "OpenBOR v3.0 Build 6330 LNS v0.10g". That is
+  [gonzalomvp/openbor](https://github.com/gonzalomvp/openbor), a DCurrent fork, branch
+  `v6330-fflns` (its default), whose tip has been `4c8677c2` since 2024-01-07; it grew out of
+  `v6330-fflns_v10g`. Its `version.sh` hardcodes `VERSION_BUILD "6330 LNS v0.10g"`, so the banner
+  does not depend on the clone's depth. In its `Makefile`, `BUILD_OPENGL=0` still turns OpenGL
+  on: the switches are tested with `ifdef`, which any non-empty value passes.
+- **`OpenBOR_64_mod`** (arm64, since 0cd1a7fa2, PR #1537 "OpenBOR for fflns"). wakeboxer built it
+  in [ljhmd0825/OpenBoR-spruce](https://github.com/ljhmd0825/OpenBoR-spruce) at `53ba4100`
+  (`build_fflns.sh`, CI run 25722043280, 2026-05-12): a focal image with the GCC 9.4 aarch64
+  cross and focal's arm64 SDL2, SDL2_gfx, Vorbis, libvpx 6 and libpng, his
+  `patches/fflns/001-default-fflns-cfg.patch`, and `make BUILD_LINUX=1 BUILD_OPENGL=0
+  BUILD_LOADGL=0 BUILD_AMD64=1 ARCHFLAGS="" NO_STRIP=1 SDKPATH=/usr
+  LIBRARIES=/usr/lib/aarch64-linux-gnu`. The workflow never pushed its image, so
+  `Dockerfile.standalone.openbor-fflns` rebuilds it from focal by digest; the script also copied
+  the `libpng16.so.16` and `libz.so.1` that spruce ships in `lib64mod/`.
+- **`openbor-lns-a30`** rebuilds `OpenBOR_mod` (armhf, compiled 2024-06-13 with the A30's
+  Buildroot 2024.02.1 GCC 13.2, before spruce's public history) from the same commit. Who built
+  it is not known, so the flags come from the binary: `BUILD_LINUX` with OpenGL, Vorbis and
+  WebM off and Tremor on (its NEEDED list has `libvorbisidec`, `libSDL2_gfx` and no `libvpx`,
+  and its strings no OpenGL loader), `LIBRARIES` empty (its RPATH is empty) and `ARCHFLAGS`
+  cleared (`BUILD_LINUX` sets `-m64`). Whether it had `-fomit-frame-pointer` (`BUILD_AMD64`
+  unset) is not known, so the recipe also builds `OpenBOR_mod-omitfp` for comparison.
 
 - **No `OpenBOR_Flip` recipe.** It was built with the Flip's own RK3566 Buildroot SDK (GCC
   11.3.0, Buildroot 2021.11) and links Vorbis, libvpx 7 and libpng16. steward-fu's Flip
