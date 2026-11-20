@@ -1,0 +1,58 @@
+diff --git a/Makefile.common b/Makefile.common
+index bcf3f7d..93c9fc2 100644
+--- a/Makefile.common
++++ b/Makefile.common
+@@ -1,4 +1,50 @@
+ SOURCES_C := $(CORE_DIR)/libretro.c \
+-    $(wildcard $(CORE_DIR)/crocods-core/*.c) \
+-    $(wildcard $(CORE_DIR)/crocods-core/iniparser/*.c) \
+-    $(wildcard $(CORE_DIR)/deps/libz/*.c)
++    $(CORE_DIR)/crocods-core/apps_guestinfo.c \
++    $(CORE_DIR)/crocods-core/crtc-cap32.c \
++    $(CORE_DIR)/crocods-core/platform.c \
++    $(CORE_DIR)/crocods-core/z80_cap32.c \
++    $(CORE_DIR)/crocods-core/gif_menu.c \
++    $(CORE_DIR)/crocods-core/crtc-wincpc.c \
++    $(CORE_DIR)/crocods-core/rompack.c \
++    $(CORE_DIR)/crocods-core/upd.c \
++    $(CORE_DIR)/crocods-core/apps_keyboard.c \
++    $(CORE_DIR)/crocods-core/snapshot.c \
++    $(CORE_DIR)/crocods-core/apps_tapeplayer.c \
++    $(CORE_DIR)/crocods-core/romdisc.bin.c \
++    $(CORE_DIR)/crocods-core/cpc6128.bin.c \
++    $(CORE_DIR)/crocods-core/apps_disk.c \
++    $(CORE_DIR)/crocods-core/gestport.c \
++    $(CORE_DIR)/crocods-core/monitor.c \
++    $(CORE_DIR)/crocods-core/gif_keyboard.c \
++    $(CORE_DIR)/crocods-core/gif_icons8.c \
++    $(CORE_DIR)/crocods-core/apps_browser.c \
++    $(CORE_DIR)/crocods-core/apps_autorun.c \
++    $(CORE_DIR)/crocods-core/gif_tape.c \
++    $(CORE_DIR)/crocods-core/gif_icons.c \
++    $(CORE_DIR)/crocods-core/idsk_lite.c \
++    $(CORE_DIR)/crocods-core/gif_select.c \
++    $(CORE_DIR)/crocods-core/crtc-arnold.c \
++    $(CORE_DIR)/crocods-core/emu2149.c \
++    $(CORE_DIR)/crocods-core/sound.c \
++    $(CORE_DIR)/crocods-core/apps_infopanel.c \
++    $(CORE_DIR)/crocods-core/autotype.c \
++    $(CORE_DIR)/crocods-core/font.c \
++    $(CORE_DIR)/crocods-core/asic.c \
++    $(CORE_DIR)/crocods-core/vga.c \
++    $(CORE_DIR)/crocods-core/gif.c \
++    $(CORE_DIR)/crocods-core/z80.c \
++    $(CORE_DIR)/crocods-core/ppi.c \
++    $(CORE_DIR)/crocods-core/apps_menu.c \
++    $(CORE_DIR)/crocods-core/apps_shared.c \
++    $(CORE_DIR)/crocods-core/crtc.c \
++    $(CORE_DIR)/crocods-core/multiface.c \
++    $(CORE_DIR)/crocods-core/iniparser/dictionary.c \
++    $(CORE_DIR)/crocods-core/iniparser/iniparser.c \
++    $(CORE_DIR)/deps/libz/infutil.c \
++    $(CORE_DIR)/deps/libz/infblock.c \
++    $(CORE_DIR)/deps/libz/inffast.c \
++    $(CORE_DIR)/deps/libz/adler32.c \
++    $(CORE_DIR)/deps/libz/zutil.c \
++    $(CORE_DIR)/deps/libz/inflate.c \
++    $(CORE_DIR)/deps/libz/infcodes.c \
++    $(CORE_DIR)/deps/libz/inftrees.c

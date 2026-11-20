@@ -7494,6 +7494,60 @@
           "cores64/tyrquake_libretro.so": "f7d3b252e56e39401ab5fb7474430bf2632edec3dd783d6b4efb9b520eeb40e1"
         }
       }
+    },
+    "crocods-arm64-20250506": {
+      "extends": "batch1-arm64-20250506",
+      "description": "crocods as spruce ships it since 327c258ee, from cobaltgit's 2025-05-06 build (batch1-arm64-20250506), with its sources linked in the builder's order: Makefile.common's $(wildcard) groups listed explicitly, in the order recovered from spruce's file (function sizes for code objects, data offsets for data-only ones, .dynstr for the ROM files). The order proof matched byte for byte in CE run 44666628070 (throwaway branch verify/linkorder-crocods-20261120, 06125a5).",
+      "source": {
+        "url": "https://github.com/libretro/libretro-crocods.git",
+        "commit": "a320f6e38af49af84a63f81329a1bdb9322022b4",
+        "tree": "381043ae15d8f2891d0ece53e56ad866af3504e4",
+        "requested_ref": "refs/heads/master",
+        "path": "/libretro-super/libretro-crocods",
+        "submodules": true
+      },
+      "patches": [
+        {
+          "diff": "patches/standalone/batch1/crocods-link-order.patch"
+        }
+      ],
+      "source_date_epoch": 1729094685,
+      "env": {
+        "CFLAGS": "-mcpu=cortex-a53 -fomit-frame-pointer -ffast-math",
+        "CXXFLAGS": "-mcpu=cortex-a53 -fomit-frame-pointer -ffast-math",
+        "BATCH1_KEY": "crocods",
+        "GIT_CONFIG_SYSTEM": "/dev/null",
+        "GIT_CONFIG_GLOBAL": "/dev/null",
+        "GIT_CONFIG_PARAMETERS": "'core.abbrev=7'"
+      },
+      "output": {
+        "files": [
+          {
+            "from": "/libretro-super/dist/unix/crocods_libretro.so",
+            "to": "cores64/crocods_libretro.so",
+            "mode": "0644",
+            "strip": "--strip-unneeded"
+          }
+        ],
+        "spruce": {
+          "cores64/crocods_libretro.so": "RetroArch/.retroarch/cores64/crocods_libretro.so"
+        }
+      },
+      "needed": {
+        "device": [
+          "ld-linux-aarch64.so.1",
+          "libc.so.6"
+        ],
+        "forbidden": []
+      },
+      "shipped": {
+        "spruceos": "327c258ee",
+        "source": "spruceOS 327c258ee (Ry with cobaltgit, 2025-05-17, \"Update 64-bit cores\")",
+        "unverified": true,
+        "files": {
+          "cores64/crocods_libretro.so": "3ff111f46772d541668a6b0b5f97d76742cf88fe6eb04f8beda58242ee1e26ef"
+        }
+      }
     }
   }
 }
