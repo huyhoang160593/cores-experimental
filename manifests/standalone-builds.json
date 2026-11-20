@@ -6082,7 +6082,7 @@
       "shipped": {
         "spruceos": "327c258ee",
         "source": "spruceOS 327c258ee (Ry with cobaltgit, 2025-05-17, \"Update 64-bit cores\")",
-        "unverified": true,
+        "note": "matched byte for byte by CE run 44661706071 (86aba0b)",
         "files": {
           "cores64/atari800_libretro.so": "26ba26a525b0a44aa7ea3f716de94635e4d6f646070460d498b313b823a95634"
         }
@@ -6132,7 +6132,7 @@
       "shipped": {
         "spruceos": "327c258ee",
         "source": "spruceOS 327c258ee (Ry with cobaltgit, 2025-05-17, \"Update 64-bit cores\")",
-        "unverified": true,
+        "note": "matched byte for byte by CE run 44661710223 (86aba0b)",
         "files": {
           "cores64/cap32_libretro.so": "e29d6b0f1ede813233c5ae065756370dd1d0b64be40dd64012c7dd900d25b31b"
         }
@@ -6180,7 +6180,7 @@
       "shipped": {
         "spruceos": "327c258ee",
         "source": "spruceOS 327c258ee (Ry with cobaltgit, 2025-05-17, \"Update 64-bit cores\")",
-        "unverified": true,
+        "note": "matched byte for byte by CE run 44661713507 (86aba0b)",
         "files": {
           "cores64/chimerasnes_libretro.so": "e1a492b138796a3f5139248a7ac3242f803156f35eb51af27d70778fd6f6f0d9"
         }
@@ -6230,7 +6230,7 @@
       "shipped": {
         "spruceos": "327c258ee",
         "source": "spruceOS 327c258ee (Ry with cobaltgit, 2025-05-17, \"Update 64-bit cores\")",
-        "unverified": true,
+        "note": "matched byte for byte by CE run 44661716876 (86aba0b)",
         "files": {
           "cores64/ecwolf_libretro.so": "abd8d9894481dfce1367a952e1c55d8a9aee6a1dab4f0c4904c005dfc7e548d7"
         }
@@ -6279,7 +6279,7 @@
       "shipped": {
         "spruceos": "327c258ee",
         "source": "spruceOS 327c258ee (Ry with cobaltgit, 2025-05-17, \"Update 64-bit cores\")",
-        "unverified": true,
+        "note": "matched byte for byte by CE run 44661720071 (86aba0b)",
         "files": {
           "cores64/fmsx_libretro.so": "e5e9f5760890aff7d965d0f7ea4b9bd6ac6ab7aa5f986555969f3efd002f7ece"
         }
@@ -6328,7 +6328,7 @@
       "shipped": {
         "spruceos": "327c258ee",
         "source": "spruceOS 327c258ee (Ry with cobaltgit, 2025-05-17, \"Update 64-bit cores\")",
-        "unverified": true,
+        "note": "matched byte for byte by CE run 44661723924 (86aba0b)",
         "files": {
           "cores64/freechaf_libretro.so": "8bd39eef33a1d4399bee38618806e55be25265f3177d73c8a3de9966dd575c69"
         }
@@ -6378,7 +6378,7 @@
       "shipped": {
         "spruceos": "327c258ee",
         "source": "spruceOS 327c258ee (Ry with cobaltgit, 2025-05-17, \"Update 64-bit cores\")",
-        "unverified": true,
+        "note": "matched byte for byte by CE run 44661727217 (86aba0b)",
         "files": {
           "cores64/freeintv_libretro.so": "47704b0b5e3f64fc18efe05d3e4ad510c24432b69a0ade460afd18813974094b"
         }
@@ -6425,7 +6425,7 @@
       "shipped": {
         "spruceos": "327c258ee",
         "source": "spruceOS 327c258ee (Ry with cobaltgit, 2025-05-17, \"Update 64-bit cores\")",
-        "unverified": true,
+        "note": "matched byte for byte by CE run 44661730722 (86aba0b)",
         "files": {
           "cores64/fuse_libretro.so": "6bcc2710f717294fcf60e60c88e7b44d7a118c2c319463d49d3bc0a3e1b6f206"
         }
@@ -6477,7 +6477,7 @@
       "shipped": {
         "spruceos": "327c258ee",
         "source": "spruceOS 327c258ee (Ry with cobaltgit, 2025-05-17, \"Update 64-bit cores\")",
-        "unverified": true,
+        "note": "matched byte for byte by CE run 44661733605 (86aba0b)",
         "files": {
           "cores64/gearcoleco_libretro.so": "ea32e624cf1a969a683deca4bfe6f249d310805506b60afb9d76e8e5180465cf"
         }
@@ -6529,7 +6529,7 @@
       "shipped": {
         "spruceos": "327c258ee",
         "source": "spruceOS 327c258ee (Ry with cobaltgit, 2025-05-17, \"Update 64-bit cores\")",
-        "unverified": true,
+        "note": "matched byte for byte by CE run 44661736855 (86aba0b)",
         "files": {
           "cores64/gearsystem_libretro.so": "7b8b0c91e62c8e5648bc66330cde1326dfe9c349962b439a409e7352975f060e"
         }
@@ -6576,7 +6576,7 @@
       "shipped": {
         "spruceos": "327c258ee",
         "source": "spruceOS 327c258ee (Ry with cobaltgit, 2025-05-17, \"Update 64-bit cores\")",
-        "unverified": true,
+        "note": "matched byte for byte by CE run 44661740167 (86aba0b)",
         "files": {
           "cores64/gw_libretro.so": "95910edb443e73749c694549daf224eff9043c196c831d2fc6f5202f20179faf"
         }
@@ -6625,7 +6625,7 @@
       "shipped": {
         "spruceos": "327c258ee",
         "source": "spruceOS 327c258ee (Ry with cobaltgit, 2025-05-17, \"Update 64-bit cores\")",
-        "unverified": true,
+        "note": "matched byte for byte by CE run 44661743486 (86aba0b)",
         "files": {
           "cores64/handy_libretro.so": "58762d9673991c8c2603e976394947a55885f566261c789286d03beaf9b0ed2e"
         }
@@ -6674,7 +6674,7 @@
       "shipped": {
         "spruceos": "327c258ee",
         "source": "spruceOS 327c258ee (Ry with cobaltgit, 2025-05-17, \"Update 64-bit cores\")",
-        "unverified": true,
+        "note": "matched byte for byte by CE run 44661746660 (86aba0b)",
         "files": {
           "cores64/mame2003_plus_libretro.so": "1a092b24d1083ab37c8c9bac8d0aa4fda0aceb3f84fc15a0f7c4976f10e68dd4"
         }
@@ -6725,7 +6725,7 @@
       "shipped": {
         "spruceos": "327c258ee",
         "source": "spruceOS 327c258ee (Ry with cobaltgit, 2025-05-17, \"Update 64-bit cores\")",
-        "unverified": true,
+        "note": "matched byte for byte by CE run 44661749563 (86aba0b)",
         "files": {
           "cores64/mednafen_lynx_libretro.so": "3e0886b521d58113e1fb557b739eed5e0f4da01ef41882214682356a7afcd8cd"
         }
@@ -6776,7 +6776,7 @@
       "shipped": {
         "spruceos": "327c258ee",
         "source": "spruceOS 327c258ee (Ry with cobaltgit, 2025-05-17, \"Update 64-bit cores\")",
-        "unverified": true,
+        "note": "matched byte for byte by CE run 44661752633 (86aba0b)",
         "files": {
           "cores64/mednafen_ngp_libretro.so": "bdb01ccad3343dac1c3bf7af5479124f507e62c7457c3cfb9f22e0ad9efeea29"
         }
@@ -6828,7 +6828,7 @@
       "shipped": {
         "spruceos": "327c258ee",
         "source": "spruceOS 327c258ee (Ry with cobaltgit, 2025-05-17, \"Update 64-bit cores\")",
-        "unverified": true,
+        "note": "matched byte for byte by CE run 44661756116 (86aba0b)",
         "files": {
           "cores64/neocd_libretro.so": "881e7002461da125f893cd3c2d4ea35ed6a349d18dec3bb8ad3249426c7efbfa"
         }
@@ -6878,7 +6878,7 @@
       "shipped": {
         "spruceos": "327c258ee",
         "source": "spruceOS 327c258ee (Ry with cobaltgit, 2025-05-17, \"Update 64-bit cores\")",
-        "unverified": true,
+        "note": "matched byte for byte by CE run 44661759459 (86aba0b)",
         "files": {
           "cores64/o2em_libretro.so": "0ebc13cf70933a90274127451102ca2ec17590ea525ee4a430f772b2780094a0"
         }
@@ -6927,7 +6927,7 @@
       "shipped": {
         "spruceos": "327c258ee",
         "source": "spruceOS 327c258ee (Ry with cobaltgit, 2025-05-17, \"Update 64-bit cores\")",
-        "unverified": true,
+        "note": "matched byte for byte by CE run 44661762485 (86aba0b)",
         "files": {
           "cores64/potator_libretro.so": "d7411b0adfba8aaf3503d6c18a6d065318b4cd5cf58ea9da7e743bb07315af6a"
         }
@@ -6977,7 +6977,7 @@
       "shipped": {
         "spruceos": "327c258ee",
         "source": "spruceOS 327c258ee (Ry with cobaltgit, 2025-05-17, \"Update 64-bit cores\")",
-        "unverified": true,
+        "note": "matched byte for byte by CE run 44661765908 (86aba0b)",
         "files": {
           "cores64/prboom_libretro.so": "ba8b398edc1220d5860c2e2305694e3645a2ec9158a9963a7dc91172ffd48e6f"
         }
@@ -7028,7 +7028,7 @@
       "shipped": {
         "spruceos": "327c258ee",
         "source": "spruceOS 327c258ee (Ry with cobaltgit, 2025-05-17, \"Update 64-bit cores\")",
-        "unverified": true,
+        "note": "matched byte for byte by CE run 44661769310 (86aba0b)",
         "files": {
           "cores64/puae2021_libretro.so": "ba8c1d288a90954b8c5ea12c3aa99ae0bc6ff05eb81ce8e00c048df932f060d1"
         }
@@ -7078,7 +7078,7 @@
       "shipped": {
         "spruceos": "327c258ee",
         "source": "spruceOS 327c258ee (Ry with cobaltgit, 2025-05-17, \"Update 64-bit cores\")",
-        "unverified": true,
+        "note": "matched byte for byte by CE run 44661772822 (86aba0b)",
         "files": {
           "cores64/stella2014_libretro.so": "dfa9282b82435951a28b0852988daaa6b2dc7266f79b6f29d1209f782bae9db4"
         }
@@ -7131,7 +7131,7 @@
       "shipped": {
         "spruceos": "327c258ee",
         "source": "spruceOS 327c258ee (Ry with cobaltgit, 2025-05-17, \"Update 64-bit cores\")",
-        "unverified": true,
+        "note": "matched byte for byte by CE run 44661776603 (86aba0b)",
         "files": {
           "cores64/vice_x64_libretro.so": "83bfc2a66fba232dc8dc73858284056917d4d76f20137ba36be82e5e49cf0b16"
         }

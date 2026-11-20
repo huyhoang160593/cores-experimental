@@ -2452,9 +2452,9 @@
       "names": [
         "atari800"
       ],
-      "status": "recipe",
+      "status": "reproduces",
       "recipes": [
-        "atari800"
+        "standalone:atari800-arm64-20250506"
       ],
       "families": [
         "ANBERNIC_RGXX",
@@ -2464,7 +2464,12 @@
         "OAKMOSS_A133P",
         "TRIMUI_A133P",
         "TRIMUI_SMART_PRO_S"
-      ]
+      ],
+      "pin": {
+        "recipe": "standalone:atari800-arm64-20250506",
+        "url": "https://github.com/libretro/libretro-atari800.git",
+        "commit": "6a18cb23cc4a7cecabd9b16143d2d7332ae8d44b"
+      }
     },
     "RetroArch/.retroarch/cores64/bluemsx_libretro.so": {
       "sha256": "eeaf51b29811ceb7677f75460d9d2746b987b3f5d5d0f4ffb4b21c8fd3d7be7d",
@@ -2492,9 +2497,9 @@
       "names": [
         "cap32"
       ],
-      "status": "recipe",
+      "status": "reproduces",
       "recipes": [
-        "cap32"
+        "standalone:cap32-arm64-20250506"
       ],
       "families": [
         "ANBERNIC_RGXX",
@@ -2504,7 +2509,12 @@
         "OAKMOSS_A133P",
         "TRIMUI_A133P",
         "TRIMUI_SMART_PRO_S"
-      ]
+      ],
+      "pin": {
+        "recipe": "standalone:cap32-arm64-20250506",
+        "url": "https://github.com/libretro/libretro-cap32.git",
+        "commit": "9129393fde936fb2fd7cfe3d27128f3d43ac2964"
+      }
     },
     "RetroArch/.retroarch/cores64/chailove_libretro.so": {
       "sha256": "3c57433ee6850e8d52db2a0109743f4a970429c96769212f80cf8c12ec8987d1",
@@ -2863,9 +2873,9 @@
       "names": [
         "freeintv"
       ],
-      "status": "recipe",
+      "status": "reproduces",
       "recipes": [
-        "freeintv"
+        "standalone:freeintv-arm64-20250506"
       ],
       "families": [
         "ANBERNIC_RGXX",
@@ -2875,7 +2885,12 @@
         "OAKMOSS_A133P",
         "TRIMUI_A133P",
         "TRIMUI_SMART_PRO_S"
-      ]
+      ],
+      "pin": {
+        "recipe": "standalone:freeintv-arm64-20250506",
+        "url": "https://github.com/libretro/FreeIntv.git",
+        "commit": "6efc4b8fd4c7423ec1f5ff1913b854529135b565"
+      }
     },
     "RetroArch/.retroarch/cores64/freej2me_plus_libretro.so": {
       "sha256": null,
@@ -2904,9 +2919,9 @@
       "names": [
         "fuse"
       ],
-      "status": "recipe",
+      "status": "reproduces",
       "recipes": [
-        "fuse"
+        "standalone:fuse-arm64-20250506"
       ],
       "families": [
         "ANBERNIC_RGXX",
@@ -2916,7 +2931,12 @@
         "OAKMOSS_A133P",
         "TRIMUI_A133P",
         "TRIMUI_SMART_PRO_S"
-      ]
+      ],
+      "pin": {
+        "recipe": "standalone:fuse-arm64-20250506",
+        "url": "https://github.com/libretro/fuse-libretro.git",
+        "commit": "cad85b7b1b864c65734f71aa4a510b6f6536881c"
+      }
     },
     "RetroArch/.retroarch/cores64/gambatte_libretro.so": {
       "sha256": "56b887601b2cc5b2c57a74e3ca30402a09ec676d6ed45382d3e65bdb794784e5",
@@ -2977,9 +2997,9 @@
       "names": [
         "gearcoleco"
       ],
-      "status": "recipe",
+      "status": "reproduces",
       "recipes": [
-        "gearcoleco"
+        "standalone:gearcoleco-arm64-20250506"
       ],
       "families": [
         "ANBERNIC_RGXX",
@@ -2989,7 +3009,12 @@
         "OAKMOSS_A133P",
         "TRIMUI_A133P",
         "TRIMUI_SMART_PRO_S"
-      ]
+      ],
+      "pin": {
+        "recipe": "standalone:gearcoleco-arm64-20250506",
+        "url": "https://github.com/drhelius/Gearcoleco.git",
+        "commit": "160cc6734cb6de2a560817f9aa17e5822a8086fe"
+      }
     },
     "RetroArch/.retroarch/cores64/gearsystem_libretro.so": {
       "sha256": "7b8b0c91e62c8e5648bc66330cde1326dfe9c349962b439a409e7352975f060e",
@@ -2997,9 +3022,9 @@
       "names": [
         "gearsystem"
       ],
-      "status": "recipe",
+      "status": "reproduces",
       "recipes": [
-        "gearsystem"
+        "standalone:gearsystem-arm64-20250506"
       ],
       "families": [
         "ANBERNIC_RGXX",
@@ -3009,7 +3034,12 @@
         "OAKMOSS_A133P",
         "TRIMUI_A133P",
         "TRIMUI_SMART_PRO_S"
-      ]
+      ],
+      "pin": {
+        "recipe": "standalone:gearsystem-arm64-20250506",
+        "url": "https://github.com/drhelius/Gearsystem.git",
+        "commit": "81decc29b8aada7b206934bc970531a35ca1a080"
+      }
     },
     "RetroArch/.retroarch/cores64/genesis_plus_gx_libretro.so": {
       "sha256": "d4cbc507414db7e587352fda530918abed1945f6a1a3efea61ad776e9da8e1b9",
@@ -3110,9 +3140,9 @@
       "names": [
         "gw"
       ],
-      "status": "recipe",
+      "status": "reproduces",
       "recipes": [
-        "gw"
+        "standalone:gw-arm64-20250506"
       ],
       "families": [
         "ANBERNIC_RGXX",
@@ -3122,7 +3152,12 @@
         "OAKMOSS_A133P",
         "TRIMUI_A133P",
         "TRIMUI_SMART_PRO_S"
-      ]
+      ],
+      "pin": {
+        "recipe": "standalone:gw-arm64-20250506",
+        "url": "https://github.com/libretro/gw-libretro.git",
+        "commit": "435e5cfd4bf6aea03a84259e9b8dba3daf3ff5bd"
+      }
     },
     "RetroArch/.retroarch/cores64/handy_libretro.so": {
       "sha256": "58762d9673991c8c2603e976394947a55885f566261c789286d03beaf9b0ed2e",
@@ -3208,9 +3243,9 @@
       "names": [
         "mame2003_plus"
       ],
-      "status": "recipe",
+      "status": "reproduces",
       "recipes": [
-        "mame2003_plus"
+        "standalone:mame2003_plus-arm64-20250506"
       ],
       "families": [
         "ANBERNIC_RGXX",
@@ -3220,7 +3255,12 @@
         "OAKMOSS_A133P",
         "TRIMUI_A133P",
         "TRIMUI_SMART_PRO_S"
-      ]
+      ],
+      "pin": {
+        "recipe": "standalone:mame2003_plus-arm64-20250506",
+        "url": "https://github.com/libretro/mame2003-plus-libretro.git",
+        "commit": "e7d1a6ecc1d252dd6e4a90b3428eda3b9414bf50"
+      }
     },
     "RetroArch/.retroarch/cores64/mednafen_lynx_libretro.so": {
       "sha256": "3e0886b521d58113e1fb557b739eed5e0f4da01ef41882214682356a7afcd8cd",
@@ -3228,9 +3268,9 @@
       "names": [
         "mednafen_lynx"
       ],
-      "status": "recipe",
+      "status": "reproduces",
       "recipes": [
-        "mednafen_lynx"
+        "standalone:mednafen_lynx-arm64-20250506"
       ],
       "families": [
         "ANBERNIC_RGXX",
@@ -3240,7 +3280,12 @@
         "OAKMOSS_A133P",
         "TRIMUI_A133P",
         "TRIMUI_SMART_PRO_S"
-      ]
+      ],
+      "pin": {
+        "recipe": "standalone:mednafen_lynx-arm64-20250506",
+        "url": "https://github.com/libretro/beetle-lynx-libretro.git",
+        "commit": "7fead71b49e0f08be5c4d4224fea73c6174763bf"
+      }
     },
     "RetroArch/.retroarch/cores64/mednafen_ngp_libretro.so": {
       "sha256": "bdb01ccad3343dac1c3bf7af5479124f507e62c7457c3cfb9f22e0ad9efeea29",
@@ -3248,9 +3293,9 @@
       "names": [
         "mednafen_ngp"
       ],
-      "status": "recipe",
+      "status": "reproduces",
       "recipes": [
-        "mednafen_ngp"
+        "standalone:mednafen_ngp-arm64-20250506"
       ],
       "families": [
         "ANBERNIC_RGXX",
@@ -3260,7 +3305,12 @@
         "OAKMOSS_A133P",
         "TRIMUI_A133P",
         "TRIMUI_SMART_PRO_S"
-      ]
+      ],
+      "pin": {
+        "recipe": "standalone:mednafen_ngp-arm64-20250506",
+        "url": "https://github.com/libretro/beetle-ngp-libretro.git",
+        "commit": "139fe34c8dfc5585d6ee1793a7902bca79d544de"
+      }
     },
     "RetroArch/.retroarch/cores64/mednafen_pce_fast_libretro.so": {
       "sha256": "8bd307b247dd293bf132032b9fa93528030fc1f749ee51b51e964dde6aff61c7",
@@ -3515,9 +3565,9 @@
       "names": [
         "o2em"
       ],
-      "status": "recipe",
+      "status": "reproduces",
       "recipes": [
-        "o2em"
+        "standalone:o2em-arm64-20250506"
       ],
       "families": [
         "ANBERNIC_RGXX",
@@ -3527,7 +3577,12 @@
         "OAKMOSS_A133P",
         "TRIMUI_A133P",
         "TRIMUI_SMART_PRO_S"
-      ]
+      ],
+      "pin": {
+        "recipe": "standalone:o2em-arm64-20250506",
+        "url": "https://github.com/libretro/libretro-o2em.git",
+        "commit": "3ba4231c1dc8dcdf487428712856b790d2e4b8f3"
+      }
     },
     "RetroArch/.retroarch/cores64/opera_libretro.so": {
       "sha256": "54b19b34500aee2db2ad524eb37c8d6b2054a12435d440729428b1ae73863edb",
@@ -3646,9 +3701,9 @@
       "names": [
         "potator"
       ],
-      "status": "recipe",
+      "status": "reproduces",
       "recipes": [
-        "potator"
+        "standalone:potator-arm64-20250506"
       ],
       "families": [
         "ANBERNIC_RGXX",
@@ -3658,7 +3713,12 @@
         "OAKMOSS_A133P",
         "TRIMUI_A133P",
         "TRIMUI_SMART_PRO_S"
-      ]
+      ],
+      "pin": {
+        "recipe": "standalone:potator-arm64-20250506",
+        "url": "https://github.com/libretro/potator.git",
+        "commit": "735bc376974be564045356188a3b899f2b6fedbd"
+      }
     },
     "RetroArch/.retroarch/cores64/prboom_libretro.so": {
       "sha256": "ba8b398edc1220d5860c2e2305694e3645a2ec9158a9963a7dc91172ffd48e6f",
@@ -3666,9 +3726,9 @@
       "names": [
         "prboom"
       ],
-      "status": "recipe",
+      "status": "reproduces",
       "recipes": [
-        "prboom"
+        "standalone:prboom-arm64-20250506"
       ],
       "families": [
         "ANBERNIC_RGXX",
@@ -3678,7 +3738,12 @@
         "OAKMOSS_A133P",
         "TRIMUI_A133P",
         "TRIMUI_SMART_PRO_S"
-      ]
+      ],
+      "pin": {
+        "recipe": "standalone:prboom-arm64-20250506",
+        "url": "https://github.com/libretro/libretro-prboom.git",
+        "commit": "b3e5f8b2e8855f9c6fc7ff7a0036e4e61379177d"
+      }
     },
     "RetroArch/.retroarch/cores64/prosystem_libretro.so": {
       "sha256": "093aed3a329637bb57124504ba988b77998d813d3fddc5731a1746633d330c28",
@@ -3706,9 +3771,9 @@
       "names": [
         "puae2021"
       ],
-      "status": "recipe",
+      "status": "reproduces",
       "recipes": [
-        "puae2021"
+        "standalone:puae2021-arm64-20250506"
       ],
       "families": [
         "ANBERNIC_RGXX",
@@ -3718,7 +3783,12 @@
         "OAKMOSS_A133P",
         "TRIMUI_A133P",
         "TRIMUI_SMART_PRO_S"
-      ]
+      ],
+      "pin": {
+        "recipe": "standalone:puae2021-arm64-20250506",
+        "url": "https://github.com/libretro/libretro-uae.git",
+        "commit": "87cbcb27809c2800418bf81da21a766de28029a0"
+      }
     },
     "RetroArch/.retroarch/cores64/puzzlescript_libretro.so": {
       "sha256": "8ec8ae5139af18853604c3e8a8054734a6472c4e4ff869ca0b0266e8620a77b5",
@@ -4040,9 +4110,9 @@
       "names": [
         "vice_x64"
       ],
-      "status": "recipe",
+      "status": "reproduces",
       "recipes": [
-        "vice_x64"
+        "standalone:vice_x64-arm64-20250506"
       ],
       "families": [
         "ANBERNIC_RGXX",
@@ -4052,7 +4122,12 @@
         "OAKMOSS_A133P",
         "TRIMUI_A133P",
         "TRIMUI_SMART_PRO_S"
-      ]
+      ],
+      "pin": {
+        "recipe": "standalone:vice_x64-arm64-20250506",
+        "url": "https://github.com/libretro/vice-libretro.git",
+        "commit": "e5b036f0be19f7a70fde75cc0e8b1b43476adc13"
+      }
     },
     "RetroArch/.retroarch/cores64/vice_xvic_libretro.so": {
       "sha256": "6731541c77571806e04fd791bf3df9555f419d8c244592b5c300f5945cd4b895",
