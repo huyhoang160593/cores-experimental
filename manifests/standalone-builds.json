@@ -7029,7 +7029,7 @@
       "shipped": {
         "spruceos": "327c258ee",
         "source": "spruceOS 327c258ee (Ry with cobaltgit, 2025-05-17, \"Update 64-bit cores\")",
-        "unverified": true,
+        "note": "differs as known, only in the 20 build-ID bytes, in CE run 44672838648 (2744d6e)",
         "files": {
           "cores64/px68k_libretro.so": "b0f4469381f726614b3fc648b0ef21d6af47627f236c5a856abfc24b28f634c0"
         },
