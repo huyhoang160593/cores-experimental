@@ -62,9 +62,11 @@ python3 scripts/waves.py summary
   (a5200, nestopia, prosystem, quicknes, snes9x, tyrquake) match with the Makefiles' own `" <hash>"` version strings
   and tyrquake's embedded build time, 28 in all. crocods (29) links its sources in the builder filesystem's
   `$(wildcard)` order, recovered from spruce's file (function sizes place code objects, data offsets and a linker map
-  the data-only ones, `.dynstr` the rest) and listed explicitly by a patch. chailove, fbalpha2012, fbneo,
-  genesis_plus_gx and mednafen_supergrafx have spruce's functions in another link order too (the C++ ones keep
-  shared inline functions in whichever object links first, so their runs depend on the order); px68k differs only in its build ID; vice_xvic's source differs (options text, nine functions).
+  the data-only ones, `.dynstr` the rest) and listed explicitly by a patch; genesis_plus_gx and mednafen_supergrafx
+  (31) the same way. chailove, fbalpha2012 and fbneo have spruce's functions in another link order too, but they are
+  C++: inline functions are kept in whichever object links first, so their runs depend on the order. px68k differs
+  only in its build ID. vice_xvic was built after vice_x64 in the same tree without a clean, so x64's stale objects
+  link in (CE run 44668436281 reproduces it that way).
 - Files that Cores-spruce workflows built are reproduced by standalone recipes in CE's copies of its images
   (`cores-spruce-arm64`, `cores-spruce-armhf`), repeating the run's commands. Two traps: CE's build script clears
   the image's `CMAKE_TOOLCHAIN_FILE`, which CMake cores need back; and a workflow that builds a runner-owned
