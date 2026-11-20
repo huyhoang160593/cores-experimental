@@ -5542,7 +5542,7 @@
       "shipped": {
         "spruceos": "2100a9098",
         "source": "spruceOS 2100a9098 (2026-11-18, ryanmsartor: update picodrive to v1.99)",
-        "unverified": true,
+        "note": "matched byte for byte by CE run 44646343278 (14aac72)",
         "files": {
           "cores64/picodrive_libretro.so": "922361592a982d8f6348a0d25128fdf5491b2bb80dc40e094751c9fdc9867296"
         }
@@ -5591,7 +5591,7 @@
       "shipped": {
         "spruceos": "2100a9098",
         "source": "spruceOS 2100a9098 (2026-11-18, ryanmsartor: update picodrive to v1.99)",
-        "unverified": true,
+        "note": "matched byte for byte by CE run 44646348786 (14aac72)",
         "files": {
           "cores/picodrive_libretro.so": "2356aba1925fef276fe3a0edcac5fa07f5ce81d3bc52a7af597d9c325d0fac3a"
         }
@@ -5778,7 +5778,7 @@
       "shipped": {
         "spruceos": "597adbcac",
         "source": "spruceOS 597adbcac (Ryan Sartor: attempt to rebuild gambatte with network functions)",
-        "unverified": true,
+        "note": "matched byte for byte by CE run 44647189554 (6a3968b)",
         "files": {
           "cores/gambatte_libretro.so": "1afa61ce0ad9e3d01c8dd2b67d21cb09c09f754542f04a1272312a335a50f3b7"
         }
@@ -5868,7 +5868,7 @@
       "shipped": {
         "spruceos": "bb5fa963e",
         "source": "spruceOS bb5fa963e (Ryan Sartor: Update gpsp core to v1.1.0.)",
-        "unverified": true,
+        "note": "matched byte for byte by CE run 44647196457 (6a3968b)",
         "files": {
           "cores/gpsp_libretro.so": "4c335547ffeeabaaec3e86835c9241c04741b1495ab96aa51e5bb20960ad07a1"
         }

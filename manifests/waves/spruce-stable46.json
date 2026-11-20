@@ -778,7 +778,8 @@
       ],
       "status": "recipe",
       "recipes": [
-        "ardens"
+        "ardens",
+        "standalone:ardens-armhf-20260925"
       ],
       "families": [
         "MIYOO_A30",
@@ -958,7 +959,8 @@
       ],
       "status": "recipe",
       "recipes": [
-        "easyrpg"
+        "easyrpg",
+        "standalone:easyrpg-armhf-20261118"
       ],
       "families": [
         "MIYOO_A30",
@@ -1192,14 +1194,19 @@
       "names": [
         "gambatte"
       ],
-      "status": "recipe",
+      "status": "reproduces",
       "recipes": [
-        "gambatte"
+        "standalone:gambatte-armhf-20261105"
       ],
       "families": [
         "MIYOO_A30",
         "MIYOO_MINI_FAMILY"
-      ]
+      ],
+      "pin": {
+        "recipe": "standalone:gambatte-armhf-20261105",
+        "url": "https://github.com/libretro/gambatte-libretro.git",
+        "commit": "77f2567d718b8973d02caa2daa8dce4953faf811"
+      }
     },
     "RetroArch/.retroarch/cores/gametank_libretro.so": {
       "sha256": "cdd9c628dd5f2e60a1b9b9c7c45e8815ff5afa293ed31afea0124de4af860d42",
@@ -1282,7 +1289,8 @@
       ],
       "status": "recipe",
       "recipes": [
-        "gloopy"
+        "gloopy",
+        "standalone:gloopy-armhf-20261011"
       ],
       "families": [
         "MIYOO_A30",
@@ -1310,14 +1318,19 @@
       "names": [
         "gpsp"
       ],
-      "status": "recipe",
+      "status": "reproduces",
       "recipes": [
-        "gpsp"
+        "standalone:gpsp-armhf-20260921"
       ],
       "families": [
         "MIYOO_A30",
         "MIYOO_MINI_FAMILY"
-      ]
+      ],
+      "pin": {
+        "recipe": "standalone:gpsp-armhf-20260921",
+        "url": "https://github.com/libretro/gpsp.git",
+        "commit": "5819380c2ffb0900219d700a382ee68c464ebb99"
+      }
     },
     "RetroArch/.retroarch/cores/gw_libretro.so": {
       "sha256": "09d40972cd29766279dbf430cc2789b7628ab798f7642c836429d4629df59a43",
@@ -1799,7 +1812,8 @@
       ],
       "status": "recipe",
       "recipes": [
-        "picodrive"
+        "picodrive",
+        "standalone:picodrive-armhf-20261118"
       ],
       "families": [
         "MIYOO_A30",
@@ -2110,7 +2124,8 @@
       ],
       "status": "recipe",
       "recipes": [
-        "swanstation"
+        "swanstation",
+        "standalone:swanstation-armhf-20260925"
       ],
       "families": [
         "ANBERNIC_RGXX",
@@ -2268,7 +2283,8 @@
       ],
       "status": "recipe",
       "recipes": [
-        "virtualjaguar"
+        "virtualjaguar",
+        "standalone:virtualjaguar-armhf-20260829"
       ],
       "families": [
         "MIYOO_A30",
@@ -2296,7 +2312,8 @@
       ],
       "status": "recipe",
       "recipes": [
-        "yabadabadoo"
+        "yabadabadoo",
+        "standalone:yabadabadoo-armhf-20261029"
       ],
       "families": [
         "ANBERNIC_RGXX",
@@ -2570,7 +2587,8 @@
       ],
       "status": "recipe",
       "recipes": [
-        "easyrpg"
+        "easyrpg",
+        "standalone:easyrpg-arm64-20261118"
       ],
       "families": [
         "ANBERNIC_RGXX",
@@ -3521,7 +3539,8 @@
       ],
       "status": "recipe",
       "recipes": [
-        "picodrive"
+        "picodrive",
+        "standalone:picodrive-arm64-20261118"
       ],
       "families": [
         "ANBERNIC_RGXX",
