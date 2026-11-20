@@ -2532,9 +2532,9 @@
       "names": [
         "chimerasnes"
       ],
-      "status": "recipe",
+      "status": "reproduces",
       "recipes": [
-        "chimerasnes"
+        "standalone:chimerasnes-arm64-20250506"
       ],
       "families": [
         "ANBERNIC_RGXX",
@@ -2544,7 +2544,12 @@
         "OAKMOSS_A133P",
         "TRIMUI_A133P",
         "TRIMUI_SMART_PRO_S"
-      ]
+      ],
+      "pin": {
+        "recipe": "standalone:chimerasnes-arm64-20250506",
+        "url": "https://github.com/jamsilva/chimerasnes.git",
+        "commit": "04c57c2902c25f36ae5a5d9c57aff851a772c868"
+      }
     },
     "RetroArch/.retroarch/cores64/crocods_libretro.so": {
       "sha256": "3ff111f46772d541668a6b0b5f97d76742cf88fe6eb04f8beda58242ee1e26ef",
@@ -2626,9 +2631,9 @@
       "names": [
         "ecwolf"
       ],
-      "status": "recipe",
+      "status": "reproduces",
       "recipes": [
-        "ecwolf"
+        "standalone:ecwolf-arm64-20250506"
       ],
       "families": [
         "ANBERNIC_RGXX",
@@ -2638,7 +2643,12 @@
         "OAKMOSS_A133P",
         "TRIMUI_A133P",
         "TRIMUI_SMART_PRO_S"
-      ]
+      ],
+      "pin": {
+        "recipe": "standalone:ecwolf-arm64-20250506",
+        "url": "https://github.com/libretro/ecwolf.git",
+        "commit": "c57ad894d5942740b4896511e8554c9a776b04a6"
+      }
     },
     "RetroArch/.retroarch/cores64/fake08_libretro.so": {
       "sha256": "4795fc4f9f3d96f75eac74e8768aa137c290957d5a277e4ab8830e5c033ffd97",
@@ -2803,9 +2813,9 @@
       "names": [
         "fmsx"
       ],
-      "status": "recipe",
+      "status": "reproduces",
       "recipes": [
-        "fmsx"
+        "standalone:fmsx-arm64-20250506"
       ],
       "families": [
         "ANBERNIC_RGXX",
@@ -2815,7 +2825,12 @@
         "OAKMOSS_A133P",
         "TRIMUI_A133P",
         "TRIMUI_SMART_PRO_S"
-      ]
+      ],
+      "pin": {
+        "recipe": "standalone:fmsx-arm64-20250506",
+        "url": "https://github.com/libretro/fmsx-libretro.git",
+        "commit": "9eb5f25df5397212a3e3088ca1a64db0740bbe5f"
+      }
     },
     "RetroArch/.retroarch/cores64/freechaf_libretro.so": {
       "sha256": "8bd39eef33a1d4399bee38618806e55be25265f3177d73c8a3de9966dd575c69",
@@ -2823,9 +2838,9 @@
       "names": [
         "freechaf"
       ],
-      "status": "recipe",
+      "status": "reproduces",
       "recipes": [
-        "freechaf"
+        "standalone:freechaf-arm64-20250506"
       ],
       "families": [
         "ANBERNIC_RGXX",
@@ -2835,7 +2850,12 @@
         "OAKMOSS_A133P",
         "TRIMUI_A133P",
         "TRIMUI_SMART_PRO_S"
-      ]
+      ],
+      "pin": {
+        "recipe": "standalone:freechaf-arm64-20250506",
+        "url": "https://github.com/libretro/FreeChaF.git",
+        "commit": "cdb8ad6fcecb276761b193650f5ce9ae8b878067"
+      }
     },
     "RetroArch/.retroarch/cores64/freeintv_libretro.so": {
       "sha256": "47704b0b5e3f64fc18efe05d3e4ad510c24432b69a0ade460afd18813974094b",
@@ -3110,9 +3130,9 @@
       "names": [
         "handy"
       ],
-      "status": "recipe",
+      "status": "reproduces",
       "recipes": [
-        "handy"
+        "standalone:handy-arm64-20250506"
       ],
       "families": [
         "ANBERNIC_RGXX",
@@ -3122,7 +3142,12 @@
         "OAKMOSS_A133P",
         "TRIMUI_A133P",
         "TRIMUI_SMART_PRO_S"
-      ]
+      ],
+      "pin": {
+        "recipe": "standalone:handy-arm64-20250506",
+        "url": "https://github.com/libretro/libretro-handy.git",
+        "commit": "4e9e072796e5552a9d57f6ab83b3f85f27b17fb6"
+      }
     },
     "RetroArch/.retroarch/cores64/hatari_libretro.so": {
       "sha256": "2d43c9883af62b37a4a9a909b23e8ad598c568b0ac2394018af201521b18cfc6",
@@ -3425,9 +3450,9 @@
       "names": [
         "neocd"
       ],
-      "status": "recipe",
+      "status": "reproduces",
       "recipes": [
-        "neocd"
+        "standalone:neocd-arm64-20250506"
       ],
       "families": [
         "ANBERNIC_RGXX",
@@ -3437,7 +3462,12 @@
         "OAKMOSS_A133P",
         "TRIMUI_A133P",
         "TRIMUI_SMART_PRO_S"
-      ]
+      ],
+      "pin": {
+        "recipe": "standalone:neocd-arm64-20250506",
+        "url": "https://github.com/libretro/neocd_libretro.git",
+        "commit": "5eca2c8fd567b5261251c65ecafa8cf5b179d1d2"
+      }
     },
     "RetroArch/.retroarch/cores64/nestopia_libretro.so": {
       "sha256": "2eef711950e5c4fe3dee40fd65a5fe6c78aef8dc9fa887f023d8906fbe1b1bab",
@@ -3848,9 +3878,9 @@
       "names": [
         "stella2014"
       ],
-      "status": "recipe",
+      "status": "reproduces",
       "recipes": [
-        "stella2014"
+        "standalone:stella2014-arm64-20250506"
       ],
       "families": [
         "ANBERNIC_RGXX",
@@ -3860,7 +3890,12 @@
         "OAKMOSS_A133P",
         "TRIMUI_A133P",
         "TRIMUI_SMART_PRO_S"
-      ]
+      ],
+      "pin": {
+        "recipe": "standalone:stella2014-arm64-20250506",
+        "url": "https://github.com/libretro/stella2014-libretro.git",
+        "commit": "3cc89f0d316d6c924a5e3f4011d17421df58e615"
+      }
     },
     "RetroArch/.retroarch/cores64/swanstation_libretro.so": {
       "sha256": "b72a1c72254fe0d6be9f6890bad0c7011018ac5dcef0a7897d38809e107a3749",
