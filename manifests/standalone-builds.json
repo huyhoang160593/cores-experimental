@@ -5690,6 +5690,332 @@
           "cores/easyrpg_libretro.so": "b0df1ad3abbdedcbffd0a0443333b7993f257ec21341f32ce73c6a2a8fe9a8ff"
         }
       }
+    },
+    "ardens-armhf-20260925": {
+      "description": "ardens as spruce ships it since 511363a3e (cores/): Cores-spruce build-ardens.yml run 36087818285 at 871d60759 (2026-09-25 02:49Z), with no core_ref (the branch tip), `./libretro-build.sh ardens` in Cores-spruce's armhf image.",
+      "source": {
+        "url": "https://github.com/tiberiusbrown/Ardens.git",
+        "commit": "661a7dd4febc8d00e790a4ecde44b936295adf97",
+        "tree": "7c0ada0a9ef3c02443e23b867909c57c2386f0dc",
+        "requested_ref": "branch tip at the run (the commit the same run's cores64 copy reproduces at)",
+        "path": "/libretro-super/libretro-ardens",
+        "submodules": true
+      },
+      "toolchain": "cores-spruce-armhf",
+      "source_date_epoch": 1784658210,
+      "steps": [
+        "cd /libretro-super",
+        "./libretro-build.sh ardens"
+      ],
+      "output": {
+        "files": [
+          {
+            "from": "/libretro-super/dist/unix/ardens_libretro.so",
+            "to": "cores/ardens_libretro.so"
+          }
+        ],
+        "spruce": {
+          "cores/ardens_libretro.so": "RetroArch/.retroarch/cores/ardens_libretro.so"
+        }
+      },
+      "needed": {
+        "device": [
+          "libc.so.6",
+          "libgcc_s.so.1",
+          "libm.so.6",
+          "libstdc++.so.6"
+        ],
+        "forbidden": []
+      },
+      "shipped": {
+        "spruceos": "511363a3e",
+        "source": "spruceOS 511363a3e (SundownerSport: Rebuild ardens, arduous and swanstation)",
+        "unverified": true,
+        "files": {
+          "cores/ardens_libretro.so": "b17266cbe9c1e41c27b1424122f88b2e1c141295de2ce6ea2e18f5364ff98627"
+        }
+      }
+    },
+    "gambatte-armhf-20261105": {
+      "description": "gambatte as spruce ships it since 597adbcac (cores/): Cores-spruce build-gambatte.yml run 42085915526 at 208f85b64 (2026-11-05 18:36Z), with no core_ref, `HAVE_NETWORK=1 ./libretro-build.sh gambatte` in Cores-spruce's armhf image.",
+      "source": {
+        "url": "https://github.com/libretro/gambatte-libretro.git",
+        "commit": "77f2567d718b8973d02caa2daa8dce4953faf811",
+        "tree": "f6099f09c012d305a87241ee51ab9b32860e695d",
+        "requested_ref": "branch tip at the run; the file embeds v0.5.0-netlink 77f2567",
+        "path": "/libretro-super/libretro-gambatte",
+        "submodules": true
+      },
+      "toolchain": "cores-spruce-armhf",
+      "source_date_epoch": 1793357598,
+      "env": {
+        "GIT_CONFIG_PARAMETERS": "'core.abbrev=7'"
+      },
+      "steps": [
+        "cd /libretro-super",
+        "HAVE_NETWORK=1 ./libretro-build.sh gambatte"
+      ],
+      "output": {
+        "files": [
+          {
+            "from": "/libretro-super/dist/unix/gambatte_libretro.so",
+            "to": "cores/gambatte_libretro.so"
+          }
+        ],
+        "spruce": {
+          "cores/gambatte_libretro.so": "RetroArch/.retroarch/cores/gambatte_libretro.so"
+        }
+      },
+      "needed": {
+        "device": [
+          "libc.so.6",
+          "libgcc_s.so.1",
+          "libm.so.6",
+          "libstdc++.so.6"
+        ],
+        "forbidden": []
+      },
+      "shipped": {
+        "spruceos": "597adbcac",
+        "source": "spruceOS 597adbcac (Ryan Sartor: attempt to rebuild gambatte with network functions)",
+        "unverified": true,
+        "files": {
+          "cores/gambatte_libretro.so": "1afa61ce0ad9e3d01c8dd2b67d21cb09c09f754542f04a1272312a335a50f3b7"
+        }
+      }
+    },
+    "gloopy-armhf-20261011": {
+      "description": "gloopy as spruce ships it since 6487538b0 (cores/): Cores-spruce build-gloopy.yml run 38106087570 at 28ba75b50 (2026-10-11 02:43Z), a clone at the default branch tip, `make -f Makefile.libretro platform=unix BUILD_TAG=armhf` with the A30 compilers and Cortex-A7 NEON flags in Cores-spruce's armhf image.",
+      "source": {
+        "url": "https://github.com/seriamaugenlicher/gloopy.git",
+        "commit": "408c1f092405da472875598549516f409876c524",
+        "tree": "5ce72746a676329f7a69aef005287d601482984e",
+        "requested_ref": "default branch tip at the run (2026-10-11 02:45Z)",
+        "path": "/gloopy"
+      },
+      "toolchain": "cores-spruce-armhf",
+      "source_date_epoch": 1790532919,
+      "env": {
+        "GIT_CONFIG_PARAMETERS": "'core.abbrev=7'"
+      },
+      "steps": [
+        "make -f Makefile.libretro platform=unix BUILD_TAG=armhf -j\"$(nproc)\" CC=\"arm-a30-linux-gnueabihf-gcc -mcpu=cortex-a7 -mfpu=neon-vfpv4 -mfloat-abi=hard\" CXX=\"arm-a30-linux-gnueabihf-g++ -mcpu=cortex-a7 -mfpu=neon-vfpv4 -mfloat-abi=hard\""
+      ],
+      "output": {
+        "files": [
+          {
+            "from": "/gloopy/gloopy_libretro.so",
+            "to": "cores/gloopy_libretro.so"
+          }
+        ],
+        "spruce": {
+          "cores/gloopy_libretro.so": "RetroArch/.retroarch/cores/gloopy_libretro.so"
+        }
+      },
+      "needed": {
+        "device": [
+          "libc.so.6",
+          "libgcc_s.so.1",
+          "libm.so.6",
+          "libstdc++.so.6"
+        ],
+        "forbidden": []
+      },
+      "shipped": {
+        "spruceos": "6487538b0",
+        "source": "spruceOS 6487538b0 (SundownerSport: Add Casio Loopy (Gloopy))",
+        "unverified": true,
+        "files": {
+          "cores/gloopy_libretro.so": "82409e18189a4aba3fd8f129e327bc9063ccde8ae8166004dd4b434c7ad4798a"
+        }
+      }
+    },
+    "gpsp-armhf-20260921": {
+      "description": "gpsp as spruce ships it since bb5fa963e (cores/): Cores-spruce build-gpsp.yml run 35646144484 at 68ddcba92 (2026-09-21 19:39Z), a depth-1 clone into /tmp/gpsp, `make platform=armv7hardfloat` with the A30 compilers; that run predates the image's 09-25 rebuild, which added only CMake and a toolchain file, in Cores-spruce's armhf image.",
+      "source": {
+        "url": "https://github.com/libretro/gpsp.git",
+        "commit": "5819380c2ffb0900219d700a382ee68c464ebb99",
+        "tree": "aa956b7c1f9bc3c0621b25de435f4b8916fc0976",
+        "requested_ref": "master tip at the run; the file embeds v1.1.0-5819380",
+        "path": "/tmp/gpsp"
+      },
+      "toolchain": "cores-spruce-armhf",
+      "source_date_epoch": 1789844424,
+      "env": {
+        "GIT_CONFIG_PARAMETERS": "'core.abbrev=7'"
+      },
+      "steps": [
+        "make -j\"$(nproc)\" platform=armv7hardfloat CC=arm-a30-linux-gnueabihf-gcc CXX=arm-a30-linux-gnueabihf-g++"
+      ],
+      "output": {
+        "files": [
+          {
+            "from": "/tmp/gpsp/gpsp_libretro.so",
+            "to": "cores/gpsp_libretro.so"
+          }
+        ],
+        "spruce": {
+          "cores/gpsp_libretro.so": "RetroArch/.retroarch/cores/gpsp_libretro.so"
+        }
+      },
+      "needed": {
+        "device": [
+          "libc.so.6",
+          "libm.so.6"
+        ],
+        "forbidden": []
+      },
+      "shipped": {
+        "spruceos": "bb5fa963e",
+        "source": "spruceOS bb5fa963e (Ryan Sartor: Update gpsp core to v1.1.0.)",
+        "unverified": true,
+        "files": {
+          "cores/gpsp_libretro.so": "4c335547ffeeabaaec3e86835c9241c04741b1495ab96aa51e5bb20960ad07a1"
+        }
+      }
+    },
+    "swanstation-armhf-20260925": {
+      "description": "swanstation as spruce ships it since 511363a3e (cores/): Cores-spruce build-swanstation.yml run 36087822899 at 871d60759 (2026-09-25 02:49Z), with no core_ref, `./libretro-build.sh swanstation` (libretro-super's full clone gave an 8-character hash) in Cores-spruce's armhf image.",
+      "source": {
+        "url": "https://github.com/libretro/swanstation.git",
+        "commit": "b6c30a7b270a3f68ac41f268eafdfa678d17dea2",
+        "tree": "95cb749f6bbd129664fecb3ef53013342ec9e2de",
+        "requested_ref": "branch tip at the run; the file embeds 1.0.0 b6c30a7b",
+        "path": "/libretro-super/libretro-swanstation",
+        "submodules": true
+      },
+      "toolchain": "cores-spruce-armhf",
+      "source_date_epoch": 1789665892,
+      "env": {
+        "GIT_CONFIG_PARAMETERS": "'core.abbrev=8'"
+      },
+      "steps": [
+        "cd /libretro-super",
+        "./libretro-build.sh swanstation"
+      ],
+      "output": {
+        "files": [
+          {
+            "from": "/libretro-super/dist/unix/swanstation_libretro.so",
+            "to": "cores/swanstation_libretro.so"
+          }
+        ],
+        "spruce": {
+          "cores/swanstation_libretro.so": "RetroArch/.retroarch/cores/swanstation_libretro.so"
+        }
+      },
+      "needed": {
+        "device": [
+          "ld-linux-armhf.so.3",
+          "libc.so.6",
+          "libdl.so.2",
+          "libgcc_s.so.1",
+          "libm.so.6",
+          "libpthread.so.0",
+          "librt.so.1",
+          "libstdc++.so.6"
+        ],
+        "forbidden": []
+      },
+      "shipped": {
+        "spruceos": "511363a3e",
+        "source": "spruceOS 511363a3e (SundownerSport: Rebuild ardens, arduous and swanstation)",
+        "unverified": true,
+        "files": {
+          "cores/swanstation_libretro.so": "f7cb499f80fc63dbe02dbc5a01f19932bb28f247dbd882bac9b6e88bd4a2f6f0"
+        }
+      }
+    },
+    "virtualjaguar-armhf-20260829": {
+      "description": "virtualjaguar as spruce ships it since 370467a2c (cores/): Cores-spruce build-virtualjaguar.yml run 33226083601 at 94622d8a4 (2026-08-29 01:19Z), with no core_ref, `./libretro-build.sh virtualjaguar`; that run predates the image's 09-25 rebuild, which added only CMake and a toolchain file, in Cores-spruce's armhf image.",
+      "source": {
+        "url": "https://github.com/libretro/virtualjaguar-libretro.git",
+        "commit": "9a42b528c5c37f580578d46595b9cf38ae9673f8",
+        "tree": "1e4577e1b6acb43d1ab477e3465c3dd1d2a5d924",
+        "requested_ref": "branch tip at the run; the file embeds v3.5.1 9a42b52",
+        "path": "/libretro-super/libretro-virtualjaguar",
+        "submodules": true
+      },
+      "toolchain": "cores-spruce-armhf",
+      "source_date_epoch": 1787802636,
+      "env": {
+        "GIT_CONFIG_PARAMETERS": "'core.abbrev=7'"
+      },
+      "steps": [
+        "cd /libretro-super",
+        "./libretro-build.sh virtualjaguar"
+      ],
+      "output": {
+        "files": [
+          {
+            "from": "/libretro-super/dist/unix/virtualjaguar_libretro.so",
+            "to": "cores/virtualjaguar_libretro.so"
+          }
+        ],
+        "spruce": {
+          "cores/virtualjaguar_libretro.so": "RetroArch/.retroarch/cores/virtualjaguar_libretro.so"
+        }
+      },
+      "needed": {
+        "device": [
+          "libc.so.6"
+        ],
+        "forbidden": []
+      },
+      "shipped": {
+        "spruceos": "370467a2c",
+        "source": "spruceOS 370467a2c (Ryan Sartor: Add virtualjaguar cores)",
+        "unverified": true,
+        "files": {
+          "cores/virtualjaguar_libretro.so": "6c07e5385df09423c98262ee9027c74d625a73c1dd0e76e0922c5e5689dfdbb5"
+        }
+      }
+    },
+    "yabadabadoo-armhf-20261029": {
+      "description": "yabadabadoo as spruce ships it since c9ad45827 (cores/): Cores-spruce build-yabadabadoo.yml run 40966133359 at 50dc3d201 (2026-10-29 22:28Z), core_ref v0.4, `make platform=miyoomini` in yabause/src/libretro with the A30 tools in Cores-spruce's armhf image.",
+      "source": {
+        "url": "https://github.com/ProRapSuperstarOriginalMaster/Yabadabadoo.git",
+        "commit": "f4572c9c1f67c243134e019836d621b6957fd5bb",
+        "tree": "ff7762356074e3cde71fff4cc0b85a06564b4772",
+        "requested_ref": "refs/tags/v0.4 (core_ref v0.4)",
+        "path": "/yabadabadoo"
+      },
+      "toolchain": "cores-spruce-armhf",
+      "source_date_epoch": 1793299910,
+      "steps": [
+        "cd yabause/src/libretro",
+        "make platform=miyoomini -j\"$(nproc)\" CC=arm-a30-linux-gnueabihf-gcc CXX=arm-a30-linux-gnueabihf-g++ CC_AS=arm-a30-linux-gnueabihf-gcc AR=arm-a30-linux-gnueabihf-ar"
+      ],
+      "output": {
+        "files": [
+          {
+            "from": "/yabadabadoo/yabause/src/libretro/yabadabadoo_libretro.so",
+            "to": "cores/yabadabadoo_libretro.so"
+          }
+        ],
+        "spruce": {
+          "cores/yabadabadoo_libretro.so": "RetroArch/.retroarch/cores/yabadabadoo_libretro.so"
+        }
+      },
+      "needed": {
+        "device": [
+          "ld-linux-armhf.so.3",
+          "libc.so.6",
+          "libgcc_s.so.1",
+          "libm.so.6",
+          "libpthread.so.0",
+          "libstdc++.so.6"
+        ],
+        "forbidden": []
+      },
+      "shipped": {
+        "spruceos": "c9ad45827",
+        "source": "spruceOS c9ad45827 (SundownerSport: Yabadabadoo 0.4)",
+        "unverified": true,
+        "files": {
+          "cores/yabadabadoo_libretro.so": "8467bdf91053541e186c32f1fc205f20e4913fc142eb72d3d9648db821b4200a"
+        }
+      }
     }
   }
 }
