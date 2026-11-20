@@ -5703,6 +5703,9 @@
       },
       "toolchain": "cores-spruce-armhf",
       "source_date_epoch": 1784658210,
+      "env": {
+        "CMAKE_TOOLCHAIN_FILE": "/opt/toolchain.cmake"
+      },
       "steps": [
         "cd /libretro-super",
         "./libretro-build.sh ardens"
@@ -5799,6 +5802,7 @@
         "GIT_CONFIG_PARAMETERS": "'core.abbrev=7'"
       },
       "steps": [
+        "chown -R 1001:1001 /gloopy",
         "make -f Makefile.libretro platform=unix BUILD_TAG=armhf -j\"$(nproc)\" CC=\"arm-a30-linux-gnueabihf-gcc -mcpu=cortex-a7 -mfpu=neon-vfpv4 -mfloat-abi=hard\" CXX=\"arm-a30-linux-gnueabihf-g++ -mcpu=cortex-a7 -mfpu=neon-vfpv4 -mfloat-abi=hard\""
       ],
       "output": {
