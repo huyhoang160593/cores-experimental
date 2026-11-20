@@ -366,7 +366,15 @@
         "OAKMOSS_A133P",
         "TRIMUI_A133P",
         "TRIMUI_SMART_PRO_S"
-      ]
+      ],
+      "pin": {
+        "url": "https://github.com/DCurrent/openbor.git",
+        "commit": "7f6f17507078848be625e6d1c1b4f41823151387",
+        "basis": "the banner names 'Build 7142 (commit hash: 7f6f175)', DCurrent's tag v7142",
+        "confidence": "unambiguous",
+        "verified": false
+      },
+      "evidence": "Miyoo's own binary from the stock Flip card (steward-fu's card dump, release miyoo-flip, has it byte for byte, mtime 2024-06-05), built with the Flip's Rockchip Buildroot 2021.11 GCC 11.3 SDK; in spruceOS since a9ce5a494. The SDK's sysroot is not published, so no recipe (Emu Inventory, nightly9-provenance-20261119.md in CFW/Spruce/docs/research/emulator-arch-inventory-20261111)"
     },
     "Emu/OPENBOR/OpenBOR_Pixel2": {
       "sha256": null,
@@ -1751,7 +1759,8 @@
       "families": [
         "MIYOO_A30",
         "MIYOO_MINI_FAMILY"
-      ]
+      ],
+      "evidence": "a white-axe/mkxp-z 'libretro' branch GitHub Actions artifact (job build-libretro-linux-gnu, armv7 = generic-armv7-a+vfpv3-d16: clang + lld, Ubuntu xenial sysroot, llvm-strip, hence no .comment); PR #1121 says it uses the project's automatic builds. The run and commit are not known (the branch tip before 2026-01-16 was fed492c5) and the artifacts have expired"
     },
     "RetroArch/.retroarch/cores/mu_libretro.so": {
       "sha256": "b48faf3803e1f799d5cb164e55838c59adbac70bb7583818fd9a71ccd842213c",
@@ -1779,7 +1788,15 @@
         "DARKMOSS",
         "MIYOO_A30",
         "MIYOO_FLIP"
-      ]
+      ],
+      "pin": {
+        "url": "https://github.com/libretro/mupen64plus-libretro.git",
+        "commit": "ab8134ac90a567581df6de4fc427dd67bfad1b17",
+        "basis": "the file embeds '2.5 ab8134a'",
+        "confidence": "unambiguous",
+        "verified": false
+      },
+      "evidence": "Miyoo's A30 stock core (spruceUI/Miyoo-A30-StockCard has the unstripped original that c3606d213 imported; bd606af63 stripped it, build ID unchanged), built with Debian buster's GCC 8.3.0-6 against the A30's GLES libraries; who at Miyoo built it is not recorded, so no recipe (Emu Inventory, nightly9-provenance-20261119.md in CFW/Spruce/docs/research/emulator-arch-inventory-20261111)"
     },
     "RetroArch/.retroarch/cores/neocd_libretro.so": {
       "sha256": "42f6e10cc6866c96d15c03b686ed6c9210aca0d93c5eac4750d400cf70fc78a4",
@@ -3811,7 +3828,8 @@
         "OAKMOSS_A133P",
         "TRIMUI_A133P",
         "TRIMUI_SMART_PRO_S"
-      ]
+      ],
+      "evidence": "a white-axe/mkxp-z 'libretro' branch GitHub Actions artifact (job build-libretro-linux-gnu, armv8: clang + lld, Ubuntu xenial sysroot, llvm-strip, hence no .comment); PR #1121 says it uses the project's automatic builds. The run and commit are not known (the branch tip before 2026-01-16 was fed492c5) and the artifacts have expired"
     },
     "RetroArch/.retroarch/cores64/mupen64plus_libretro.so": {
       "sha256": "3e723755f074210c6fc8d16be6b9ae0b2b6b9bb732c6a6d23cbc0d6cdfddabd3",
@@ -3822,7 +3840,15 @@
       "status": "no recipe",
       "recipes": [],
       "families": [],
-      "spare": true
+      "spare": true,
+      "pin": {
+        "url": "https://github.com/libretro/mupen64plus-libretro.git",
+        "commit": "ab8134ac90a567581df6de4fc427dd67bfad1b17",
+        "basis": "the file embeds '2.5 ab8134a'",
+        "confidence": "unambiguous",
+        "verified": false
+      },
+      "evidence": "TrimUI's stock core (the TrimUI Brick SD base package of 2024-11-05 has it byte for byte, dated 2023-10-30), built with TrimUI's Linaro GCC 7.5 SDK, flags unknown; in spruceOS since ccdb71dfa. No menu offers it (spare), so no recipe (Emu Inventory, nightly9-provenance-20261119.md in CFW/Spruce/docs/research/emulator-arch-inventory-20261111)"
     },
     "RetroArch/.retroarch/cores64/mupen64plus_next_libretro.so": {
       "sha256": "ebdaaf6697bb5026f85e643e759020f9d0a515998bbc2b3dc53fb55d049fc3c6",
@@ -4518,7 +4544,15 @@
         "OAKMOSS_A133P",
         "TRIMUI_A133P",
         "TRIMUI_SMART_PRO_S"
-      ]
+      ],
+      "pin": {
+        "url": "https://github.com/Chips-fr/uae4arm-rpi.git",
+        "commit": "177c2f0e892adf2603ada9b150e31beffe0f76c3",
+        "basis": "Lakka-v4.x's uae4arm package pins this commit (make -f Makefile.libretro platform=unix-aarch64)",
+        "confidence": "likely",
+        "verified": false
+      },
+      "evidence": "metallic77 supplied it (275a89035, 2024-12-26) from Lakka's community RPi3-Composite aarch64 build on the Lakka-v4.x branch: Lakka's own GCC 10.2.0, and the libmpg123.so.0 it came with embeds that build's path. Not byte-checked: Lakka deleted the old release images (Emu Inventory, nightly9-provenance-20261119.md in CFW/Spruce/docs/research/emulator-arch-inventory-20261111)"
     },
     "RetroArch/.retroarch/cores64/uzem_libretro.so": {
       "sha256": "d9184c9ed0fc84634de0635f9644628ea4d4d8a7373a063c81ec3bba972c636b",

@@ -73,3 +73,9 @@ python3 scripts/waves.py summary
   (`cores-spruce-arm64`, `cores-spruce-armhf`), repeating the run's commands. Two traps: CE's build script clears
   the image's `CMAKE_TOOLCHAIN_FILE`, which CMake cores need back; and a workflow that builds a runner-owned
   checkout as root gets no git hash (git refuses the checkout), which `chown -R 1001:1001 <source>` reproduces.
+- The nightly files without a recipe (9 at d7ce3dc52, traced with the Emu Inventory session on 11-19) carry their
+  provenance as `evidence` (and a source `pin` where one is known). `OpenBOR_mod` (steward-fu's A30 port) now has a
+  recipe, and advmame and `OpenBOR_64_mod` (wakeboxer's CI builds) get theirs once their builder images are on the
+  toolchains release. The rest are vendor or third-party binaries whose toolchain is not published: Miyoo's
+  `OpenBOR_Flip` and A30 `cores/mupen64plus`, TrimUI's `cores64/mupen64plus` (spare), Lakka-v4.x's `uae4arm`
+  (RPi3-Composite, its own GCC 10.2.0), and white-axe's CI artifacts of mkxp-z.
