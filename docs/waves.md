@@ -77,5 +77,7 @@ python3 scripts/waves.py summary
   provenance as `evidence` (and a source `pin` where one is known). Three now reproduce byte for byte: `OpenBOR_mod`
   (steward-fu's A30 port), advmame and `OpenBOR_64_mod` (wakeboxer's CI builds, in their builder images); so does
   `OpenBOR_new`, steward-fu's DCurrent port. The rest are vendor or third-party binaries whose toolchain is not published: Miyoo's
-  `OpenBOR_Flip` and A30 `cores/mupen64plus`, TrimUI's `cores64/mupen64plus` (spare), Lakka-v4.x's `uae4arm`
-  (RPi3-Composite, its own GCC 10.2.0), and white-axe's CI artifacts of mkxp-z.
+  `OpenBOR_Flip` and A30 `cores/mupen64plus`, and TrimUI's `cores64/mupen64plus` (spare). mkxp-z (PR #255's CI) has a
+  recipe that comes close (same code and ZIPs, parked on 300 KB of .rodata), and the 15 third-party core files with a
+  catalog recipe that does not reproduce them carry their provenance too (Flycast campaign builds, christianhaitian
+  and Onion prebuilts, KMFDManic's builds, private LLVM builds).
