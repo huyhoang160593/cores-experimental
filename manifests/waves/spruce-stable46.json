@@ -2701,9 +2701,9 @@
       "names": [
         "fbalpha2012"
       ],
-      "status": "recipe",
+      "status": "reproduces",
       "recipes": [
-        "fbalpha2012"
+        "standalone:fbalpha2012-arm64-20250506"
       ],
       "families": [
         "ANBERNIC_RGXX",
@@ -2713,7 +2713,12 @@
         "OAKMOSS_A133P",
         "TRIMUI_A133P",
         "TRIMUI_SMART_PRO_S"
-      ]
+      ],
+      "pin": {
+        "recipe": "standalone:fbalpha2012-arm64-20250506",
+        "url": "https://github.com/libretro/fbalpha2012.git",
+        "commit": "77167cea72e808384c136c8c163a6b4975ce7a84"
+      }
     },
     "RetroArch/.retroarch/cores64/fbneo_libretro.so": {
       "sha256": "a95ba36668f1421ac09f1c43d4fabd62494ddcf2c67a9d793eeb4e792a8781d2",
@@ -2721,9 +2726,9 @@
       "names": [
         "fbneo"
       ],
-      "status": "recipe",
+      "status": "reproduces",
       "recipes": [
-        "fbneo"
+        "standalone:fbneo-arm64-20250506"
       ],
       "families": [
         "ANBERNIC_RGXX",
@@ -2733,7 +2738,12 @@
         "OAKMOSS_A133P",
         "TRIMUI_A133P",
         "TRIMUI_SMART_PRO_S"
-      ]
+      ],
+      "pin": {
+        "recipe": "standalone:fbneo-arm64-20250506",
+        "url": "https://github.com/libretro/FBNeo.git",
+        "commit": "87f78d3408c248b7bbfbcba2cffc5382b3060fa9"
+      }
     },
     "RetroArch/.retroarch/cores64/fceumm_libretro.so": {
       "sha256": "6431b35e902bf41921a6deddd1529621ff608ba26c55d4d6b98e919b5bc6b68d",

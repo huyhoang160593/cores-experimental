@@ -7893,7 +7893,7 @@
       "shipped": {
         "spruceos": "327c258ee",
         "source": "spruceOS 327c258ee (Ry with cobaltgit, 2025-05-17, \"Update 64-bit cores\")",
-        "unverified": true,
+        "note": "matched byte for byte by CE run 44672998297 (0d4a041)",
         "files": {
           "cores64/fbalpha2012_libretro.so": "437f37526dad9f68e728c50f23e7ed3b9acab0d1b9912ffcf6834fbc5ce6811c"
         }
