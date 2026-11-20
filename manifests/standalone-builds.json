@@ -7972,6 +7972,154 @@
           "diff": "patches/standalone/batch1/fbalpha2012-link-order.patch"
         }
       ]
+    },
+    "advmame-arm64-20260328": {
+      "description": "AdvanceMAME 5.0-90 (amadvance/advancemame 8da8d34e, the MAME 0.106 core): spruce's Emu/ARCADE/advmame.7z since 269dbd35c, as wakeboxer's Build_Spruce_Advmame CI built it (ljhmd0825/Build_Spruce_Advmame@7462de8c build-64.sh, run 23674203493, 2026-03-28) in the image that run built (standalone-advmame). 8da8d34e was master's tip then and is no longer on any branch (master was rewritten), so it is fetched by hash. The image's own /patches/iremga20_fix.patch is applied as build-64.sh does; the binary embeds its build time (01:18:55 UTC) and the archive its file's mtime (01:19:11 UTC). The release asset advmame.64.7z of that run (tag 'latest') holds spruce's advmame.7z byte for byte (Emu Inventory).",
+      "source": {
+        "url": "https://github.com/amadvance/advancemame.git",
+        "commit": "8da8d34e082380f89a60298778aac72a533b28a4",
+        "tree": "54302d95baf4b56133742bdae79fbd1d946b82fb",
+        "requested_ref": "refs/heads/master",
+        "path": "/build/advancemame"
+      },
+      "toolchain": "standalone-advmame",
+      "source_date_epoch": 1774660735,
+      "env": {
+        "GIT_CONFIG_SYSTEM": "/dev/null",
+        "GIT_CONFIG_GLOBAL": "/dev/null",
+        "GIT_CONFIG_PARAMETERS": "'core.abbrev=8'"
+      },
+      "steps": [
+        "set +u",
+        "test \"$(git describe --match 'v*')\" = v5.0-90-g8da8d34e",
+        "patch -p1 < /patches/iremga20_fix.patch",
+        "export CCACHE_DIR=/tmp/ccache CC='ccache aarch64-linux-gnu-gcc' CXX='ccache aarch64-linux-gnu-g++' AR=aarch64-linux-gnu-ar STRIP=aarch64-linux-gnu-strip PKG_CONFIG_PATH=/usr/lib/aarch64-linux-gnu/pkgconfig PKG_CONFIG_LIBDIR=/usr/lib/aarch64-linux-gnu/pkgconfig",
+        "ccache -M 5G && ccache -z",
+        "aclocal && automake --add-missing --copy --foreign || true",
+        "autoheader && autoconf",
+        "./configure --build=x86_64-pc-linux-gnu --host=aarch64-linux-gnu",
+        "make -j\"$(nproc)\" CC=\"$CC\" CXX=\"$CXX\"",
+        "mkdir -p /tmp/out && cp obj/mame/linux/blend/advmame /tmp/out/advmame && $STRIP /tmp/out/advmame",
+        "touch -d @1774660751 /tmp/out/advmame",
+        "cd /tmp/out && 7z a -t7z -m0=lzma2 -mx=9 advmame.7z advmame"
+      ],
+      "output": {
+        "files": [
+          {
+            "from": "/tmp/out/advmame.7z",
+            "to": "advmame.7z",
+            "mode": "0644"
+          },
+          {
+            "from": "/tmp/out/advmame",
+            "to": "advmame"
+          }
+        ],
+        "spruce": {
+          "advmame.7z": "Emu/ARCADE/advmame.7z"
+        }
+      },
+      "needed": {
+        "device": [
+          "ld-linux-aarch64.so.1",
+          "libSDL2-2.0.so.0",
+          "libasound.so.2",
+          "libc.so.6",
+          "libexpat.so.1",
+          "libfreetype.so.6",
+          "libgomp.so.1",
+          "libm.so.6",
+          "libpthread.so.0",
+          "libz.so.1"
+        ],
+        "forbidden": []
+      },
+      "shipped": {
+        "unverified": true,
+        "spruceos": "269dbd35c",
+        "source": "spruceOS 269dbd35c (wakeboxer, 2026-03-28, \"Add AdvanceMAME\")",
+        "files": {
+          "advmame.7z": "c3e61f75909016eee53ee702419d551612195916343d9b3d19e3e4894828606c"
+        }
+      }
+    },
+    "openbor-fflns-arm64-20260512": {
+      "description": "OpenBOR \"LNS\" engine (gonzalomvp/openbor v6330-fflns 4c8677c2, 'v3.0 Build 6330 LNS v0.10g'): spruce's Emu/OPENBOR/OpenBOR_64_mod since 0cd1a7fa2 (PR #1537, \"OpenBOR for fflns\"), as wakeboxer's OpenBoR-spruce CI built it (ljhmd0825/OpenBoR-spruce@53ba4100 build_fflns.sh, run 25722043280, 2026-05-12) in its focal builder (standalone-openbor-fflns), with its fflns patch. Also the two focal arm64 libraries that script collected and spruce still ships in lib64mod/ (libvpx has moved to spruce/flip/lib). The Makefile's BUILD_OPENGL=0 still turns OpenGL on (ifdef), as in the original.",
+      "source": {
+        "url": "https://github.com/gonzalomvp/openbor.git",
+        "commit": "4c8677c2a747b13dbf0e2f9162509ac14a138c9c",
+        "tree": "4f3feedcafb89a9eda3323b5d2deba78f865db4c",
+        "requested_ref": "refs/heads/v6330-fflns",
+        "path": "/build/openbor"
+      },
+      "toolchain": "standalone-openbor-fflns",
+      "source_date_epoch": 1778573518,
+      "downloads": [
+        {
+          "url": "https://raw.githubusercontent.com/ljhmd0825/OpenBoR-spruce/53ba41006f2aa571b5d65e78fd99b7e2f3919c83/patches/fflns/001-default-fflns-cfg.patch",
+          "sha256": "b1c7a1bfe8fa5e7de5e789ef1d4027599c7f80065f9f4744e1921a4c1f6714ef",
+          "path": "/tmp/001-default-fflns-cfg.patch"
+        }
+      ],
+      "steps": [
+        "set +u",
+        "export CC=aarch64-linux-gnu-gcc CXX=aarch64-linux-gnu-g++ AR=aarch64-linux-gnu-ar PKG_CONFIG_PATH=/usr/lib/aarch64-linux-gnu/pkgconfig PKG_CONFIG_LIBDIR=/usr/lib/aarch64-linux-gnu/pkgconfig CCACHE_DIR=/tmp/ccache PATH=/usr/lib/ccache:$PATH",
+        "ln -sf /usr/bin/ccache /usr/local/bin/aarch64-linux-gnu-gcc && ln -sf /usr/bin/ccache /usr/local/bin/aarch64-linux-gnu-g++",
+        "patch -p1 < /tmp/001-default-fflns-cfg.patch",
+        "cd engine",
+        "bash version.sh",
+        "make BUILD_LINUX=1 BUILD_OPENGL=0 BUILD_LOADGL=0 CC=aarch64-linux-gnu-gcc GCC_TARGET=aarch64-linux-gnu ARCHFLAGS=\"\" BUILD_AMD64=1 NO_STRIP=1 SDKPATH=/usr LIBRARIES=/usr/lib/aarch64-linux-gnu -j\"$(nproc)\"",
+        "aarch64-linux-gnu-strip OpenBOR.elf -o OpenBOR",
+        "mkdir -p /tmp/libs && cp -L /usr/lib/aarch64-linux-gnu/libpng16.so.16 /lib/aarch64-linux-gnu/libz.so.1 /tmp/libs/"
+      ],
+      "output": {
+        "files": [
+          {
+            "from": "/build/openbor/engine/OpenBOR",
+            "to": "OpenBOR_64_mod",
+            "mode": "0755"
+          },
+          {
+            "from": "/tmp/libs/libpng16.so.16",
+            "to": "lib64mod/libpng16.so.16",
+            "mode": "0644"
+          },
+          {
+            "from": "/tmp/libs/libz.so.1",
+            "to": "lib64mod/libz.so.1",
+            "mode": "0644"
+          }
+        ],
+        "spruce": {
+          "OpenBOR_64_mod": "Emu/OPENBOR/OpenBOR_64_mod",
+          "lib64mod/libpng16.so.16": "Emu/OPENBOR/lib64mod/libpng16.so.16",
+          "lib64mod/libz.so.1": "Emu/OPENBOR/lib64mod/libz.so.1"
+        }
+      },
+      "needed": {
+        "device": [
+          "ld-linux-aarch64.so.1",
+          "libSDL2-2.0.so.0",
+          "libSDL2_gfx-1.0.so.0",
+          "libc.so.6",
+          "libm.so.6",
+          "libpthread.so.0",
+          "libvorbis.so.0",
+          "libvorbisfile.so.3",
+          "libvpx.so.6"
+        ],
+        "forbidden": []
+      },
+      "shipped": {
+        "unverified": true,
+        "spruceos": "0cd1a7fa2",
+        "source": "spruceOS 0cd1a7fa2 (wakeboxer, 2026-05-13, PR #1537 \"OpenBOR for fflns\")",
+        "files": {
+          "OpenBOR_64_mod": "5b35eab30522a06484e550550ccfb008f5e7664768028c6e4dd05f80bfc28da8",
+          "lib64mod/libpng16.so.16": "14ba485f3a55c36893f372831d0445f78fc64f26073a8d7374dc89ac50b95edc",
+          "lib64mod/libz.so.1": "f7421fde8036391750dc2b1dd7299a0a3305a93cb95846fcc381590f565215c1"
+        }
+      }
     }
   }
 }

@@ -14,8 +14,10 @@
       "names": [
         "advmame-standalone"
       ],
-      "status": "no recipe",
-      "recipes": [],
+      "status": "recipe",
+      "recipes": [
+        "standalone:advmame-arm64-20260328"
+      ],
       "families": [
         "GKD_PIXEL2",
         "MIYOO_FLIP",
@@ -334,8 +336,10 @@
       "names": [
         "OpenBOR"
       ],
-      "status": "no recipe",
-      "recipes": [],
+      "status": "recipe",
+      "recipes": [
+        "standalone:openbor-fflns-arm64-20260512"
+      ],
       "families": [
         "ANBERNIC_RGXX",
         "DARKMOSS",

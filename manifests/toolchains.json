@@ -299,6 +299,28 @@
         "size": 654251130
       },
       "dockerfile": "Dockerfile.armhf in spruceUI/Cores-spruce 871d60759 (build-docker.yml run 36087575366, 2026-09-25)"
+    },
+    "standalone-advmame": {
+      "image": "cores-standalone-advmame:v1",
+      "image_id": "sha256:0fb453edbe6fcb48cad85579bb603416f10b9ba9a98cc600c5447e46320a0069",
+      "host_cc": "aarch64-linux-gnu",
+      "archive": {
+        "name": "cores-standalone-advmame-v1.tar.gz",
+        "sha256": "2eb14b3c7827180717ca76786e0b248dad63902a8fed998cd2368a096e780d31",
+        "size": 385702775
+      },
+      "dockerfile": "Dockerfile.standalone.advmame"
+    },
+    "standalone-openbor-fflns": {
+      "image": "cores-standalone-openbor-fflns:v1",
+      "image_id": "sha256:2277bddd8e7c130336f7c34cd3194e6a732c91f53934de7523b789f1345b4f37",
+      "host_cc": "aarch64-linux-gnu",
+      "archive": {
+        "name": "cores-standalone-openbor-fflns-v1.tar.gz",
+        "sha256": "bd4daa8a9b8624c29379d30f25f41c9afbef5ed7cf17f9e674bc4f1c9e1c35e8",
+        "size": 275452709
+      },
+      "dockerfile": "Dockerfile.standalone.openbor-fflns"
     }
   }
 }
