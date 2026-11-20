@@ -3,9 +3,14 @@
   "wave": "spruce-nightly",
   "defined_by": {
     "repo": "spruceUI/spruceOS",
-    "ref": "d7ce3dc52ae993d308a61d64f0e5231b64f5ca1b",
-    "commit": "d7ce3dc52ae993d308a61d64f0e5231b64f5ca1b",
-    "date": "2026-11-19"
+    "ref": "761cf1db167b498fb2351843c5fe1ae1ac9ff48e",
+    "commit": "761cf1db167b498fb2351843c5fe1ae1ac9ff48e",
+    "date": "2026-11-19",
+    "nightly": {
+      "tag": "v4.6.1-20261120",
+      "run": 44663068038,
+      "built": "2026-11-20T02:45:40Z"
+    }
   },
   "files": {
     "Emu/ARCADE/advmame.7z": {
@@ -270,7 +275,7 @@
       }
     },
     "Emu/N64/pow2/mupen64plus": {
-      "sha256": "acb0beb253163807931c3aba9f4a60616ee56148afdd59d428270848b9ecd204",
+      "sha256": "f70bd3193352615af2be94ae6faee128650c9042cb30474d532e4b59827b0883",
       "kind": "standalone",
       "names": [
         "mupen64plus-pow2"
@@ -290,14 +295,15 @@
       ]
     },
     "Emu/NDS/dsperate": {
-      "sha256": "22a09591f9113554542918cd2ea4e414c4db42ef09ab9ebe59e5dd2192799fd3",
+      "sha256": "ea79bdd5ea4898c7fb45f92c2807d45d53489b913d2499dbeaf492f9769f8458",
       "kind": "standalone",
       "names": [
         "DSperate",
         "DSperate-Tate"
       ],
-      "status": "reproduces",
+      "status": "recipe",
       "recipes": [
+        "standalone:dsperate-arm64",
         "standalone:dsperate-arm64-v3.4.0"
       ],
       "families": [
@@ -310,22 +316,18 @@
         "OAKMOSS_A133P",
         "TRIMUI_A133P",
         "TRIMUI_SMART_PRO_S"
-      ],
-      "pin": {
-        "recipe": "standalone:dsperate-arm64-v3.4.0",
-        "url": "https://github.com/beebono/DSperate.git",
-        "commit": "109ecfd55e23ee818ac85ae531320e3666916273"
-      }
+      ]
     },
     "Emu/NDS/dsperate.a30": {
-      "sha256": "29d234efc888ae90ec9c7ddd10273d0043bde09832f6180d61f6d5a350980d0a",
+      "sha256": "15ff4d858a57642ca8c808f015c5b8a3e661bed079dc79903a300663664ea966",
       "kind": "standalone",
       "names": [
         "DSperate",
         "DSperate-Tate"
       ],
-      "status": "reproduces",
+      "status": "recipe",
       "recipes": [
+        "standalone:dsperate-a30",
         "standalone:dsperate-a30-v3.4.0"
       ],
       "families": [
@@ -338,12 +340,7 @@
         "OAKMOSS_A133P",
         "TRIMUI_A133P",
         "TRIMUI_SMART_PRO_S"
-      ],
-      "pin": {
-        "recipe": "standalone:dsperate-a30-v3.4.0",
-        "url": "https://github.com/beebono/DSperate.git",
-        "commit": "aabc4b065afaf582cbc43c16d579de431b808d57"
-      }
+      ]
     },
     "Emu/OPENBOR/OpenBOR_64_mod": {
       "sha256": "5b35eab30522a06484e550550ccfb008f5e7664768028c6e4dd05f80bfc28da8",
@@ -883,62 +880,48 @@
       }
     },
     "RetroArch/.retroarch/cores/armgba_libretro.so": {
-      "sha256": "bbc3cca53fe60781cf115d814f7b7d83975939bbae35a8ac0d5d0d0a26a82244",
+      "sha256": "20edd2ac0bf81f8cba7e9e14c4fc77fe0b92bb235747c2d5ecc40d03455a0325",
       "kind": "core",
       "names": [
         "armgba"
       ],
-      "status": "reproduces",
+      "status": "recipe",
       "recipes": [
         "armgba"
       ],
       "families": [
         "MIYOO_A30",
         "MIYOO_MINI_FAMILY"
-      ],
-      "pin": {
-        "recipe": "armgba",
-        "url": "https://github.com/MagnominusGit/armGBA.git",
-        "commit": "a06ea8c3c91606935f12457cec9a00549afa8983"
-      }
+      ]
     },
     "RetroArch/.retroarch/cores/armnes_arcade_libretro.so": {
-      "sha256": "1d8cb509296e801f6cc495bccb12eb41473cd932916d9454fd9d32fa9772edeb",
+      "sha256": "9ad78131b6f59416e70130c09297b6dfbcd80132fa7a87e68f8d4690e971792d",
       "kind": "core",
       "names": [
         "armnes_arcade"
       ],
-      "status": "reproduces",
+      "status": "recipe",
       "recipes": [
+        "armnes_arcade",
         "standalone:armnes_arcade-armhf-20261117"
       ],
       "families": [],
-      "spare": true,
-      "pin": {
-        "recipe": "standalone:armnes_arcade-armhf-20261117",
-        "url": "https://github.com/MagnominusGit/armNES.git",
-        "commit": "13f04b0bc161af89834b7da858dcd9c22c101c7a"
-      }
+      "spare": true
     },
     "RetroArch/.retroarch/cores/armnes_libretro.so": {
-      "sha256": "f840e12ec256fe9836c0bae0a37b275dc5354db78c8e2913fe53033ff0febfab",
+      "sha256": "a28db4447e47ec47f8cec4c7cd7eb15cf41a397055588341c4bcebc311da1060",
       "kind": "core",
       "names": [
         "armnes"
       ],
-      "status": "reproduces",
+      "status": "recipe",
       "recipes": [
         "armnes"
       ],
       "families": [
         "MIYOO_A30",
         "MIYOO_MINI_FAMILY"
-      ],
-      "pin": {
-        "recipe": "armnes",
-        "url": "https://github.com/MagnominusGit/armNES.git",
-        "commit": "13f04b0bc161af89834b7da858dcd9c22c101c7a"
-      }
+      ]
     },
     "RetroArch/.retroarch/cores/atari800_libretro.so": {
       "sha256": "da823b2cbf5258e7b92feeab4d87f27a641ef05b8020ef35158fbd8d28955643",
@@ -1782,7 +1765,7 @@
       ]
     },
     "RetroArch/.retroarch/cores/mgba_libretro.so": {
-      "sha256": "74aa27c12ff677bb84eb265e03f686aec439f3ae8621511e61c7eb23bb9a170c",
+      "sha256": "b84920d8c02e5fb7840e47e65679b57a5c935868b5a24ddfc0a4b8f18a65c2b1",
       "kind": "core",
       "names": [
         "mgba"
@@ -1794,8 +1777,7 @@
       "families": [
         "MIYOO_A30",
         "MIYOO_MINI_FAMILY"
-      ],
-      "evidence": "OnionUI/Onion's prebuilt (8a605d52, 2022-12-12; mgba 0.10-dev ec5ecb26d, Debian buster cross GCC 8.3.0-2), byte for byte; builder not recorded (Emu Inventory, nightly11-provenance-20261120.md in CFW/Spruce/docs/research/emulator-arch-inventory-20261111)"
+      ]
     },
     "RetroArch/.retroarch/cores/mkxp-z_libretro.so": {
       "sha256": "39822d821e24071760d9edb108e2bd244d2a49a5415684bf53a822cd4b68b169",
@@ -2301,26 +2283,19 @@
       ]
     },
     "RetroArch/.retroarch/cores/superwhizkid_libretro.so": {
-      "sha256": "89015de684074552667d809ddd4a0c67d2fac27f915fb6e33111f909007e2f02",
+      "sha256": "d98ceb9618e192b8c2adf4fbd4975dd9ac5e667eef53d3566e7ae4599ca5a1fa",
       "kind": "core",
       "names": [
         "superwhizkid"
       ],
-      "status": "reproduces",
+      "status": "recipe",
       "recipes": [
         "superwhizkid"
       ],
       "families": [
         "MIYOO_A30",
         "MIYOO_MINI_FAMILY"
-      ],
-      "pin": {
-        "recipe": "superwhizkid",
-        "url": "https://github.com/ryanmsartor/superwhizkid.git",
-        "commit": "38f692fa8cecb89c5a95741ddc891585b5af7042"
-      },
-      "evidence": "spruceOS eeb16627c (2026-11-18, ryanmsartor: update superwhizkid to v0.3.0)",
-      "verified": "byte for byte: the v0.3.0 release asset superwhizkid_libretro.zip (both files); CE's recipe is still at v0.2.0"
+      ]
     },
     "RetroArch/.retroarch/cores/swanstation_libretro.so": {
       "sha256": "f7cb499f80fc63dbe02dbc5a01f19932bb28f247dbd882bac9b6e88bd4a2f6f0",
@@ -2634,12 +2609,12 @@
       }
     },
     "RetroArch/.retroarch/cores64/armgba_libretro.so": {
-      "sha256": "fffaedc7eb969631125a56622692454a6837ab4805f5edc278108b4cfa1de4bb",
+      "sha256": "042405958d335c33a38abdc1f155841d463d0cb12576205f47cab66577435581",
       "kind": "core",
       "names": [
         "armgba"
       ],
-      "status": "reproduces",
+      "status": "recipe",
       "recipes": [
         "armgba"
       ],
@@ -2651,21 +2626,17 @@
         "OAKMOSS_A133P",
         "TRIMUI_A133P",
         "TRIMUI_SMART_PRO_S"
-      ],
-      "pin": {
-        "recipe": "armgba",
-        "url": "https://github.com/MagnominusGit/armGBA.git",
-        "commit": "a06ea8c3c91606935f12457cec9a00549afa8983"
-      }
+      ]
     },
     "RetroArch/.retroarch/cores64/armn64_libretro.so": {
-      "sha256": "b7ad8ea0deba16bcf96f2428d485099dbbcb9f8e87542f599f507152b0829933",
+      "sha256": "480410fe1659963e03ea7eb05959bcbb13d999b596f94c9a5b3273858d73a42c",
       "kind": "core",
       "names": [
         "armn64"
       ],
-      "status": "reproduces",
+      "status": "recipe",
       "recipes": [
+        "armn64",
         "standalone:armn64-arm64-20261115"
       ],
       "families": [
@@ -2676,39 +2647,29 @@
         "OAKMOSS_A133P",
         "TRIMUI_A133P",
         "TRIMUI_SMART_PRO_S"
-      ],
-      "pin": {
-        "recipe": "standalone:armn64-arm64-20261115",
-        "url": "https://github.com/MagnominusGit/armN64.git",
-        "commit": "49d1298c24cfe0290318f3c4b46ea497eb23cb79"
-      },
-      "evidence": "spruceOS b43e8baf9 (2026-11-18, ryanmsartor: update armulators to latest)"
+      ]
     },
     "RetroArch/.retroarch/cores64/armnes_arcade_libretro.so": {
-      "sha256": "f76f62126d9c0810539426d836b0d31d5ac7c327811a7644f4ab26850c7b64b3",
+      "sha256": "a9919efb58c3319f079d670311e131921f5acb3959207605c4f0409da8f4c087",
       "kind": "core",
       "names": [
         "armnes_arcade"
       ],
-      "status": "reproduces",
+      "status": "recipe",
       "recipes": [
+        "armnes_arcade",
         "standalone:armnes_arcade-arm64-20261117"
       ],
       "families": [],
-      "spare": true,
-      "pin": {
-        "recipe": "standalone:armnes_arcade-arm64-20261117",
-        "url": "https://github.com/MagnominusGit/armNES.git",
-        "commit": "13f04b0bc161af89834b7da858dcd9c22c101c7a"
-      }
+      "spare": true
     },
     "RetroArch/.retroarch/cores64/armnes_libretro.so": {
-      "sha256": "cdb42d30ddc8d96e2a577a7800a23c23191d3ad3e6b466903f344e682ddfbd08",
+      "sha256": "52953848a6480a6223fbb92bbc01b1d40c6877c02b6205036e2f388df5b75132",
       "kind": "core",
       "names": [
         "armnes"
       ],
-      "status": "reproduces",
+      "status": "recipe",
       "recipes": [
         "armnes"
       ],
@@ -2720,12 +2681,7 @@
         "OAKMOSS_A133P",
         "TRIMUI_A133P",
         "TRIMUI_SMART_PRO_S"
-      ],
-      "pin": {
-        "recipe": "armnes",
-        "url": "https://github.com/MagnominusGit/armNES.git",
-        "commit": "13f04b0bc161af89834b7da858dcd9c22c101c7a"
-      }
+      ]
     },
     "RetroArch/.retroarch/cores64/armsnes_libretro.so": {
       "sha256": "e939f1fb0a802f591156d3326def5ebf34a87d8ffd6ba597c40dc02ff253db74",
@@ -3841,7 +3797,7 @@
       ]
     },
     "RetroArch/.retroarch/cores64/mgba_libretro.so": {
-      "sha256": "a685d5cf6d9876aeda8f1aec9c32580b0b54314a3a2067082fda9a992d21b587",
+      "sha256": "4a7190d3c4ea327cf342c5755dc05a72de4532d793a549a0dd302d416bf47392",
       "kind": "core",
       "names": [
         "mgba"
@@ -4468,12 +4424,12 @@
       }
     },
     "RetroArch/.retroarch/cores64/superwhizkid_libretro.so": {
-      "sha256": "eed5a772e0e5fef5db0875d3baf2db7871ac05d3a1157ac757e6ce81038a1e63",
+      "sha256": "edcacf52c5089ccc7e81e8fbddde481ccc63ba1a4a546cddff0f9b85a4a581a8",
       "kind": "core",
       "names": [
         "superwhizkid"
       ],
-      "status": "reproduces",
+      "status": "recipe",
       "recipes": [
         "superwhizkid"
       ],
@@ -4485,14 +4441,7 @@
         "OAKMOSS_A133P",
         "TRIMUI_A133P",
         "TRIMUI_SMART_PRO_S"
-      ],
-      "pin": {
-        "recipe": "superwhizkid",
-        "url": "https://github.com/ryanmsartor/superwhizkid.git",
-        "commit": "38f692fa8cecb89c5a95741ddc891585b5af7042"
-      },
-      "evidence": "spruceOS eeb16627c (2026-11-18, ryanmsartor: update superwhizkid to v0.3.0)",
-      "verified": "byte for byte: the v0.3.0 release asset superwhizkid_libretro.zip (both files); CE's recipe is still at v0.2.0"
+      ]
     },
     "RetroArch/.retroarch/cores64/swanstation_libretro.so": {
       "sha256": "b72a1c72254fe0d6be9f6890bad0c7011018ac5dcef0a7897d38809e107a3749",
@@ -4787,6 +4736,582 @@
       "families": [
         "GKD_PIXEL2"
       ]
+    }
+  },
+  "records": {
+    "ardens": {
+      "files": 1,
+      "status": "match"
+    },
+    "arduous": {
+      "files": 2,
+      "status": "match"
+    },
+    "armgba": {
+      "files": 2,
+      "status": "not shipped",
+      "differ": {
+        "RetroArch/.retroarch/cores/armgba_libretro.so": "other bytes",
+        "RetroArch/.retroarch/cores64/armgba_libretro.so": "other bytes"
+      }
+    },
+    "armnes": {
+      "files": 2,
+      "status": "not shipped",
+      "differ": {
+        "RetroArch/.retroarch/cores/armnes_libretro.so": "other bytes",
+        "RetroArch/.retroarch/cores64/armnes_libretro.so": "other bytes"
+      }
+    },
+    "armsnes": {
+      "files": 1,
+      "status": "match"
+    },
+    "ffmpeg": {
+      "files": 1,
+      "status": "not shipped",
+      "differ": {
+        "RetroArch/.retroarch/cores64/ffmpeg_libretro.so": "other bytes"
+      }
+    },
+    "standalone:a5200-arm64-20250506": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:advmame-arm64-20260328": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:ardens-armhf-20260925": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:armn64-arm64-20261115": {
+      "files": 1,
+      "status": "not shipped",
+      "differ": {
+        "RetroArch/.retroarch/cores64/armn64_libretro.so": "other bytes"
+      }
+    },
+    "standalone:armnes_arcade-arm64-20261117": {
+      "files": 1,
+      "status": "not shipped",
+      "differ": {
+        "RetroArch/.retroarch/cores64/armnes_arcade_libretro.so": "other bytes"
+      }
+    },
+    "standalone:armnes_arcade-armhf-20261117": {
+      "files": 1,
+      "status": "not shipped",
+      "differ": {
+        "RetroArch/.retroarch/cores/armnes_arcade_libretro.so": "other bytes"
+      }
+    },
+    "standalone:atari800-arm64-20250506": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:azahar-libretro": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:bigpemu": {
+      "files": 134,
+      "status": "partial",
+      "differ": {
+        "Emu/JAGUAR/bigpemu/Data/ThirdParty/Licenses/MUSASHI.txt": "absent",
+        "Emu/JAGUAR/bigpemu/Data/ThirdParty/Licenses/README-SDL.txt": "absent",
+        "Emu/JAGUAR/bigpemu/Data/ThirdParty/Licenses/RapidJSON.txt": "absent",
+        "Emu/JAGUAR/bigpemu/Data/ThirdParty/Licenses/TinyCC-MIT.txt": "absent",
+        "Emu/JAGUAR/bigpemu/Data/ThirdParty/Licenses/libcurl.txt": "absent",
+        "Emu/JAGUAR/bigpemu/Data/ThirdParty/Licenses/libpng.txt": "absent",
+        "Emu/JAGUAR/bigpemu/Data/ThirdParty/Licenses/libresample.txt": "absent",
+        "Emu/JAGUAR/bigpemu/Data/ThirdParty/Licenses/openvr.txt": "absent",
+        "Emu/JAGUAR/bigpemu/Data/ThirdParty/Licenses/zlib.txt": "absent",
+        "Emu/JAGUAR/bigpemu/Data/ThirdParty/bin/ThirdPartyBin.txt": "absent",
+        "Emu/JAGUAR/bigpemu/make_desktop.sh": "absent"
+      }
+    },
+    "standalone:cap32-arm64-20250506": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:chailove-arm64-20250506": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:chimerasnes-arm64-20250506": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:crocods-arm64-20250506": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:dsperate-a30": {
+      "files": 1,
+      "status": "not shipped",
+      "differ": {
+        "Emu/NDS/dsperate.a30": "other bytes"
+      }
+    },
+    "standalone:dsperate-a30-v3.4.0": {
+      "files": 1,
+      "status": "not shipped",
+      "differ": {
+        "Emu/NDS/dsperate.a30": "other bytes"
+      }
+    },
+    "standalone:dsperate-arm64": {
+      "files": 1,
+      "status": "not shipped",
+      "differ": {
+        "Emu/NDS/dsperate": "other bytes"
+      }
+    },
+    "standalone:dsperate-arm64-v3.4.0": {
+      "files": 1,
+      "status": "not shipped",
+      "differ": {
+        "Emu/NDS/dsperate": "other bytes"
+      }
+    },
+    "standalone:easyrpg-arm64-20261118": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:easyrpg-armhf-20261118": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:ecwolf-arm64-20250506": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:fbalpha2012-arm64-20250506": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:fbneo-arm64-20250506": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:flycast-libretro-t3": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:flycast-standalone": {
+      "files": 4,
+      "status": "partial",
+      "differ": {
+        "Emu/DC/flycast": "other bytes"
+      },
+      "by": [
+        "standalone:flycast-standalone-t3-lto"
+      ]
+    },
+    "standalone:flycast-standalone-t3-lto": {
+      "files": 4,
+      "status": "match"
+    },
+    "standalone:fmsx-arm64-20250506": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:freechaf-arm64-20250506": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:freeintv-arm64-20250506": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:freej2me-plus-core-arm64-2c15b3c1": {
+      "files": 1,
+      "status": "not shipped",
+      "differ": {
+        "RetroArch/.retroarch/cores64/freej2me_plus_libretro.so": "absent"
+      }
+    },
+    "standalone:freej2me-plus-core-armhf-2c15b3c1": {
+      "files": 1,
+      "status": "not shipped",
+      "differ": {
+        "RetroArch/.retroarch/cores/freej2me_plus_libretro.so": "absent"
+      }
+    },
+    "standalone:freej2me-plus-lr-2c15b3c1": {
+      "files": 1,
+      "status": "not shipped",
+      "differ": {
+        "BIOS/freej2me_plus-lr.jar": "absent"
+      }
+    },
+    "standalone:fuse-arm64-20250506": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:gambatte-arm64-20261105": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:gambatte-armhf-20261105": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:gametank-a30": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:gametank-arm64": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:gametank-libretro-1.0.3": {
+      "files": 2,
+      "status": "match"
+    },
+    "standalone:gearcoleco-arm64-20250506": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:gearsystem-arm64-20250506": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:genesis_plus_gx-arm64-20250506": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:gloopy-arm64-20261011": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:gloopy-armhf-20261011": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:gpsp-arm64-20260921": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:gpsp-armhf-20260921": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:gvu-a30": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:gvu-arm64": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:gw-arm64-20250506": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:handy-arm64-20250506": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:mame2003_plus-arm64-20250506": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:mednafen_lynx-arm64-20250506": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:mednafen_ngp-arm64-20250506": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:mednafen_supergrafx-arm64-20250506": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:mkxp-z-libretro-20260114": {
+      "files": 2,
+      "status": "match"
+    },
+    "standalone:moonlight": {
+      "files": 33,
+      "status": "partial",
+      "differ": {
+        "App/Moonlight/ports/moonlightnew/moonlight/libs/libavcodec.so": "absent",
+        "App/Moonlight/ports/moonlightnew/moonlight/libs/libavcodec.so.58.134.100": "absent",
+        "App/Moonlight/ports/moonlightnew/moonlight/libs/libavutil.so": "absent",
+        "App/Moonlight/ports/moonlightnew/moonlight/libs/libavutil.so.56.70.100": "absent"
+      }
+    },
+    "standalone:mupen64plus-a30": {
+      "files": 9,
+      "status": "match"
+    },
+    "standalone:mupen64plus-arm64": {
+      "files": 4,
+      "status": "partial",
+      "differ": {
+        "Emu/N64/mupen64plus/mupen64plus-video-GLideN64.so": "other bytes"
+      },
+      "by": [
+        "standalone:mupen64plus-arm64-gliden64-ovl"
+      ]
+    },
+    "standalone:mupen64plus-arm64-20260404": {
+      "files": 5,
+      "status": "match"
+    },
+    "standalone:mupen64plus-arm64-gliden64": {
+      "files": 1,
+      "status": "replaced",
+      "differ": {
+        "Emu/N64/mupen64plus/mupen64plus-video-GLideN64.so": "other bytes"
+      },
+      "by": [
+        "standalone:mupen64plus-arm64-gliden64-ovl"
+      ]
+    },
+    "standalone:mupen64plus-arm64-gliden64-ovl": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:mupen64plus-pow2": {
+      "files": 3,
+      "status": "partial",
+      "differ": {
+        "Emu/N64/pow2/mupen64plus": "other bytes"
+      }
+    },
+    "standalone:neocd-arm64-20250506": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:nestopia-arm64-20250506": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:o2em-arm64-20250506": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:openbor-fflns-arm64-20260512": {
+      "files": 3,
+      "status": "match"
+    },
+    "standalone:openbor-lns-a30": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:openbor-new": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:openbor-trimui": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:pcsx_rearmed-a30": {
+      "files": 2,
+      "status": "not shipped",
+      "differ": {
+        "Emu/PS/liba30/libSDL-1.2.so.0": "absent",
+        "Emu/PS/pcsx_a30": "absent"
+      }
+    },
+    "standalone:pcsx_rearmed-arm64": {
+      "files": 2,
+      "status": "not shipped",
+      "differ": {
+        "Emu/PS/libs/libSDL-1.2.so.0": "absent",
+        "Emu/PS/pcsx_64": "absent"
+      }
+    },
+    "standalone:pcsx_rearmed-mini": {
+      "files": 1,
+      "status": "not shipped",
+      "differ": {
+        "Emu/PS/pcsx_mini": "absent"
+      }
+    },
+    "standalone:picodrive-arm64-20261118": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:picodrive-armhf-20261118": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:pokedaisy-arm64-20261112": {
+      "files": 2,
+      "status": "match"
+    },
+    "standalone:pokedaisy-arm64-20261113": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:pokedaisy-armhf-20261112": {
+      "files": 2,
+      "status": "match"
+    },
+    "standalone:pokedaisy-armhf-20261113": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:potator-arm64-20250506": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:ppsspp-a30": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:ppsspp-darkmoss3326": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:ppsspp-darkmoss3566": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:ppsspp-flip": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:ppsspp-h700": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:ppsspp-smartpros": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:ppsspp-trimui": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:prboom-arm64-20250506": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:prosystem-arm64-20250506": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:puae2021-arm64-20250506": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:px68k-arm64-20250506": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:quicknes-arm64-20250506": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:scummvm-a30": {
+      "files": 8,
+      "status": "match"
+    },
+    "standalone:scummvm-arm64": {
+      "files": 13,
+      "status": "match"
+    },
+    "standalone:scummvm-mini": {
+      "files": 98,
+      "status": "match"
+    },
+    "standalone:snes9x-arm64-20250506": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:stella2014-arm64-20250506": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:swanstation-arm64-20260925": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:swanstation-armhf-20260925": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:tyrquake-arm64-20250506": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:uae4arm-lakka-rpi3-composite-20240502": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:vice_x64-arm64-20250506": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:vice_xvic-arm64-20250506": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:virtualjaguar-arm64-20260829": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:virtualjaguar-armhf-20260829": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:vtree-a30": {
+      "files": 3,
+      "status": "match"
+    },
+    "standalone:vtree-arm64": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:vtree-mini": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:xroar": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:yabadabadoo-armhf-20261029": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:yabasanshiro-arm64": {
+      "files": 4,
+      "status": "partial",
+      "differ": {
+        "Emu/SATURN/yabasanshiro": "other bytes"
+      },
+      "by": [
+        "standalone:yabasanshiro-arm64-pgo"
+      ]
+    },
+    "standalone:yabasanshiro-arm64-pgo": {
+      "files": 4,
+      "status": "match"
+    },
+    "standalone:yabasanshiro-libretro": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:yabasanshiro-libretro-trimui": {
+      "files": 2,
+      "status": "match"
+    },
+    "superwhizkid": {
+      "files": 2,
+      "status": "not shipped",
+      "differ": {
+        "RetroArch/.retroarch/cores/superwhizkid_libretro.so": "other bytes",
+        "RetroArch/.retroarch/cores64/superwhizkid_libretro.so": "other bytes"
+      }
     }
   }
 }

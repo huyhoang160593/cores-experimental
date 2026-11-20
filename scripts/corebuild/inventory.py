@@ -42,6 +42,50 @@ def _member_sha256(repo: Path, rev: str, archive: str, member: str) -> str | Non
         return hashlib.sha256(found.read_bytes()).hexdigest() if found.is_file() else None
 
 
+def _archive_sha256s(repo: Path, blob: str) -> dict:
+    """{member: sha256} of every file in one .7z blob ({} without 7-Zip). Unpacked into a temporary folder, only hashed."""
+    tool = shutil.which("7zz") or shutil.which("7z")
+    if tool is None:
+        return {}
+    with tempfile.TemporaryDirectory() as tmp:
+        path = Path(tmp) / "archive.7z"
+        path.write_bytes(_git(repo, "cat-file", "blob", blob, text=False))
+        subprocess.run([tool, "x", "-y", f"-o{tmp}/x", str(path)], capture_output=True, check=True)
+        root = Path(tmp) / "x"
+        return {str(p.relative_to(root)): hashlib.sha256(p.read_bytes()).hexdigest()
+                for p in sorted(root.rglob("*")) if p.is_file() and not p.is_symlink()}
+
+
+def card_sha256(spruceos: Path, rev: str, paths: list[str]) -> dict:
+    """{card path: sha256 or None} at rev. A path missing from the tree is looked up in its system folder's .7z files,
+    where spruce packs ScummVM (Emu/SCUMMVM/scummvm_64.7z holds scummvm.64)."""
+    commit = _git(spruceos, "rev-parse", f"{rev}^{{commit}}").strip()
+    tree = {}
+    for line in _git(spruceos, "ls-tree", "-r", commit).splitlines():
+        meta, path = line.split("\t", 1)
+        tree[path] = meta.split()[2]
+    blobs: dict = {}
+    archives: dict = {}
+    out = {}
+    for path in sorted(set(paths)):
+        if path in tree:
+            blob = tree[path]
+            if blob not in blobs:
+                blobs[blob] = hashlib.sha256(_git(spruceos, "cat-file", "blob", blob, text=False)).hexdigest()
+            out[path] = blobs[blob]
+            continue
+        out[path] = None
+        folder = "/".join(path.split("/")[:2])
+        for archive in sorted(p for p in tree if p.startswith(folder + "/") and p.endswith(".7z") and p.count("/") == 2):
+            if archive not in archives:
+                archives[archive] = _archive_sha256s(spruceos, tree[archive])
+            member = archives[archive].get(path[len(folder) + 1:])
+            if member:
+                out[path] = member
+                break
+    return out
+
+
 def _cfg_values(show, path: str) -> dict:
     """The exports of a platform .cfg, following its `. /mnt/SDCARD/...cfg` includes."""
     values = {}

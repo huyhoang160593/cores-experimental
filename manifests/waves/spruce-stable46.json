@@ -4366,5 +4366,622 @@
         "GKD_PIXEL2"
       ]
     }
+  },
+  "records": {
+    "ardens": {
+      "files": 1,
+      "status": "match"
+    },
+    "arduous": {
+      "files": 2,
+      "status": "match"
+    },
+    "armgba": {
+      "files": 2,
+      "status": "not shipped",
+      "differ": {
+        "RetroArch/.retroarch/cores/armgba_libretro.so": "other bytes",
+        "RetroArch/.retroarch/cores64/armgba_libretro.so": "other bytes"
+      }
+    },
+    "armnes": {
+      "files": 2,
+      "status": "not shipped",
+      "differ": {
+        "RetroArch/.retroarch/cores/armnes_libretro.so": "absent",
+        "RetroArch/.retroarch/cores64/armnes_libretro.so": "absent"
+      }
+    },
+    "armsnes": {
+      "files": 1,
+      "status": "not shipped",
+      "differ": {
+        "RetroArch/.retroarch/cores64/armsnes_libretro.so": "absent"
+      }
+    },
+    "ffmpeg": {
+      "files": 1,
+      "status": "not shipped",
+      "differ": {
+        "RetroArch/.retroarch/cores64/ffmpeg_libretro.so": "other bytes"
+      }
+    },
+    "standalone:a5200-arm64-20250506": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:advmame-arm64-20260328": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:ardens-armhf-20260925": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:armn64-arm64-20261115": {
+      "files": 1,
+      "status": "not shipped",
+      "differ": {
+        "RetroArch/.retroarch/cores64/armn64_libretro.so": "absent"
+      }
+    },
+    "standalone:armnes_arcade-arm64-20261117": {
+      "files": 1,
+      "status": "not shipped",
+      "differ": {
+        "RetroArch/.retroarch/cores64/armnes_arcade_libretro.so": "absent"
+      }
+    },
+    "standalone:armnes_arcade-armhf-20261117": {
+      "files": 1,
+      "status": "not shipped",
+      "differ": {
+        "RetroArch/.retroarch/cores/armnes_arcade_libretro.so": "absent"
+      }
+    },
+    "standalone:atari800-arm64-20250506": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:azahar-libretro": {
+      "files": 1,
+      "status": "not shipped",
+      "differ": {
+        "RetroArch/.retroarch/cores64/azahar_libretro.so": "absent"
+      }
+    },
+    "standalone:bigpemu": {
+      "files": 134,
+      "status": "partial",
+      "differ": {
+        "Emu/JAGUAR/bigpemu/Data/ThirdParty/Licenses/MUSASHI.txt": "absent",
+        "Emu/JAGUAR/bigpemu/Data/ThirdParty/Licenses/README-SDL.txt": "absent",
+        "Emu/JAGUAR/bigpemu/Data/ThirdParty/Licenses/RapidJSON.txt": "absent",
+        "Emu/JAGUAR/bigpemu/Data/ThirdParty/Licenses/TinyCC-MIT.txt": "absent",
+        "Emu/JAGUAR/bigpemu/Data/ThirdParty/Licenses/libcurl.txt": "absent",
+        "Emu/JAGUAR/bigpemu/Data/ThirdParty/Licenses/libpng.txt": "absent",
+        "Emu/JAGUAR/bigpemu/Data/ThirdParty/Licenses/libresample.txt": "absent",
+        "Emu/JAGUAR/bigpemu/Data/ThirdParty/Licenses/openvr.txt": "absent",
+        "Emu/JAGUAR/bigpemu/Data/ThirdParty/Licenses/zlib.txt": "absent",
+        "Emu/JAGUAR/bigpemu/Data/ThirdParty/bin/ThirdPartyBin.txt": "absent",
+        "Emu/JAGUAR/bigpemu/make_desktop.sh": "absent"
+      }
+    },
+    "standalone:cap32-arm64-20250506": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:chailove-arm64-20250506": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:chimerasnes-arm64-20250506": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:crocods-arm64-20250506": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:dsperate-a30": {
+      "files": 1,
+      "status": "not shipped",
+      "differ": {
+        "Emu/NDS/dsperate.a30": "other bytes"
+      }
+    },
+    "standalone:dsperate-a30-v3.4.0": {
+      "files": 1,
+      "status": "not shipped",
+      "differ": {
+        "Emu/NDS/dsperate.a30": "other bytes"
+      }
+    },
+    "standalone:dsperate-arm64": {
+      "files": 1,
+      "status": "not shipped",
+      "differ": {
+        "Emu/NDS/dsperate": "other bytes"
+      }
+    },
+    "standalone:dsperate-arm64-v3.4.0": {
+      "files": 1,
+      "status": "not shipped",
+      "differ": {
+        "Emu/NDS/dsperate": "other bytes"
+      }
+    },
+    "standalone:easyrpg-arm64-20261118": {
+      "files": 1,
+      "status": "not shipped",
+      "differ": {
+        "RetroArch/.retroarch/cores64/easyrpg_libretro.so": "other bytes"
+      }
+    },
+    "standalone:easyrpg-armhf-20261118": {
+      "files": 1,
+      "status": "not shipped",
+      "differ": {
+        "RetroArch/.retroarch/cores/easyrpg_libretro.so": "other bytes"
+      }
+    },
+    "standalone:ecwolf-arm64-20250506": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:fbalpha2012-arm64-20250506": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:fbneo-arm64-20250506": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:flycast-libretro-t3": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:flycast-standalone": {
+      "files": 4,
+      "status": "partial",
+      "differ": {
+        "Emu/DC/flycast": "other bytes"
+      },
+      "by": [
+        "standalone:flycast-standalone-t3-lto"
+      ]
+    },
+    "standalone:flycast-standalone-t3-lto": {
+      "files": 4,
+      "status": "match"
+    },
+    "standalone:fmsx-arm64-20250506": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:freechaf-arm64-20250506": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:freeintv-arm64-20250506": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:freej2me-plus-core-arm64-2c15b3c1": {
+      "files": 1,
+      "status": "not shipped",
+      "differ": {
+        "RetroArch/.retroarch/cores64/freej2me_plus_libretro.so": "absent"
+      }
+    },
+    "standalone:freej2me-plus-core-armhf-2c15b3c1": {
+      "files": 1,
+      "status": "not shipped",
+      "differ": {
+        "RetroArch/.retroarch/cores/freej2me_plus_libretro.so": "absent"
+      }
+    },
+    "standalone:freej2me-plus-lr-2c15b3c1": {
+      "files": 1,
+      "status": "not shipped",
+      "differ": {
+        "BIOS/freej2me_plus-lr.jar": "absent"
+      }
+    },
+    "standalone:fuse-arm64-20250506": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:gambatte-arm64-20261105": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:gambatte-armhf-20261105": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:gametank-a30": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:gametank-arm64": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:gametank-libretro-1.0.3": {
+      "files": 2,
+      "status": "not shipped",
+      "differ": {
+        "RetroArch/.retroarch/cores/gametank_libretro.so": "other bytes",
+        "RetroArch/.retroarch/cores64/gametank_libretro.so": "other bytes"
+      }
+    },
+    "standalone:gearcoleco-arm64-20250506": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:gearsystem-arm64-20250506": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:genesis_plus_gx-arm64-20250506": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:gloopy-arm64-20261011": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:gloopy-armhf-20261011": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:gpsp-arm64-20260921": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:gpsp-armhf-20260921": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:gvu-a30": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:gvu-arm64": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:gw-arm64-20250506": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:handy-arm64-20250506": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:mame2003_plus-arm64-20250506": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:mednafen_lynx-arm64-20250506": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:mednafen_ngp-arm64-20250506": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:mednafen_supergrafx-arm64-20250506": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:mkxp-z-libretro-20260114": {
+      "files": 2,
+      "status": "match"
+    },
+    "standalone:moonlight": {
+      "files": 33,
+      "status": "partial",
+      "differ": {
+        "App/Moonlight/ports/moonlightnew/moonlight/libs/libavcodec.so": "absent",
+        "App/Moonlight/ports/moonlightnew/moonlight/libs/libavcodec.so.58.134.100": "absent",
+        "App/Moonlight/ports/moonlightnew/moonlight/libs/libavutil.so": "absent",
+        "App/Moonlight/ports/moonlightnew/moonlight/libs/libavutil.so.56.70.100": "absent"
+      }
+    },
+    "standalone:mupen64plus-a30": {
+      "files": 9,
+      "status": "match"
+    },
+    "standalone:mupen64plus-arm64": {
+      "files": 4,
+      "status": "partial",
+      "differ": {
+        "Emu/N64/mupen64plus/mupen64plus-video-GLideN64.so": "other bytes"
+      },
+      "by": [
+        "standalone:mupen64plus-arm64-gliden64-ovl"
+      ]
+    },
+    "standalone:mupen64plus-arm64-20260404": {
+      "files": 5,
+      "status": "match"
+    },
+    "standalone:mupen64plus-arm64-gliden64": {
+      "files": 1,
+      "status": "replaced",
+      "differ": {
+        "Emu/N64/mupen64plus/mupen64plus-video-GLideN64.so": "other bytes"
+      },
+      "by": [
+        "standalone:mupen64plus-arm64-gliden64-ovl"
+      ]
+    },
+    "standalone:mupen64plus-arm64-gliden64-ovl": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:mupen64plus-pow2": {
+      "files": 3,
+      "status": "not shipped",
+      "differ": {
+        "Emu/N64/pow2/data/mupen64plus.ini": "absent",
+        "Emu/N64/pow2/data/mupencheat.txt": "absent",
+        "Emu/N64/pow2/mupen64plus": "absent"
+      }
+    },
+    "standalone:neocd-arm64-20250506": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:nestopia-arm64-20250506": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:o2em-arm64-20250506": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:openbor-fflns-arm64-20260512": {
+      "files": 3,
+      "status": "match"
+    },
+    "standalone:openbor-lns-a30": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:openbor-new": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:openbor-trimui": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:pcsx_rearmed-a30": {
+      "files": 2,
+      "status": "not shipped",
+      "differ": {
+        "Emu/PS/liba30/libSDL-1.2.so.0": "absent",
+        "Emu/PS/pcsx_a30": "absent"
+      }
+    },
+    "standalone:pcsx_rearmed-arm64": {
+      "files": 2,
+      "status": "not shipped",
+      "differ": {
+        "Emu/PS/libs/libSDL-1.2.so.0": "absent",
+        "Emu/PS/pcsx_64": "absent"
+      }
+    },
+    "standalone:pcsx_rearmed-mini": {
+      "files": 1,
+      "status": "not shipped",
+      "differ": {
+        "Emu/PS/pcsx_mini": "absent"
+      }
+    },
+    "standalone:picodrive-arm64-20261118": {
+      "files": 1,
+      "status": "not shipped",
+      "differ": {
+        "RetroArch/.retroarch/cores64/picodrive_libretro.so": "other bytes"
+      }
+    },
+    "standalone:picodrive-armhf-20261118": {
+      "files": 1,
+      "status": "not shipped",
+      "differ": {
+        "RetroArch/.retroarch/cores/picodrive_libretro.so": "other bytes"
+      }
+    },
+    "standalone:pokedaisy-arm64-20261112": {
+      "files": 2,
+      "status": "not shipped",
+      "differ": {
+        "RetroArch/.retroarch/cores64/pokedaisy_ds_libretro.so": "absent",
+        "RetroArch/.retroarch/cores64/pokedaisy_gbc_libretro.so": "absent"
+      }
+    },
+    "standalone:pokedaisy-arm64-20261113": {
+      "files": 1,
+      "status": "not shipped",
+      "differ": {
+        "RetroArch/.retroarch/cores64/pokedaisy_gba_libretro.so": "absent"
+      }
+    },
+    "standalone:pokedaisy-armhf-20261112": {
+      "files": 2,
+      "status": "not shipped",
+      "differ": {
+        "RetroArch/.retroarch/cores/pokedaisy_ds_libretro.so": "absent",
+        "RetroArch/.retroarch/cores/pokedaisy_gbc_libretro.so": "absent"
+      }
+    },
+    "standalone:pokedaisy-armhf-20261113": {
+      "files": 1,
+      "status": "not shipped",
+      "differ": {
+        "RetroArch/.retroarch/cores/pokedaisy_gba_libretro.so": "absent"
+      }
+    },
+    "standalone:potator-arm64-20250506": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:ppsspp-a30": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:ppsspp-darkmoss3326": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:ppsspp-darkmoss3566": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:ppsspp-flip": {
+      "files": 1,
+      "status": "not shipped",
+      "differ": {
+        "Emu/PSP/PPSSPPSDL_Flip": "other bytes"
+      }
+    },
+    "standalone:ppsspp-h700": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:ppsspp-smartpros": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:ppsspp-trimui": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:prboom-arm64-20250506": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:prosystem-arm64-20250506": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:puae2021-arm64-20250506": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:px68k-arm64-20250506": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:quicknes-arm64-20250506": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:scummvm-a30": {
+      "files": 8,
+      "status": "match"
+    },
+    "standalone:scummvm-arm64": {
+      "files": 13,
+      "status": "match"
+    },
+    "standalone:scummvm-mini": {
+      "files": 98,
+      "status": "match"
+    },
+    "standalone:snes9x-arm64-20250506": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:stella2014-arm64-20250506": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:swanstation-arm64-20260925": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:swanstation-armhf-20260925": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:tyrquake-arm64-20250506": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:uae4arm-lakka-rpi3-composite-20240502": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:vice_x64-arm64-20250506": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:vice_xvic-arm64-20250506": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:virtualjaguar-arm64-20260829": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:virtualjaguar-armhf-20260829": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:vtree-a30": {
+      "files": 3,
+      "status": "match"
+    },
+    "standalone:vtree-arm64": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:vtree-mini": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:xroar": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:yabadabadoo-armhf-20261029": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:yabasanshiro-arm64": {
+      "files": 4,
+      "status": "partial",
+      "differ": {
+        "Emu/SATURN/yabasanshiro": "other bytes"
+      },
+      "by": [
+        "standalone:yabasanshiro-arm64-pgo"
+      ]
+    },
+    "standalone:yabasanshiro-arm64-pgo": {
+      "files": 4,
+      "status": "match"
+    },
+    "standalone:yabasanshiro-libretro": {
+      "files": 1,
+      "status": "match"
+    },
+    "standalone:yabasanshiro-libretro-trimui": {
+      "files": 2,
+      "status": "match"
+    },
+    "superwhizkid": {
+      "files": 2,
+      "status": "not shipped",
+      "differ": {
+        "RetroArch/.retroarch/cores/superwhizkid_libretro.so": "absent",
+        "RetroArch/.retroarch/cores64/superwhizkid_libretro.so": "absent"
+      }
+    }
   }
 }

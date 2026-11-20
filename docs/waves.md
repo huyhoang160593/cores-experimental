@@ -7,7 +7,7 @@ cores-experimental tracks four waves of cores, plus everything else it pins. Eac
 | wave | defined by | manifest |
 |---|---|---|
 | `pixel2-twiguinext` | a TwigUI-Next release's card (the cores and standalones it writes over spruce's) and the base-image files spruce uses | `waves/pixel2-twiguinext.json` ([details](twigui-next.md)) |
-| `spruce-nightly` | spruceOS `Development` at the inventory's commit | `waves/spruce-nightly.json` |
+| `spruce-nightly` | the spruceOS `Development` commit a spruce nightly was built from (the newest one audited) | `waves/spruce-nightly.json` |
 | `spruce-stable46` | spruceOS `v4.6.0` | `waves/spruce-stable46.json` |
 | `edge` | each recipe source's newest release tag (`vN.N…` or `rN`) when its commit is newer than the recipe's pin, else the requested branch's tip | `waves/edge.json` |
 | `custom` | the recipes no other wave uses: experiments, variants, candidates | `waves/custom.json` |
@@ -29,7 +29,7 @@ A manifest is generated: regenerate it rather than editing it. The hand-kept fac
 ## Regenerate
 
 ```
-python3 scripts/waves.py spruce spruce-nightly --spruceos <spruceOS> --rev <Development commit>
+python3 scripts/waves.py spruce spruce-nightly --spruceos <spruceOS> --nightly latest   # or --rev <commit>
 python3 scripts/waves.py spruce spruce-stable46 --spruceos <spruceOS> --rev v4.6.0
 python3 scripts/waves.py twigui pixel2-twiguinext ...        # docs/twigui-next.md
 python3 scripts/waves.py edge                                # git ls-remote per source, GitHub API for dates
@@ -37,17 +37,41 @@ python3 scripts/waves.py custom                              # after the others
 python3 scripts/waves.py summary
 ```
 
-## Status
+`waves.py summary` prints each wave's counts. `recipe` counts the files a recipe builds but does not reproduce
+yet. A wave's history is its manifest's git log: `git log -p -- manifests/waves/spruce-nightly.json`.
 
-At CE `70c1089` (2026-11-20), from `waves.py summary`:
+## Nightly audit
 
-| wave | files | reproduces | recipe | not shipped | no recipe | spare |
-|---|---|---|---|---|---|---|
-| `spruce-nightly` (spruceOS `d7ce3dc52`) | 245 | 98 | 134 | 10 | 3 | 44 |
-| `spruce-stable46` (`v4.6.0`) | 233 | 74 | 144 | 10 | 5 | 42 |
+The spruce waves are the audit of what spruce ships. A spruce wave's `records` section checks every `shipped`
+record (a catalog core's or a standalone recipe's) against the tree: does that spruceOS commit ship the bytes
+the record names, at the record's card paths? A file missing from the tree is also looked for in its system
+folder's `.7z` files, where spruce packs ScummVM.
 
-`recipe` counts the files a recipe builds but does not reproduce yet. `pixel2-twiguinext`: 85 files, 83 pinned,
-one reproduced and one near. `edge`: 172 recipes (143 at a branch tip, 29 at a tag). `custom`: 21 recipes.
+| record status | meaning |
+|---|---|
+| `match` | every file the record names ships with those bytes |
+| `partial` | some do; `differ` lists the others (`other bytes` or `absent`), `by` the records that match there |
+| `replaced` | none do, and another record matches at its paths (`by`) |
+| `not shipped` | none do, and no other record matches there |
+
+For each new nightly:
+
+```
+git -C <spruceOS> fetch origin
+python3 scripts/waves.py spruce spruce-nightly --spruceos <spruceOS> --nightly latest   # or --nightly <tag>
+python3 scripts/waves.py diff spruce-nightly        # what changed since the committed manifest
+python3 scripts/waves.py custom
+git commit -m "spruce-nightly: nightly <tag>" -- manifests/waves/   # the diff's lines as the body
+```
+
+`--nightly` reads the Development commit from the nightly's `create-nightly` run log ("Release tag for this run",
+"Current Development commit") and records the tag, run and time in `defined_by.nightly`. The release notes name
+the commit too, but old releases are deleted, and spruceOSNightlies' tags all point at one README commit.
+
+This replaced `AUDIT.md` (kept, frozen at v4.5.5-20261018). It covers every shipped core and every recipe with
+a `shipped` record, not only 30 recipes. It does not repeat AUDIT.md's check of each published OTA package
+against the tree, which tests spruce's packaging rather than these recipes, nor its `moved` status (recorded
+bytes at another path): such a record shows as `not shipped`.
 
 ## Notes
 

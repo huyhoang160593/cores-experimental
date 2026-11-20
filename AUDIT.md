@@ -1,5 +1,9 @@
 # Nightly audit
 
+> **Frozen at v4.5.5-20261018 (2026-11-20).** The spruce waves now do this audit: `scripts/waves.py spruce
+> spruce-nightly --nightly <tag>` checks every `shipped` record against that nightly's commit, and the manifest's
+> git history is the log ([docs/waves.md](docs/waves.md#nightly-audit)). The entries below are kept as history.
+
 Which spruceOS nightlies ship emulators built from this repository's recipes, and whether each nightly
 ships the bytes the recipe records. There is one entry per nightly, starting with the first nightly after
 the v4.5.4 stable release.

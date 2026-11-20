@@ -129,7 +129,7 @@ Docker 29) names images by another digest, so there the image is also tagged
 | `scripts/` | `cores.py` and the `corebuild` package |
 | `runtime/smoke_loader.c` | the load test |
 | `Dockerfile.*`, `toolchain-inputs/` | how the toolchain images were made ([notes](toolchain-inputs/README.md)) |
-| `AUDIT.md` | which spruce nightlies ship builds from these recipes, checked byte for byte |
+| `AUDIT.md` | the hand-kept nightly audit up to v4.5.5-20261018, frozen; since then each spruce wave's `records` ([nightly audit](docs/waves.md#nightly-audit)) |
 
 [docs/history.md](docs/history.md) explains what this repository replaced in
 October 2026.

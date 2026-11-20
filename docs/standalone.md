@@ -130,7 +130,7 @@ by the recipe instead, from pinned sources or checked downloads.
 ## Status
 
 A row that names no spruceOS commit was compared with `73bb91a19` (2026-10-11); "match" is byte for byte.
-[docs/waves.md](waves.md) has the count for each wave.
+Whether the newest nightly still ships these bytes is each spruce wave's `records` ([nightly audit](waves.md#nightly-audit)).
 
 | recipe | ships | result |
 |---|---|---|

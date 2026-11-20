@@ -2,10 +2,13 @@
 """The waves of cores cores-experimental tracks (docs/waves.md), one manifest each in manifests/waves/.
 
   spruce NAME --spruceos DIR --rev REV   what a spruceOS ref ships (spruce-nightly, spruce-stable46)
+  spruce NAME --spruceos DIR --nightly TAG|latest
+                                         the same at the Development commit a spruce nightly was built from
   twigui NAME --twigui DIR --rev REV ... what a TwigUI-Next release writes onto spruce's card (pixel2-twiguinext)
   edge                                   each recipe source's latest release tag, else its branch tip
   custom                                 recipes no other wave uses
   summary                                counts per wave
+  diff NAME [--rev REV]                  what changed in a wave since its manifest at REV (default HEAD)
 
 A manifest is generated; the hand-kept facts in an entry (`pin`, `evidence`, `verified`) carry over while its
 sha256 stays the same."""
@@ -28,6 +31,9 @@ from corebuild.catalog import Repo, load_json  # noqa: E402
 WAVES = ROOT / "manifests/waves"
 KEPT = ("pin", "evidence", "verified")
 RELEASE_TAG = re.compile(r"^(v?\d+(\.\d+)*|r\d+)$")
+NIGHTLY_TAG = re.compile(r"Release tag for this run: (v\d[\w.\-]*)")
+NIGHTLY_DEV = re.compile(r"Current Development commit: ([0-9a-f]{40})")
+SPRUCEOS = "spruceUI/spruceOS"
 
 
 def write(name: str, data: dict) -> Path:
@@ -55,11 +61,79 @@ def recipe_sources(repo: Repo, builds: dict) -> dict:
     return out
 
 
+def parse_nightly_log(text: str) -> tuple[str | None, str | None]:
+    """The release tag and Development commit a create-nightly run log prints."""
+    tag, dev = NIGHTLY_TAG.search(text), NIGHTLY_DEV.search(text)
+    return (tag.group(1) if tag else None, dev.group(1) if dev else None)
+
+
+def nightly(tag: str) -> dict:
+    """Which Development commit a spruce nightly was built from, from its create-nightly run log ("latest": newest).
+    The release notes say it too, but old releases are deleted and spruceOSNightlies' tags all point at one commit."""
+    gh = ["gh", "run", "list", "-R", SPRUCEOS, "--workflow", "create-nightly.yml", "--status", "success",
+          "--limit", "60", "--json", "databaseId,createdAt"]
+    for run in json.loads(subprocess.run(gh, capture_output=True, text=True, check=True).stdout):  # newest first
+        log = subprocess.run(["gh", "run", "view", str(run["databaseId"]), "-R", SPRUCEOS, "--log"],
+                             capture_output=True, text=True).stdout
+        found, commit = parse_nightly_log(log)
+        if found and commit and tag in ("latest", found):
+            return {"tag": found, "run": run["databaseId"], "built": run["createdAt"], "commit": commit}
+    sys.exit(f"--nightly {tag}: not among the last 60 successful create-nightly runs")
+
+
+def shipped_records(repo: Repo, builds: dict) -> dict:
+    """{recipe: {card path: sha256}} of every `shipped` record: catalog cores by card path, standalone files by
+    their output.spruce map. Records come from the raw manifest, so an `extends` child inherits none."""
+    out = {core: dict(spec["shipped"]["files"]) for core, spec in repo.cores.items() if spec.get("shipped")}
+    raw = load_json(ROOT / standalone.MANIFEST)["builds"]
+    for name, spec in builds.items():
+        files = raw.get(name, {}).get("shipped", {}).get("files", {})
+        spruce = spec.get("output", {}).get("spruce", {})
+        cards = {inventory._card_path(dist, spruce): digest for dist, digest in files.items()}
+        if files:
+            out[f"standalone:{name}"] = {card: digest for card, digest in cards.items() if card}
+    return out
+
+
+def record_statuses(records: dict, shipped: dict) -> dict:
+    """Does the tree ship the bytes each record names? match, partial, replaced (another record matches there)
+    or not shipped; `differ` lists the record's other paths (other bytes, or absent), `by` the records matching there."""
+    out = {}
+    for name, files in sorted(records.items()):
+        same = [card for card, digest in files.items() if shipped.get(card) == digest]
+        entry = {"files": len(files), "status": "match" if len(same) == len(files) else "partial" if same else
+                 "not shipped"}
+        if entry["status"] != "match":
+            entry["differ"] = {card: "absent" if shipped.get(card) is None else "other bytes"
+                               for card in sorted(files) if card not in same}
+        out[name] = entry
+    for name, entry in out.items():
+        if entry["status"] in ("partial", "not shipped"):
+            by = sorted(other for other, files in records.items() if other != name and out[other]["status"] == "match"
+                        and set(files) & set(entry["differ"]))
+            if by:
+                entry["by"] = by
+                if entry["status"] == "not shipped":
+                    entry["status"] = "replaced"
+    return out
+
+
 def cmd_spruce(args) -> int:
     repo = Repo()
     names = load_json(ROOT / "manifests/emulator-names.json")["names"]
     builds = standalone.buildable(standalone.load(repo))
-    inv = inventory.generate(Path(args.spruceos), args.rev, names)
+    built_as = None
+    if args.nightly:
+        built_as = nightly(args.nightly)
+        if args.rev and args.rev != built_as["commit"]:
+            sys.exit(f"--rev {args.rev} is not nightly {built_as['tag']}'s commit {built_as['commit']}")
+        args.rev = built_as["commit"]
+    elif not args.rev:
+        sys.exit("spruce: give --rev or --nightly")
+    try:
+        inv = inventory.generate(Path(args.spruceos), args.rev, names)
+    except subprocess.CalledProcessError:
+        sys.exit(f"spruceOS {args.rev} is not in {args.spruceos}: git -C {args.spruceos} fetch origin")
     sources = recipe_sources(repo, builds)
     files: dict = {}
     rows = inventory.coverage(inv, names, repo.cores, builds)
@@ -78,14 +152,62 @@ def cmd_spruce(args) -> int:
             recipe = row["recipes"][0].split(" (as ")[0]
             src = sources.get(recipe, {})
             entry["pin"] = {"recipe": recipe, "url": src.get("url"), "commit": src.get("commit")}
+    records = shipped_records(repo, builds)
+    shipped = inventory.card_sha256(Path(args.spruceos), inv["spruceos"]["commit"],
+                                    [card for files in records.values() for card in files])
+    defined_by = {"repo": SPRUCEOS, "ref": args.rev, **inv["spruceos"]}
+    if built_as:
+        defined_by["nightly"] = {"tag": built_as["tag"], "run": built_as["run"], "built": built_as["built"]}
     data = {"note": "Generated by scripts/waves.py spruce (docs/waves.md); regenerate, don't edit.",
             "wave": args.name,
-            "defined_by": {"repo": "spruceUI/spruceOS", "ref": args.rev, **inv["spruceos"]},
-            "files": carry(args.name, "files", dict(sorted(files.items())))}
+            "defined_by": defined_by,
+            "files": carry(args.name, "files", dict(sorted(files.items()))),
+            "records": record_statuses(records, shipped)}
     path = write(args.name, data)
-    print(f"{path.relative_to(ROOT)}: spruceOS {inv['spruceos']['commit'][:9]}, {len(files)} files, "
+    print(f"{path.relative_to(ROOT)}: spruceOS {inv['spruceos']['commit'][:9]}"
+          + (f" (nightly {built_as['tag']})" if built_as else "") + f", {len(files)} files, "
           + ", ".join(f"{k} {v}" for k, v in Counter(f["status"] for f in files.values()).most_common())
-          + f"; spare {len(unused)}")
+          + f"; spare {len(unused)}; records "
+          + ", ".join(f"{k} {v}" for k, v in Counter(r["status"] for r in data["records"].values()).most_common()))
+    return 0
+
+
+def label(defined_by: dict) -> str:
+    night = defined_by.get("nightly", {}).get("tag")
+    commit = (defined_by.get("commit") or "")[:9]
+    return f"nightly {night} ({commit})" if night else commit or "nothing"
+
+
+def diff(old: dict, new: dict) -> list[str]:
+    """One line per change between two manifests of a wave: what defines it, its files' status or bytes, its records."""
+    lines = []
+    if old.get("defined_by") != new.get("defined_by"):
+        lines.append(f"defined by: {label(old.get('defined_by', {}))} -> {label(new.get('defined_by', {}))}")
+    before, after = old.get("files", {}), new.get("files", {})
+    for path in sorted(set(before) | set(after)):
+        a, b = before.get(path), after.get(path)
+        if a is None:
+            lines.append(f"+ {path}: {b['status']}")
+        elif b is None:
+            lines.append(f"- {path} (was {a['status']})")
+        elif a["status"] != b["status"]:
+            lines.append(f"~ {path}: {a['status']} -> {b['status']}")
+        elif a.get("sha256") != b.get("sha256"):
+            lines.append(f"~ {path}: new bytes, still {b['status']}")
+    before, after = old.get("records", {}), new.get("records", {})
+    for name in sorted(set(before) | set(after)):
+        a, b = before.get(name, {}).get("status"), after.get(name, {}).get("status")
+        if a != b:
+            lines.append(f"record {name}: {a or 'none'} -> {b or 'none'}")
+    return lines
+
+
+def cmd_diff(args) -> int:
+    rel = f"manifests/waves/{args.name}.json"
+    shown = subprocess.run(["git", "-C", str(ROOT), "show", f"{args.rev}:{rel}"], capture_output=True, text=True)
+    old = json.loads(shown.stdout) if shown.returncode == 0 else {}
+    lines = diff(old, load_json(ROOT / rel))
+    print("\n".join(lines) if lines else f"{args.name}: no change since {args.rev}")
     return 0
 
 
@@ -217,8 +339,10 @@ def cmd_summary(args) -> int:
         if "files" in data:
             counts = Counter(e["status"] for e in (*data["files"].values(), *data.get("base", {}).values()))
             spare = sum(1 for e in data["files"].values() if e.get("spare"))
+            records = Counter(r["status"] for r in data.get("records", {}).values())
             print(f"{path.stem:20} {sum(counts.values()):4} files  " + ", ".join(f"{k} {v}" for k, v in counts.most_common())
-                  + (f"; spare {spare}" if spare else ""))
+                  + (f"; spare {spare}" if spare else "")
+                  + ("; records " + ", ".join(f"{k} {v}" for k, v in records.most_common()) if records else ""))
         elif "sources" in data:
             counts = Counter(e["edge"]["kind"] for e in data["sources"].values())
             print(f"{path.stem:20} {len(data['sources']):4} recipes  " + ", ".join(f"{k} {v}" for k, v in counts.items()))
@@ -231,7 +355,10 @@ def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = ap.add_subparsers(dest="cmd", required=True)
     p = sub.add_parser("spruce")
-    p.add_argument("name"), p.add_argument("--spruceos", required=True), p.add_argument("--rev", required=True)
+    p.add_argument("name"), p.add_argument("--spruceos", required=True), p.add_argument("--rev")
+    p.add_argument("--nightly", help="a nightly's release tag, or latest: its Development commit, from the run log")
+    p = sub.add_parser("diff")
+    p.add_argument("name"), p.add_argument("--rev", default="HEAD")
     p = sub.add_parser("twigui")
     p.add_argument("name")
     for opt in ("--twigui", "--rev", "--release", "--archive", "--spruceos", "--spruce-rev"):
@@ -243,7 +370,7 @@ def main() -> int:
     sub.add_parser("edge"), sub.add_parser("custom"), sub.add_parser("summary")
     args = ap.parse_args()
     return {"spruce": cmd_spruce, "twigui": cmd_twigui, "edge": cmd_edge, "custom": cmd_custom,
-            "summary": cmd_summary}[args.cmd](args)
+            "summary": cmd_summary, "diff": cmd_diff}[args.cmd](args)
 
 
 if __name__ == "__main__":
