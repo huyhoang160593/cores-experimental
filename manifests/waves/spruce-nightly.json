@@ -2786,9 +2786,9 @@
       "names": [
         "chailove"
       ],
-      "status": "recipe",
+      "status": "reproduces",
       "recipes": [
-        "chailove"
+        "standalone:chailove-arm64-20250506"
       ],
       "families": [
         "ANBERNIC_RGXX",
@@ -2800,13 +2800,10 @@
         "TRIMUI_SMART_PRO_S"
       ],
       "pin": {
+        "recipe": "standalone:chailove-arm64-20250506",
         "url": "https://github.com/libretro/ChaiLove.git",
-        "commit": "467cd453e3b1761c5c3611746b35e709328a2ced",
-        "basis": "master tip at 2025-05-06T10:00:00Z",
-        "confidence": "unambiguous",
-        "verified": false
-      },
-      "evidence": "came with spruceOS 327c258ee (2025-05-17), the same code and data sections as that import (only stripped since, in bd606af63); built 2025-05-05/06 (sibling builds embed those dates); no commit between 2025-05-04 and 05-07 on master"
+        "commit": "467cd453e3b1761c5c3611746b35e709328a2ced"
+      }
     },
     "RetroArch/.retroarch/cores64/chimerasnes_libretro.so": {
       "sha256": "e1a492b138796a3f5139248a7ac3242f803156f35eb51af27d70778fd6f6f0d9",

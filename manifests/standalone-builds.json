@@ -7546,7 +7546,7 @@
       "shipped": {
         "spruceos": "327c258ee",
         "source": "spruceOS 327c258ee (Ry with cobaltgit, 2025-05-17, \"Update 64-bit cores\")",
-        "unverified": true,
+        "note": "matched byte for byte by CE run 44670201236 (3dee99f)",
         "files": {
           "cores64/chailove_libretro.so": "3c57433ee6850e8d52db2a0109743f4a970429c96769212f80cf8c12ec8987d1"
         }

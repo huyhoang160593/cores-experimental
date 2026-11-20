@@ -63,8 +63,9 @@ python3 scripts/waves.py summary
   and tyrquake's embedded build time, 28 in all. crocods (29) links its sources in the builder filesystem's
   `$(wildcard)` order, recovered from spruce's file (function sizes place code objects, data offsets and a linker map
   the data-only ones, `.dynstr` the rest) and listed explicitly by a patch; genesis_plus_gx and mednafen_supergrafx
-  (31) the same way. chailove, fbalpha2012 and fbneo have spruce's functions in another link order too, but they are
-  C++: inline functions are kept in whichever object links first, so their runs depend on the order. px68k differs
+  (31) the same way. chailove (32) is C++, where an inline function stays in whichever object links first: its order
+  came from simulating ld's placement (cold, startup, then main code), checked on CE's own build and linker map, until
+  the function sizes equalled spruce's. fbalpha2012 and fbneo differ in link order the same way. px68k differs
   only in its build ID. vice_xvic was built after vice_x64 in the same tree without a clean, so x64's stale objects
   link in (CE run 44668436281 reproduces it that way).
 - Files that Cores-spruce workflows built are reproduced by standalone recipes in CE's copies of its images
