@@ -2995,9 +2995,8 @@
       "names": [
         "gambatte"
       ],
-      "status": "recipe",
+      "status": "reproduces",
       "recipes": [
-        "gambatte",
         "standalone:gambatte-arm64-20261105"
       ],
       "families": [
@@ -3008,7 +3007,12 @@
         "OAKMOSS_A133P",
         "TRIMUI_A133P",
         "TRIMUI_SMART_PRO_S"
-      ]
+      ],
+      "pin": {
+        "recipe": "standalone:gambatte-arm64-20261105",
+        "url": "https://github.com/libretro/gambatte-libretro.git",
+        "commit": "77f2567d718b8973d02caa2daa8dce4953faf811"
+      }
     },
     "RetroArch/.retroarch/cores64/gametank_libretro.so": {
       "sha256": "fede6cca942d763d0e1ae5a600909628e105f63c117ed222fc6a843e6c3655c2",
@@ -3137,9 +3141,8 @@
       "names": [
         "gloopy"
       ],
-      "status": "recipe",
+      "status": "reproduces",
       "recipes": [
-        "gloopy",
         "standalone:gloopy-arm64-20261011"
       ],
       "families": [
@@ -3150,7 +3153,12 @@
         "OAKMOSS_A133P",
         "TRIMUI_A133P",
         "TRIMUI_SMART_PRO_S"
-      ]
+      ],
+      "pin": {
+        "recipe": "standalone:gloopy-arm64-20261011",
+        "url": "https://github.com/seriamaugenlicher/gloopy.git",
+        "commit": "408c1f092405da472875598549516f409876c524"
+      }
     },
     "RetroArch/.retroarch/cores64/gme_libretro.so": {
       "sha256": "b99e6b7b9d0c3ba473766cbfea8249eb029e15dc2d0199fa3bed88a31a4c41a7",
@@ -3178,9 +3186,8 @@
       "names": [
         "gpsp"
       ],
-      "status": "recipe",
+      "status": "reproduces",
       "recipes": [
-        "gpsp",
         "standalone:gpsp-arm64-20260921"
       ],
       "families": [
@@ -3191,7 +3198,12 @@
         "OAKMOSS_A133P",
         "TRIMUI_A133P",
         "TRIMUI_SMART_PRO_S"
-      ]
+      ],
+      "pin": {
+        "recipe": "standalone:gpsp-arm64-20260921",
+        "url": "https://github.com/libretro/gpsp.git",
+        "commit": "5819380c2ffb0900219d700a382ee68c464ebb99"
+      }
     },
     "RetroArch/.retroarch/cores64/gw_libretro.so": {
       "sha256": "95910edb443e73749c694549daf224eff9043c196c831d2fc6f5202f20179faf",
@@ -4058,9 +4070,8 @@
       "names": [
         "swanstation"
       ],
-      "status": "recipe",
+      "status": "reproduces",
       "recipes": [
-        "swanstation",
         "standalone:swanstation-arm64-20260925"
       ],
       "families": [
@@ -4071,7 +4082,12 @@
         "OAKMOSS_A133P",
         "TRIMUI_A133P",
         "TRIMUI_SMART_PRO_S"
-      ]
+      ],
+      "pin": {
+        "recipe": "standalone:swanstation-arm64-20260925",
+        "url": "https://github.com/libretro/swanstation.git",
+        "commit": "b6c30a7b270a3f68ac41f268eafdfa678d17dea2"
+      }
     },
     "RetroArch/.retroarch/cores64/theodore_libretro.so": {
       "sha256": "9c146117b9e72c557502f038bbfeffe2c6422832d05dc07053f246dd9352a4cb",
@@ -4251,9 +4267,8 @@
       "names": [
         "virtualjaguar"
       ],
-      "status": "recipe",
+      "status": "reproduces",
       "recipes": [
-        "virtualjaguar",
         "standalone:virtualjaguar-arm64-20260829"
       ],
       "families": [
@@ -4264,7 +4279,12 @@
         "OAKMOSS_A133P",
         "TRIMUI_A133P",
         "TRIMUI_SMART_PRO_S"
-      ]
+      ],
+      "pin": {
+        "recipe": "standalone:virtualjaguar-arm64-20260829",
+        "url": "https://github.com/libretro/virtualjaguar-libretro.git",
+        "commit": "9a42b528c5c37f580578d46595b9cf38ae9673f8"
+      }
     },
     "RetroArch/.retroarch/cores64/x1_libretro.so": {
       "sha256": "407c50ebcd70e7b23daaa7bcb0cc8a28483a81ef15e09072a904959d7459318b",

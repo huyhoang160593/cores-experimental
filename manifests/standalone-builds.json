@@ -8156,12 +8156,12 @@
         "forbidden": []
       },
       "shipped": {
-        "unverified": true,
         "spruceos": "bb5fa963e",
         "source": "spruceOS bb5fa963e (Ryan Sartor: Update gpsp core to v1.1.0.)",
         "files": {
           "cores64/gpsp_libretro.so": "e90ef024933b7a307404eea17c4ff225896a3fd9586c460709be3732660260b5"
-        }
+        },
+        "note": "matched byte for byte by CE run 44684468727 (7e78f43)"
       }
     },
     "swanstation-arm64-20260925": {
@@ -8209,12 +8209,12 @@
         "forbidden": []
       },
       "shipped": {
-        "unverified": true,
         "spruceos": "511363a3e",
         "source": "spruceOS 511363a3e (SundownerSport: Rebuild ardens, arduous and swanstation)",
         "files": {
           "cores64/swanstation_libretro.so": "b72a1c72254fe0d6be9f6890bad0c7011018ac5dcef0a7897d38809e107a3749"
-        }
+        },
+        "note": "matched byte for byte by CE run 44684471326 (7e78f43)"
       }
     },
     "gloopy-arm64-20261011": {
@@ -8257,12 +8257,12 @@
         "forbidden": []
       },
       "shipped": {
-        "unverified": true,
         "spruceos": "6487538b0",
         "source": "spruceOS 6487538b0 (SundownerSport: Add Casio Loopy (Gloopy))",
         "files": {
           "cores64/gloopy_libretro.so": "493be2506365435e3e455e3de4074f80a54fba59cffe9ef1a859d32c53164f0f"
-        }
+        },
+        "note": "matched byte for byte by CE run 44684474076 (7e78f43)"
       }
     },
     "gambatte-arm64-20261105": {
@@ -8305,12 +8305,12 @@
         "forbidden": []
       },
       "shipped": {
-        "unverified": true,
         "spruceos": "597adbcac",
         "source": "spruceOS 597adbcac (Ryan Sartor: attempt to rebuild gambatte with network functions)",
         "files": {
           "cores64/gambatte_libretro.so": "56b887601b2cc5b2c57a74e3ca30402a09ec676d6ed45382d3e65bdb794784e5"
-        }
+        },
+        "note": "matched byte for byte by CE run 44684476744 (7e78f43)"
       }
     },
     "virtualjaguar-arm64-20260829": {
@@ -8351,12 +8351,12 @@
         "forbidden": []
       },
       "shipped": {
-        "unverified": true,
         "spruceos": "370467a2c",
         "source": "spruceOS 370467a2c (Ryan Sartor: Add virtualjaguar cores)",
         "files": {
           "cores64/virtualjaguar_libretro.so": "8a729aa724c5d724faa73b8f61302a3966e2eed47e1eddae786d881f6359f7f3"
-        }
+        },
+        "note": "matched byte for byte by CE run 44684479478 (7e78f43)"
       }
     }
   }

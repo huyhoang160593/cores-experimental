@@ -3291,9 +3291,8 @@
       "names": [
         "gambatte"
       ],
-      "status": "recipe",
+      "status": "reproduces",
       "recipes": [
-        "gambatte",
         "standalone:gambatte-arm64-20261105"
       ],
       "families": [
@@ -3306,14 +3305,10 @@
         "TRIMUI_SMART_PRO_S"
       ],
       "pin": {
+        "recipe": "standalone:gambatte-arm64-20261105",
         "url": "https://github.com/libretro/gambatte-libretro.git",
-        "commit": "77f2567d718b8973d02caa2daa8dce4953faf811",
-        "basis": "branch tip at the import, 2026-11-05T12:46",
-        "confidence": "likely",
-        "verified": true
-      },
-      "evidence": "spruceOS 597adbcac (2026-11-05, Ryan Sartor: attempt to rebuild gambatte with network functions); Cores-spruce builds of it then: build-gambatte.yml run 42085915526 (2026-11-05T18:36Z), whose logs show a fresh clone of the branch, not the commit",
-      "verified": "byte for byte: CE build at the pin, run 44594308904 (throwaway branch verify/nightly-pins-20261119, arm64 release-generic)"
+        "commit": "77f2567d718b8973d02caa2daa8dce4953faf811"
+      }
     },
     "RetroArch/.retroarch/cores64/gametank_libretro.so": {
       "sha256": "9c618026c07849c1c4ce757f0e40eff6f11a4ede1bf98c87fe894266c0ddb5cf",
@@ -3442,9 +3437,8 @@
       "names": [
         "gloopy"
       ],
-      "status": "recipe",
+      "status": "reproduces",
       "recipes": [
-        "gloopy",
         "standalone:gloopy-arm64-20261011"
       ],
       "families": [
@@ -3457,13 +3451,10 @@
         "TRIMUI_SMART_PRO_S"
       ],
       "pin": {
+        "recipe": "standalone:gloopy-arm64-20261011",
         "url": "https://github.com/seriamaugenlicher/gloopy.git",
-        "commit": "408c1f092405da472875598549516f409876c524",
-        "basis": "branch tip at the import, 2026-10-10T21:21",
-        "confidence": "likely",
-        "verified": false
-      },
-      "evidence": "spruceOS 6487538b0 (2026-10-10, SundownerSport: Add Casio Loopy (Gloopy)); Cores-spruce builds of it then: build-gloopy.yml run 38106087570 (2026-10-11T02:43Z), whose logs show a fresh clone of the branch, not the commit"
+        "commit": "408c1f092405da472875598549516f409876c524"
+      }
     },
     "RetroArch/.retroarch/cores64/gme_libretro.so": {
       "sha256": "b99e6b7b9d0c3ba473766cbfea8249eb029e15dc2d0199fa3bed88a31a4c41a7",
@@ -3491,9 +3482,8 @@
       "names": [
         "gpsp"
       ],
-      "status": "recipe",
+      "status": "reproduces",
       "recipes": [
-        "gpsp",
         "standalone:gpsp-arm64-20260921"
       ],
       "families": [
@@ -3506,14 +3496,10 @@
         "TRIMUI_SMART_PRO_S"
       ],
       "pin": {
+        "recipe": "standalone:gpsp-arm64-20260921",
         "url": "https://github.com/libretro/gpsp.git",
-        "commit": "5819380c2ffb0900219d700a382ee68c464ebb99",
-        "basis": "branch tip at the import, 2026-09-21T14:56",
-        "confidence": "likely",
-        "verified": true
-      },
-      "evidence": "spruceOS bb5fa963e (2026-09-21, Ryan Sartor: Update gpsp core to v1.1.0.); Cores-spruce builds of it then: build-gpsp.yml run 35646144484 (2026-09-21T19:39Z), whose logs show a fresh clone of the branch, not the commit",
-      "verified": "byte for byte: CE build at the pin, run 44594308904 (throwaway branch verify/nightly-pins-20261119, arm64 release-generic)"
+        "commit": "5819380c2ffb0900219d700a382ee68c464ebb99"
+      }
     },
     "RetroArch/.retroarch/cores64/gw_libretro.so": {
       "sha256": "95910edb443e73749c694549daf224eff9043c196c831d2fc6f5202f20179faf",
@@ -4474,9 +4460,8 @@
       "names": [
         "swanstation"
       ],
-      "status": "recipe",
+      "status": "reproduces",
       "recipes": [
-        "swanstation",
         "standalone:swanstation-arm64-20260925"
       ],
       "families": [
@@ -4489,14 +4474,10 @@
         "TRIMUI_SMART_PRO_S"
       ],
       "pin": {
+        "recipe": "standalone:swanstation-arm64-20260925",
         "url": "https://github.com/libretro/swanstation.git",
-        "commit": "b6c30a7b270a3f68ac41f268eafdfa678d17dea2",
-        "basis": "branch tip at the import, 2026-09-24T20:05",
-        "confidence": "unambiguous",
-        "verified": true
-      },
-      "evidence": "spruceOS 511363a3e (2026-09-24, SundownerSport: Rebuild ardens, arduous and swanstation; offer both Arduboy cores ever); Cores-spruce builds of it then: build-swanstation.yml run 36087822899 (2026-09-25T02:49Z), whose logs show a fresh clone of the branch, not the commit",
-      "verified": "byte for byte: CE build at the pin with source_path /libretro-super/libretro-swanstation and git_abbrev 8 (the 8-character b6c30a7b libretro-super's full clone gave), run 44600598927, throwaway branch verify/nightly-pins-20261119b (the opt-in driver options of driver/source-path-describe-tags 1fbc39b)"
+        "commit": "b6c30a7b270a3f68ac41f268eafdfa678d17dea2"
+      }
     },
     "RetroArch/.retroarch/cores64/theodore_libretro.so": {
       "sha256": "9c146117b9e72c557502f038bbfeffe2c6422832d05dc07053f246dd9352a4cb",
@@ -4684,9 +4665,8 @@
       "names": [
         "virtualjaguar"
       ],
-      "status": "recipe",
+      "status": "reproduces",
       "recipes": [
-        "virtualjaguar",
         "standalone:virtualjaguar-arm64-20260829"
       ],
       "families": [
@@ -4699,13 +4679,10 @@
         "TRIMUI_SMART_PRO_S"
       ],
       "pin": {
+        "recipe": "standalone:virtualjaguar-arm64-20260829",
         "url": "https://github.com/libretro/virtualjaguar-libretro.git",
-        "commit": "2f210485d562a516e78906a7f20ce0765bb6927c",
-        "basis": "branch tip at the import, 2026-08-28T20:54",
-        "confidence": "likely",
-        "verified": false
-      },
-      "evidence": "spruceOS 370467a2c (2026-08-28, Ryan Sartor: Add virtualjaguar cores; clean up some unneeded .opt and .cfg files); Cores-spruce builds of it then: build-virtualjaguar.yml run 33226083601 (2026-08-29T01:19Z), whose logs show a fresh clone of the branch, not the commit"
+        "commit": "9a42b528c5c37f580578d46595b9cf38ae9673f8"
+      }
     },
     "RetroArch/.retroarch/cores64/x1_libretro.so": {
       "sha256": "407c50ebcd70e7b23daaa7bcb0cc8a28483a81ef15e09072a904959d7459318b",
