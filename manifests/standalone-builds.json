@@ -5891,7 +5891,8 @@
       "toolchain": "cores-spruce-armhf",
       "source_date_epoch": 1789665892,
       "env": {
-        "GIT_CONFIG_PARAMETERS": "'core.abbrev=8'"
+        "GIT_CONFIG_PARAMETERS": "'core.abbrev=8'",
+        "CMAKE_TOOLCHAIN_FILE": "/opt/toolchain.cmake"
       },
       "steps": [
         "cd /libretro-super",
@@ -5987,6 +5988,7 @@
       "toolchain": "cores-spruce-armhf",
       "source_date_epoch": 1793299910,
       "steps": [
+        "chown -R 1001:1001 /yabadabadoo",
         "cd yabause/src/libretro",
         "make platform=miyoomini -j\"$(nproc)\" CC=arm-a30-linux-gnueabihf-gcc CXX=arm-a30-linux-gnueabihf-g++ CC_AS=arm-a30-linux-gnueabihf-gcc AR=arm-a30-linux-gnueabihf-ar"
       ],
