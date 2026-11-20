@@ -2281,15 +2281,19 @@
       "names": [
         "virtualjaguar"
       ],
-      "status": "recipe",
+      "status": "reproduces",
       "recipes": [
-        "virtualjaguar",
         "standalone:virtualjaguar-armhf-20260829"
       ],
       "families": [
         "MIYOO_A30",
         "MIYOO_MINI_FAMILY"
-      ]
+      ],
+      "pin": {
+        "recipe": "standalone:virtualjaguar-armhf-20260829",
+        "url": "https://github.com/libretro/virtualjaguar-libretro.git",
+        "commit": "9a42b528c5c37f580578d46595b9cf38ae9673f8"
+      }
     },
     "RetroArch/.retroarch/cores/x1_libretro.so": {
       "sha256": "e95a80181c440b68a9c3e98149754599e049f0de7f31fa21ad01da45b31183ce",

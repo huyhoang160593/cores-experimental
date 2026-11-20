@@ -5639,7 +5639,7 @@
       "shipped": {
         "spruceos": "cae33f133",
         "source": "spruceOS cae33f133 (2026-11-18, ryanmsartor: update easyrpg to 0.8.1.0)",
-        "unverified": true,
+        "note": "matched byte for byte by CE run 44646352877 (14aac72)",
         "files": {
           "cores64/easyrpg_libretro.so": "45484dd2528245af4249f27d80cef142b75caa648dfeb6c837c19d8120798a6f"
         }
@@ -5685,7 +5685,7 @@
       "shipped": {
         "spruceos": "cae33f133",
         "source": "spruceOS cae33f133 (2026-11-18, ryanmsartor: update easyrpg to 0.8.1.0)",
-        "unverified": true,
+        "note": "matched byte for byte by CE run 44646356613 (14aac72)",
         "files": {
           "cores/easyrpg_libretro.so": "b0df1ad3abbdedcbffd0a0443333b7993f257ec21341f32ce73c6a2a8fe9a8ff"
         }
@@ -5970,7 +5970,7 @@
       "shipped": {
         "spruceos": "370467a2c",
         "source": "spruceOS 370467a2c (Ryan Sartor: Add virtualjaguar cores)",
-        "unverified": true,
+        "note": "matched byte for byte by CE run 44647203385 (6a3968b)",
         "files": {
           "cores/virtualjaguar_libretro.so": "6c07e5385df09423c98262ee9027c74d625a73c1dd0e76e0922c5e5689dfdbb5"
         }

@@ -1024,9 +1024,8 @@
       "names": [
         "easyrpg"
       ],
-      "status": "recipe",
+      "status": "reproduces",
       "recipes": [
-        "easyrpg",
         "standalone:easyrpg-armhf-20261118"
       ],
       "families": [
@@ -1034,13 +1033,10 @@
         "MIYOO_MINI_FAMILY"
       ],
       "pin": {
-        "url": "https://github.com/EasyRPG/Player.git",
-        "commit": "2b909be57339d2c48626ea332fec545571f0199f",
-        "basis": "tag 0.8.1",
-        "confidence": "likely",
-        "verified": false
-      },
-      "evidence": "spruceOS cae33f133 (2026-11-18, ryanmsartor: update easyrpg to 0.8.1.0); the newest 0.8.1 tag"
+        "recipe": "standalone:easyrpg-armhf-20261118",
+        "url": "https://github.com/spruceUI/Cores-spruce.git",
+        "commit": "0c2fa5d1801bd6ff3b0b3fb961d87b506f34aee5"
+      }
     },
     "RetroArch/.retroarch/cores/ecwolf_libretro.so": {
       "sha256": "549520d496e1e1687394797616083609083ad318481ed690d1177dbdc1107f7c",
@@ -2413,15 +2409,19 @@
       "names": [
         "virtualjaguar"
       ],
-      "status": "recipe",
+      "status": "reproduces",
       "recipes": [
-        "virtualjaguar",
         "standalone:virtualjaguar-armhf-20260829"
       ],
       "families": [
         "MIYOO_A30",
         "MIYOO_MINI_FAMILY"
-      ]
+      ],
+      "pin": {
+        "recipe": "standalone:virtualjaguar-armhf-20260829",
+        "url": "https://github.com/libretro/virtualjaguar-libretro.git",
+        "commit": "9a42b528c5c37f580578d46595b9cf38ae9673f8"
+      }
     },
     "RetroArch/.retroarch/cores/x1_libretro.so": {
       "sha256": "e95a80181c440b68a9c3e98149754599e049f0de7f31fa21ad01da45b31183ce",
@@ -2896,9 +2896,8 @@
       "names": [
         "easyrpg"
       ],
-      "status": "recipe",
+      "status": "reproduces",
       "recipes": [
-        "easyrpg",
         "standalone:easyrpg-arm64-20261118"
       ],
       "families": [
@@ -2911,13 +2910,10 @@
         "TRIMUI_SMART_PRO_S"
       ],
       "pin": {
-        "url": "https://github.com/EasyRPG/Player.git",
-        "commit": "2b909be57339d2c48626ea332fec545571f0199f",
-        "basis": "tag 0.8.1",
-        "confidence": "likely",
-        "verified": false
-      },
-      "evidence": "spruceOS cae33f133 (2026-11-18, ryanmsartor: update easyrpg to 0.8.1.0); the newest 0.8.1 tag"
+        "recipe": "standalone:easyrpg-arm64-20261118",
+        "url": "https://github.com/spruceUI/Cores-spruce.git",
+        "commit": "0c2fa5d1801bd6ff3b0b3fb961d87b506f34aee5"
+      }
     },
     "RetroArch/.retroarch/cores64/ecwolf_libretro.so": {
       "sha256": "abd8d9894481dfce1367a952e1c55d8a9aee6a1dab4f0c4904c005dfc7e548d7",
