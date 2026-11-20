@@ -90,6 +90,17 @@
       },
       "dockerfile": "Dockerfile.standalone.dsperate"
     },
+    "standalone-dsperate-v2": {
+      "image": "cores-standalone-dsperate:v2",
+      "image_id": "sha256:8b26f36429f1af8f553d5542817d7923c78c2a6560ba5aee1f32c5825d51bef1",
+      "host_cc": "aarch64-linux-gnu",
+      "archive": {
+        "name": "cores-standalone-dsperate-v2.tar.gz",
+        "sha256": "ab080f171c2f32a6a3f3a88475c442a802a7f1be349d20cca5a54cceef5a086b",
+        "size": 412984466
+      },
+      "dockerfile": "Dockerfile.standalone.dsperate.v2"
+    },
     "standalone-ppsspp": {
       "image": "cores-standalone-ppsspp:v1",
       "image_id": "sha256:40bd07d3f142290afcf4bd090aa042090612d561614f80414105d6a6c9b818c1",
