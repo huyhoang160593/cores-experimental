@@ -804,15 +804,19 @@
       "names": [
         "ardens"
       ],
-      "status": "recipe",
+      "status": "reproduces",
       "recipes": [
-        "ardens",
         "standalone:ardens-armhf-20260925"
       ],
       "families": [
         "MIYOO_A30",
         "MIYOO_MINI_FAMILY"
-      ]
+      ],
+      "pin": {
+        "recipe": "standalone:ardens-armhf-20260925",
+        "url": "https://github.com/tiberiusbrown/Ardens.git",
+        "commit": "661a7dd4febc8d00e790a4ecde44b936295adf97"
+      }
     },
     "RetroArch/.retroarch/cores/arduous_libretro.so": {
       "sha256": "6f9b772aebb88661a6e25cbd7b71dd0f3dff1bb8a1505cff2f1615694f765982",
@@ -1358,15 +1362,19 @@
       "names": [
         "gloopy"
       ],
-      "status": "recipe",
+      "status": "reproduces",
       "recipes": [
-        "gloopy",
         "standalone:gloopy-armhf-20261011"
       ],
       "families": [
         "MIYOO_A30",
         "MIYOO_MINI_FAMILY"
-      ]
+      ],
+      "pin": {
+        "recipe": "standalone:gloopy-armhf-20261011",
+        "url": "https://github.com/seriamaugenlicher/gloopy.git",
+        "commit": "408c1f092405da472875598549516f409876c524"
+      }
     },
     "RetroArch/.retroarch/cores/gme_libretro.so": {
       "sha256": "43145b9431f694a34d59ca2ef277e9a994f035479b4a22c59c34f51c88df2d6e",
@@ -2250,16 +2258,20 @@
       "names": [
         "swanstation"
       ],
-      "status": "recipe",
+      "status": "reproduces",
       "recipes": [
-        "swanstation",
         "standalone:swanstation-armhf-20260925"
       ],
       "families": [
         "ANBERNIC_RGXX",
         "DARKMOSS",
         "MIYOO_FLIP"
-      ]
+      ],
+      "pin": {
+        "recipe": "standalone:swanstation-armhf-20260925",
+        "url": "https://github.com/libretro/swanstation.git",
+        "commit": "b6c30a7b270a3f68ac41f268eafdfa678d17dea2"
+      }
     },
     "RetroArch/.retroarch/cores/theodore_libretro.so": {
       "sha256": "6341211657391ccd28c2a1b2d14d6636985ae895f641732da5497f3ada7a4e59",
@@ -2442,9 +2454,8 @@
       "names": [
         "yabadabadoo"
       ],
-      "status": "recipe",
+      "status": "reproduces",
       "recipes": [
-        "yabadabadoo",
         "standalone:yabadabadoo-armhf-20261029"
       ],
       "families": [
@@ -2453,7 +2464,12 @@
         "MIYOO_A30",
         "MIYOO_FLIP",
         "MIYOO_MINI_FAMILY"
-      ]
+      ],
+      "pin": {
+        "recipe": "standalone:yabadabadoo-armhf-20261029",
+        "url": "https://github.com/ProRapSuperstarOriginalMaster/Yabadabadoo.git",
+        "commit": "f4572c9c1f67c243134e019836d621b6957fd5bb"
+      }
     },
     "RetroArch/.retroarch/cores64/81_libretro.so": {
       "sha256": "1a168fcc074faa26eec8c2c2c407643d43dff1e28757e98c44d979d565550d78",
@@ -2827,7 +2843,8 @@
         "confidence": "unambiguous",
         "verified": false
       },
-      "evidence": "came with spruceOS 327c258ee (2025-05-17), the same code and data sections as that import (only stripped since, in bd606af63); built 2025-05-05/06 (sibling builds embed those dates); no commit between 2025-05-04 and 05-07 on master"
+      "evidence": "came with spruceOS 327c258ee (2025-05-17), the same code and data sections as that import (only stripped since, in bd606af63); built 2025-05-05/06 (sibling builds embed those dates); no commit between 2025-05-04 and 05-07 on master",
+      "verified": "same .text, .rodata, .data, .data.rel.ro and .init_array: CE build at the pin with -mcpu=cortex-a53 -fomit-frame-pointer, run 44650873132 (throwaway branch verify/flags-20261119c, 426e32a)"
     },
     "RetroArch/.retroarch/cores64/crocods_libretro.so": {
       "sha256": "3ff111f46772d541668a6b0b5f97d76742cf88fe6eb04f8beda58242ee1e26ef",
@@ -2941,7 +2958,8 @@
         "confidence": "unambiguous",
         "verified": false
       },
-      "evidence": "came with spruceOS 327c258ee (2025-05-17), the same code and data sections as that import (only stripped since, in bd606af63); built 2025-05-05/06 (sibling builds embed those dates); no commit between 2025-05-04 and 05-07 on master; CE's current recipe does not build at the pin (run 44594308904)"
+      "evidence": "came with spruceOS 327c258ee (2025-05-17), the same code and data sections as that import (only stripped since, in bd606af63); built 2025-05-05/06 (sibling builds embed those dates); no commit between 2025-05-04 and 05-07 on master; CE's current recipe does not build at the pin (run 44594308904)",
+      "verified": "same .text, .rodata, .data, .data.rel.ro and .init_array: CE build at the pin with -mcpu=cortex-a53 -fomit-frame-pointer, run 44650873132 (throwaway branch verify/flags-20261119c, 426e32a)"
     },
     "RetroArch/.retroarch/cores64/fake08_libretro.so": {
       "sha256": "4795fc4f9f3d96f75eac74e8768aa137c290957d5a277e4ab8830e5c033ffd97",
@@ -3012,12 +3030,12 @@
       ],
       "pin": {
         "url": "https://github.com/libretro/FBNeo.git",
-        "commit": "5ed35561e2e86c19a618268a60f31bff12d375ab",
-        "basis": "master tip at 2025-05-06T10:00:00Z",
-        "confidence": "ambiguous",
+        "commit": "87f78d3408c248b7bbfbcba2cffc5382b3060fa9",
+        "basis": "the file embeds 87f78d340 (GIT_VERSION)",
+        "confidence": "unambiguous",
         "verified": false
       },
-      "evidence": "came with spruceOS 327c258ee (2025-05-17); built 2025-05-05/06; 20 commits on master between 2025-05-04 and 05-07 (b0ed94b952, e1fa5b0421, 1d9e31f8d6, 660ccf519a, 29589467f8...), so the build may be one of those; CE's current recipe does not build at the pin (run 44594308904)"
+      "evidence": "came with spruceOS 327c258ee (cobaltgit's 2025-05-06 build); the file embeds 87f78d340 (2025-05-04, 'add cflags for pi5'), not the earlier guess 5ed35561"
     },
     "RetroArch/.retroarch/cores64/fceumm_libretro.so": {
       "sha256": "6431b35e902bf41921a6deddd1529621ff608ba26c55d4d6b98e919b5bc6b68d",
@@ -3158,7 +3176,8 @@
         "confidence": "unambiguous",
         "verified": false
       },
-      "evidence": "came with spruceOS 327c258ee (2025-05-17), the same code and data sections as that import (only stripped since, in bd606af63); built 2025-05-05/06 (sibling builds embed those dates); no commit between 2025-05-04 and 05-07 on master"
+      "evidence": "came with spruceOS 327c258ee (2025-05-17), the same code and data sections as that import (only stripped since, in bd606af63); built 2025-05-05/06 (sibling builds embed those dates); no commit between 2025-05-04 and 05-07 on master",
+      "verified": "same .text, .rodata, .data, .data.rel.ro and .init_array: CE build at the pin with -mcpu=cortex-a53 -fomit-frame-pointer, run 44650873132 (throwaway branch verify/flags-20261119c, 426e32a); stripped, only the 20-byte build ID differs"
     },
     "RetroArch/.retroarch/cores64/freechaf_libretro.so": {
       "sha256": "8bd39eef33a1d4399bee38618806e55be25265f3177d73c8a3de9966dd575c69",
@@ -3186,7 +3205,8 @@
         "confidence": "unambiguous",
         "verified": false
       },
-      "evidence": "came with spruceOS 327c258ee (2025-05-17), the same code and data sections as that import (only stripped since, in bd606af63); built 2025-05-05/06 (sibling builds embed those dates); no commit between 2025-05-04 and 05-07 on master"
+      "evidence": "came with spruceOS 327c258ee (2025-05-17), the same code and data sections as that import (only stripped since, in bd606af63); built 2025-05-05/06 (sibling builds embed those dates); no commit between 2025-05-04 and 05-07 on master",
+      "verified": "same .text, .rodata, .data, .data.rel.ro and .init_array: CE build at the pin with -mcpu=cortex-a53 -fomit-frame-pointer, run 44650873132 (throwaway branch verify/flags-20261119c, 426e32a)"
     },
     "RetroArch/.retroarch/cores64/freeintv_libretro.so": {
       "sha256": "47704b0b5e3f64fc18efe05d3e4ad510c24432b69a0ade460afd18813974094b",
@@ -3555,7 +3575,8 @@
         "confidence": "unambiguous",
         "verified": false
       },
-      "evidence": "came with spruceOS 327c258ee (2025-05-17), the same code and data sections as that import (only stripped since, in bd606af63); built 2025-05-05/06 (sibling builds embed those dates); no commit between 2025-05-04 and 05-07 on master"
+      "evidence": "came with spruceOS 327c258ee (2025-05-17), the same code and data sections as that import (only stripped since, in bd606af63); built 2025-05-05/06 (sibling builds embed those dates); no commit between 2025-05-04 and 05-07 on master",
+      "verified": "same .text, .rodata, .data, .data.rel.ro and .init_array: CE build at the pin with -mcpu=cortex-a53 -fomit-frame-pointer, run 44650873132 (throwaway branch verify/flags-20261119c, 426e32a)"
     },
     "RetroArch/.retroarch/cores64/hatari_libretro.so": {
       "sha256": "2d43c9883af62b37a4a9a909b23e8ad598c568b0ac2394018af201521b18cfc6",
@@ -3667,12 +3688,12 @@
       ],
       "pin": {
         "url": "https://github.com/libretro/beetle-lynx-libretro.git",
-        "commit": "872697f422db07ca850c3ecfe891d5130edeacea",
-        "basis": "master tip at 2025-05-06T10:00:00Z",
+        "commit": "7fead71b49e0f08be5c4d4224fea73c6174763bf",
+        "basis": "the file embeds v1.24.0 7fead71",
         "confidence": "unambiguous",
         "verified": false
       },
-      "evidence": "came with spruceOS 327c258ee (2025-05-17), the same code and data sections as that import (only stripped since, in bd606af63); built 2025-05-05/06 (sibling builds embed those dates); no commit between 2025-05-04 and 05-07 on master"
+      "evidence": "came with spruceOS 327c258ee (cobaltgit's 2025-05-06 build); the file embeds v1.24.0 7fead71, the parent of the earlier guess 872697f422; at it, -mcpu=cortex-a53 -fomit-frame-pointer gives the same .text size (run 44650873132)"
     },
     "RetroArch/.retroarch/cores64/mednafen_ngp_libretro.so": {
       "sha256": "bdb01ccad3343dac1c3bf7af5479124f507e62c7457c3cfb9f22e0ad9efeea29",
@@ -3918,7 +3939,8 @@
         "confidence": "unambiguous",
         "verified": false
       },
-      "evidence": "came with spruceOS 327c258ee (2025-05-17), the same code and data sections as that import (only stripped since, in bd606af63); built 2025-05-05/06 (sibling builds embed those dates); no commit between 2025-05-04 and 05-07 on master"
+      "evidence": "came with spruceOS 327c258ee (2025-05-17), the same code and data sections as that import (only stripped since, in bd606af63); built 2025-05-05/06 (sibling builds embed those dates); no commit between 2025-05-04 and 05-07 on master",
+      "verified": "same .text, .rodata, .data, .data.rel.ro and .init_array: CE build at the pin with -mcpu=cortex-a53 -fomit-frame-pointer, run 44650873132 (throwaway branch verify/flags-20261119c, 426e32a)"
     },
     "RetroArch/.retroarch/cores64/nestopia_libretro.so": {
       "sha256": "2eef711950e5c4fe3dee40fd65a5fe6c78aef8dc9fa887f023d8906fbe1b1bab",
@@ -3941,12 +3963,12 @@
       ],
       "pin": {
         "url": "https://github.com/libretro/nestopia.git",
-        "commit": "bafbd8ed1853006bc0f9e8c83b86ae24cb543e6a",
-        "basis": "master tip at 2025-05-06T10:00:00Z",
+        "commit": "d2eefab298b0b9152d2934d6f0227b6803c877b3",
+        "basis": "the file embeds 1.53.1 d2eefab",
         "confidence": "unambiguous",
         "verified": false
       },
-      "evidence": "came with spruceOS 327c258ee (2025-05-17), the same code and data sections as that import (only stripped since, in bd606af63); built 2025-05-05/06 (sibling builds embed those dates); no commit between 2025-05-04 and 05-07 on master"
+      "evidence": "came with spruceOS 327c258ee (cobaltgit's 2025-05-06 build); the file embeds 1.53.1 d2eefab, the parent of the earlier guess bafbd8ed18; at it, -mcpu=cortex-a53 -fomit-frame-pointer gives the same .text size (run 44650873132)"
     },
     "RetroArch/.retroarch/cores64/np2kai_libretro.so": {
       "sha256": "9854eddc988e11bcbdc9d890107bed88135beac03031972facede9000652e992",
@@ -4319,7 +4341,8 @@
         "confidence": "unambiguous",
         "verified": false
       },
-      "evidence": "came with spruceOS 327c258ee (2025-05-17), the same code and data sections as that import (only stripped since, in bd606af63); built 2025-05-05/06 (sibling builds embed those dates); no commit between 2025-05-04 and 05-07 on master"
+      "evidence": "came with spruceOS 327c258ee (2025-05-17), the same code and data sections as that import (only stripped since, in bd606af63); built 2025-05-05/06 (sibling builds embed those dates); no commit between 2025-05-04 and 05-07 on master",
+      "verified": "same .text, .rodata, .data, .data.rel.ro and .init_array: CE build at the pin with -mcpu=cortex-a53 -fomit-frame-pointer, run 44650873132 (throwaway branch verify/flags-20261119c, 426e32a)"
     },
     "RetroArch/.retroarch/cores64/quasi88_libretro.so": {
       "sha256": "1459a7ca788cb9d6070b8ceb54e48914aafdcfae4c8b0e693e5a8e9b50c1e88f",
@@ -4462,7 +4485,8 @@
         "confidence": "unambiguous",
         "verified": false
       },
-      "evidence": "came with spruceOS 327c258ee (2025-05-17), the same code and data sections as that import (only stripped since, in bd606af63); built 2025-05-05/06 (sibling builds embed those dates); no commit between 2025-05-04 and 05-07 on master"
+      "evidence": "came with spruceOS 327c258ee (2025-05-17), the same code and data sections as that import (only stripped since, in bd606af63); built 2025-05-05/06 (sibling builds embed those dates); no commit between 2025-05-04 and 05-07 on master",
+      "verified": "same .text, .rodata, .data, .data.rel.ro and .init_array: CE build at the pin with -mcpu=cortex-a53 -fomit-frame-pointer, run 44650873132 (throwaway branch verify/flags-20261119c, 426e32a)"
     },
     "RetroArch/.retroarch/cores64/superwhizkid_libretro.so": {
       "sha256": "eed5a772e0e5fef5db0875d3baf2db7871ac05d3a1157ac757e6ce81038a1e63",
@@ -4574,12 +4598,12 @@
       ],
       "pin": {
         "url": "https://github.com/libretro/tyrquake.git",
-        "commit": "308656a1992c1df76a3fe1902a228cc98dfb7c8f",
-        "basis": "master tip at 2025-05-06T10:00:00Z",
-        "confidence": "unambiguous",
+        "commit": "9dcc3ff4ccf96d2f7aa029b738f2c90685b9257f",
+        "basis": "has 9dcc3ff4's 480fps option; the later 308656a only compiles as C23",
+        "confidence": "likely",
         "verified": false
       },
-      "evidence": "came with spruceOS 327c258ee (2025-05-17), the same code and data sections as that import (only stripped since, in bd606af63); built 2025-05-05/06 (sibling builds embed those dates); no commit between 2025-05-04 and 05-07 on master; CE's current recipe does not build at the pin (run 44594308904)"
+      "evidence": "came with spruceOS 327c258ee (cobaltgit's 2025-05-06 build, GCC 9.4); the file has the 480fps option 9dcc3ff4 added, and the earlier guess 308656a (the next commit) needs C23, which GCC 9.4 cannot compile"
     },
     "RetroArch/.retroarch/cores64/uae4arm_libretro.so": {
       "sha256": "19dcb3d58b17456ec77a6fc2f2ed8680449b3806f08443f05bf143b50404f106",

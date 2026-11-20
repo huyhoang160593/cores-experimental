@@ -5733,7 +5733,7 @@
       "shipped": {
         "spruceos": "511363a3e",
         "source": "spruceOS 511363a3e (SundownerSport: Rebuild ardens, arduous and swanstation)",
-        "unverified": true,
+        "note": "matched byte for byte by CE run 44651257278 (f13adbb)",
         "files": {
           "cores/ardens_libretro.so": "b17266cbe9c1e41c27b1424122f88b2e1c141295de2ce6ea2e18f5364ff98627"
         }
@@ -5828,7 +5828,7 @@
       "shipped": {
         "spruceos": "6487538b0",
         "source": "spruceOS 6487538b0 (SundownerSport: Add Casio Loopy (Gloopy))",
-        "unverified": true,
+        "note": "matched byte for byte by CE run 44651260906 (f13adbb)",
         "files": {
           "cores/gloopy_libretro.so": "82409e18189a4aba3fd8f129e327bc9063ccde8ae8166004dd4b434c7ad4798a"
         }
@@ -5925,7 +5925,7 @@
       "shipped": {
         "spruceos": "511363a3e",
         "source": "spruceOS 511363a3e (SundownerSport: Rebuild ardens, arduous and swanstation)",
-        "unverified": true,
+        "note": "matched byte for byte by CE run 44651264307 (f13adbb)",
         "files": {
           "cores/swanstation_libretro.so": "f7cb499f80fc63dbe02dbc5a01f19932bb28f247dbd882bac9b6e88bd4a2f6f0"
         }
@@ -6017,7 +6017,7 @@
       "shipped": {
         "spruceos": "c9ad45827",
         "source": "spruceOS c9ad45827 (SundownerSport: Yabadabadoo 0.4)",
-        "unverified": true,
+        "note": "matched byte for byte by CE run 44651267455 (f13adbb)",
         "files": {
           "cores/yabadabadoo_libretro.so": "8467bdf91053541e186c32f1fc205f20e4913fc142eb72d3d9648db821b4200a"
         }

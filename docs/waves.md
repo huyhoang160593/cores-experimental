@@ -49,3 +49,13 @@ python3 scripts/waves.py summary
   (`confidence`: `unambiguous`, `likely` or `ambiguous`; `verified: false`) and its `evidence`: 37 came with
   spruceOS 327c258ee (built 2025-05-05/06), one with 4a96070f8, the rest with their 2026 imports. A build at the pin
   that matches would make them `reproduces`.
+- The 2025-05-06 batch (41 cores) was cobaltgit's local libretro-super build, at `/root/libretro-super`, with
+  Ubuntu's GCC 9.4 and exported `-mcpu=cortex-a53 -fomit-frame-pointer`, plus `-ffast-math` for some cores.
+  Their short hashes are 8 characters in big repos (full clones), and vice and puae2021 embed their build time.
+  At those flags (flag fan-out rounds 1-4, 11-19/20), eight cores have spruce's code and data sections. For fmsx,
+  only the build ID differs once both files are stripped. Such an entry's `verified` says so, and its status stays
+  `recipe`. CE's catalog recipes keep their portable flags; the evidence lives in the wave.
+- Files that Cores-spruce workflows built are reproduced by standalone recipes in CE's copies of its images
+  (`cores-spruce-arm64`, `cores-spruce-armhf`), repeating the run's commands. Two traps: CE's build script clears
+  the image's `CMAKE_TOOLCHAIN_FILE`, which CMake cores need back; and a workflow that builds a runner-owned
+  checkout as root gets no git hash (git refuses the checkout), which `chown -R 1001:1001 <source>` reproduces.
