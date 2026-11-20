@@ -7197,7 +7197,7 @@
       "shipped": {
         "spruceos": "327c258ee",
         "source": "spruceOS 327c258ee (Ry with cobaltgit, 2025-05-17, \"Update 64-bit cores\")",
-        "unverified": true,
+        "note": "matched byte for byte by CE run 44671208401 (3dfce5e)",
         "files": {
           "cores64/vice_xvic_libretro.so": "6731541c77571806e04fd791bf3df9555f419d8c244592b5c300f5945cd4b895"
         }

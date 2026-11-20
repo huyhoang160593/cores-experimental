@@ -4600,9 +4600,9 @@
       "names": [
         "vice_xvic"
       ],
-      "status": "recipe",
+      "status": "reproduces",
       "recipes": [
-        "vice_xvic"
+        "standalone:vice_xvic-arm64-20250506"
       ],
       "families": [
         "ANBERNIC_RGXX",
@@ -4614,13 +4614,10 @@
         "TRIMUI_SMART_PRO_S"
       ],
       "pin": {
+        "recipe": "standalone:vice_xvic-arm64-20250506",
         "url": "https://github.com/libretro/vice-libretro.git",
-        "commit": "e5b036f0be19f7a70fde75cc0e8b1b43476adc13",
-        "basis": "master tip at 2025-05-06T10:00:00Z",
-        "confidence": "unambiguous",
-        "verified": false
-      },
-      "evidence": "came with spruceOS 327c258ee (2025-05-17), the same code and data sections as that import (only stripped since, in bd606af63); built 2025-05-05/06 (sibling builds embed those dates); no commit between 2025-05-04 and 05-07 on master"
+        "commit": "e5b036f0be19f7a70fde75cc0e8b1b43476adc13"
+      }
     },
     "RetroArch/.retroarch/cores64/virtualjaguar_libretro.so": {
       "sha256": "8a729aa724c5d724faa73b8f61302a3966e2eed47e1eddae786d881f6359f7f3",

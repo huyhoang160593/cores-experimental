@@ -66,8 +66,8 @@ python3 scripts/waves.py summary
   (31) the same way. chailove (32) is C++, where an inline function stays in whichever object links first: its order
   came from simulating ld's placement (cold, startup, then main code), checked on CE's own build and linker map, until
   the function sizes equalled spruce's. fbalpha2012 and fbneo differ in link order the same way. px68k differs
-  only in its build ID. vice_xvic was built after vice_x64 in the same tree without a clean, so x64's stale objects
-  link in (CE run 44668436281 reproduces it that way).
+  only in its build ID. vice_xvic (33) was built after vice_x64 in the same tree with libretro-super's clean skipped
+  (`NOCLEAN=1`), so x64's stale objects link in; its recipe repeats both builds.
 - Files that Cores-spruce workflows built are reproduced by standalone recipes in CE's copies of its images
   (`cores-spruce-arm64`, `cores-spruce-armhf`), repeating the run's commands. Two traps: CE's build script clears
   the image's `CMAKE_TOOLCHAIN_FILE`, which CMake cores need back; and a workflow that builds a runner-owned
