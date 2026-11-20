@@ -1,0 +1,40 @@
+# cores-standalone-dsperate v2: the build environment of spruceUI/DSperate-spruce@0610b1fa2 (Dockerfile), whose
+# aarch64 run 42516048883 (2026-11-08) built spruce's DSperate v3.4.0: v1 (the pinned arm64 base, focal's GCC 10.5
+# cross and arm64 packages) with Kitware's CMake 4.4.5 as that run had, focal's libvulkan-dev:arm64, and Khronos'
+# Vulkan-Headers vulkan-sdk-1.4.363.0 (commit 6802bb47) in /opt/vulkan-headers. Build context: toolchain-inputs/.
+FROM sha256:c9c1332ce01845412beed67695d6bd62a3de510e74003480624412f9877fb938
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+COPY kitware-archive-latest.asc /etc/apt/trusted.gpg.d/kitware.asc
+RUN echo "801bc629e356c3c96f184351272914222ce427777400fa7d1baed3ab180b3e3b  /etc/apt/trusted.gpg.d/kitware.asc" | sha256sum -c - && \
+    echo "deb [arch=amd64] https://apt.kitware.com/ubuntu/ focal main" > /etc/apt/sources.list.d/kitware.list
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    cmake=4.4.5-0kitware1ubuntu20.04.1 \
+    cmake-data=4.4.5-0kitware1ubuntu20.04.1 \
+    python3 \
+    git \
+    ca-certificates \
+    ninja-build \
+    ccache \
+    file \
+    binutils-aarch64-linux-gnu \
+    gcc-10-aarch64-linux-gnu \
+    g++-10-aarch64-linux-gnu \
+    qemu-user-static \
+    libwayland-bin \
+    libwayland-dev:arm64 \
+    libxkbcommon-dev:arm64 \
+    libegl1-mesa-dev:arm64 \
+    libgles2-mesa-dev:arm64 \
+    libvulkan-dev:arm64 \
+    libasound2-dev:arm64 \
+    && rm -rf /var/lib/apt/lists/*
+
+# Focal's libvulkan-dev headers predate extensions current DSperate uses: the wrapper compiles against these instead.
+RUN git init -q /tmp/vh && git -C /tmp/vh fetch -q --depth 1 https://github.com/KhronosGroup/Vulkan-Headers.git \
+        6802bb4733b63ed5efd3adb308a6c885ef180ea1 && git -C /tmp/vh checkout -q FETCH_HEAD && \
+    mkdir -p /opt/vulkan-headers && cp -a /tmp/vh/include /opt/vulkan-headers/ && rm -rf /tmp/vh
+
+RUN dpkg -l > /apt-manifest.txt

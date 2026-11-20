@@ -301,7 +301,8 @@
       ],
       "status": "recipe",
       "recipes": [
-        "standalone:dsperate-a30"
+        "standalone:dsperate-a30",
+        "standalone:dsperate-a30-v3.4.0"
       ],
       "families": [
         "ANBERNIC_RGXX",

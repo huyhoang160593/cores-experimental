@@ -8358,6 +8358,241 @@
         },
         "note": "matched byte for byte by CE run 44684479478 (7e78f43)"
       }
+    },
+    "armn64-arm64-20261115": {
+      "description": "armN64 (MagnominusGit/armN64 main at the run, 49d1298c, after v1.3; armulators submodule 0944d074): spruce's cores64/armn64_libretro.so since b43e8baf9, from the core_armn64 job of Cores-spruce's 'Build All Cores (3/3 — Custom)' run 44392754831 at 41298a556 (2026-11-18 20:45Z, two hours before the import; no core_ref, per its log): a full clone with its submodules, owned by the runner's uid, mounted into Cores-spruce's arm64 image and built with cmake (Release, ARMN64_TUNE=OFF) and that image's toolchain file. The earlier build-armn64.yml run 43747133134 (v1.2) built an older armN64.",
+      "source": {
+        "url": "https://github.com/MagnominusGit/armN64.git",
+        "commit": "49d1298c24cfe0290318f3c4b46ea497eb23cb79",
+        "tree": "6fa842e2b520f7daebbc5aeab1dbad1128d2e97c",
+        "requested_ref": "refs/heads/main",
+        "path": "/armn64"
+      },
+      "toolchain": "cores-spruce-arm64",
+      "source_date_epoch": 1795034730,
+      "env": {
+        "CMAKE_TOOLCHAIN_FILE": "/opt/toolchain.cmake"
+      },
+      "steps": [
+        "git submodule update --init --recursive",
+        "test \"$(git -C armulators rev-parse HEAD)\" = 0944d07400c0dd98edf37535710634c44d226828",
+        "chown -R 1001:1001 /armn64",
+        "cmake -S . -B build-arm64 -DCMAKE_BUILD_TYPE=Release -DARMN64_TUNE=OFF && cmake --build build-arm64 --target armn64_libretro -j\"$(nproc)\""
+      ],
+      "output": {
+        "files": [
+          {
+            "from": "/armn64/build-arm64/armn64_libretro.so",
+            "to": "cores64/armn64_libretro.so"
+          }
+        ],
+        "spruce": {
+          "cores64/armn64_libretro.so": "RetroArch/.retroarch/cores64/armn64_libretro.so"
+        }
+      },
+      "needed": {
+        "device": [
+          "ld-linux-aarch64.so.1",
+          "libc.so.6",
+          "libdl.so.2",
+          "libgcc_s.so.1",
+          "libm.so.6",
+          "libpthread.so.0",
+          "libstdc++.so.6",
+          "libz.so.1"
+        ],
+        "forbidden": []
+      },
+      "shipped": {
+        "spruceos": "b43e8baf9",
+        "source": "spruceOS b43e8baf9 (ryanmsartor, 2026-11-18, \"update armulators to latest\")",
+        "files": {
+          "cores64/armn64_libretro.so": "b7ad8ea0deba16bcf96f2428d485099dbbcb9f8e87542f599f507152b0829933"
+        },
+        "note": "matched byte for byte by CE run 44693682545 (e03f98b)"
+      }
+    },
+    "armnes_arcade-arm64-20261117": {
+      "description": "armNES arcade (MagnominusGit/armNES main at the run, 13f04b0b, after 1.2.1; armulators submodule 2b6e621a): spruce's cores64/armnes_arcade_libretro.so since b43e8baf9 (no menu offers it), from the 'Build arm64' step of the core_armnes_arcade job of Cores-spruce's 'Build All Cores (3/3 — Custom)' run 44392754831 at 41298a556 (2026-11-18 20:45Z, no core_ref per its log), in Cores-spruce's arm64 image with its toolchain file.",
+      "source": {
+        "url": "https://github.com/MagnominusGit/armNES.git",
+        "commit": "13f04b0bc161af89834b7da858dcd9c22c101c7a",
+        "tree": "3937104ebba67bc1c0e7cb58c9af399d722f751d",
+        "requested_ref": "refs/heads/main",
+        "path": "/armnes"
+      },
+      "toolchain": "cores-spruce-arm64",
+      "source_date_epoch": 1795034756,
+      "env": {
+        "CMAKE_TOOLCHAIN_FILE": "/opt/toolchain.cmake"
+      },
+      "steps": [
+        "git submodule update --init --recursive",
+        "test \"$(git -C armulators rev-parse HEAD)\" = 2b6e621a765d39aa97514f6ee276114776e3934f",
+        "chown -R 1001:1001 /armnes",
+        "cmake -S . -B build-arm64 -DCMAKE_BUILD_TYPE=Release && cmake --build build-arm64 -j\"$(nproc)\" --target armnes_arcade_libretro"
+      ],
+      "output": {
+        "files": [
+          {
+            "from": "/armnes/build-arm64/armnes_arcade_libretro.so",
+            "to": "cores64/armnes_arcade_libretro.so"
+          }
+        ],
+        "spruce": {
+          "cores64/armnes_arcade_libretro.so": "RetroArch/.retroarch/cores64/armnes_arcade_libretro.so"
+        }
+      },
+      "needed": {
+        "device": [
+          "ld-linux-aarch64.so.1",
+          "libc.so.6",
+          "libm.so.6",
+          "libz.so.1"
+        ],
+        "forbidden": []
+      },
+      "shipped": {
+        "spruceos": "b43e8baf9",
+        "source": "spruceOS b43e8baf9 (ryanmsartor, 2026-11-18, \"update armulators to latest\")",
+        "files": {
+          "cores64/armnes_arcade_libretro.so": "f76f62126d9c0810539426d836b0d31d5ac7c327811a7644f4ab26850c7b64b3"
+        },
+        "note": "matched byte for byte by CE run 44693686345 (e03f98b)"
+      }
+    },
+    "armnes_arcade-armhf-20261117": {
+      "description": "armNES arcade (MagnominusGit/armNES main at the run, 13f04b0b, after 1.2.1; armulators submodule 2b6e621a): spruce's cores/armnes_arcade_libretro.so since b43e8baf9 (no menu offers it), from the 'Build armhf' step of the core_armnes_arcade job of Cores-spruce's 'Build All Cores (3/3 — Custom)' run 44392754831 at 41298a556 (2026-11-18 20:45Z, no core_ref per its log), in Cores-spruce's armhf image with its toolchain file.",
+      "source": {
+        "url": "https://github.com/MagnominusGit/armNES.git",
+        "commit": "13f04b0bc161af89834b7da858dcd9c22c101c7a",
+        "tree": "3937104ebba67bc1c0e7cb58c9af399d722f751d",
+        "requested_ref": "refs/heads/main",
+        "path": "/armnes"
+      },
+      "toolchain": "cores-spruce-armhf",
+      "source_date_epoch": 1795034756,
+      "env": {
+        "CMAKE_TOOLCHAIN_FILE": "/opt/toolchain.cmake"
+      },
+      "steps": [
+        "git submodule update --init --recursive",
+        "test \"$(git -C armulators rev-parse HEAD)\" = 2b6e621a765d39aa97514f6ee276114776e3934f",
+        "chown -R 1001:1001 /armnes",
+        "cmake -S . -B build-armhf -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_FLAGS=\"-mcpu=cortex-a7 -mfpu=neon-vfpv4 -mfloat-abi=hard\" -DCMAKE_CXX_FLAGS=\"-mcpu=cortex-a7 -mfpu=neon-vfpv4 -mfloat-abi=hard\" && cmake --build build-armhf -j\"$(nproc)\" --target armnes_arcade_libretro"
+      ],
+      "output": {
+        "files": [
+          {
+            "from": "/armnes/build-armhf/armnes_arcade_libretro.so",
+            "to": "cores/armnes_arcade_libretro.so"
+          }
+        ],
+        "spruce": {
+          "cores/armnes_arcade_libretro.so": "RetroArch/.retroarch/cores/armnes_arcade_libretro.so"
+        }
+      },
+      "needed": {
+        "device": [
+          "libc.so.6",
+          "libm.so.6",
+          "libz.so.1"
+        ],
+        "forbidden": []
+      },
+      "shipped": {
+        "spruceos": "b43e8baf9",
+        "source": "spruceOS b43e8baf9 (ryanmsartor, 2026-11-18, \"update armulators to latest\")",
+        "files": {
+          "cores/armnes_arcade_libretro.so": "1d8cb509296e801f6cc495bccb12eb41473cd932916d9454fd9d32fa9772edeb"
+        },
+        "note": "matched byte for byte by CE run 44693689950 (e03f98b)"
+      }
+    },
+    "dsperate-a30-v3.4.0": {
+      "description": "DSperate v3.4.0 with DS_CHEEVOS_HOST: Emu/NDS/dsperate.a30 on the Miyoo A30 since 504e78012. Built as spruceUI/DSperate-spruce@0610b1fa2 build-a30.sh did in its run 42515700193 (2026-11-08; DSPERATE_VERSION=v3.4.0, SKIP_TESTS=1 per its log): the same A30 environment as dsperate-a30, that commit's two Python patches (spruce menu colours, the DS_CHEEVOS_HOST hook), and only the SDL frontend (headless and tests off). The aarch64 build of that day used another DSperate commit (109ecfd5) with PGO and needs a newer image.",
+      "source": {
+        "url": "https://github.com/beebono/DSperate.git",
+        "commit": "aabc4b065afaf582cbc43c16d579de431b808d57",
+        "tree": "c735b3bb7cbbc7496160fed497e69b335143b9af",
+        "requested_ref": "refs/tags/v3.4.0",
+        "path": "/build/DSperate"
+      },
+      "toolchain": "standalone-armhf",
+      "source_date_epoch": 1794166560,
+      "env": {
+        "DSP_SYSROOT": "/opt/a30/arm-a30-linux-gnueabihf/sysroot",
+        "DSP_CC": "/opt/a30/bin/arm-a30-linux-gnueabihf-gcc",
+        "DSP_CXX": "/opt/a30/bin/arm-a30-linux-gnueabihf-g++",
+        "DSP_AR": "/opt/a30/bin/arm-a30-linux-gnueabihf-gcc-ar",
+        "DSP_RANLIB": "/opt/a30/bin/arm-a30-linux-gnueabihf-gcc-ranlib",
+        "DSP_NM": "/opt/a30/bin/arm-a30-linux-gnueabihf-gcc-nm",
+        "DSP_STRIP": "/opt/a30/bin/arm-a30-linux-gnueabihf-strip",
+        "PKG_CONFIG_SYSROOT_DIR": "/opt/a30/arm-a30-linux-gnueabihf/sysroot",
+        "PKG_CONFIG_LIBDIR": "/opt/a30/arm-a30-linux-gnueabihf/sysroot/usr/lib/pkgconfig:/opt/a30/arm-a30-linux-gnueabihf/sysroot/usr/share/pkgconfig",
+        "PKG_CONFIG_PATH": "/opt/a30/arm-a30-linux-gnueabihf/sysroot/usr/lib/pkgconfig:/opt/a30/arm-a30-linux-gnueabihf/sysroot/usr/share/pkgconfig",
+        "GIT_CONFIG_SYSTEM": "/dev/null",
+        "GIT_CONFIG_GLOBAL": "/dev/null",
+        "GIT_CONFIG_PARAMETERS": "'core.abbrev=8'"
+      },
+      "steps": [
+        "cd /opt/a30/arm-a30-linux-gnueabihf/sysroot/usr/lib && ln -sf libSDL2-2.0.so.0.2800.5 libSDL2.so && ln -sf libMali.so libEGL.so && ln -sf libMali.so libGLESv2.so && ln -sf libasound.so.2.0.0 libasound.so",
+        "cd /build/DSperate",
+        "for patch in /patches/*.py; do python3 \"$patch\" || exit 1; done",
+        "cmake -S . -B build -G Ninja -DCMAKE_TOOLCHAIN_FILE=/toolchain-a30.cmake -DCMAKE_BUILD_TYPE=Release \"-DCMAKE_C_FLAGS=-O3 -mcpu=cortex-a7 -pthread\" \"-DCMAKE_CXX_FLAGS=-O3 -mcpu=cortex-a7 -pthread\" \"-DCMAKE_EXE_LINKER_FLAGS=-pthread -Wl,--no-as-needed -lpthread -Wl,--as-needed -static-libstdc++ -static-libgcc -mcpu=cortex-a7\" -DDSPERATE_HEADLESS=OFF -DDSPERATE_SDL=ON -DDSPERATE_WAYLAND=OFF -DDSPERATE_TESTS=OFF",
+        "cmake --build build -j\"$(nproc)\""
+      ],
+      "output": {
+        "files": [
+          {
+            "from": "/build/DSperate/build/src/frontend/sdl/dsperate",
+            "to": "dsperate.a30",
+            "strip": "-s"
+          }
+        ],
+        "spruce": {
+          "dsperate.a30": "Emu/NDS/dsperate.a30"
+        }
+      },
+      "needed": {
+        "device": [
+          "ld-linux-armhf.so.3",
+          "libSDL2-2.0.so.0",
+          "libc.so.6",
+          "libdl.so.2",
+          "libm.so.6",
+          "libpthread.so.0"
+        ],
+        "forbidden": [
+          "libstdc++.so.6",
+          "libgcc_s.so.1"
+        ]
+      },
+      "shipped": {
+        "spruceos": "504e78012",
+        "source": "spruceOS 504e78012 (SundownerSport, 2026-11-08, \"update dsperate to v3.4.0 with DS_CHEEVOS_HOST\")",
+        "files": {
+          "dsperate.a30": "29d234efc888ae90ec9c7ddd10273d0043bde09832f6180d61f6d5a350980d0a"
+        },
+        "note": "matched byte for byte by CE run 44693693813 (3d631d6)"
+      },
+      "downloads": [
+        {
+          "url": "https://raw.githubusercontent.com/spruceUI/DSperate-spruce/0610b1fa2357c03fccbdc05befd13b30b23ec84c/patches/0001-spruce-menu-colours.py",
+          "sha256": "48b975a2640f6eb1122ce07fc7870ba3d375ba70c69f779dfecd7f1a063faa1e",
+          "path": "/patches/0001-spruce-menu-colours.py"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/spruceUI/DSperate-spruce/0610b1fa2357c03fccbdc05befd13b30b23ec84c/patches/0002-cheevos-host-env.py",
+          "sha256": "da5c3999d87e85a17238a5cba5c898b098418657c8187267828e5d34ed47cfed",
+          "path": "/patches/0002-cheevos-host-env.py"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/spruceUI/DSperate-spruce/0610b1fa2357c03fccbdc05befd13b30b23ec84c/toolchain-a30.cmake",
+          "sha256": "a5779af71035d13121b18270d2cb063c5fd832f8b95b8c98bca9c1cbc17a7dfa",
+          "path": "/toolchain-a30.cmake"
+        }
+      ]
     }
   }
 }

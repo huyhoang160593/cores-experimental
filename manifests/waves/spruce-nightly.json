@@ -319,9 +319,9 @@
         "DSperate",
         "DSperate-Tate"
       ],
-      "status": "recipe",
+      "status": "reproduces",
       "recipes": [
-        "standalone:dsperate-a30"
+        "standalone:dsperate-a30-v3.4.0"
       ],
       "families": [
         "ANBERNIC_RGXX",
@@ -333,7 +333,12 @@
         "OAKMOSS_A133P",
         "TRIMUI_A133P",
         "TRIMUI_SMART_PRO_S"
-      ]
+      ],
+      "pin": {
+        "recipe": "standalone:dsperate-a30-v3.4.0",
+        "url": "https://github.com/beebono/DSperate.git",
+        "commit": "aabc4b065afaf582cbc43c16d579de431b808d57"
+      }
     },
     "Emu/OPENBOR/OpenBOR_64_mod": {
       "sha256": "5b35eab30522a06484e550550ccfb008f5e7664768028c6e4dd05f80bfc28da8",
@@ -898,12 +903,17 @@
       "names": [
         "armnes_arcade"
       ],
-      "status": "recipe",
+      "status": "reproduces",
       "recipes": [
-        "armnes_arcade"
+        "standalone:armnes_arcade-armhf-20261117"
       ],
       "families": [],
-      "spare": true
+      "spare": true,
+      "pin": {
+        "recipe": "standalone:armnes_arcade-armhf-20261117",
+        "url": "https://github.com/MagnominusGit/armNES.git",
+        "commit": "13f04b0bc161af89834b7da858dcd9c22c101c7a"
+      }
     },
     "RetroArch/.retroarch/cores/armnes_libretro.so": {
       "sha256": "f840e12ec256fe9836c0bae0a37b275dc5354db78c8e2913fe53033ff0febfab",
@@ -1054,7 +1064,8 @@
       "families": [
         "MIYOO_A30",
         "MIYOO_MINI_FAMILY"
-      ]
+      ],
+      "evidence": "self-built 1.0-preview5 with clang/LLD 20.1.8 and static libc++ (no vendor string, no build ID); not upstream's release asset (GCC 4.8.4) or the buildbot (GCC 12.3); the same private LLVM toolchain as armsnes, likely cobaltgit's (Emu Inventory, nightly11-provenance-20261120.md in CFW/Spruce/docs/research/emulator-arch-inventory-20261111)"
     },
     "RetroArch/.retroarch/cores/easyrpg_libretro.so": {
       "sha256": "b0df1ad3abbdedcbffd0a0443333b7993f257ec21341f32ce73c6a2a8fe9a8ff",
@@ -1104,7 +1115,8 @@
       "families": [
         "MIYOO_A30",
         "MIYOO_MINI_FAMILY"
-      ]
+      ],
+      "evidence": "fake-08 master of 2024-09-02 (0.0.2.20a), shauninman's union-my282 toolchain (Buildroot 2017.11 GCC 7.2, Cortex-A9); not MinUI's release (0.0.2.20); builder likely cobaltgit or Ry; stripped by bd606af63 (Emu Inventory, nightly11-provenance-20261120.md in CFW/Spruce/docs/research/emulator-arch-inventory-20261111)"
     },
     "RetroArch/.retroarch/cores/fbalpha2012_libretro.so": {
       "sha256": "3f5a5e641376b433ce5409b0a89ad14519c6ee415333eeb4d4f0323d16f4c5d0",
@@ -1533,7 +1545,8 @@
         "DARKMOSS",
         "MIYOO_A30",
         "MIYOO_FLIP"
-      ]
+      ],
+      "evidence": "KMFDManic's build (Kyland K): KMFDManic/ludicrous-2k22-xtreme-amped at 76f90ec (2026-02-04; its 42 option keys), his Buildroot 2015.11.1 GCC 4.9.3, unstripped (Emu Inventory, nightly11-provenance-20261120.md in CFW/Spruce/docs/research/emulator-arch-inventory-20261111)"
     },
     "RetroArch/.retroarch/cores/km_mame2003_xtreme_libretro.so": {
       "sha256": null,
@@ -1593,7 +1606,8 @@
       "families": [
         "MIYOO_A30",
         "MIYOO_MINI_FAMILY"
-      ]
+      ],
+      "evidence": "KMFDManic's build: virtualjaguar-libretro v2.1.0 48096c1 plus his Xtreme options, Ubuntu 16.04 cross GCC 5.3.1; no public source (Emu Inventory, nightly11-provenance-20261120.md in CFW/Spruce/docs/research/emulator-arch-inventory-20261111)"
     },
     "RetroArch/.retroarch/cores/lowresnx_libretro.so": {
       "sha256": "05cd158e15b10a9e2a8a54b881912766d1e4e2e914e388afad945b490dcde530",
@@ -1770,7 +1784,8 @@
       "families": [
         "MIYOO_A30",
         "MIYOO_MINI_FAMILY"
-      ]
+      ],
+      "evidence": "OnionUI/Onion's prebuilt (8a605d52, 2022-12-12; mgba 0.10-dev ec5ecb26d, Debian buster cross GCC 8.3.0-2), byte for byte; builder not recorded (Emu Inventory, nightly11-provenance-20261120.md in CFW/Spruce/docs/research/emulator-arch-inventory-20261111)"
     },
     "RetroArch/.retroarch/cores/mkxp-z_libretro.so": {
       "sha256": "39822d821e24071760d9edb108e2bd244d2a49a5415684bf53a822cd4b68b169",
@@ -2342,7 +2357,8 @@
       "families": [
         "MIYOO_A30",
         "MIYOO_MINI_FAMILY"
-      ]
+      ],
+      "evidence": "the libretro buildbot's linux_armv7-neon-hf build (0.90.1-dev, Ubuntu 16.04 cross GCC 5.4.0) via Onion v4 RC ba4ba05d, stripped by bd606af63 (Emu Inventory, nightly11-provenance-20261120.md in CFW/Spruce/docs/research/emulator-arch-inventory-20261111)"
     },
     "RetroArch/.retroarch/cores/tyrquake_libretro.so": {
       "sha256": "c785b67f5b88f8cc3d1793e2e39f3e5abaa5e12dad1666728fe4c087b5e01d0f",
@@ -2413,7 +2429,8 @@
       "families": [
         "MIYOO_A30",
         "MIYOO_MINI_FAMILY"
-      ]
+      ],
+      "evidence": "Onion's copy (ba4ba05d; vecx 1.2 dceb538, Ubuntu 16.04 cross GCC 5.4.0, likely the buildbot), byte for byte (Emu Inventory, nightly11-provenance-20261120.md in CFW/Spruce/docs/research/emulator-arch-inventory-20261111)"
     },
     "RetroArch/.retroarch/cores/vemulator_libretro.so": {
       "sha256": "0dbd375d580374e54a6e139fc74abca191f745d3ed607c25185ac6bf75eb0d3b",
@@ -2635,9 +2652,9 @@
       "names": [
         "armn64"
       ],
-      "status": "recipe",
+      "status": "reproduces",
       "recipes": [
-        "armn64"
+        "standalone:armn64-arm64-20261115"
       ],
       "families": [
         "ANBERNIC_RGXX",
@@ -2649,11 +2666,9 @@
         "TRIMUI_SMART_PRO_S"
       ],
       "pin": {
+        "recipe": "standalone:armn64-arm64-20261115",
         "url": "https://github.com/MagnominusGit/armN64.git",
-        "commit": "20ea32ee4651a54dba2682c17581ff4fbc9a796c",
-        "basis": "branch tip at the import",
-        "confidence": "likely",
-        "verified": false
+        "commit": "49d1298c24cfe0290318f3c4b46ea497eb23cb79"
       },
       "evidence": "spruceOS b43e8baf9 (2026-11-18, ryanmsartor: update armulators to latest)"
     },
@@ -2663,12 +2678,17 @@
       "names": [
         "armnes_arcade"
       ],
-      "status": "recipe",
+      "status": "reproduces",
       "recipes": [
-        "armnes_arcade"
+        "standalone:armnes_arcade-arm64-20261117"
       ],
       "families": [],
-      "spare": true
+      "spare": true,
+      "pin": {
+        "recipe": "standalone:armnes_arcade-arm64-20261117",
+        "url": "https://github.com/MagnominusGit/armNES.git",
+        "commit": "13f04b0bc161af89834b7da858dcd9c22c101c7a"
+      }
     },
     "RetroArch/.retroarch/cores64/armnes_libretro.so": {
       "sha256": "cdb42d30ddc8d96e2a577a7800a23c23191d3ad3e6b466903f344e682ddfbd08",
@@ -2721,7 +2741,7 @@
         "confidence": "likely",
         "verified": false
       },
-      "evidence": "spruceOS d7ce3dc52 (2026-11-19, cobaltgit: add armSNES emulator for 64bit); main's tip 36 minutes before it; the shipped file is stripped and names no commit; no CE recipe yet; built by cobaltgit with an LLVM toolchain (lld .relro_padding, static libc++), not GCC: CE's GCC build at the pin (run 44613807205) and the v0.1a release (GCC) differ"
+      "evidence": "armSNES 0.1a ('Ver S1.20') built with the same private LLVM toolchain as dosbox_pure (LLD, static libc++, .comment removed); upstream's v0.1a release is GCC; builder likely cobaltgit (Emu Inventory, nightly11-provenance-20261120.md in CFW/Spruce/docs/research/emulator-arch-inventory-20261111)"
     },
     "RetroArch/.retroarch/cores64/atari800_libretro.so": {
       "sha256": "26ba26a525b0a44aa7ea3f716de94635e4d6f646070460d498b313b823a95634",
@@ -2929,7 +2949,8 @@
         "OAKMOSS_A133P",
         "TRIMUI_A133P",
         "TRIMUI_SMART_PRO_S"
-      ]
+      ],
+      "evidence": "self-built 1.0-preview5 with clang/LLD 20.1.8 and static libc++ (no vendor string, no build ID); not upstream's release asset (GCC 4.8.4) or the buildbot (GCC 12.3); the same private LLVM toolchain as armsnes, likely cobaltgit's (Emu Inventory, nightly11-provenance-20261120.md in CFW/Spruce/docs/research/emulator-arch-inventory-20261111)"
     },
     "RetroArch/.retroarch/cores64/easyrpg_libretro.so": {
       "sha256": "45484dd2528245af4249f27d80cef142b75caa648dfeb6c837c19d8120798a6f",
@@ -3110,7 +3131,7 @@
         "confidence": "unambiguous",
         "verified": false
       },
-      "evidence": "spruceOS c0d8676cb (2026-09-06, arkun): its message names tag v1.2"
+      "evidence": "built 2026-08-26 by the user's Flycast-campaign session in flycast-builder:latest (Flycast-spruce Dockerfile: Ubuntu 20.04, GCC 9.4 aarch64 cross) from a shallow clone of tag v1.2 with the SIGSEGV-handler repair; byte-identical copy and log in ~/ai/CFW/Spruce/artifacts/flycast-pacing/ (out/flycast2021_play.so, logs/build-v1.2-play.log); USE_GLES (not GLES2) and the system zlib, which is why CE's catalog build differs; the patch scripts are gone (Emu Inventory, nightly11-provenance-20261120.md in CFW/Spruce/docs/research/emulator-arch-inventory-20261111)"
     },
     "RetroArch/.retroarch/cores64/flycast2024_libretro.so": {
       "sha256": "a177db285c4b02a36388218f1c153f5b167470b06a533afce20c202bcb397fad",
@@ -3137,7 +3158,7 @@
         "confidence": "unambiguous",
         "verified": false
       },
-      "evidence": "spruceOS c0d8676cb (2026-09-06, arkun): its message names tag v2.4 plus upstream 130675aae (Issue #1886), per the import message"
+      "evidence": "built 2026-08-26 by the user's Flycast-campaign session in flycast-builder:latest from a shallow clone of tag v2.4 with the SIGSEGV-handler repair and the 130675aae fog backport; byte-identical copy and log in ~/ai/CFW/Spruce/artifacts/flycast-pacing/ (out/flycast2024_play.so, logs/build-v2.4-play.log); system zlib; the patch scripts are gone (Emu Inventory, nightly11-provenance-20261120.md in CFW/Spruce/docs/research/emulator-arch-inventory-20261111)"
     },
     "RetroArch/.retroarch/cores64/flycast_libretro.so": {
       "sha256": "eff7ae729265114ee34b0063ae0c4a3408133688bb9eea3de7fc7a0a7013aa23",
@@ -3474,7 +3495,8 @@
         "OAKMOSS_A133P",
         "TRIMUI_A133P",
         "TRIMUI_SMART_PRO_S"
-      ]
+      ],
+      "evidence": "christianhaitian/retroarch-cores aarch64/gme_libretro.so.zip since d18a90f0f4 (2020-12-11; gme 0.6.1, GCC 8.3.0 with gold), byte for byte (Emu Inventory, nightly11-provenance-20261120.md in CFW/Spruce/docs/research/emulator-arch-inventory-20261111)"
     },
     "RetroArch/.retroarch/cores64/gpsp_libretro.so": {
       "sha256": "e90ef024933b7a307404eea17c4ff225896a3fd9586c460709be3732660260b5",
@@ -3881,7 +3903,8 @@
         "OAKMOSS_A133P",
         "TRIMUI_A133P",
         "TRIMUI_SMART_PRO_S"
-      ]
+      ],
+      "evidence": "christianhaitian/retroarch-cores aarch64/mupen64plus_next_libretro.so.zip at 9dc0c408c9 (2024-04-05, core 3f794ee, Debian buster GCC 8.3.0-6) minus its .note.gnu.build-id; via PR #684 (Emu Inventory, nightly11-provenance-20261120.md in CFW/Spruce/docs/research/emulator-arch-inventory-20261111)"
     },
     "RetroArch/.retroarch/cores64/neocd_libretro.so": {
       "sha256": "881e7002461da125f893cd3c2d4ea35ed6a349d18dec3bb8ad3249426c7efbfa",
@@ -3951,7 +3974,8 @@
         "OAKMOSS_A133P",
         "TRIMUI_A133P",
         "TRIMUI_SMART_PRO_S"
-      ]
+      ],
+      "evidence": "prints 'NP2kai c2ca404 c2ca404', the JELOS/ROCKNIX np2kai-lr package's double hash; plain GCC 15.2.0 as LibreELEC builds it; not a ROCKNIX nightly as far as its tree shows, builder unknown (ask Ry). Needs GLIBC_2.34 (pthread_*), above the TrimUI 2.33 floor (Emu Inventory, nightly11-provenance-20261120.md in CFW/Spruce/docs/research/emulator-arch-inventory-20261111)"
     },
     "RetroArch/.retroarch/cores64/o2em_libretro.so": {
       "sha256": "0ebc13cf70933a90274127451102ca2ec17590ea525ee4a430f772b2780094a0",
@@ -3989,7 +4013,8 @@
         "opera"
       ],
       "families": [],
-      "spare": true
+      "spare": true,
+      "evidence": "christianhaitian/retroarch-cores 7ce6689a61 (2024-10-25, core 67a29e6, Debian 8.3.0-6), byte for byte (Emu Inventory, nightly11-provenance-20261120.md in CFW/Spruce/docs/research/emulator-arch-inventory-20261111)"
     },
     "RetroArch/.retroarch/cores64/parallel_n64_libretro.so": {
       "sha256": "21ccb279ef4c1928d16580a08e89d11f85050edccfdfba9c600b509f67e5e7a0",
