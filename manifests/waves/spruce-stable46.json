@@ -278,7 +278,8 @@
       ],
       "status": "recipe",
       "recipes": [
-        "standalone:dsperate-arm64"
+        "standalone:dsperate-arm64",
+        "standalone:dsperate-arm64-v3.4.0"
       ],
       "families": [
         "ANBERNIC_RGXX",

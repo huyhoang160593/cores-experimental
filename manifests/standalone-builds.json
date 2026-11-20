@@ -8510,7 +8510,7 @@
       }
     },
     "dsperate-a30-v3.4.0": {
-      "description": "DSperate v3.4.0 with DS_CHEEVOS_HOST: Emu/NDS/dsperate.a30 on the Miyoo A30 since 504e78012. Built as spruceUI/DSperate-spruce@0610b1fa2 build-a30.sh did in its run 42515700193 (2026-11-08; DSPERATE_VERSION=v3.4.0, SKIP_TESTS=1 per its log): the same A30 environment as dsperate-a30, that commit's two Python patches (spruce menu colours, the DS_CHEEVOS_HOST hook), and only the SDL frontend (headless and tests off). The aarch64 build of that day used another DSperate commit (109ecfd5) with PGO and needs a newer image.",
+      "description": "DSperate v3.4.0 with DS_CHEEVOS_HOST: Emu/NDS/dsperate.a30 on the Miyoo A30 since 504e78012. Built as spruceUI/DSperate-spruce@0610b1fa2 build-a30.sh did in its run 42515700193 (2026-11-08; DSPERATE_VERSION=v3.4.0, SKIP_TESTS=1 per its log): the same A30 environment as dsperate-a30, that commit's two Python patches (spruce menu colours, the DS_CHEEVOS_HOST hook), and only the SDL frontend (headless and tests off). The aarch64 build of that day used another DSperate commit (109ecfd5) with PGO: dsperate-arm64-v3.4.0.",
       "source": {
         "url": "https://github.com/beebono/DSperate.git",
         "commit": "aabc4b065afaf582cbc43c16d579de431b808d57",
@@ -8687,7 +8687,8 @@
         "source": "spruceOS 504e78012 (SundownerSport, 2026-11-08, \"update dsperate to v3.4.0 with DS_CHEEVOS_HOST\")",
         "files": {
           "dsperate": "22a09591f9113554542918cd2ea4e414c4db42ef09ab9ebe59e5dd2192799fd3"
-        }
+        },
+        "note": "matched byte for byte by CE run 44748218492 (225823b)"
       }
     },
     "mkxp-z-libretro-20260114": {

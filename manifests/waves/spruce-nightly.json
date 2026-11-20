@@ -296,9 +296,9 @@
         "DSperate",
         "DSperate-Tate"
       ],
-      "status": "recipe",
+      "status": "reproduces",
       "recipes": [
-        "standalone:dsperate-arm64"
+        "standalone:dsperate-arm64-v3.4.0"
       ],
       "families": [
         "ANBERNIC_RGXX",
@@ -310,7 +310,12 @@
         "OAKMOSS_A133P",
         "TRIMUI_A133P",
         "TRIMUI_SMART_PRO_S"
-      ]
+      ],
+      "pin": {
+        "recipe": "standalone:dsperate-arm64-v3.4.0",
+        "url": "https://github.com/beebono/DSperate.git",
+        "commit": "109ecfd55e23ee818ac85ae531320e3666916273"
+      }
     },
     "Emu/NDS/dsperate.a30": {
       "sha256": "29d234efc888ae90ec9c7ddd10273d0043bde09832f6180d61f6d5a350980d0a",
