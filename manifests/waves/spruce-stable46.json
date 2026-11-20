@@ -396,8 +396,10 @@
       "names": [
         "OpenBOR"
       ],
-      "status": "no recipe",
-      "recipes": [],
+      "status": "recipe",
+      "recipes": [
+        "standalone:openbor-lns-a30"
+      ],
       "families": [
         "ANBERNIC_RGXX",
         "DARKMOSS",

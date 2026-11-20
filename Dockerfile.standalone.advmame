@@ -1,0 +1,11 @@
+# cores-standalone-advmame v1: the image wakeboxer's Build_Spruce_Advmame CI built and then built spruce's
+# advmame in (ljhmd0825/Build_Spruce_Advmame@7462de8c Dockerfile.64, run 23674203493, created 2026-03-28T01:18:27Z):
+# Ubuntu 20.04 with the GCC 9.4 aarch64 cross, focal's arm64 dev packages and SDL 2.26.2 built from source.
+# Pinned by digest from ghcr.io; its ENTRYPOINT (/build-64.sh) is cleared so recipes run their own script.
+FROM ghcr.io/ljhmd0825/advmame-builder-64@sha256:4d8f5e562b72c024709bba168624836c421c7dbd265a5529814b8b28b641af04
+
+ENTRYPOINT []
+WORKDIR /
+
+RUN command -v git && command -v python3 && command -v sha256sum && command -v 7z && \
+    test -f /patches/iremga20_fix.patch && dpkg -l > /apt-manifest.txt

@@ -4352,6 +4352,68 @@
         "note": "spruce also ships Emu/OPENBOR/lib/{libSDL2-2.0.so.0,libpng16.so.16,libz.so.1} beside this binary; this recipe does not build them (no source pinned), so they are listed under needed.device instead"
       }
     },
+    "openbor-lns-a30": {
+      "description": "OpenBOR \"LNS\" engine (gonzalomvp/openbor v6330-fflns, 'v3.0 Build 6330 LNS v0.10g', the build Final Fight LNS needs) at 4c8677c2, the branch tip since 2024-01-07: Emu/OPENBOR/OpenBOR_mod on the Miyoo A30 (compiled 2024-06-13 with the A30's Buildroot 2024.02.1 GCC 13.2, before spruce's public history). Who built it is not known, so the flags are inferred from the binary: the Makefile's BUILD_LINUX target with OpenGL, Vorbis and WebM off and Tremor on (its NEEDED list and strings), LIBRARIES empty (its RPATH is empty) and ARCHFLAGS cleared (BUILD_LINUX's -m64). Whether -fomit-frame-pointer was on (BUILD_AMD64 unset) is not known: the build makes both, and OpenBOR_mod-omitfp is the other one, for comparison.",
+      "source": {
+        "url": "https://github.com/gonzalomvp/openbor.git",
+        "commit": "4c8677c2a747b13dbf0e2f9162509ac14a138c9c",
+        "tree": "4f3feedcafb89a9eda3323b5d2deba78f865db4c",
+        "requested_ref": "refs/heads/v6330-fflns"
+      },
+      "toolchain": "standalone-armhf",
+      "source_date_epoch": 1718280000,
+      "steps": [
+        "set +u +o pipefail",
+        "cd engine",
+        "grep -q 'VERSION_BUILD \"6330 LNS v0.10g\"' version.h",
+        "export PKG_CONFIG_SYSROOT_DIR=/opt/a30/arm-a30-linux-gnueabihf/sysroot PKG_CONFIG_LIBDIR=/opt/a30/arm-a30-linux-gnueabihf/sysroot/usr/lib/pkgconfig",
+        "mkdir -p /tmp/variants",
+        "make -j\"$(nproc)\" BUILD_LINUX=1 BUILD_OPENGL= BUILD_LOADGL= BUILD_VORBIS= BUILD_WEBM= BUILD_TREMOR=1 ARCHFLAGS= LIBRARIES= NO_STRIP=1 CC=/opt/a30/bin/arm-a30-linux-gnueabihf-gcc SDKPATH=/opt/a30/arm-a30-linux-gnueabihf/sysroot BUILD_AMD64=",
+        "cp OpenBOR.elf /tmp/variants/OpenBOR_mod-omitfp",
+        "make clean BUILD_LINUX=1 BUILD_OPENGL= BUILD_LOADGL= BUILD_VORBIS= BUILD_WEBM= BUILD_TREMOR=1 ARCHFLAGS= LIBRARIES= NO_STRIP=1 CC=/opt/a30/bin/arm-a30-linux-gnueabihf-gcc SDKPATH=/opt/a30/arm-a30-linux-gnueabihf/sysroot BUILD_AMD64=",
+        "make -j\"$(nproc)\" BUILD_LINUX=1 BUILD_OPENGL= BUILD_LOADGL= BUILD_VORBIS= BUILD_WEBM= BUILD_TREMOR=1 ARCHFLAGS= LIBRARIES= NO_STRIP=1 CC=/opt/a30/bin/arm-a30-linux-gnueabihf-gcc SDKPATH=/opt/a30/arm-a30-linux-gnueabihf/sysroot",
+        "cp OpenBOR.elf /tmp/variants/OpenBOR_mod"
+      ],
+      "output": {
+        "files": [
+          {
+            "from": "/tmp/variants/OpenBOR_mod",
+            "to": "OpenBOR_mod",
+            "strip": "-s"
+          },
+          {
+            "from": "/tmp/variants/OpenBOR_mod-omitfp",
+            "to": "OpenBOR_mod-omitfp",
+            "strip": "-s"
+          }
+        ],
+        "spruce": {
+          "OpenBOR_mod": "Emu/OPENBOR/OpenBOR_mod"
+        }
+      },
+      "needed": {
+        "device": [
+          "ld-linux-armhf.so.3",
+          "libSDL2-2.0.so.0",
+          "libSDL2_gfx-1.0.so.0",
+          "libc.so.6",
+          "libm.so.6",
+          "libogg.so.0",
+          "libpng16.so.16",
+          "libpthread.so.0",
+          "libvorbisidec.so.1",
+          "libz.so.1"
+        ],
+        "forbidden": []
+      },
+      "shipped": {
+        "unverified": true,
+        "spruceos": "d7ce3dc52",
+        "files": {
+          "OpenBOR_mod": "885f5f78549096295c98f428bfaa7432d0f51a1b0f8f5bec4aaac3d1cf9864da"
+        }
+      }
+    },
     "xroar": {
       "description": "XRoar 1.11 (Dragon/Tandy Color Computer emulator): Emu/COCO/xroar on every 64-bit device, built by hand from the official release tarball, not a fresh checkout (the shipped binary's debug info names /tmp/xroar-1.11/src and /tmp/xroar-1.11/portalib, the tarball's own extracted layout). source pins the author's git (mirrored at stahta01/xroar, its own commit 1:1 with the tarball's configure.ac by blob hash) for provenance; the actual build steps extract the pinned tarball over that checkout so the build sees the release's own pre-generated configure/Makefile.in, not a freshly autoreconf'd one. Plain native ./configure && make, no flags: XRoar's defaults already match what the binary needs (SDL2/ALSA/evdev/GL/libpng/zlib; no GTK, SDL3, PulseAudio, JACK, OSS, libsndfile or TRE), and autoconf's own default CFLAGS (-g -O2, unstripped) matches it being shipped with debug_info. GPL-3.0-or-later (Licenses/xroar/LICENSE.xroar.txt in spruceOS).; without X11, PulseAudio and OSS, as the shipped binary's modules show (alsa, evdev, null, sdl, sdl2, wav), although libsdl2-dev brings their headers",
       "source": {

@@ -1,0 +1,39 @@
+# cores-standalone-openbor-fflns v1: the builder of wakeboxer's OpenBoR-spruce (ljhmd0825/OpenBoR-spruce@53ba4100
+# Dockerfile; CI run 25722043280 built spruce's OpenBOR_64_mod in it on 2026-05-12): ubuntu:20.04, unchanged since
+# 2025-04 (focal-20250404, by digest), with focal and focal-updates arm64 from ports.ubuntu.com and its package
+# list. The workflow never pushed that image, so it is rebuilt here; focal's archive no longer changes. Its build
+# script and patches are fetched by the recipe instead of copied in, so python3 is added for that download.
+FROM ubuntu:focal-20250404@sha256:8feb4d8ca5354def3d8fce243717141ce31e2c428701f6682bd2fafe15388214
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN dpkg --add-architecture arm64 && \
+    sed -i 's/^deb http/deb [arch=amd64] http/g' /etc/apt/sources.list && \
+    echo "deb [arch=arm64] http://ports.ubuntu.com/ubuntu-ports focal main restricted universe multiverse" >> /etc/apt/sources.list && \
+    echo "deb [arch=arm64] http://ports.ubuntu.com/ubuntu-ports focal-updates main restricted universe multiverse" >> /etc/apt/sources.list && \
+    apt-get -o Acquire::Retries=5 update && \
+    apt-get install -y --no-install-recommends \
+        build-essential \
+        gcc-aarch64-linux-gnu \
+        g++-aarch64-linux-gnu \
+        binutils-aarch64-linux-gnu \
+        pkg-config \
+        git \
+        ca-certificates \
+        ccache \
+        nasm \
+        libsdl2-dev:arm64 \
+        libsdl2-gfx-dev:arm64 \
+        libpng-dev:arm64 \
+        zlib1g-dev:arm64 \
+        libvorbis-dev:arm64 \
+        libogg-dev:arm64 \
+        libvpx-dev:arm64 \
+        libasound2-dev:arm64 \
+        libpthread-stubs0-dev:arm64 \
+        python3 \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN dpkg -l > /apt-manifest.txt
+
+WORKDIR /build
