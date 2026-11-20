@@ -7395,7 +7395,7 @@
     },
     "genesis_plus_gx-arm64-20250506": {
       "extends": "batch1-arm64-20250506",
-      "description": "genesis_plus_gx as spruce ships it since 327c258ee, from cobaltgit's 2025-05-06 build (batch1-arm64-20250506), with the Makefile's own GIT_VERSION (\" <hash>\").",
+      "description": "genesis_plus_gx as spruce ships it since 327c258ee, from cobaltgit's 2025-05-06 build (batch1-arm64-20250506), with its $(wildcard) source groups listed in the builder's order, recovered from spruce's file (function sizes, then registry.c's .data from where spruce's .data first differs). The order proof matched byte for byte in CE run 44668123602 (throwaway branch verify/linkorder-sgx-gpgx-20261120, 208a8d7).",
       "source": {
         "url": "https://github.com/libretro/Genesis-Plus-GX.git",
         "commit": "f64e0a1e04a67a5edf79026c07dc5094f8df74bc",
@@ -7438,11 +7438,15 @@
         "spruceos": "327c258ee",
         "source": "spruceOS 327c258ee (Ry with cobaltgit, 2025-05-17, \"Update 64-bit cores\")",
         "unverified": true,
-        "note": "CE run 44663897092 (d0b5e8c): same functions as spruce's file, in another link order (the wildcard order of the builder's filesystem); not reproduced yet",
         "files": {
           "cores64/genesis_plus_gx_libretro.so": "d4cbc507414db7e587352fda530918abed1945f6a1a3efea61ad776e9da8e1b9"
         }
-      }
+      },
+      "patches": [
+        {
+          "diff": "patches/standalone/batch1/genesis_plus_gx-link-order.patch"
+        }
+      ]
     },
     "tyrquake-arm64-20250506": {
       "extends": "batch1-arm64-20250506",
@@ -7546,6 +7550,63 @@
         "note": "matched byte for byte by CE run 44667105551 (ca8acc4)",
         "files": {
           "cores64/crocods_libretro.so": "3ff111f46772d541668a6b0b5f97d76742cf88fe6eb04f8beda58242ee1e26ef"
+        }
+      }
+    },
+    "mednafen_supergrafx-arm64-20250506": {
+      "extends": "batch1-arm64-20250506",
+      "description": "mednafen_supergrafx as spruce ships it since 327c258ee, from cobaltgit's 2025-05-06 build (batch1-arm64-20250506), with its $(wildcard) source groups listed in the builder's order, recovered from spruce's file (function sizes, then registry.c's .data from where spruce's .data first differs). The order proof matched byte for byte in CE run 44668120317 (throwaway branch verify/linkorder-sgx-gpgx-20261120, 208a8d7).",
+      "source": {
+        "url": "https://github.com/libretro/beetle-supergrafx-libretro.git",
+        "commit": "a776133c34ae8da5daf7d9ccb43e3e292e2b07b0",
+        "tree": "073b42b6d2cfdea5b4824dbfee15079b1c42c9bf",
+        "requested_ref": "refs/heads/master",
+        "path": "/libretro-super/libretro-mednafen_supergrafx",
+        "submodules": true
+      },
+      "patches": [
+        {
+          "diff": "patches/standalone/batch1/mednafen_supergrafx-link-order.patch"
+        }
+      ],
+      "source_date_epoch": 1731635518,
+      "env": {
+        "CFLAGS": "-mcpu=cortex-a53 -fomit-frame-pointer -ffast-math",
+        "CXXFLAGS": "-mcpu=cortex-a53 -fomit-frame-pointer -ffast-math",
+        "BATCH1_KEY": "mednafen_supergrafx",
+        "GIT_CONFIG_SYSTEM": "/dev/null",
+        "GIT_CONFIG_GLOBAL": "/dev/null",
+        "GIT_CONFIG_PARAMETERS": "'core.abbrev=7'"
+      },
+      "output": {
+        "files": [
+          {
+            "from": "/libretro-super/dist/unix/mednafen_supergrafx_libretro.so",
+            "to": "cores64/mednafen_supergrafx_libretro.so",
+            "mode": "0644",
+            "strip": "--strip-unneeded"
+          }
+        ],
+        "spruce": {
+          "cores64/mednafen_supergrafx_libretro.so": "RetroArch/.retroarch/cores64/mednafen_supergrafx_libretro.so"
+        }
+      },
+      "needed": {
+        "device": [
+          "ld-linux-aarch64.so.1",
+          "libc.so.6",
+          "libgcc_s.so.1",
+          "libm.so.6",
+          "libstdc++.so.6"
+        ],
+        "forbidden": []
+      },
+      "shipped": {
+        "spruceos": "327c258ee",
+        "source": "spruceOS 327c258ee (Ry with cobaltgit, 2025-05-17, \"Update 64-bit cores\")",
+        "unverified": true,
+        "files": {
+          "cores64/mednafen_supergrafx_libretro.so": "410fbf0151d0c19d72e966548f84a54d8452abfa17baf8d4e20197f578f71da9"
         }
       }
     }

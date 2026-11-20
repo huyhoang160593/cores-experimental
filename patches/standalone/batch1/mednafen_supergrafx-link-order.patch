@@ -1,0 +1,27 @@
+diff --git a/Makefile.common b/Makefile.common
+index 748481e..aeb4259 100644
+--- a/Makefile.common
++++ b/Makefile.common
+@@ -152,7 +152,21 @@ ifeq ($(HAVE_CHD), 1)
+ endif
+ 
+ ifeq ($(NEED_TREMOR), 1)
+-	SOURCES_C += $(wildcard $(MEDNAFEN_DIR)/tremor/*.c)
++	SOURCES_C += $(MEDNAFEN_DIR)/tremor/floor1.c \
++	$(MEDNAFEN_DIR)/tremor/mdct.c \
++	$(MEDNAFEN_DIR)/tremor/mapping0.c \
++	$(MEDNAFEN_DIR)/tremor/vorbisfile.c \
++	$(MEDNAFEN_DIR)/tremor/codebook.c \
++	$(MEDNAFEN_DIR)/tremor/info.c \
++	$(MEDNAFEN_DIR)/tremor/registry.c \
++	$(MEDNAFEN_DIR)/tremor/res012.c \
++	$(MEDNAFEN_DIR)/tremor/framing.c \
++	$(MEDNAFEN_DIR)/tremor/block.c \
++	$(MEDNAFEN_DIR)/tremor/sharedbook.c \
++	$(MEDNAFEN_DIR)/tremor/window.c \
++	$(MEDNAFEN_DIR)/tremor/synthesis.c \
++	$(MEDNAFEN_DIR)/tremor/bitwise.c \
++	$(MEDNAFEN_DIR)/tremor/floor0.c
+ 	FLAGS += -DNEED_TREMOR
+ endif
+ 

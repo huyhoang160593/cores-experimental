@@ -1,0 +1,87 @@
+diff --git a/libretro/Makefile.common b/libretro/Makefile.common
+index ac77aca..6c86f70 100644
+--- a/libretro/Makefile.common
++++ b/libretro/Makefile.common
+@@ -44,7 +44,58 @@ ifeq ($(HAVE_CHD), 1)
+                 $(LIBRETRO_DEPS_DIR)/libchdr/src/libchdr_huffman.c
+ endif
+ 
+-SOURCES_C += $(foreach dir,$(GENPLUS_SRC_DIR),$(wildcard $(dir)/*.c))
++SOURCES_C += $(CORE_DIR)/core/genesis.c \
++	$(CORE_DIR)/core/system.c \
++	$(CORE_DIR)/core/loadrom.c \
++	$(CORE_DIR)/core/io_ctrl.c \
++	$(CORE_DIR)/core/vdp_render.c \
++	$(CORE_DIR)/core/state.c \
++	$(CORE_DIR)/core/mem68k.c \
++	$(CORE_DIR)/core/memz80.c \
++	$(CORE_DIR)/core/membnk.c \
++	$(CORE_DIR)/core/vdp_ctrl.c \
++	$(CORE_DIR)/core/z80/z80.c \
++	$(CORE_DIR)/core/m68k/s68kcpu.c \
++	$(CORE_DIR)/core/m68k/m68kcpu.c \
++	$(CORE_DIR)/core/ntsc/sms_ntsc.c \
++	$(CORE_DIR)/core/ntsc/md_ntsc.c \
++	$(CORE_DIR)/core/sound/psg.c \
++	$(CORE_DIR)/core/sound/opll.c \
++	$(CORE_DIR)/core/sound/blip_buf.c \
++	$(CORE_DIR)/core/sound/ym2612.c \
++	$(CORE_DIR)/core/sound/eq.c \
++	$(CORE_DIR)/core/sound/ym2413.c \
++	$(CORE_DIR)/core/sound/sound.c \
++	$(CORE_DIR)/core/sound/ym3438.c \
++	$(CORE_DIR)/core/input_hw/graphic_board.c \
++	$(CORE_DIR)/core/input_hw/terebi_oekaki.c \
++	$(CORE_DIR)/core/input_hw/xe_1ap.c \
++	$(CORE_DIR)/core/input_hw/mouse.c \
++	$(CORE_DIR)/core/input_hw/lightgun.c \
++	$(CORE_DIR)/core/input_hw/sportspad.c \
++	$(CORE_DIR)/core/input_hw/gamepad.c \
++	$(CORE_DIR)/core/input_hw/input.c \
++	$(CORE_DIR)/core/input_hw/teamplayer.c \
++	$(CORE_DIR)/core/input_hw/paddle.c \
++	$(CORE_DIR)/core/input_hw/activator.c \
++	$(CORE_DIR)/core/cd_hw/cd_cart.c \
++	$(CORE_DIR)/core/cd_hw/pcm.c \
++	$(CORE_DIR)/core/cd_hw/cdd.c \
++	$(CORE_DIR)/core/cd_hw/cdc.c \
++	$(CORE_DIR)/core/cd_hw/scd.c \
++	$(CORE_DIR)/core/cd_hw/gfx.c \
++	$(CORE_DIR)/core/cart_hw/megasd.c \
++	$(CORE_DIR)/core/cart_hw/eeprom_93c.c \
++	$(CORE_DIR)/core/cart_hw/sram.c \
++	$(CORE_DIR)/core/cart_hw/areplay.c \
++	$(CORE_DIR)/core/cart_hw/ggenie.c \
++	$(CORE_DIR)/core/cart_hw/eeprom_i2c.c \
++	$(CORE_DIR)/core/cart_hw/sms_cart.c \
++	$(CORE_DIR)/core/cart_hw/md_cart.c \
++	$(CORE_DIR)/core/cart_hw/eeprom_spi.c \
++	$(CORE_DIR)/core/cart_hw/svp/ssp16.c \
++	$(CORE_DIR)/core/cart_hw/svp/svp.c
++SOURCES_C += $(foreach dir,$(filter %/core/debug,$(GENPLUS_SRC_DIR)),$(wildcard $(dir)/*.c))
+ 
+ ifneq ($(STATIC_LINKING), 1)
+ SOURCES_C += \
+@@ -85,7 +136,21 @@ SOURCES_C += \
+ endif
+ 
+ ifeq ($(SHARED_LIBVORBIS),)
+-   SOURCES_C += $(foreach dir,$(TREMOR_SRC_DIR),$(wildcard $(dir)/*.c))
++   SOURCES_C += $(CORE_DIR)/core/tremor/floor1.c \
++	$(CORE_DIR)/core/tremor/codebook.c \
++	$(CORE_DIR)/core/tremor/mapping0.c \
++	$(CORE_DIR)/core/tremor/vorbisfile.c \
++	$(CORE_DIR)/core/tremor/mdct.c \
++	$(CORE_DIR)/core/tremor/info.c \
++	$(CORE_DIR)/core/tremor/registry.c \
++	$(CORE_DIR)/core/tremor/res012.c \
++	$(CORE_DIR)/core/tremor/framing.c \
++	$(CORE_DIR)/core/tremor/block.c \
++	$(CORE_DIR)/core/tremor/sharedbook.c \
++	$(CORE_DIR)/core/tremor/window.c \
++	$(CORE_DIR)/core/tremor/synthesis.c \
++	$(CORE_DIR)/core/tremor/bitwise.c \
++	$(CORE_DIR)/core/tremor/floor0.c
+ endif
+ 
+ SOURCES_C += $(LIBRETRO_DIR)/libretro.c
