@@ -4405,12 +4405,12 @@
         "forbidden": []
       },
       "shipped": {
-        "unverified": true,
         "spruceos": "d7ce3dc52",
         "files": {
           "OpenBOR_mod": "885f5f78549096295c98f428bfaa7432d0f51a1b0f8f5bec4aaac3d1cf9864da"
         },
-        "source": "steward-fu/website release miyoo-a30, rel_openbor-v1.1.zip (2024-06-13), in spruceOS since c3606d213"
+        "source": "steward-fu/website release miyoo-a30, rel_openbor-v1.1.zip (2024-06-13), in spruceOS since c3606d213",
+        "note": "matched byte for byte by CE run 44679626406 (dca9655)"
       },
       "downloads": [
         {

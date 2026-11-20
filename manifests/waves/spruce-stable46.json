@@ -400,7 +400,7 @@
       "names": [
         "OpenBOR"
       ],
-      "status": "recipe",
+      "status": "reproduces",
       "recipes": [
         "standalone:openbor-lns-a30"
       ],
@@ -414,7 +414,12 @@
         "OAKMOSS_A133P",
         "TRIMUI_A133P",
         "TRIMUI_SMART_PRO_S"
-      ]
+      ],
+      "pin": {
+        "recipe": "standalone:openbor-lns-a30",
+        "url": "https://github.com/gonzalomvp/openbor.git",
+        "commit": "4c8677c2a747b13dbf0e2f9162509ac14a138c9c"
+      }
     },
     "Emu/OPENBOR/OpenBOR_new": {
       "sha256": "7d2bc15997d8472202b59daecb8f0552b2e0c3fa438665c314097f5a71bb01a4",
