@@ -7137,6 +7137,72 @@
         }
       }
     },
+    "vice_xvic-arm64-20250506": {
+      "extends": "batch1-arm64-20250506",
+      "description": "vice_xvic as spruce ships it since 327c258ee, from cobaltgit's 2025-05-06 build (batch1-arm64-20250506): built after vice_x64 in the same libretro-vice tree with libretro-super's clean skipped (NOCLEAN=1), so vice_x64's stale objects link in. The stale-object proof matched byte for byte in CE run 44668436281 (throwaway branch verify/vice-xvic-stale-20261120, fabd3c0). The steps are the base's with the final build replaced by the two builds.",
+      "source": {
+        "url": "https://github.com/libretro/vice-libretro.git",
+        "commit": "e5b036f0be19f7a70fde75cc0e8b1b43476adc13",
+        "tree": "454a913394e2b7f0d19ef3b434b6604f96cdf461",
+        "requested_ref": "refs/heads/master",
+        "path": "/libretro-super/libretro-vice",
+        "submodules": true
+      },
+      "source_date_epoch": 1746530681,
+      "env": {
+        "CFLAGS": "-mcpu=cortex-a53 -fomit-frame-pointer -ffast-math",
+        "CXXFLAGS": "-mcpu=cortex-a53 -fomit-frame-pointer -ffast-math",
+        "BATCH1_KEY": "vice_xvic",
+        "BATCH1_DATE": "keep",
+        "GIT_CONFIG_SYSTEM": "/dev/null",
+        "GIT_CONFIG_GLOBAL": "/dev/null",
+        "GIT_CONFIG_PARAMETERS": "'core.abbrev=10'"
+      },
+      "steps": [
+        "[ \"${BATCH1_DATE:-}\" = keep ] || unset SOURCE_DATE_EPOCH",
+        "export LC_ALL=C LANG=C",
+        "export CC=aarch64-linux-gnu-gcc CXX=aarch64-linux-gnu-g++ AR=aarch64-linux-gnu-ar RANLIB=aarch64-linux-gnu-ranlib STRIP=aarch64-linux-gnu-strip CROSS_COMPILE=aarch64-linux-gnu- CHOST=aarch64-linux-gnu",
+        "mkdir -p /usr/lib/gcc/aarch64-linux-gnu/9 /usr/lib/aarch64-linux-gnu /tmp/native-crt",
+        "cp /usr/aarch64-linux-gnu/lib/crti.o /usr/aarch64-linux-gnu/lib/crtn.o /usr/lib/aarch64-linux-gnu/",
+        "for t in gcc g++ c++ cc; do r=\"$(command -v aarch64-linux-gnu-$t)\" || continue; printf '#!/bin/sh\\nexec %s \"$@\" -B/usr/lib/gcc/aarch64-linux-gnu/9/../../../aarch64-linux-gnu/\\n' \"$r\" > /tmp/native-crt/aarch64-linux-gnu-$t && chmod 0755 /tmp/native-crt/aarch64-linux-gnu-$t; done",
+        "export PATH=/tmp/native-crt:$PATH",
+        "cd /libretro-super",
+        "[ -z \"${BATCH1_SUBMODULE:-}\" ] || git -C \"$SOURCE\" submodule update --init \"$BATCH1_SUBMODULE\"",
+        "./libretro-build.sh vice_x64",
+        "NOCLEAN=1 ./libretro-build.sh \"$BATCH1_KEY\""
+      ],
+      "output": {
+        "files": [
+          {
+            "from": "/libretro-super/dist/unix/vice_xvic_libretro.so",
+            "to": "cores64/vice_xvic_libretro.so",
+            "mode": "0644",
+            "strip": "--strip-unneeded"
+          }
+        ],
+        "spruce": {
+          "cores64/vice_xvic_libretro.so": "RetroArch/.retroarch/cores64/vice_xvic_libretro.so"
+        }
+      },
+      "needed": {
+        "device": [
+          "ld-linux-aarch64.so.1",
+          "libc.so.6",
+          "libgcc_s.so.1",
+          "libm.so.6",
+          "libstdc++.so.6"
+        ],
+        "forbidden": []
+      },
+      "shipped": {
+        "spruceos": "327c258ee",
+        "source": "spruceOS 327c258ee (Ry with cobaltgit, 2025-05-17, \"Update 64-bit cores\")",
+        "unverified": true,
+        "files": {
+          "cores64/vice_xvic_libretro.so": "6731541c77571806e04fd791bf3df9555f419d8c244592b5c300f5945cd4b895"
+        }
+      }
+    },
     "a5200-arm64-20250506": {
       "extends": "batch1-arm64-20250506",
       "description": "a5200 as spruce ships it since 327c258ee, from cobaltgit's 2025-05-06 build (batch1-arm64-20250506), with the Makefile's own GIT_VERSION (\" <hash>\").",
