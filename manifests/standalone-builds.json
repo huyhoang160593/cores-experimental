@@ -5500,6 +5500,196 @@
           "cores/freej2me_plus_libretro.so": "a61cacd93531883009a50f42b56cbad6c420c7006368bf364ac4ad1ffaae2a79"
         }
       }
+    },
+    "picodrive-arm64-20261118": {
+      "description": "PicoDrive as spruce ships it since 2100a9098 (cores64/, embeds 2.05-f0d4a011): Cores-spruce build-picodrive.yml run 44380325105 (2026-11-18 19:25Z) on pins/cores-experimental-20261118 at 0c2fa5d18, core_ref f0d4a011, `./libretro-build.sh picodrive` in Cores-spruce's arm64 image.",
+      "source": {
+        "url": "https://github.com/libretro/picodrive.git",
+        "commit": "f0d4a0118a9733a1f10bce5a4ac772c474f9300d",
+        "tree": "a9e95a725edb219535032f18d03677361d5657bc",
+        "requested_ref": "core_ref f0d4a011 (CE's catalog pin)",
+        "submodules": true,
+        "path": "/libretro-super/libretro-picodrive"
+      },
+      "toolchain": "cores-spruce-arm64",
+      "source_date_epoch": 1775134253,
+      "env": {
+        "GIT_CONFIG_PARAMETERS": "'core.abbrev=8'"
+      },
+      "steps": [
+        "cd /libretro-super",
+        "./libretro-build.sh picodrive"
+      ],
+      "output": {
+        "files": [
+          {
+            "from": "/libretro-super/dist/unix/picodrive_libretro.so",
+            "to": "cores64/picodrive_libretro.so"
+          }
+        ],
+        "spruce": {
+          "cores64/picodrive_libretro.so": "RetroArch/.retroarch/cores64/picodrive_libretro.so"
+        }
+      },
+      "needed": {
+        "device": [
+          "ld-linux-aarch64.so.1",
+          "libc.so.6",
+          "libm.so.6"
+        ],
+        "forbidden": []
+      },
+      "shipped": {
+        "spruceos": "2100a9098",
+        "source": "spruceOS 2100a9098 (2026-11-18, ryanmsartor: update picodrive to v1.99)",
+        "unverified": true,
+        "files": {
+          "cores64/picodrive_libretro.so": "922361592a982d8f6348a0d25128fdf5491b2bb80dc40e094751c9fdc9867296"
+        }
+      }
+    },
+    "picodrive-armhf-20261118": {
+      "description": "PicoDrive as spruce ships it since 2100a9098 (cores/, embeds 2.05-f0d4a011): the same run's armhf step, `make -f Makefile.libretro platform=unix` with the A30 compilers, gcc for Cyclone and the HWCAP2 defines, in Cores-spruce's armhf image.",
+      "source": {
+        "url": "https://github.com/libretro/picodrive.git",
+        "commit": "f0d4a0118a9733a1f10bce5a4ac772c474f9300d",
+        "tree": "a9e95a725edb219535032f18d03677361d5657bc",
+        "requested_ref": "core_ref f0d4a011 (CE's catalog pin)",
+        "submodules": true,
+        "path": "/libretro-super/libretro-picodrive"
+      },
+      "toolchain": "cores-spruce-armhf",
+      "source_date_epoch": 1775134253,
+      "env": {
+        "GIT_CONFIG_PARAMETERS": "'core.abbrev=8'"
+      },
+      "steps": [
+        "cd /libretro-super",
+        "export CC=\"$HOST_CC-gcc\" CXX=\"$HOST_CC-g++\" AR=\"$HOST_CC-ar\" RANLIB=\"$HOST_CC-ranlib\"",
+        "export CYCLONE_CC=gcc CYCLONE_CXX=g++ CFLAGS=\"-DHWCAP2_AES=1 -DHWCAP2_CRC32=16 -DHWCAP2_SHA1=4 -DHWCAP2_SHA2=8\" CXXFLAGS=\"-DHWCAP2_AES=1 -DHWCAP2_CRC32=16 -DHWCAP2_SHA1=4 -DHWCAP2_SHA2=8\"",
+        "make -C libretro-picodrive -f Makefile.libretro platform=unix -j\"$(nproc)\""
+      ],
+      "output": {
+        "files": [
+          {
+            "from": "/libretro-super/libretro-picodrive/picodrive_libretro.so",
+            "to": "cores/picodrive_libretro.so"
+          }
+        ],
+        "spruce": {
+          "cores/picodrive_libretro.so": "RetroArch/.retroarch/cores/picodrive_libretro.so"
+        }
+      },
+      "needed": {
+        "device": [
+          "ld-linux-armhf.so.3",
+          "libc.so.6",
+          "libm.so.6"
+        ],
+        "forbidden": []
+      },
+      "shipped": {
+        "spruceos": "2100a9098",
+        "source": "spruceOS 2100a9098 (2026-11-18, ryanmsartor: update picodrive to v1.99)",
+        "unverified": true,
+        "files": {
+          "cores/picodrive_libretro.so": "2356aba1925fef276fe3a0edcac5fa07f5ce81d3bc52a7af597d9c325d0fac3a"
+        }
+      }
+    },
+    "easyrpg-arm64-20261118": {
+      "description": "EasyRPG Player as spruce ships it since cae33f133 (cores64/, embeds 0.8.1-git@0582a5e-dirty): Cores-spruce build-easyrpg.yml run 44380353423 (2026-11-18 19:25Z) at 0c2fa5d18, which runs scripts/build-easyrpg.sh arm64 with core_ref 0582a5eb in Cores-spruce's arm64 image. The script fetches its own sources (Player, liblcf and CE's toolchain-inputs, checked by sha256) and installs python3, curl and libpng-dev:arm64 with apt, unpinned, as the run did.",
+      "source": {
+        "url": "https://github.com/spruceUI/Cores-spruce.git",
+        "commit": "0c2fa5d1801bd6ff3b0b3fb961d87b506f34aee5",
+        "tree": "984835566f4da25c209f22e204f14a869feae052",
+        "requested_ref": "refs/heads/pins/cores-experimental-20261118",
+        "path": "/work"
+      },
+      "toolchain": "cores-spruce-arm64",
+      "source_date_epoch": 1795029251,
+      "steps": [
+        "mkdir -p /tmp/easyrpg-out",
+        "bash /work/scripts/build-easyrpg.sh arm64 0582a5eb8a442824c8aad0495443824b3c8afb08 /tmp/easyrpg-out"
+      ],
+      "output": {
+        "files": [
+          {
+            "from": "/tmp/easyrpg-out/easyrpg_libretro.so",
+            "to": "cores64/easyrpg_libretro.so"
+          }
+        ],
+        "spruce": {
+          "cores64/easyrpg_libretro.so": "RetroArch/.retroarch/cores64/easyrpg_libretro.so"
+        }
+      },
+      "needed": {
+        "device": [
+          "ld-linux-aarch64.so.1",
+          "libc.so.6",
+          "libgcc_s.so.1",
+          "libm.so.6",
+          "libpng16.so.16",
+          "libpthread.so.0",
+          "libstdc++.so.6",
+          "libz.so.1"
+        ],
+        "forbidden": []
+      },
+      "shipped": {
+        "spruceos": "cae33f133",
+        "source": "spruceOS cae33f133 (2026-11-18, ryanmsartor: update easyrpg to 0.8.1.0)",
+        "unverified": true,
+        "files": {
+          "cores64/easyrpg_libretro.so": "45484dd2528245af4249f27d80cef142b75caa648dfeb6c837c19d8120798a6f"
+        }
+      }
+    },
+    "easyrpg-armhf-20261118": {
+      "description": "EasyRPG Player as spruce ships it since cae33f133 (cores/): the same run's armhf step, scripts/build-easyrpg.sh armhf with core_ref 0582a5eb in Cores-spruce's armhf image (static libstdc++ and libgcc, libpng built from CE's toolchain-inputs).",
+      "source": {
+        "url": "https://github.com/spruceUI/Cores-spruce.git",
+        "commit": "0c2fa5d1801bd6ff3b0b3fb961d87b506f34aee5",
+        "tree": "984835566f4da25c209f22e204f14a869feae052",
+        "requested_ref": "refs/heads/pins/cores-experimental-20261118",
+        "path": "/work"
+      },
+      "toolchain": "cores-spruce-armhf",
+      "source_date_epoch": 1795029251,
+      "steps": [
+        "mkdir -p /tmp/easyrpg-out",
+        "bash /work/scripts/build-easyrpg.sh armhf 0582a5eb8a442824c8aad0495443824b3c8afb08 /tmp/easyrpg-out"
+      ],
+      "output": {
+        "files": [
+          {
+            "from": "/tmp/easyrpg-out/easyrpg_libretro.so",
+            "to": "cores/easyrpg_libretro.so"
+          }
+        ],
+        "spruce": {
+          "cores/easyrpg_libretro.so": "RetroArch/.retroarch/cores/easyrpg_libretro.so"
+        }
+      },
+      "needed": {
+        "device": [
+          "ld-linux-armhf.so.3",
+          "libc.so.6",
+          "libdl.so.2",
+          "libm.so.6",
+          "libpthread.so.0",
+          "libz.so.1"
+        ],
+        "forbidden": []
+      },
+      "shipped": {
+        "spruceos": "cae33f133",
+        "source": "spruceOS cae33f133 (2026-11-18, ryanmsartor: update easyrpg to 0.8.1.0)",
+        "unverified": true,
+        "files": {
+          "cores/easyrpg_libretro.so": "b0df1ad3abbdedcbffd0a0443333b7993f257ec21341f32ce73c6a2a8fe9a8ff"
+        }
+      }
     }
   }
 }
