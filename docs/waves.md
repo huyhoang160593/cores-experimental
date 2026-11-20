@@ -52,9 +52,13 @@ python3 scripts/waves.py summary
 - The 2025-05-06 batch (41 cores) was cobaltgit's local libretro-super build, at `/root/libretro-super`, with
   Ubuntu's GCC 9.4 and exported `-mcpu=cortex-a53 -fomit-frame-pointer`, plus `-ffast-math` for some cores.
   Their short hashes are 8 characters in big repos (full clones), and vice and puae2021 embed their build time.
-  At those flags (flag fan-out rounds 1-4, 11-19/20), eight cores have spruce's code and data sections. For fmsx,
-  only the build ID differs once both files are stripped. Such an entry's `verified` says so, and its status stays
-  `recipe`. CE's catalog recipes keep their portable flags; the evidence lives in the wave.
+  At those flags (flag fan-out rounds 1-4, 11-19/20), eight cores have spruce's code and data sections. Such an
+  entry's `verified` says so, and its status stays `recipe`. CE's catalog recipes keep their portable flags.
+- The build was native: GNU ld's build ID covers `.strtab`'s size, and the native linker's `crti.o`/`crtn.o` paths are
+  20 characters shorter than the cross ones. Rebuilding with CE's cross toolchain and `-B` pointing at the native
+  paths reproduces seven files byte for byte: chimerasnes, ecwolf, fmsx, freechaf, handy, neocd and stella2014
+  (round 5). Their `<core>-arm64-20250506` standalone recipes carry that build: the flags on every compiler call,
+  the native paths, `--strip-unneeded`, and no `SOURCE_DATE_EPOCH`.
 - Files that Cores-spruce workflows built are reproduced by standalone recipes in CE's copies of its images
   (`cores-spruce-arm64`, `cores-spruce-armhf`), repeating the run's commands. Two traps: CE's build script clears
   the image's `CMAKE_TOOLCHAIN_FILE`, which CMake cores need back; and a workflow that builds a runner-owned

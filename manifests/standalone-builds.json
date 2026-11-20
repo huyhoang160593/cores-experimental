@@ -6022,6 +6022,407 @@
           "cores/yabadabadoo_libretro.so": "8467bdf91053541e186c32f1fc205f20e4913fc142eb72d3d9648db821b4200a"
         }
       }
+    },
+    "chimerasnes-arm64-20250506": {
+      "description": "chimerasnes as spruce ships it since 327c258ee: cobaltgit's native aarch64 libretro-super build of 2025-05-06 (Ubuntu GCC 9.4, exported -mcpu=cortex-a53 -fomit-frame-pointer, stripped). Rebuilt with CE's cross toolchain, the flags on every compiler call, and -B so the linker records the native crti.o/crtn.o paths, which the build ID covers. Matched byte for byte by CE run 44654378566 (throwaway branch verify/flags-20261120, c3da7b7); see docs/waves.md.",
+      "source": {
+        "url": "https://github.com/jamsilva/chimerasnes.git",
+        "commit": "04c57c2902c25f36ae5a5d9c57aff851a772c868",
+        "tree": "243afd13215337662b2e3e69a802a2bccf38ecd8",
+        "requested_ref": "refs/heads/master",
+        "path": "/libretro-super/libretro-chimerasnes",
+        "submodules": true
+      },
+      "toolchain": "arm64",
+      "source_date_epoch": 1696708738,
+      "env": {
+        "GIT_CONFIG_SYSTEM": "/dev/null",
+        "GIT_CONFIG_GLOBAL": "/dev/null",
+        "GIT_CONFIG_PARAMETERS": "'core.abbrev=7'"
+      },
+      "steps": [
+        "unset SOURCE_DATE_EPOCH",
+        "export LC_ALL=C LANG=C",
+        "export CC=aarch64-linux-gnu-gcc CXX=aarch64-linux-gnu-g++ AR=aarch64-linux-gnu-ar RANLIB=aarch64-linux-gnu-ranlib STRIP=aarch64-linux-gnu-strip CROSS_COMPILE=aarch64-linux-gnu- CHOST=aarch64-linux-gnu",
+        "mkdir -p /usr/lib/gcc/aarch64-linux-gnu/9 /usr/lib/aarch64-linux-gnu /tmp/batch1",
+        "cp /usr/aarch64-linux-gnu/lib/crti.o /usr/aarch64-linux-gnu/lib/crtn.o /usr/lib/aarch64-linux-gnu/",
+        "for t in gcc g++ c++ cc; do r=\"$(command -v aarch64-linux-gnu-$t)\" || continue; printf '#!/bin/sh\\nexec %s \"$@\" -B/usr/lib/gcc/aarch64-linux-gnu/9/../../../aarch64-linux-gnu/ -mcpu=cortex-a53 -fomit-frame-pointer\\n' \"$r\" > /tmp/batch1/aarch64-linux-gnu-$t && chmod 0755 /tmp/batch1/aarch64-linux-gnu-$t; done",
+        "export PATH=/tmp/batch1:$PATH",
+        "cd /libretro-super",
+        "./libretro-build.sh chimerasnes"
+      ],
+      "output": {
+        "files": [
+          {
+            "from": "/libretro-super/dist/unix/chimerasnes_libretro.so",
+            "to": "cores64/chimerasnes_libretro.so",
+            "mode": "0644",
+            "strip": "--strip-unneeded"
+          }
+        ],
+        "spruce": {
+          "cores64/chimerasnes_libretro.so": "RetroArch/.retroarch/cores64/chimerasnes_libretro.so"
+        }
+      },
+      "needed": {
+        "device": [
+          "libc.so.6"
+        ],
+        "forbidden": []
+      },
+      "shipped": {
+        "spruceos": "327c258ee",
+        "source": "spruceOS 327c258ee (Ry with cobaltgit, 2025-05-17, \"Update 64-bit cores\")",
+        "unverified": true,
+        "files": {
+          "cores64/chimerasnes_libretro.so": "e1a492b138796a3f5139248a7ac3242f803156f35eb51af27d70778fd6f6f0d9"
+        }
+      }
+    },
+    "ecwolf-arm64-20250506": {
+      "description": "ecwolf as spruce ships it since 327c258ee: cobaltgit's native aarch64 libretro-super build of 2025-05-06 (Ubuntu GCC 9.4, exported -mcpu=cortex-a53 -fomit-frame-pointer, stripped). Rebuilt with CE's cross toolchain, the flags on every compiler call, and -B so the linker records the native crti.o/crtn.o paths, which the build ID covers. Matched byte for byte by CE run 44654378566 (throwaway branch verify/flags-20261120, c3da7b7); see docs/waves.md.",
+      "source": {
+        "url": "https://github.com/libretro/ecwolf.git",
+        "commit": "c57ad894d5942740b4896511e8554c9a776b04a6",
+        "tree": "bcfd91538f30cfaae4bfb5e50300da04a26237ca",
+        "requested_ref": "refs/heads/master",
+        "path": "/libretro-super/libretro-ecwolf"
+      },
+      "toolchain": "arm64",
+      "source_date_epoch": 1744813599,
+      "steps": [
+        "unset SOURCE_DATE_EPOCH",
+        "export LC_ALL=C LANG=C",
+        "export CC=aarch64-linux-gnu-gcc CXX=aarch64-linux-gnu-g++ AR=aarch64-linux-gnu-ar RANLIB=aarch64-linux-gnu-ranlib STRIP=aarch64-linux-gnu-strip CROSS_COMPILE=aarch64-linux-gnu- CHOST=aarch64-linux-gnu",
+        "mkdir -p /usr/lib/gcc/aarch64-linux-gnu/9 /usr/lib/aarch64-linux-gnu /tmp/batch1",
+        "cp /usr/aarch64-linux-gnu/lib/crti.o /usr/aarch64-linux-gnu/lib/crtn.o /usr/lib/aarch64-linux-gnu/",
+        "for t in gcc g++ c++ cc; do r=\"$(command -v aarch64-linux-gnu-$t)\" || continue; printf '#!/bin/sh\\nexec %s \"$@\" -B/usr/lib/gcc/aarch64-linux-gnu/9/../../../aarch64-linux-gnu/ -mcpu=cortex-a53 -fomit-frame-pointer\\n' \"$r\" > /tmp/batch1/aarch64-linux-gnu-$t && chmod 0755 /tmp/batch1/aarch64-linux-gnu-$t; done",
+        "export PATH=/tmp/batch1:$PATH",
+        "cd /libretro-super",
+        "git -C libretro-ecwolf submodule update --init src/libretro/libretro-common",
+        "./libretro-build.sh ecwolf"
+      ],
+      "output": {
+        "files": [
+          {
+            "from": "/libretro-super/dist/unix/ecwolf_libretro.so",
+            "to": "cores64/ecwolf_libretro.so",
+            "mode": "0644",
+            "strip": "--strip-unneeded"
+          }
+        ],
+        "spruce": {
+          "cores64/ecwolf_libretro.so": "RetroArch/.retroarch/cores64/ecwolf_libretro.so"
+        }
+      },
+      "needed": {
+        "device": [
+          "ld-linux-aarch64.so.1",
+          "libc.so.6",
+          "libgcc_s.so.1",
+          "libm.so.6",
+          "libpthread.so.0",
+          "libstdc++.so.6"
+        ],
+        "forbidden": []
+      },
+      "shipped": {
+        "spruceos": "327c258ee",
+        "source": "spruceOS 327c258ee (Ry with cobaltgit, 2025-05-17, \"Update 64-bit cores\")",
+        "unverified": true,
+        "files": {
+          "cores64/ecwolf_libretro.so": "abd8d9894481dfce1367a952e1c55d8a9aee6a1dab4f0c4904c005dfc7e548d7"
+        }
+      }
+    },
+    "fmsx-arm64-20250506": {
+      "description": "fmsx as spruce ships it since 327c258ee: cobaltgit's native aarch64 libretro-super build of 2025-05-06 (Ubuntu GCC 9.4, exported -mcpu=cortex-a53 -fomit-frame-pointer, stripped). Rebuilt with CE's cross toolchain, the flags on every compiler call, and -B so the linker records the native crti.o/crtn.o paths, which the build ID covers. Matched byte for byte by CE run 44654378566 (throwaway branch verify/flags-20261120, c3da7b7); see docs/waves.md.",
+      "source": {
+        "url": "https://github.com/libretro/fmsx-libretro.git",
+        "commit": "9eb5f25df5397212a3e3088ca1a64db0740bbe5f",
+        "tree": "8c9ebab30c6ee8da0ac498ec659f108c1ec374fa",
+        "requested_ref": "refs/heads/master",
+        "path": "/libretro-super/libretro-fmsx",
+        "submodules": true
+      },
+      "toolchain": "arm64",
+      "source_date_epoch": 1729546776,
+      "env": {
+        "GIT_CONFIG_SYSTEM": "/dev/null",
+        "GIT_CONFIG_GLOBAL": "/dev/null",
+        "GIT_CONFIG_PARAMETERS": "'core.abbrev=7'"
+      },
+      "steps": [
+        "unset SOURCE_DATE_EPOCH",
+        "export LC_ALL=C LANG=C",
+        "export CC=aarch64-linux-gnu-gcc CXX=aarch64-linux-gnu-g++ AR=aarch64-linux-gnu-ar RANLIB=aarch64-linux-gnu-ranlib STRIP=aarch64-linux-gnu-strip CROSS_COMPILE=aarch64-linux-gnu- CHOST=aarch64-linux-gnu",
+        "mkdir -p /usr/lib/gcc/aarch64-linux-gnu/9 /usr/lib/aarch64-linux-gnu /tmp/batch1",
+        "cp /usr/aarch64-linux-gnu/lib/crti.o /usr/aarch64-linux-gnu/lib/crtn.o /usr/lib/aarch64-linux-gnu/",
+        "for t in gcc g++ c++ cc; do r=\"$(command -v aarch64-linux-gnu-$t)\" || continue; printf '#!/bin/sh\\nexec %s \"$@\" -B/usr/lib/gcc/aarch64-linux-gnu/9/../../../aarch64-linux-gnu/ -mcpu=cortex-a53 -fomit-frame-pointer\\n' \"$r\" > /tmp/batch1/aarch64-linux-gnu-$t && chmod 0755 /tmp/batch1/aarch64-linux-gnu-$t; done",
+        "export PATH=/tmp/batch1:$PATH",
+        "cd /libretro-super",
+        "./libretro-build.sh fmsx"
+      ],
+      "output": {
+        "files": [
+          {
+            "from": "/libretro-super/dist/unix/fmsx_libretro.so",
+            "to": "cores64/fmsx_libretro.so",
+            "mode": "0644",
+            "strip": "--strip-unneeded"
+          }
+        ],
+        "spruce": {
+          "cores64/fmsx_libretro.so": "RetroArch/.retroarch/cores64/fmsx_libretro.so"
+        }
+      },
+      "needed": {
+        "device": [
+          "ld-linux-aarch64.so.1",
+          "libc.so.6"
+        ],
+        "forbidden": []
+      },
+      "shipped": {
+        "spruceos": "327c258ee",
+        "source": "spruceOS 327c258ee (Ry with cobaltgit, 2025-05-17, \"Update 64-bit cores\")",
+        "unverified": true,
+        "files": {
+          "cores64/fmsx_libretro.so": "e5e9f5760890aff7d965d0f7ea4b9bd6ac6ab7aa5f986555969f3efd002f7ece"
+        }
+      }
+    },
+    "freechaf-arm64-20250506": {
+      "description": "freechaf as spruce ships it since 327c258ee: cobaltgit's native aarch64 libretro-super build of 2025-05-06 (Ubuntu GCC 9.4, exported -mcpu=cortex-a53 -fomit-frame-pointer, stripped). Rebuilt with CE's cross toolchain, the flags on every compiler call, and -B so the linker records the native crti.o/crtn.o paths, which the build ID covers. Matched byte for byte by CE run 44654378566 (throwaway branch verify/flags-20261120, c3da7b7); see docs/waves.md.",
+      "source": {
+        "url": "https://github.com/libretro/FreeChaF.git",
+        "commit": "cdb8ad6fcecb276761b193650f5ce9ae8b878067",
+        "tree": "014a08fd80d89e0bd45220c63fc16dd7f70e97ac",
+        "requested_ref": "refs/heads/master",
+        "path": "/libretro-super/libretro-freechaf",
+        "submodules": true
+      },
+      "toolchain": "arm64",
+      "source_date_epoch": 1719615128,
+      "env": {
+        "GIT_CONFIG_SYSTEM": "/dev/null",
+        "GIT_CONFIG_GLOBAL": "/dev/null",
+        "GIT_CONFIG_PARAMETERS": "'core.abbrev=7'"
+      },
+      "steps": [
+        "unset SOURCE_DATE_EPOCH",
+        "export LC_ALL=C LANG=C",
+        "export CC=aarch64-linux-gnu-gcc CXX=aarch64-linux-gnu-g++ AR=aarch64-linux-gnu-ar RANLIB=aarch64-linux-gnu-ranlib STRIP=aarch64-linux-gnu-strip CROSS_COMPILE=aarch64-linux-gnu- CHOST=aarch64-linux-gnu",
+        "mkdir -p /usr/lib/gcc/aarch64-linux-gnu/9 /usr/lib/aarch64-linux-gnu /tmp/batch1",
+        "cp /usr/aarch64-linux-gnu/lib/crti.o /usr/aarch64-linux-gnu/lib/crtn.o /usr/lib/aarch64-linux-gnu/",
+        "for t in gcc g++ c++ cc; do r=\"$(command -v aarch64-linux-gnu-$t)\" || continue; printf '#!/bin/sh\\nexec %s \"$@\" -B/usr/lib/gcc/aarch64-linux-gnu/9/../../../aarch64-linux-gnu/ -mcpu=cortex-a53 -fomit-frame-pointer\\n' \"$r\" > /tmp/batch1/aarch64-linux-gnu-$t && chmod 0755 /tmp/batch1/aarch64-linux-gnu-$t; done",
+        "export PATH=/tmp/batch1:$PATH",
+        "cd /libretro-super",
+        "./libretro-build.sh freechaf"
+      ],
+      "output": {
+        "files": [
+          {
+            "from": "/libretro-super/dist/unix/freechaf_libretro.so",
+            "to": "cores64/freechaf_libretro.so",
+            "mode": "0644",
+            "strip": "--strip-unneeded"
+          }
+        ],
+        "spruce": {
+          "cores64/freechaf_libretro.so": "RetroArch/.retroarch/cores64/freechaf_libretro.so"
+        }
+      },
+      "needed": {
+        "device": [
+          "ld-linux-aarch64.so.1",
+          "libc.so.6"
+        ],
+        "forbidden": []
+      },
+      "shipped": {
+        "spruceos": "327c258ee",
+        "source": "spruceOS 327c258ee (Ry with cobaltgit, 2025-05-17, \"Update 64-bit cores\")",
+        "unverified": true,
+        "files": {
+          "cores64/freechaf_libretro.so": "8bd39eef33a1d4399bee38618806e55be25265f3177d73c8a3de9966dd575c69"
+        }
+      }
+    },
+    "handy-arm64-20250506": {
+      "description": "handy as spruce ships it since 327c258ee: cobaltgit's native aarch64 libretro-super build of 2025-05-06 (Ubuntu GCC 9.4, exported -mcpu=cortex-a53 -fomit-frame-pointer, stripped). Rebuilt with CE's cross toolchain, the flags on every compiler call, and -B so the linker records the native crti.o/crtn.o paths, which the build ID covers. Matched byte for byte by CE run 44654378566 (throwaway branch verify/flags-20261120, c3da7b7); see docs/waves.md.",
+      "source": {
+        "url": "https://github.com/libretro/libretro-handy.git",
+        "commit": "4e9e072796e5552a9d57f6ab83b3f85f27b17fb6",
+        "tree": "75a23835267059789abac254856c82f273f49d11",
+        "requested_ref": "refs/heads/master",
+        "path": "/libretro-super/libretro-handy",
+        "submodules": true
+      },
+      "toolchain": "arm64",
+      "source_date_epoch": 1729530294,
+      "env": {
+        "MAKEFLAGS": "-- GIT_VERSION=\"\\ 4e9e072\""
+      },
+      "steps": [
+        "unset SOURCE_DATE_EPOCH",
+        "export LC_ALL=C LANG=C",
+        "export CC=aarch64-linux-gnu-gcc CXX=aarch64-linux-gnu-g++ AR=aarch64-linux-gnu-ar RANLIB=aarch64-linux-gnu-ranlib STRIP=aarch64-linux-gnu-strip CROSS_COMPILE=aarch64-linux-gnu- CHOST=aarch64-linux-gnu",
+        "mkdir -p /usr/lib/gcc/aarch64-linux-gnu/9 /usr/lib/aarch64-linux-gnu /tmp/batch1",
+        "cp /usr/aarch64-linux-gnu/lib/crti.o /usr/aarch64-linux-gnu/lib/crtn.o /usr/lib/aarch64-linux-gnu/",
+        "for t in gcc g++ c++ cc; do r=\"$(command -v aarch64-linux-gnu-$t)\" || continue; printf '#!/bin/sh\\nexec %s \"$@\" -B/usr/lib/gcc/aarch64-linux-gnu/9/../../../aarch64-linux-gnu/ -mcpu=cortex-a53 -fomit-frame-pointer\\n' \"$r\" > /tmp/batch1/aarch64-linux-gnu-$t && chmod 0755 /tmp/batch1/aarch64-linux-gnu-$t; done",
+        "export PATH=/tmp/batch1:$PATH",
+        "cd /libretro-super",
+        "./libretro-build.sh handy"
+      ],
+      "output": {
+        "files": [
+          {
+            "from": "/libretro-super/dist/unix/handy_libretro.so",
+            "to": "cores64/handy_libretro.so",
+            "mode": "0644",
+            "strip": "--strip-unneeded"
+          }
+        ],
+        "spruce": {
+          "cores64/handy_libretro.so": "RetroArch/.retroarch/cores64/handy_libretro.so"
+        }
+      },
+      "needed": {
+        "device": [
+          "ld-linux-aarch64.so.1",
+          "libc.so.6",
+          "libgcc_s.so.1",
+          "libstdc++.so.6"
+        ],
+        "forbidden": []
+      },
+      "shipped": {
+        "spruceos": "327c258ee",
+        "source": "spruceOS 327c258ee (Ry with cobaltgit, 2025-05-17, \"Update 64-bit cores\")",
+        "unverified": true,
+        "files": {
+          "cores64/handy_libretro.so": "58762d9673991c8c2603e976394947a55885f566261c789286d03beaf9b0ed2e"
+        }
+      }
+    },
+    "neocd-arm64-20250506": {
+      "description": "neocd as spruce ships it since 327c258ee: cobaltgit's native aarch64 libretro-super build of 2025-05-06 (Ubuntu GCC 9.4, exported -mcpu=cortex-a53 -fomit-frame-pointer, stripped). Rebuilt with CE's cross toolchain, the flags on every compiler call, and -B so the linker records the native crti.o/crtn.o paths, which the build ID covers. Matched byte for byte by CE run 44654378566 (throwaway branch verify/flags-20261120, c3da7b7); see docs/waves.md.",
+      "source": {
+        "url": "https://github.com/libretro/neocd_libretro.git",
+        "commit": "5eca2c8fd567b5261251c65ecafa8cf5b179d1d2",
+        "tree": "0c91946cc17069c42859c270159cb02863786637",
+        "requested_ref": "refs/heads/master",
+        "path": "/libretro-super/libretro-neocd",
+        "submodules": true
+      },
+      "toolchain": "arm64",
+      "source_date_epoch": 1729530341,
+      "env": {
+        "GIT_CONFIG_SYSTEM": "/dev/null",
+        "GIT_CONFIG_GLOBAL": "/dev/null",
+        "GIT_CONFIG_PARAMETERS": "'core.abbrev=7'"
+      },
+      "steps": [
+        "unset SOURCE_DATE_EPOCH",
+        "export LC_ALL=C LANG=C",
+        "export CC=aarch64-linux-gnu-gcc CXX=aarch64-linux-gnu-g++ AR=aarch64-linux-gnu-ar RANLIB=aarch64-linux-gnu-ranlib STRIP=aarch64-linux-gnu-strip CROSS_COMPILE=aarch64-linux-gnu- CHOST=aarch64-linux-gnu",
+        "mkdir -p /usr/lib/gcc/aarch64-linux-gnu/9 /usr/lib/aarch64-linux-gnu /tmp/batch1",
+        "cp /usr/aarch64-linux-gnu/lib/crti.o /usr/aarch64-linux-gnu/lib/crtn.o /usr/lib/aarch64-linux-gnu/",
+        "for t in gcc g++ c++ cc; do r=\"$(command -v aarch64-linux-gnu-$t)\" || continue; printf '#!/bin/sh\\nexec %s \"$@\" -B/usr/lib/gcc/aarch64-linux-gnu/9/../../../aarch64-linux-gnu/ -mcpu=cortex-a53 -fomit-frame-pointer\\n' \"$r\" > /tmp/batch1/aarch64-linux-gnu-$t && chmod 0755 /tmp/batch1/aarch64-linux-gnu-$t; done",
+        "export PATH=/tmp/batch1:$PATH",
+        "cd /libretro-super",
+        "./libretro-build.sh neocd"
+      ],
+      "output": {
+        "files": [
+          {
+            "from": "/libretro-super/dist/unix/neocd_libretro.so",
+            "to": "cores64/neocd_libretro.so",
+            "mode": "0644",
+            "strip": "--strip-unneeded"
+          }
+        ],
+        "spruce": {
+          "cores64/neocd_libretro.so": "RetroArch/.retroarch/cores64/neocd_libretro.so"
+        }
+      },
+      "needed": {
+        "device": [
+          "ld-linux-aarch64.so.1",
+          "libc.so.6",
+          "libm.so.6",
+          "libpthread.so.0",
+          "libstdc++.so.6"
+        ],
+        "forbidden": []
+      },
+      "shipped": {
+        "spruceos": "327c258ee",
+        "source": "spruceOS 327c258ee (Ry with cobaltgit, 2025-05-17, \"Update 64-bit cores\")",
+        "unverified": true,
+        "files": {
+          "cores64/neocd_libretro.so": "881e7002461da125f893cd3c2d4ea35ed6a349d18dec3bb8ad3249426c7efbfa"
+        }
+      }
+    },
+    "stella2014-arm64-20250506": {
+      "description": "stella2014 as spruce ships it since 327c258ee: cobaltgit's native aarch64 libretro-super build of 2025-05-06 (Ubuntu GCC 9.4, exported -mcpu=cortex-a53 -fomit-frame-pointer, stripped). Rebuilt with CE's cross toolchain, the flags on every compiler call, and -B so the linker records the native crti.o/crtn.o paths, which the build ID covers. Matched byte for byte by CE run 44654378566 (throwaway branch verify/flags-20261120, c3da7b7); see docs/waves.md.",
+      "source": {
+        "url": "https://github.com/libretro/stella2014-libretro.git",
+        "commit": "3cc89f0d316d6c924a5e3f4011d17421df58e615",
+        "tree": "d94116e989e6ea27f8e06affd9f8827896d8b32b",
+        "requested_ref": "refs/heads/master",
+        "path": "/libretro-super/libretro-stella2014",
+        "submodules": true
+      },
+      "toolchain": "arm64",
+      "source_date_epoch": 1729546957,
+      "env": {
+        "MAKEFLAGS": "-- GIT_VERSION=\"\\ 3cc89f0\""
+      },
+      "steps": [
+        "unset SOURCE_DATE_EPOCH",
+        "export LC_ALL=C LANG=C",
+        "export CC=aarch64-linux-gnu-gcc CXX=aarch64-linux-gnu-g++ AR=aarch64-linux-gnu-ar RANLIB=aarch64-linux-gnu-ranlib STRIP=aarch64-linux-gnu-strip CROSS_COMPILE=aarch64-linux-gnu- CHOST=aarch64-linux-gnu",
+        "mkdir -p /usr/lib/gcc/aarch64-linux-gnu/9 /usr/lib/aarch64-linux-gnu /tmp/batch1",
+        "cp /usr/aarch64-linux-gnu/lib/crti.o /usr/aarch64-linux-gnu/lib/crtn.o /usr/lib/aarch64-linux-gnu/",
+        "for t in gcc g++ c++ cc; do r=\"$(command -v aarch64-linux-gnu-$t)\" || continue; printf '#!/bin/sh\\nexec %s \"$@\" -B/usr/lib/gcc/aarch64-linux-gnu/9/../../../aarch64-linux-gnu/ -mcpu=cortex-a53 -fomit-frame-pointer\\n' \"$r\" > /tmp/batch1/aarch64-linux-gnu-$t && chmod 0755 /tmp/batch1/aarch64-linux-gnu-$t; done",
+        "export PATH=/tmp/batch1:$PATH",
+        "cd /libretro-super",
+        "./libretro-build.sh stella2014"
+      ],
+      "output": {
+        "files": [
+          {
+            "from": "/libretro-super/dist/unix/stella2014_libretro.so",
+            "to": "cores64/stella2014_libretro.so",
+            "mode": "0644",
+            "strip": "--strip-unneeded"
+          }
+        ],
+        "spruce": {
+          "cores64/stella2014_libretro.so": "RetroArch/.retroarch/cores64/stella2014_libretro.so"
+        }
+      },
+      "needed": {
+        "device": [
+          "ld-linux-aarch64.so.1",
+          "libc.so.6",
+          "libgcc_s.so.1",
+          "libm.so.6",
+          "libstdc++.so.6"
+        ],
+        "forbidden": []
+      },
+      "shipped": {
+        "spruceos": "327c258ee",
+        "source": "spruceOS 327c258ee (Ry with cobaltgit, 2025-05-17, \"Update 64-bit cores\")",
+        "unverified": true,
+        "files": {
+          "cores64/stella2014_libretro.so": "dfa9282b82435951a28b0852988daaa6b2dc7266f79b6f29d1209f782bae9db4"
+        }
+      }
     }
   }
 }
