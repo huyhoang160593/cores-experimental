@@ -3846,7 +3846,8 @@
       ],
       "status": "recipe",
       "recipes": [
-        "px68k"
+        "px68k",
+        "standalone:px68k-arm64-20250506"
       ],
       "families": [
         "ANBERNIC_RGXX",

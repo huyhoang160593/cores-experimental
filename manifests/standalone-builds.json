@@ -6983,6 +6983,61 @@
         }
       }
     },
+    "px68k-arm64-20250506": {
+      "extends": "batch1-arm64-20250506",
+      "description": "px68k as spruce ships it since 327c258ee, from cobaltgit's 2025-05-06 build (batch1-arm64-20250506). Everything but the build ID reproduces: the original link had input that strip later removed, which the build ID covers (see shipped.differs).",
+      "source": {
+        "url": "https://github.com/libretro/px68k-libretro.git",
+        "commit": "9dfa6abc25ddd6e597790f7a535cd0a1d7f9c385",
+        "tree": "3c4f20e55a0e322691f37a1fbf55de205875e735",
+        "requested_ref": "refs/heads/master",
+        "path": "/libretro-super/libretro-px68k",
+        "submodules": true
+      },
+      "source_date_epoch": 1729292404,
+      "env": {
+        "CFLAGS": "-mcpu=cortex-a53 -fomit-frame-pointer -ffast-math",
+        "CXXFLAGS": "-mcpu=cortex-a53 -fomit-frame-pointer -ffast-math",
+        "BATCH1_KEY": "px68k",
+        "GIT_CONFIG_SYSTEM": "/dev/null",
+        "GIT_CONFIG_GLOBAL": "/dev/null",
+        "GIT_CONFIG_PARAMETERS": "'core.abbrev=7'"
+      },
+      "output": {
+        "files": [
+          {
+            "from": "/libretro-super/dist/unix/px68k_libretro.so",
+            "to": "cores64/px68k_libretro.so",
+            "mode": "0644",
+            "strip": "--strip-unneeded"
+          }
+        ],
+        "spruce": {
+          "cores64/px68k_libretro.so": "RetroArch/.retroarch/cores64/px68k_libretro.so"
+        }
+      },
+      "needed": {
+        "device": [
+          "ld-linux-aarch64.so.1",
+          "libc.so.6",
+          "libgcc_s.so.1",
+          "libm.so.6",
+          "libstdc++.so.6"
+        ],
+        "forbidden": []
+      },
+      "shipped": {
+        "spruceos": "327c258ee",
+        "source": "spruceOS 327c258ee (Ry with cobaltgit, 2025-05-17, \"Update 64-bit cores\")",
+        "unverified": true,
+        "files": {
+          "cores64/px68k_libretro.so": "b0f4469381f726614b3fc648b0ef21d6af47627f236c5a856abfc24b28f634c0"
+        },
+        "differs": {
+          "cores64/px68k_libretro.so": "only the 20-byte build ID (the .note.gnu.build-id descriptor): every other byte matches, .comment included (fan-out round 7, run 44659355511). No symbol count, local-symbol count or string-table size gives spruce's ID, so the original link had input that strip removed"
+        }
+      }
+    },
     "puae2021-arm64-20250506": {
       "extends": "batch1-arm64-20250506",
       "description": "puae2021 as spruce ships it since 327c258ee, from cobaltgit's 2025-05-06 build (batch1-arm64-20250506).",
