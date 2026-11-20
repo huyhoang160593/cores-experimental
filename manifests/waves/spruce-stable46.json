@@ -14,7 +14,7 @@
       "names": [
         "advmame-standalone"
       ],
-      "status": "recipe",
+      "status": "reproduces",
       "recipes": [
         "standalone:advmame-arm64-20260328"
       ],
@@ -24,7 +24,12 @@
         "OAKMOSS_A133P",
         "TRIMUI_A133P",
         "TRIMUI_SMART_PRO_S"
-      ]
+      ],
+      "pin": {
+        "recipe": "standalone:advmame-arm64-20260328",
+        "url": "https://github.com/amadvance/advancemame.git",
+        "commit": "8da8d34e082380f89a60298778aac72a533b28a4"
+      }
     },
     "Emu/COCO/xroar": {
       "sha256": "58b665c41da16841c0d7993f1e2a9d79ab4f2514ff9d1662a5da7e01ca190c1c",
@@ -316,7 +321,7 @@
       "names": [
         "OpenBOR"
       ],
-      "status": "recipe",
+      "status": "reproduces",
       "recipes": [
         "standalone:openbor-fflns-arm64-20260512"
       ],
@@ -330,7 +335,12 @@
         "OAKMOSS_A133P",
         "TRIMUI_A133P",
         "TRIMUI_SMART_PRO_S"
-      ]
+      ],
+      "pin": {
+        "recipe": "standalone:openbor-fflns-arm64-20260512",
+        "url": "https://github.com/gonzalomvp/openbor.git",
+        "commit": "4c8677c2a747b13dbf0e2f9162509ac14a138c9c"
+      }
     },
     "Emu/OPENBOR/OpenBOR_Flip": {
       "sha256": "35871a5a10b339ab1e93ced993a62af7dc83e10662d67011a82e26ccce3281f4",

@@ -146,6 +146,8 @@ Built against spruceOS `73bb91a19` (2026-10-11); "match" is byte for byte.
 | `openbor-trimui` | `Emu/OPENBOR/OpenBOR_TrimUI` of spruceOS `7592638d0` | built (run 44431097991), differs: the shipped binary's compiler is TrimUI's Linaro GCC 7.5, not GCC 9.4 |
 | `openbor-new` | `Emu/OPENBOR/OpenBOR_new` of spruceOS `7592638d0` (steward-fu's A30 port, rel_openbor-v1.2) | match (run 44677757936) |
 | `openbor-lns-a30` | `Emu/OPENBOR/OpenBOR_mod` of spruceOS `d7ce3dc52` (steward-fu's A30 LNS port, rel_openbor-v1.1) | match (run 44679626406) |
+| `openbor-fflns-arm64-20260512` | `Emu/OPENBOR/OpenBOR_64_mod`, `lib64mod/` of spruceOS `d7ce3dc52` (wakeboxer's OpenBoR-spruce build) | match, all three (run 44678882412) |
+| `advmame-arm64-20260328` | `Emu/ARCADE/advmame.7z` of spruceOS `d7ce3dc52` (wakeboxer's Build_Spruce_Advmame build) | match, the archive and the binary in it (run 44678878851) |
 | `xroar` | `Emu/COCO/xroar` of spruceOS `7592638d0` | built (run 44434199145), differs: same modules, NEEDED list and section sizes, but Debian's SDL2 links libpulse (and so libsndfile), so ld exports xroar's own `sf_*` compat functions and the code shifts; the original machine's SDL2 did not |
 | `gvu-arm64`, `gvu-a30` | `Emu/MEDIA/bin64/gvu`, `bin32/gvu` of spruceOS `7592638d0` | match (runs 44440415230, 44440434774) |
 | `pokedaisy-{arm64,armhf}-20261112`, `-20261113` | `RetroArch/.retroarch/cores{64,}/pokedaisy_{ds,gbc}` (11-12) and `pokedaisy_gba` (11-13) of spruceOS `7592638d0` | match, all six (runs 44571273959, 44571303318, 44571331513, 44571360523): Cores-spruce runs 43141364046 and 43467900814 at pokedaisy-lr 7af02b6, armGBA b1c4a69 / 4bd15f1, with the tree owned by the runner's uid as there |

@@ -8034,12 +8034,12 @@
         "forbidden": []
       },
       "shipped": {
-        "unverified": true,
         "spruceos": "269dbd35c",
         "source": "spruceOS 269dbd35c (wakeboxer, 2026-03-28, \"Add AdvanceMAME\")",
         "files": {
           "advmame.7z": "c3e61f75909016eee53ee702419d551612195916343d9b3d19e3e4894828606c"
-        }
+        },
+        "note": "matched byte for byte by CE run 44678878851 (23ea6de)"
       }
     },
     "openbor-fflns-arm64-20260512": {
@@ -8110,14 +8110,14 @@
         "forbidden": []
       },
       "shipped": {
-        "unverified": true,
         "spruceos": "0cd1a7fa2",
         "source": "spruceOS 0cd1a7fa2 (wakeboxer, 2026-05-13, PR #1537 \"OpenBOR for fflns\")",
         "files": {
           "OpenBOR_64_mod": "5b35eab30522a06484e550550ccfb008f5e7664768028c6e4dd05f80bfc28da8",
           "lib64mod/libpng16.so.16": "14ba485f3a55c36893f372831d0445f78fc64f26073a8d7374dc89ac50b95edc",
           "lib64mod/libz.so.1": "f7421fde8036391750dc2b1dd7299a0a3305a93cb95846fcc381590f565215c1"
-        }
+        },
+        "note": "matched byte for byte by CE run 44678882412 (23ea6de)"
       }
     }
   }
