@@ -1,7 +1,7 @@
 diff --git a/svn-current/trunk/makefile.libretro b/svn-current/trunk/makefile.libretro
 --- a/svn-current/trunk/makefile.libretro
 +++ b/svn-current/trunk/makefile.libretro
-@@ -652,11 +652,535 @@ else
+@@ -652,11 +652,534 @@ else
     BURN_BLACKLIST += $(FBA_BURNER_DIR)/un7z.cpp
  endif
  
@@ -69,7 +69,6 @@ diff --git a/svn-current/trunk/makefile.libretro b/svn-current/trunk/makefile.li
 +	$(MAIN_FBA_DIR)/dep/libs/lib7z/Xz.c \
 +	$(MAIN_FBA_DIR)/dep/libs/lib7z/Bra86.c
 +FBA_LINK_ORDER_CXX := \
-+	$(MAIN_FBA_DIR)/burner/libretro/neocdlist.cpp \
 +	$(MAIN_FBA_DIR)/burner/state.cpp \
 +	$(MAIN_FBA_DIR)/burner/un7z.cpp \
 +	$(MAIN_FBA_DIR)/burner/zipfn.cpp \

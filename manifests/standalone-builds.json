@@ -7836,7 +7836,7 @@
       "shipped": {
         "spruceos": "327c258ee",
         "source": "spruceOS 327c258ee (Ry with cobaltgit, 2025-05-17, \"Update 64-bit cores\")",
-        "unverified": true,
+        "note": "matched byte for byte by CE run 44671811979 (e553a17)",
         "files": {
           "cores64/fbneo_libretro.so": "a95ba36668f1421ac09f1c43d4fabd62494ddcf2c67a9d793eeb4e792a8781d2"
         }
