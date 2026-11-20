@@ -304,12 +304,20 @@ found, so the DCurrent build flags are inferred from the engine's `Makefile`
   empty `LIBRARIES` (hence the binary's empty RPATH) and `CC = arm-linux-gcc` from `/opt/a30/bin`;
   and `openbor.c` starts the options menu at entry 0. The recipe downloads that zip (pinned by
   sha256), takes those two files from it and runs `make BUILD_A30=1` with steward-fu's A30
-  toolchain. That toolchain's `arm-linux-gcc` links to a Buildroot `toolchain-wrapper` that its
-  archive does not include, so the recipe points it at the image's own wrapper.
+  toolchain.
+- **The A30 toolchain's own wrapper.** steward-fu's builds call `arm-linux-gcc`, which in
+  `a30_toolchain-v1.0.tar.gz` links to its Buildroot `toolchain-wrapper`. That wrapper adds
+  `-fstack-protector-strong`, `-fPIE`/`-pie` and `-Wl,-z,now -Wl,-z,relro`, so both shipped LNS
+  and DCurrent A30 binaries are PIE with BIND_NOW and the stack protector. `standalone-armhf`
+  replaced only the `arm-a30-linux-gnueabihf-*` names with a `--sysroot`-only script, which the
+  other A30 recipes use. These two recipes keep the archive's `arm-linux-gcc`, and check that it
+  still links to the wrapper.
 
-- **No `OpenBOR_Flip` recipe.** It was built with the Flip's own RK3566 Buildroot SDK (GCC
-  11.3.0, Buildroot 2021.11) and links Vorbis, libvpx 7 and libpng16. steward-fu's Flip
-  sysroot in `standalone-flip` has none of those, so it cannot build here.
+- **No `OpenBOR_Flip` recipe.** It is Miyoo's own binary from the stock Flip card (steward-fu's
+  card dump, release `miyoo-flip`, has it byte for byte), DCurrent's tag v7142 (7f6f175) built
+  with the Flip's RK3566 Buildroot SDK (GCC 11.3.0, Buildroot 2021.11), linking Vorbis, libvpx 7
+  and libpng16. steward-fu's Flip sysroot in `standalone-flip` has none of those, so it cannot
+  build here.
 - **Version banners.** `engine/version.sh` writes `#define VERSION_BUILD "<n>"` from
   `git rev-list --count HEAD`. That gives b8303cc's shipped "Build 7144", so `openbor-trimui`
   runs it and checks the define. At b00efbc it would give 7141, not the shipped "v4.0 Build
