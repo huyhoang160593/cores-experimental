@@ -4353,7 +4353,7 @@
       }
     },
     "openbor-lns-a30": {
-      "description": "OpenBOR \"LNS\" engine (gonzalomvp/openbor v6330-fflns, 'v3.0 Build 6330 LNS v0.10g', the build Final Fight LNS needs) at 4c8677c2, the branch tip since 2024-01-07: Emu/OPENBOR/OpenBOR_mod on the Miyoo A30 (compiled 2024-06-13 with the A30's Buildroot 2024.02.1 GCC 13.2, before spruce's public history). Who built it is not known, so the flags are inferred from the binary: the Makefile's BUILD_LINUX target with OpenGL, Vorbis and WebM off and Tremor on (its NEEDED list and strings), LIBRARIES empty (its RPATH is empty) and ARCHFLAGS cleared (BUILD_LINUX's -m64). Whether -fomit-frame-pointer was on (BUILD_AMD64 unset) is not known: the build makes both, and OpenBOR_mod-omitfp is the other one, for comparison.",
+      "description": "OpenBOR \"LNS\" engine ('v3.0 Build 6330 LNS v0.10g', the build Final Fight LNS needs): Emu/OPENBOR/OpenBOR_mod on the Miyoo A30, which is steward-fu's A30 port (steward-fu/website release miyoo-a30, rel_openbor-v1.1.zip, 2024-06-13; v1.2 has the same binary). Its source, src_openbor-v1.1.zip's src_openbor_mod, is gonzalomvp/openbor v6330-fflns at 4c8677c2 with two files changed: engine/Makefile gains BUILD_A30 and BUILD_MMIYOO targets, and engine/openbor.c starts the options menu at entry 0. The recipe takes those two files from the zip and runs its 'make BUILD_A30=1' with steward-fu's A30 toolchain (Buildroot 2024.02.1, GCC 13.2), whose arm-linux-gcc points at the Buildroot wrapper the toolchain archive does not include, so it is pointed at this image's wrapper.",
       "source": {
         "url": "https://github.com/gonzalomvp/openbor.git",
         "commit": "4c8677c2a747b13dbf0e2f9162509ac14a138c9c",
@@ -4364,27 +4364,20 @@
       "source_date_epoch": 1718280000,
       "steps": [
         "set +u +o pipefail",
+        "python3 -c 'import sys, zipfile; z = zipfile.ZipFile(sys.argv[1]); [open(\"engine/\" + n, \"wb\").write(z.read(\"src_openbor_mod/engine/\" + n)) for n in (\"Makefile\", \"openbor.c\")]' /tmp/src_openbor-v1.1.zip",
+        "test \"$(git status --porcelain | sort | tr '\\n' ' ')\" = ' M engine/Makefile  M engine/openbor.c '",
+        "grep -q '^ifdef BUILD_A30' engine/Makefile && grep -q 'int selector = 0; // 0' engine/openbor.c",
+        "ln -sf arm-a30-linux-gnueabihf-gcc /opt/a30/bin/arm-linux-gcc",
         "cd engine",
         "grep -q 'VERSION_BUILD \"6330 LNS v0.10g\"' version.h",
-        "export PKG_CONFIG_SYSROOT_DIR=/opt/a30/arm-a30-linux-gnueabihf/sysroot PKG_CONFIG_LIBDIR=/opt/a30/arm-a30-linux-gnueabihf/sysroot/usr/lib/pkgconfig",
-        "mkdir -p /tmp/variants",
-        "make -j\"$(nproc)\" BUILD_LINUX=1 BUILD_OPENGL= BUILD_LOADGL= BUILD_VORBIS= BUILD_WEBM= BUILD_TREMOR=1 ARCHFLAGS= LIBRARIES= NO_STRIP=1 CC=/opt/a30/bin/arm-a30-linux-gnueabihf-gcc SDKPATH=/opt/a30/arm-a30-linux-gnueabihf/sysroot BUILD_AMD64=",
-        "cp OpenBOR.elf /tmp/variants/OpenBOR_mod-omitfp",
-        "make clean BUILD_LINUX=1 BUILD_OPENGL= BUILD_LOADGL= BUILD_VORBIS= BUILD_WEBM= BUILD_TREMOR=1 ARCHFLAGS= LIBRARIES= NO_STRIP=1 CC=/opt/a30/bin/arm-a30-linux-gnueabihf-gcc SDKPATH=/opt/a30/arm-a30-linux-gnueabihf/sysroot BUILD_AMD64=",
-        "make -j\"$(nproc)\" BUILD_LINUX=1 BUILD_OPENGL= BUILD_LOADGL= BUILD_VORBIS= BUILD_WEBM= BUILD_TREMOR=1 ARCHFLAGS= LIBRARIES= NO_STRIP=1 CC=/opt/a30/bin/arm-a30-linux-gnueabihf-gcc SDKPATH=/opt/a30/arm-a30-linux-gnueabihf/sysroot",
-        "cp OpenBOR.elf /tmp/variants/OpenBOR_mod"
+        "make -j\"$(nproc)\" BUILD_A30=1"
       ],
       "output": {
         "files": [
           {
-            "from": "/tmp/variants/OpenBOR_mod",
+            "from": "/src/engine/OpenBOR",
             "to": "OpenBOR_mod",
-            "strip": "-s"
-          },
-          {
-            "from": "/tmp/variants/OpenBOR_mod-omitfp",
-            "to": "OpenBOR_mod-omitfp",
-            "strip": "-s"
+            "mode": "0755"
           }
         ],
         "spruce": {
@@ -4411,8 +4404,16 @@
         "spruceos": "d7ce3dc52",
         "files": {
           "OpenBOR_mod": "885f5f78549096295c98f428bfaa7432d0f51a1b0f8f5bec4aaac3d1cf9864da"
+        },
+        "source": "steward-fu/website release miyoo-a30, rel_openbor-v1.1.zip (2024-06-13), in spruceOS since c3606d213"
+      },
+      "downloads": [
+        {
+          "url": "https://github.com/steward-fu/website/releases/download/miyoo-a30/src_openbor-v1.1.zip",
+          "sha256": "43cf40c56feabcb662b664fdbee94f507bfedcaab9d512bd9297a7e2dde3f11a",
+          "path": "/tmp/src_openbor-v1.1.zip"
         }
-      }
+      ]
     },
     "xroar": {
       "description": "XRoar 1.11 (Dragon/Tandy Color Computer emulator): Emu/COCO/xroar on every 64-bit device, built by hand from the official release tarball, not a fresh checkout (the shipped binary's debug info names /tmp/xroar-1.11/src and /tmp/xroar-1.11/portalib, the tarball's own extracted layout). source pins the author's git (mirrored at stahta01/xroar, its own commit 1:1 with the tarball's configure.ac by blob hash) for provenance; the actual build steps extract the pinned tarball over that checkout so the build sees the release's own pre-generated configure/Makefile.in, not a freshly autoreconf'd one. Plain native ./configure && make, no flags: XRoar's defaults already match what the binary needs (SDL2/ALSA/evdev/GL/libpng/zlib; no GTK, SDL3, PulseAudio, JACK, OSS, libsndfile or TRE), and autoconf's own default CFLAGS (-g -O2, unstripped) matches it being shipped with debug_info. GPL-3.0-or-later (Licenses/xroar/LICENSE.xroar.txt in spruceOS).; without X11, PulseAudio and OSS, as the shipped binary's modules show (alsa, evdev, null, sdl, sdl2, wav), although libsdl2-dev brings their headers",

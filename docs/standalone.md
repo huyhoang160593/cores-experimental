@@ -295,13 +295,17 @@ found, so the DCurrent build flags are inferred from the engine's `Makefile`
   LIBRARIES=/usr/lib/aarch64-linux-gnu`. The workflow never pushed its image, so
   `Dockerfile.standalone.openbor-fflns` rebuilds it from focal by digest; the script also copied
   the `libpng16.so.16` and `libz.so.1` that spruce ships in `lib64mod/`.
-- **`openbor-lns-a30`** rebuilds `OpenBOR_mod` (armhf, compiled 2024-06-13 with the A30's
-  Buildroot 2024.02.1 GCC 13.2, before spruce's public history) from the same commit. Who built
-  it is not known, so the flags come from the binary: `BUILD_LINUX` with OpenGL, Vorbis and
-  WebM off and Tremor on (its NEEDED list has `libvorbisidec`, `libSDL2_gfx` and no `libvpx`,
-  and its strings no OpenGL loader), `LIBRARIES` empty (its RPATH is empty) and `ARCHFLAGS`
-  cleared (`BUILD_LINUX` sets `-m64`). Whether it had `-fomit-frame-pointer` (`BUILD_AMD64`
-  unset) is not known, so the recipe also builds `OpenBOR_mod-omitfp` for comparison.
+- **`openbor-lns-a30`** rebuilds `OpenBOR_mod` (armhf, in spruceOS since c3606d213), which is
+  steward-fu's A30 port: `rel_openbor-v1.1.zip` of the
+  [steward-fu/website `miyoo-a30`](https://github.com/steward-fu/website/releases/tag/miyoo-a30)
+  release (2024-06-13; v1.2 has the same binary), found by the Emu Inventory session. Its source,
+  `src_openbor-v1.1.zip`'s `src_openbor_mod`, is the same commit with two files changed: the
+  `Makefile` gains `BUILD_A30` (and `BUILD_MMIYOO`) targets, which set SDL, GFX and Tremor, an
+  empty `LIBRARIES` (hence the binary's empty RPATH) and `CC = arm-linux-gcc` from `/opt/a30/bin`;
+  and `openbor.c` starts the options menu at entry 0. The recipe downloads that zip (pinned by
+  sha256), takes those two files from it and runs `make BUILD_A30=1` with steward-fu's A30
+  toolchain. That toolchain's `arm-linux-gcc` links to a Buildroot `toolchain-wrapper` that its
+  archive does not include, so the recipe points it at the image's own wrapper.
 
 - **No `OpenBOR_Flip` recipe.** It was built with the Flip's own RK3566 Buildroot SDK (GCC
   11.3.0, Buildroot 2021.11) and links Vorbis, libvpx 7 and libpng16. steward-fu's Flip
