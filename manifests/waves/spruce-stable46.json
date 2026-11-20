@@ -1247,7 +1247,8 @@
       ],
       "status": "recipe",
       "recipes": [
-        "gametank"
+        "gametank",
+        "standalone:gametank-libretro-1.0.3"
       ],
       "families": [
         "MIYOO_A30",
@@ -1700,8 +1701,10 @@
       "names": [
         "mkxp-z"
       ],
-      "status": "no recipe",
-      "recipes": [],
+      "status": "recipe",
+      "recipes": [
+        "standalone:mkxp-z-libretro-20260114"
+      ],
       "families": [
         "MIYOO_A30",
         "MIYOO_MINI_FAMILY"
@@ -3023,7 +3026,8 @@
       ],
       "status": "recipe",
       "recipes": [
-        "gametank"
+        "gametank",
+        "standalone:gametank-libretro-1.0.3"
       ],
       "families": [
         "ANBERNIC_RGXX",
@@ -3528,8 +3532,10 @@
       "names": [
         "mkxp-z"
       ],
-      "status": "no recipe",
-      "recipes": [],
+      "status": "recipe",
+      "recipes": [
+        "standalone:mkxp-z-libretro-20260114"
+      ],
       "families": [
         "ANBERNIC_RGXX",
         "DARKMOSS",

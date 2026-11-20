@@ -321,6 +321,17 @@
         "size": 275452709
       },
       "dockerfile": "Dockerfile.standalone.openbor-fflns"
+    },
+    "standalone-mkxpz": {
+      "image": "cores-standalone-mkxpz:v1",
+      "image_id": "sha256:d823d3cb7825ce6c7ae801e8adce5f3289293a1aa01bbfa612942b02cd8f518e",
+      "host_cc": "llvm",
+      "archive": {
+        "name": "cores-standalone-mkxpz-v1.tar.gz",
+        "sha256": "5e4d1032733fe943c3630fc74b9f077241d33822cd31adf9422bc54f82538943",
+        "size": 1152207810
+      },
+      "dockerfile": "Dockerfile.standalone.mkxpz"
     }
   }
 }

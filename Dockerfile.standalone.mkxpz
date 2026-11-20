@@ -1,0 +1,61 @@
+# cores-standalone-mkxpz v1: the environment of mkxp-z's libretro CI jobs "LR stage 1" and "LR GNU/Linux
+# armv7"/"arm64" (white-axe/mkxp-z branch libretro, .github/workflows/autobuild.yml at fed492c5), which built spruce's
+# mkxp-z cores as mkxp-z/mkxp-z PR #255 run 21002574259 on 2026-01-14, on ubuntu-latest (24.04). The runner is
+# replaced by noble's image of that day (noble-20251013, by digest) with that day's apt state (snapshot.ubuntu.com
+# 20260114T170000Z), wasi-sdk 29, and the job's two sysroots: Xenial's cloud-image roots (unchanged since 2021-10-01)
+# with gcc-9/g++-9 from ppa:ubuntu-toolchain-r/test installed in them, as the job's chroot step does (here under qemu
+# for armhf; arm64 natively or under qemu). Build with buildx on a host that runs linux/arm/v7 and linux/arm64.
+FROM --platform=linux/amd64 ubuntu:noble-20251013@sha256:c35e29c9450151419d9448b0fd75374fec4fff364a27f176fb458d472dfc9e54 AS fetch
+RUN apt-get update && apt-get install -y --no-install-recommends curl ca-certificates xz-utils gnupg
+RUN for a in armhf:191b27204cb315bd122998eecdf0fa197e545e0331265f709a9c6fe5787b3310 \
+             arm64:7e4a81732f0ea97884c122e699a8ea0be3adc97c9e25bf3d62b48da9a2a58cd2; do \
+      arch=${a%%:*}; sum=${a#*:}; \
+      curl -fLo /x.tar.xz https://cloud-images.ubuntu.com/xenial/current/xenial-server-cloudimg-$arch-root.tar.xz && \
+      echo "$sum  /x.tar.xz" | sha256sum -c - && mkdir /$arch && tar -xJf /x.tar.xz -C /$arch --exclude 'dev/*' && rm /x.tar.xz && \
+      rm -f /$arch/etc/resolv.conf && touch /$arch/etc/resolv.conf; \
+    done
+# What the job's add-apt-repository ppa:ubuntu-toolchain-r/test sets up, written by hand: Xenial's add-apt-repository
+# cannot reach Launchpad here. The PPA's Xenial index (last signed 2024-07-25) carries signatures by its new and its old
+# key; both are fetched and pinned by fingerprint.
+RUN : > /ppa.gpg && for fpr in C8EC952E2A0E1FBDC5090F6A2C277A0A352154E5 60C317803A41BA51845E371A1E9377A2BA9EF27F; do \
+      curl -fsSL "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x$fpr" -o /k.asc && \
+      gpg --batch --with-colons --show-keys /k.asc | grep -qx "fpr:::::::::$fpr:" && \
+      gpg --batch --dearmor < /k.asc >> /ppa.gpg && rm /k.asc || exit 1; \
+    done && \
+    for arch in armhf arm64; do \
+      cp /ppa.gpg /$arch/etc/apt/trusted.gpg.d/ubuntu-toolchain-r-ubuntu-test.gpg && \
+      echo 'deb http://ppa.launchpad.net/ubuntu-toolchain-r/test/ubuntu xenial main' > /$arch/etc/apt/sources.list.d/ubuntu-toolchain-r-ubuntu-test-xenial.list; \
+    done
+
+FROM --platform=linux/arm/v7 scratch AS sysroot-armhf
+COPY --from=fetch /armhf/ /
+RUN PATH=/usr/sbin:/usr/bin:/sbin:/bin /bin/bash -e -c ' \
+      apt update && apt install -y gcc-9 g++-9 && \
+      cp /usr/lib/arm-linux-gnueabihf/libm.so /usr/lib/arm-linux-gnueabihf/libm.a'
+
+FROM --platform=linux/arm64 scratch AS sysroot-arm64
+COPY --from=fetch /arm64/ /
+RUN PATH=/usr/sbin:/usr/bin:/sbin:/bin /bin/bash -e -c ' \
+      apt update && apt install -y gcc-9 g++-9 && \
+      cp /usr/lib/aarch64-linux-gnu/libm.so /usr/lib/aarch64-linux-gnu/libm.a'
+
+FROM --platform=linux/amd64 ubuntu:noble-20251013@sha256:c35e29c9450151419d9448b0fd75374fec4fff364a27f176fb458d472dfc9e54
+ENV DEBIAN_FRONTEND=noninteractive
+# snapshot.ubuntu.com serves HTTPS only and the base image has no CA bundle: borrow the fetch stage's for the first
+# apt update; the snapshot's own ca-certificates then replaces it, so every package comes from the snapshot.
+COPY --from=fetch /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/ca-certificates.crt
+RUN rm -f /etc/apt/sources.list.d/ubuntu.sources && printf '%s\n' \
+      'deb [check-valid-until=no] https://snapshot.ubuntu.com/ubuntu/20260114T170000Z noble main restricted universe multiverse' \
+      'deb [check-valid-until=no] https://snapshot.ubuntu.com/ubuntu/20260114T170000Z noble-updates main restricted universe multiverse' \
+      'deb [check-valid-until=no] https://snapshot.ubuntu.com/ubuntu/20260114T170000Z noble-security main restricted universe multiverse' \
+      > /etc/apt/sources.list && \
+    apt-get -o Acquire::Retries=5 update && apt-get install -y \
+      git curl build-essential automake libtool binaryen zip universal-ctags ruby \
+      clang llvm lld meson cmake ninja-build python3 xz-utils ca-certificates && \
+    rm -rf /var/lib/apt/lists/*
+RUN curl -fLo /tmp/wasi-sdk.tar.gz https://github.com/WebAssembly/wasi-sdk/releases/download/wasi-sdk-29/wasi-sdk-29.0-x86_64-linux.tar.gz && \
+    echo "87d1d1a2879d139cdc624b968efad3d4a97b8078cdff95e63ac88ecafd1a0171  /tmp/wasi-sdk.tar.gz" | sha256sum -c - && \
+    mkdir /opt/wasi-sdk && tar -xzf /tmp/wasi-sdk.tar.gz -C /opt/wasi-sdk --strip-components=1 && rm /tmp/wasi-sdk.tar.gz
+COPY --from=sysroot-armhf / /opt/sysroot-armhf
+COPY --from=sysroot-arm64 / /opt/sysroot-arm64
+RUN dpkg -l > /apt-manifest.txt && clang --version | head -1 && ld.lld --version && meson --version && wasm-opt --version

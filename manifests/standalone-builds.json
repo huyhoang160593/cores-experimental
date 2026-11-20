@@ -8593,6 +8593,161 @@
           "path": "/toolchain-a30.cmake"
         }
       ]
+    },
+    "mkxp-z-libretro-20260114": {
+      "description": "mkxp-z libretro cores as mkxp-z/mkxp-z PR #255's CI built them in run 21002574259 (2026-01-14): spruce's RetroArch/.retroarch/cores/mkxp-z_libretro.so (job 'LR GNU/Linux armv7', generic-armv7-a+vfpv3-d16) and cores64/ (job 'LR GNU/Linux arm64', generic-armv8-a), imported in f32f064ab. The pull_request run built the PR's merge commit 402a68bc (white-axe's libretro branch fed492c5 into dev; the same tree), whose hash the cores embed ('2.4.2/402a68b'). The image (standalone-mkxpz) stands in for that day's ubuntu-latest runner; the runner also had pkg-config, groff and rustc, which Ruby's configure records in rbconfig.rb, so the recipe installs them from the same snapshot, and the CI's wasi-sdk path. Stage 1's two ZIPs (the Ruby library and the preload scripts) are rebuilt with the entry order, times and owner of the runner's files, recorded from spruce's cores (patches/standalone/mkxp-z). Parked 2026-11-20: CE run 44693737469 gives the same code and the same two embedded ZIPs as spruce's files, but about 300 KB of .rodata (unnamed constant data between stb_image's strings and the embedded font) still differs, most likely the stage-1 Ruby module's data layout; proving it needs the original stage-1 output, which has expired.",
+      "source": {
+        "url": "https://github.com/mkxp-z/mkxp-z.git",
+        "commit": "402a68bcf3abc88654e87258608226a1f0921e05",
+        "tree": "5fb168855e85d1cd46acc84e034bea40341eccfa",
+        "requested_ref": "refs/pull/255/merge",
+        "path": "/home/runner/work/mkxp-z/mkxp-z"
+      },
+      "toolchain": "standalone-mkxpz",
+      "steps": [
+        "apt-get -o Acquire::Retries=5 update && apt-get install -y --no-install-recommends pkg-config groff-base rustc && rm -rf /var/lib/apt/lists/*",
+        "mkdir -p /home/runner/work/_temp && cp -a /opt/wasi-sdk /home/runner/work/_temp/wasi-sdk",
+        "cd libretro && CLICOLOR_FORCE=1 make -j \"$(nproc)\" WASI_SDK=/home/runner/work/_temp/wasi-sdk && cd ..",
+        "python3 /recipe/patches/standalone/mkxp-z/rezip.py libretro/build/libretro-stage1/dist.zip dist || echo 'rezip dist: kept the built ZIP'",
+        "python3 /recipe/patches/standalone/mkxp-z/rezip.py libretro/build/libretro-stage1/preload.zip preload || echo 'rezip preload: kept the built ZIP'",
+        "mv libretro/build/libretro-stage1 /tmp/stage1 && rm -rf libretro/build && mkdir -p libretro/build && mv /tmp/stage1 libretro/build/libretro-stage1",
+        "build_core() { arch=$1 deb=$2 llvm=$3 fam=$4 cpu=$5; T=/home/runner/work/_temp; mkdir -p $T; ln -sfn /opt/sysroot-$deb $T/sysroot; rm -f $T/cross.ini; printf '%s\\n' '[binaries]' \"c = ['clang', '--target=$llvm', '--sysroot=$T/sysroot']\" \"c_ld = 'lld'\" \"cpp = ['clang++', '--target=$llvm', '--sysroot=$T/sysroot']\" \"cpp_ld = 'lld'\" \"ar = 'llvm-ar'\" \"strip = 'llvm-strip'\" '[host_machine]' \"system = 'linux'\" \"cpu_family = '$fam'\" \"cpu = '$cpu'\" \"endian = 'little'\" '[properties]' \"sys_root = '$T/sysroot'\" '[cmake]' \"CMAKE_EXE_LINKER_FLAGS_INIT = '-fuse-ld=lld'\" > $T/cross.ini; CLICOLOR_FORCE=1 meson setup build --cross-file $T/cross.ini --buildtype release -Db_lto=true -Dneon=false -Dlibretro=true -Dlibretro_save_states=true && mkdir -p /tmp/dist-$arch && (cd build && CLICOLOR_FORCE=1 ninja -v && cp mkxp-z_libretro.so /tmp/dist-$arch/unstripped.so && llvm-strip mkxp-z_libretro.so) && mv build/mkxp-z_libretro.so /tmp/dist-$arch/ && rm -rf build; }",
+        "build_core armv7 armhf arm-linux-gnueabihf arm generic-armv7-a+vfpv3-d16",
+        "build_core arm64 arm64 aarch64-linux-gnu aarch64 generic-armv8-a"
+      ],
+      "output": {
+        "files": [
+          {
+            "from": "/tmp/dist-armv7/mkxp-z_libretro.so",
+            "to": "cores/mkxp-z_libretro.so",
+            "mode": "0644"
+          },
+          {
+            "from": "/tmp/dist-arm64/mkxp-z_libretro.so",
+            "to": "cores64/mkxp-z_libretro.so",
+            "mode": "0644"
+          },
+          {
+            "from": "/tmp/dist-arm64/unstripped.so",
+            "to": "variants/arm64-unstripped.so",
+            "mode": "0644"
+          }
+        ],
+        "spruce": {
+          "cores/mkxp-z_libretro.so": "RetroArch/.retroarch/cores/mkxp-z_libretro.so",
+          "cores64/mkxp-z_libretro.so": "RetroArch/.retroarch/cores64/mkxp-z_libretro.so"
+        }
+      },
+      "shipped": {
+        "unverified": true,
+        "spruceos": "f32f064ab",
+        "files": {
+          "cores/mkxp-z_libretro.so": "39822d821e24071760d9edb108e2bd244d2a49a5415684bf53a822cd4b68b169",
+          "cores64/mkxp-z_libretro.so": "40a3fba44573f8464893a46fb87b1c0a679ed7362dce1ed6e5c6a93b501d41c2"
+        },
+        "source": "spruceOS f32f064ab (Zetarancio, 2026-01-16, \"Initial support for mkxp-z libretro core\")"
+      },
+      "source_date_epoch": 1768409724,
+      "needed": {
+        "device": [
+          "ld-linux-armhf.so.3",
+          "libc.so.6",
+          "libgcc_s.so.1",
+          "libm.so.6",
+          "libpthread.so.0",
+          "libstdc++.so.6"
+        ],
+        "forbidden": []
+      },
+      "patches": [
+        {
+          "script": "patches/standalone/mkxp-z/rezip.py"
+        }
+      ],
+      "env": {
+        "GIT_CONFIG_SYSTEM": "/dev/null",
+        "GIT_CONFIG_GLOBAL": "/dev/null",
+        "GIT_CONFIG_PARAMETERS": "'core.abbrev=7'"
+      }
+    },
+    "gametank-libretro-1.0.3": {
+      "description": "GameTank libretro core 1.0.3 (Sundownersport/gametank-libretro b9d0436, 'Bump version to 1.0.3'): spruce's cores64/ and cores/gametank_libretro.so since f71fa7877. Built as its build.yml linux-glibc223 job does (zig 0.14.1, CXX='zig c++ -target <arch>-linux-gnu*.2.23 -mcpu=cortex_a53|cortex_a7'); that job's run 42557185595 at b9d0436 (2026-11-09T03:34Z) produced the same code and the same version string as spruce's files, but its artifacts were stripped with Ubuntu's binutils strip while spruce's keep the section names of what was stripped (.debug_*, .symtab, .strtab): another strip tool. A local zig build plus GNU strip gives that artifact byte for byte. It builds in standalone-openbor-fflns (focal, GCC 9.4 aarch64 binutils, python3), since zig brings its own compiler. This recipe ships the zig-objcopy-stripped files and also writes the unstripped and GNU-stripped (arm64) ones to compare.",
+      "source": {
+        "url": "https://github.com/Sundownersport/gametank-libretro.git",
+        "commit": "b9d0436ba70786912e9ef2dda9b3b3ee8e1c3c13",
+        "tree": "691d62851554e9b8d72261ae1996e812f166d87a",
+        "requested_ref": "refs/heads/main",
+        "path": "/home/runner/work/gametank-libretro/gametank-libretro"
+      },
+      "toolchain": "standalone-openbor-fflns",
+      "source_date_epoch": 1794195275,
+      "env": {
+        "GIT_CONFIG_PARAMETERS": "'core.abbrev=7'"
+      },
+      "downloads": [
+        {
+          "url": "https://ziglang.org/download/0.14.1/zig-x86_64-linux-0.14.1.tar.xz",
+          "sha256": "24aeeec8af16c381934a6cd7d95c807a8cb2cf7df9fa40d359aa884195c4716c",
+          "path": "/tmp/zig.tar.xz"
+        }
+      ],
+      "steps": [
+        "python3 -c 'import sys, tarfile; tarfile.open(sys.argv[1]).extractall(\"/opt\")' /tmp/zig.tar.xz && /opt/zig-x86_64-linux-0.14.1/zig version",
+        "make clean >/dev/null 2>&1; make -j\"$(nproc)\" CXX=\"/opt/zig-x86_64-linux-0.14.1/zig c++ -target aarch64-linux-gnu.2.23 -mcpu=cortex_a53\" && mkdir -p /tmp/arm64 && cp gametank_libretro.so /tmp/arm64/unstripped.so && /opt/zig-x86_64-linux-0.14.1/zig objcopy --strip-all /tmp/arm64/unstripped.so /tmp/arm64/zig-objcopy.so",
+        "aarch64-linux-gnu-strip -o /tmp/arm64/gnu-strip.so /tmp/arm64/unstripped.so",
+        "make clean >/dev/null 2>&1; make -j\"$(nproc)\" CXX=\"/opt/zig-x86_64-linux-0.14.1/zig c++ -target arm-linux-gnueabihf.2.23 -mcpu=cortex_a7\" && mkdir -p /tmp/armhf && cp gametank_libretro.so /tmp/armhf/unstripped.so && /opt/zig-x86_64-linux-0.14.1/zig objcopy --strip-all /tmp/armhf/unstripped.so /tmp/armhf/zig-objcopy.so"
+      ],
+      "output": {
+        "files": [
+          {
+            "from": "/tmp/arm64/zig-objcopy.so",
+            "to": "cores64/gametank_libretro.so"
+          },
+          {
+            "from": "/tmp/armhf/zig-objcopy.so",
+            "to": "cores/gametank_libretro.so"
+          },
+          {
+            "from": "/tmp/arm64/gnu-strip.so",
+            "to": "variants/arm64-gnu-strip.so"
+          },
+          {
+            "from": "/tmp/arm64/unstripped.so",
+            "to": "variants/arm64-unstripped.so"
+          },
+          {
+            "from": "/tmp/armhf/unstripped.so",
+            "to": "variants/armhf-unstripped.so"
+          }
+        ],
+        "spruce": {
+          "cores64/gametank_libretro.so": "RetroArch/.retroarch/cores64/gametank_libretro.so",
+          "cores/gametank_libretro.so": "RetroArch/.retroarch/cores/gametank_libretro.so"
+        }
+      },
+      "needed": {
+        "device": [
+          "ld-linux-aarch64.so.1",
+          "ld-linux-armhf.so.3",
+          "libc.so.6",
+          "libdl.so.2",
+          "libm.so.6",
+          "libpthread.so.0"
+        ],
+        "forbidden": []
+      },
+      "shipped": {
+        "spruceos": "f71fa7877",
+        "source": "spruceOS f71fa7877 (SundownerSport, 2026-11-08, \"GameTank core 1.0.3: fix crash on exit, name zip flash saves after the archive\")",
+        "files": {
+          "cores64/gametank_libretro.so": "9c618026c07849c1c4ce757f0e40eff6f11a4ede1bf98c87fe894266c0ddb5cf",
+          "cores/gametank_libretro.so": "2ad9f6b77237a91d57f0aedc3bb252ef3253665dd724b270b96ad28dec23829f"
+        },
+        "note": "cores/gametank_libretro.so matched byte for byte by CE run 44693373666 (8cd39bd), stripped with zig objcopy --strip-all",
+        "differs": {
+          "cores64/gametank_libretro.so": "in CE's container zig 0.14.1 builds the arm64 objects with outline atomics and links all of compiler-rt (562 more functions, 499,416 B against 333,416), while the CI's and a local zig build from the same commands do not; the cause is not found (parked 2026-11-20). Its armhf build from the same recipe matches"
+        }
+      }
     }
   }
 }
