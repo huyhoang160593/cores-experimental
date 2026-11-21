@@ -53,6 +53,11 @@ folder's `.7z` files, where spruce packs ScummVM.
 | `partial` | some do; `differ` lists the others (`other bytes` or `absent`), `by` the records that match there |
 | `replaced` | none do, and another record matches at its paths (`by`) |
 | `not shipped` | none do, and no other record matches there |
+| `retired` | every file is in the record's `shipped.retired`: spruce removed them, and the record stays as history |
+| `elsewhere` | the record is of a package outside spruceOS (`shipped.source`, no `spruceos`), such as Game Nursery's FreeJ2ME |
+
+Files in `shipped.retired` (`{file: "spruceOS <commit>: why"}`) are left out of the check, and a record's
+`retired` gives their count.
 
 For each new nightly:
 

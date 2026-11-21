@@ -99,7 +99,7 @@ class Repo:
 
     @staticmethod
     def _check_shipped(spec: dict) -> list[str]:
-        """The record of what spruceOS ships from this recipe (AUDIT.md compares nightlies with it)."""
+        """The record of what spruceOS ships from this recipe (the spruce waves' `records` check it)."""
         shipped, problems = spec["shipped"], []
         if not SHORT_COMMIT.match(shipped.get("spruceos", "")):
             problems.append("shipped.spruceos must be a commit id")
@@ -115,6 +115,9 @@ class Repo:
                 problems.append(f"shipped file {path}: not a card-relative path")
             if not SHA256.match(digest):
                 problems.append(f"shipped file {path}: sha256 must be 64 hex digits")
+        for path, why in shipped.get("retired", {}).items():
+            if path not in shipped.get("files", {}) or not isinstance(why, str) or not why:
+                problems.append(f"shipped.retired {path}: needs a shipped file and the reason")
         return problems
 
     def _check_recipe(self, spec: dict) -> list[str]:

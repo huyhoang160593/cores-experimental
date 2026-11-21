@@ -4451,21 +4451,9 @@
       }
     },
     "standalone:bigpemu": {
-      "files": 134,
-      "status": "partial",
-      "differ": {
-        "Emu/JAGUAR/bigpemu/Data/ThirdParty/Licenses/MUSASHI.txt": "absent",
-        "Emu/JAGUAR/bigpemu/Data/ThirdParty/Licenses/README-SDL.txt": "absent",
-        "Emu/JAGUAR/bigpemu/Data/ThirdParty/Licenses/RapidJSON.txt": "absent",
-        "Emu/JAGUAR/bigpemu/Data/ThirdParty/Licenses/TinyCC-MIT.txt": "absent",
-        "Emu/JAGUAR/bigpemu/Data/ThirdParty/Licenses/libcurl.txt": "absent",
-        "Emu/JAGUAR/bigpemu/Data/ThirdParty/Licenses/libpng.txt": "absent",
-        "Emu/JAGUAR/bigpemu/Data/ThirdParty/Licenses/libresample.txt": "absent",
-        "Emu/JAGUAR/bigpemu/Data/ThirdParty/Licenses/openvr.txt": "absent",
-        "Emu/JAGUAR/bigpemu/Data/ThirdParty/Licenses/zlib.txt": "absent",
-        "Emu/JAGUAR/bigpemu/Data/ThirdParty/bin/ThirdPartyBin.txt": "absent",
-        "Emu/JAGUAR/bigpemu/make_desktop.sh": "absent"
-      }
+      "files": 123,
+      "status": "match",
+      "retired": 11
     },
     "standalone:cap32-arm64-20250506": {
       "files": 1,
@@ -4569,24 +4557,18 @@
     },
     "standalone:freej2me-plus-core-arm64-2c15b3c1": {
       "files": 1,
-      "status": "not shipped",
-      "differ": {
-        "RetroArch/.retroarch/cores64/freej2me_plus_libretro.so": "absent"
-      }
+      "status": "elsewhere",
+      "source": "Game Nursery FreeJ2ME package: spruceUI/Ports-and-Free-Games a981c76, J2ME/FreeJ2ME/RetroArch/.retroarch/cores64/freej2me_plus_libretro.so"
     },
     "standalone:freej2me-plus-core-armhf-2c15b3c1": {
       "files": 1,
-      "status": "not shipped",
-      "differ": {
-        "RetroArch/.retroarch/cores/freej2me_plus_libretro.so": "absent"
-      }
+      "status": "elsewhere",
+      "source": "Game Nursery FreeJ2ME package: spruceUI/Ports-and-Free-Games a981c76, J2ME/FreeJ2ME/RetroArch/.retroarch/cores/freej2me_plus_libretro.so"
     },
     "standalone:freej2me-plus-lr-2c15b3c1": {
       "files": 1,
-      "status": "not shipped",
-      "differ": {
-        "BIOS/freej2me_plus-lr.jar": "absent"
-      }
+      "status": "elsewhere",
+      "source": "Game Nursery FreeJ2ME package: spruceUI/Ports-and-Free-Games a981c76, J2ME/FreeJ2ME/BIOS/freej2me_plus-lr.jar"
     },
     "standalone:fuse-arm64-20250506": {
       "files": 1,
@@ -4681,14 +4663,9 @@
       "status": "match"
     },
     "standalone:moonlight": {
-      "files": 33,
-      "status": "partial",
-      "differ": {
-        "App/Moonlight/ports/moonlightnew/moonlight/libs/libavcodec.so": "absent",
-        "App/Moonlight/ports/moonlightnew/moonlight/libs/libavcodec.so.58.134.100": "absent",
-        "App/Moonlight/ports/moonlightnew/moonlight/libs/libavutil.so": "absent",
-        "App/Moonlight/ports/moonlightnew/moonlight/libs/libavutil.so.56.70.100": "absent"
-      }
+      "files": 29,
+      "status": "match",
+      "retired": 4
     },
     "standalone:mupen64plus-a30": {
       "files": 9,
@@ -4761,26 +4738,15 @@
     },
     "standalone:pcsx_rearmed-a30": {
       "files": 2,
-      "status": "not shipped",
-      "differ": {
-        "Emu/PS/liba30/libSDL-1.2.so.0": "absent",
-        "Emu/PS/pcsx_a30": "absent"
-      }
+      "status": "retired"
     },
     "standalone:pcsx_rearmed-arm64": {
       "files": 2,
-      "status": "not shipped",
-      "differ": {
-        "Emu/PS/libs/libSDL-1.2.so.0": "absent",
-        "Emu/PS/pcsx_64": "absent"
-      }
+      "status": "retired"
     },
     "standalone:pcsx_rearmed-mini": {
       "files": 1,
-      "status": "not shipped",
-      "differ": {
-        "Emu/PS/pcsx_mini": "absent"
-      }
+      "status": "retired"
     },
     "standalone:picodrive-arm64-20261118": {
       "files": 1,

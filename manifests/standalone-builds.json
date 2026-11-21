@@ -478,6 +478,10 @@
         "files": {
           "pcsx_64": "79754a0a80de448b0d4098004457ea12cdf830f9d53c0bfa15ceaa6e4fcc032b",
           "libs/libSDL-1.2.so.0": "4d112238b6e74af84ed70248bf6d8299942adb8a2120c973b7fa586ff38cf37d"
+        },
+        "retired": {
+          "pcsx_64": "spruceOS 098c769bf (2026-10-26, SundownerSport) removed the PCSX-ReARMed standalone",
+          "libs/libSDL-1.2.so.0": "spruceOS 098c769bf (2026-10-26, SundownerSport) removed the PCSX-ReARMed standalone"
         }
       }
     },
@@ -612,7 +616,13 @@
           "libs/libsystemd.so.0": "5899be19768050a40d016ca32cce11423f7eaba6086b36c78608244928accd48",
           "libs/libuuid.so.1": "491b2465f412a139512f4583900ee818f5de0708c20e389a859f048af28e7487"
         },
-        "note": "spruce added libs/libbsd.so.0 itself (spruceOS 23d5daa3c); the build never produced it. --build keeps curl's configure cross-compiling on hosts where qemu-user binfmt runs aarch64 test programs"
+        "note": "spruce added libs/libbsd.so.0 itself (spruceOS 23d5daa3c); the build never produced it. --build keeps curl's configure cross-compiling on hosts where qemu-user binfmt runs aarch64 test programs",
+        "retired": {
+          "libs/libavcodec.so": "spruceOS 8126398e9 (2026-10-24, SundownerSport) removed Moonlight's link-time libraries",
+          "libs/libavcodec.so.58.134.100": "spruceOS 8126398e9 (2026-10-24, SundownerSport) removed Moonlight's link-time libraries",
+          "libs/libavutil.so": "spruceOS 8126398e9 (2026-10-24, SundownerSport) removed Moonlight's link-time libraries",
+          "libs/libavutil.so.56.70.100": "spruceOS 8126398e9 (2026-10-24, SundownerSport) removed Moonlight's link-time libraries"
+        }
       }
     },
     "bigpemu": {
@@ -819,6 +829,19 @@
           "bigpemu/make_desktop.sh": "e5a7d8edbaca42d91a23f1232e10c11fb30a703ead32c55f4802dd5483d6e393",
           "bigpemu/plugins/bigpemu_network_posix.so": "c822a08f37135a40e6588cea9c99e53750fb9668ed5d1968ea83f1c6c1d5aad3",
           "bigpemu/plugins/bigpemu_various_sdl2.so": "8ade4fc068b14f07f0cb5c384177276ce250c518092d8afd665881785cf477d0"
+        },
+        "retired": {
+          "bigpemu/Data/ThirdParty/Licenses/MUSASHI.txt": "spruceOS 3330da82f (2026-10-25, ryanmsartor) moved the third-party licenses to Licenses/BigPEmu/ (most changed) and dropped make_desktop.sh",
+          "bigpemu/Data/ThirdParty/Licenses/README-SDL.txt": "spruceOS 3330da82f (2026-10-25, ryanmsartor) moved the third-party licenses to Licenses/BigPEmu/ (most changed) and dropped make_desktop.sh",
+          "bigpemu/Data/ThirdParty/Licenses/RapidJSON.txt": "spruceOS 3330da82f (2026-10-25, ryanmsartor) moved the third-party licenses to Licenses/BigPEmu/ (most changed) and dropped make_desktop.sh",
+          "bigpemu/Data/ThirdParty/Licenses/TinyCC-MIT.txt": "spruceOS 3330da82f (2026-10-25, ryanmsartor) moved the third-party licenses to Licenses/BigPEmu/ (most changed) and dropped make_desktop.sh",
+          "bigpemu/Data/ThirdParty/Licenses/libcurl.txt": "spruceOS 3330da82f (2026-10-25, ryanmsartor) moved the third-party licenses to Licenses/BigPEmu/ (most changed) and dropped make_desktop.sh",
+          "bigpemu/Data/ThirdParty/Licenses/libpng.txt": "spruceOS 3330da82f (2026-10-25, ryanmsartor) moved the third-party licenses to Licenses/BigPEmu/ (most changed) and dropped make_desktop.sh",
+          "bigpemu/Data/ThirdParty/Licenses/libresample.txt": "spruceOS 3330da82f (2026-10-25, ryanmsartor) moved the third-party licenses to Licenses/BigPEmu/ (most changed) and dropped make_desktop.sh",
+          "bigpemu/Data/ThirdParty/Licenses/openvr.txt": "spruceOS 3330da82f (2026-10-25, ryanmsartor) moved the third-party licenses to Licenses/BigPEmu/ (most changed) and dropped make_desktop.sh",
+          "bigpemu/Data/ThirdParty/Licenses/zlib.txt": "spruceOS 3330da82f (2026-10-25, ryanmsartor) moved the third-party licenses to Licenses/BigPEmu/ (most changed) and dropped make_desktop.sh",
+          "bigpemu/Data/ThirdParty/bin/ThirdPartyBin.txt": "spruceOS 3330da82f (2026-10-25, ryanmsartor) moved the third-party licenses to Licenses/BigPEmu/ (most changed) and dropped make_desktop.sh",
+          "bigpemu/make_desktop.sh": "spruceOS 3330da82f (2026-10-25, ryanmsartor) moved the third-party licenses to Licenses/BigPEmu/ (most changed) and dropped make_desktop.sh"
         }
       }
     },
@@ -2066,6 +2089,10 @@
         "files": {
           "pcsx_a30": "4f56b3fb3f0d55dbe149a30e938d681c9f2ea044a42425cb8fd3d7a47dc41d50",
           "liba30/libSDL-1.2.so.0": "46294a147fb7dec6c990400f969f0ab6bb8dad5a82028ddffe54d85ccb4fad0d"
+        },
+        "retired": {
+          "pcsx_a30": "spruceOS 098c769bf (2026-10-26, SundownerSport) removed the PCSX-ReARMed standalone",
+          "liba30/libSDL-1.2.so.0": "spruceOS 098c769bf (2026-10-26, SundownerSport) removed the PCSX-ReARMed standalone"
         }
       }
     },
@@ -3603,6 +3630,9 @@
         "spruceos": "73bb91a19",
         "files": {
           "pcsx_mini": "bf0c1a1c9581b69323fefc7890b1d03d839f811967ffb545c6c956969f9481ff"
+        },
+        "retired": {
+          "pcsx_mini": "spruceOS 098c769bf (2026-10-26, SundownerSport) removed the PCSX-ReARMed standalone"
         }
       }
     },

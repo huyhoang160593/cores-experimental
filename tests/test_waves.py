@@ -61,6 +61,21 @@ class WavesTest(unittest.TestCase):
         self.assertEqual(out["pair"], {"files": 2, "status": "partial", "differ": {"b": "other bytes"}})
         self.assertEqual(out["gone"], {"files": 1, "status": "not shipped", "differ": {"Emu/Y/y": "absent"}})
 
+    def test_shipped_records_leave_out_retired_files_and_other_packages(self):
+        digest = "0" * 64
+        raw = {"builds": {
+            "gone": {"shipped": {"spruceos": "a", "files": {"x": digest}, "retired": {"x": "removed"}}},
+            "some": {"shipped": {"spruceos": "a", "files": {"x": digest, "lib/y": digest}, "retired": {"lib/y": "gone"}}},
+            "pkg": {"shipped": {"source": "a package", "files": {"x": digest}}}}}
+        builds = {name: {"output": {"spruce": {"x": f"Emu/{name}/x", "lib/": f"Emu/{name}/lib/"}}} for name in raw["builds"]}
+        repo = mock.Mock(cores={"core": {"shipped": {"spruceos": "a", "files": {"RetroArch/c.so": digest}}}})
+        with mock.patch.object(waves, "load_json", return_value=raw):
+            checked, skipped, retired = waves.shipped_records(repo, builds)
+        self.assertEqual(checked, {"core": {"RetroArch/c.so": digest}, "standalone:some": {"Emu/some/x": digest}})
+        self.assertEqual(skipped, {"standalone:gone": {"files": 1, "status": "retired"},
+                                   "standalone:pkg": {"files": 1, "status": "elsewhere", "source": "a package"}})
+        self.assertEqual(retired, {"standalone:some": 1})
+
     def test_diff_lists_each_change_once(self):
         old = {"defined_by": {"commit": "a" * 40}, "files": {"f": {"sha256": "1", "status": "recipe"},
                                                              "g": {"sha256": "2", "status": "reproduces"},

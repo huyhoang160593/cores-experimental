@@ -75,8 +75,8 @@ builds it when the current commit fails; nothing else uses it.
 **`shipped`**: what spruceOS ships from this recipe, which each spruce wave's `records`
 compare with the tree ([nightly audit](waves.md#nightly-audit)): `spruceos` (the spruceOS commit), `variant` (the
 build whose artifact ships, as `plan` names it; both, joined by ` + `, when both arches ship), `files` (`{card path: sha256}`)
-a `note`, and `unverified: true` while no build has matched the files (coverage then
-counts them as `recipe`). The build does not use it.
+a `note`, `unverified: true` while no build has matched the files (coverage then
+counts them as `recipe`), and `retired` (`{card path: why}`) for files spruce no longer ships. The build does not use it.
 
 ## Adding a core
 

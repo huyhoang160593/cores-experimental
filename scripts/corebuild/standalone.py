@@ -106,9 +106,10 @@ def spec_problems(repo: Repo, spec: dict) -> list[str]:
             problems.append(f"shipped file {path}: sha256 must be 64 hex digits")
     if not isinstance(spec.get("shipped", {}).get("unverified", False), bool):
         problems.append("shipped.unverified must be true or false")
-    for path, why in spec.get("shipped", {}).get("differs", {}).items():
-        if path not in spec.get("shipped", {}).get("files", {}) or not isinstance(why, str) or not why:
-            problems.append(f"shipped.differs {path}: needs a shipped file and the reason")
+    for field in ("differs", "retired"):
+        for path, why in spec.get("shipped", {}).get(field, {}).items():
+            if path not in spec.get("shipped", {}).get("files", {}) or not isinstance(why, str) or not why:
+                problems.append(f"shipped.{field} {path}: needs a shipped file and the reason")
     needed = spec.get("needed", {})
     overlap = set(needed.get("device", [])) & set(needed.get("forbidden", []))
     if overlap:

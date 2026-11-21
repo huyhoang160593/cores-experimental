@@ -81,18 +81,35 @@ def nightly(tag: str) -> dict:
     sys.exit(f"--nightly {tag}: not among the last 60 successful create-nightly runs")
 
 
-def shipped_records(repo: Repo, builds: dict) -> dict:
-    """{recipe: {card path: sha256}} of every `shipped` record: catalog cores by card path, standalone files by
-    their output.spruce map. Records come from the raw manifest, so an `extends` child inherits none."""
-    out = {core: dict(spec["shipped"]["files"]) for core, spec in repo.cores.items() if spec.get("shipped")}
+def shipped_records(repo: Repo, builds: dict) -> tuple[dict, dict]:
+    """({recipe: {card path: sha256}} to check against the tree, {recipe: entry} for records not checked there,
+    {recipe: count} of retired files in checked records):
+    catalog cores by card path, standalone files by their output.spruce map. `retired` files are left out; a record
+    with only those is `retired`, one of a package outside spruceOS (`source`, no `spruceos`) is `elsewhere`.
+    Records come from the raw manifest, so an `extends` child inherits none."""
+    shipped = {core: spec["shipped"] for core, spec in repo.cores.items() if spec.get("shipped")}
+    cards = {core: {path: path for path in record["files"]} for core, record in shipped.items()}
     raw = load_json(ROOT / standalone.MANIFEST)["builds"]
     for name, spec in builds.items():
-        files = raw.get(name, {}).get("shipped", {}).get("files", {})
-        spruce = spec.get("output", {}).get("spruce", {})
-        cards = {inventory._card_path(dist, spruce): digest for dist, digest in files.items()}
-        if files:
-            out[f"standalone:{name}"] = {card: digest for card, digest in cards.items() if card}
-    return out
+        record = raw.get(name, {}).get("shipped", {})
+        if record.get("files"):
+            spruce = spec.get("output", {}).get("spruce", {})
+            shipped[f"standalone:{name}"] = record
+            cards[f"standalone:{name}"] = {dist: inventory._card_path(dist, spruce) for dist in record["files"]}
+    checked, skipped = {}, {}
+    for name, record in shipped.items():
+        if "source" in record and "spruceos" not in record:
+            skipped[name] = {"files": len(record["files"]), "status": "elsewhere", "source": record["source"]}
+            continue
+        live = {cards[name][key]: digest for key, digest in record["files"].items()
+                if key not in record.get("retired", {}) and cards[name][key]}
+        if live:
+            checked[name] = live
+        else:
+            skipped[name] = {"files": len(record["files"]), "status": "retired"}
+    retired = {name: len(record["retired"]) for name, record in shipped.items()
+               if record.get("retired") and name in checked}
+    return checked, skipped, retired
 
 
 def record_statuses(records: dict, shipped: dict) -> dict:
@@ -152,9 +169,12 @@ def cmd_spruce(args) -> int:
             recipe = row["recipes"][0].split(" (as ")[0]
             src = sources.get(recipe, {})
             entry["pin"] = {"recipe": recipe, "url": src.get("url"), "commit": src.get("commit")}
-    records = shipped_records(repo, builds)
+    records, skipped, retired = shipped_records(repo, builds)
     shipped = inventory.card_sha256(Path(args.spruceos), inv["spruceos"]["commit"],
                                     [card for files in records.values() for card in files])
+    statuses = {**record_statuses(records, shipped), **skipped}
+    for name, count in retired.items():
+        statuses[name]["retired"] = count
     defined_by = {"repo": SPRUCEOS, "ref": args.rev, **inv["spruceos"]}
     if built_as:
         defined_by["nightly"] = {"tag": built_as["tag"], "run": built_as["run"], "built": built_as["built"]}
@@ -162,7 +182,7 @@ def cmd_spruce(args) -> int:
             "wave": args.name,
             "defined_by": defined_by,
             "files": carry(args.name, "files", dict(sorted(files.items()))),
-            "records": record_statuses(records, shipped)}
+            "records": dict(sorted(statuses.items()))}
     path = write(args.name, data)
     print(f"{path.relative_to(ROOT)}: spruceOS {inv['spruceos']['commit'][:9]}"
           + (f" (nightly {built_as['tag']})" if built_as else "") + f", {len(files)} files, "
