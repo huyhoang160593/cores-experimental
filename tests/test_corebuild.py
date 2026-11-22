@@ -537,13 +537,13 @@ class InventoryTest(unittest.TestCase):
         inv = {"spruceos": {"commit": "0" * 40, "date": "2026-11-18"},
                "systems": {"S": {"devices": None, "default": "a", "options": {
                    "Emulator": {"devices": ["X"], "options": ["a", "b", "c-standalone", "mystery", "Flycast-libretro",
-                                                              "d-standalone", "closed", "base", "banned"]}}}},
+                                                              "d-standalone", "closed", "base", "banned", "stale"]}}}},
                "files": {"RetroArch/.retroarch/cores64/a_libretro.so": sha["a"],
                          "RetroArch/.retroarch/cores/b_libretro.so": sha["b"],
                          "Emu/S/c": sha["c"], "Emu/S/d": sha["d"]}}
         names = {"c-standalone": {"paths": ["Emu/S/c"]}, "d-standalone": {"paths": ["Emu/S/d"]},
                  "Flycast-libretro": {"core": "flycast"}, "closed": {"closed_source": "no source"},
-                 "base": {"base_image": "a base OS package"},
+                 "base": {"base_image": "a base OS package"}, "stale": {"unreached": "a leftover default"},
                  "banned": {"paths": ["Emu/S/c"], "blacklisted": "nonfree"}}
         catalog = {"a": {"targets": ["arm64"], "build": {"artifact_name": "a_libretro.so"},
                          "shipped": {"files": {"RetroArch/.retroarch/cores64/a_libretro.so": sha["a"]}}},
@@ -569,6 +569,7 @@ class InventoryTest(unittest.TestCase):
         self.assertEqual(rows[("mystery", "")]["status"], "unresolved")
         self.assertEqual(rows[("Flycast-libretro", "")]["status"], "not shipped")
         self.assertEqual(rows[("closed", "")]["status"], "closed source")
+        self.assertEqual((rows[("stale", "")]["status"], rows[("stale", "")]["note"]), ("unreached", "a leftover default"))
         self.assertEqual(rows[("base", "")]["status"], "base image")
         self.assertEqual(rows[("base", "")]["note"], "a base OS package")
         self.assertEqual(rows[("banned", "")]["status"], "blacklisted")

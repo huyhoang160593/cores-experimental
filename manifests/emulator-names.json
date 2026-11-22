@@ -150,7 +150,7 @@
       ]
     },
     "yabasanshiro-libretro": {
-      "unresolved": "SATURN's default_emulator; no launcher script names it"
+      "unreached": "SATURN's default_emulator, left from before spruceOS da496b273 (2026-02-15), which renamed the menu options to yabasanshiro_libretro and made the SATURN branch strip only '_libretro'. Every device family has its own Emulator_* selection, so spruce never falls back to it; if it did, RetroArch would look for cores64/yabasanshiro-libretro_libretro.so, which spruce does not ship"
     },
     "yabasanshiro-standalone-bios": {
       "paths": [

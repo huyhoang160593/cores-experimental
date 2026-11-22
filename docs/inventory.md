@@ -25,7 +25,8 @@ launcher scripts (`spruce/scripts/emu/`). An entry has one of these:
   builds it, which is its recipe;
 - `blacklisted`: why cores-experimental must not build it, with its `paths`; `check` fails if any recipe builds one
   of them;
-- `closed_source`, `not_emulator` or `unresolved`: why there is nothing to build, with the reason.
+- `closed_source`, `not_emulator` or `unresolved`: why there is nothing to build, with the reason;
+- `unreached`: spruce lists the name (a `default_emulator`, say), but no device launches it, with the evidence.
 
 An optional `note` is shown in the report.
 
@@ -62,7 +63,7 @@ files, and the same needed files.
 | no recipe | the file ships, and nothing here builds it |
 | blacklisted | the file ships, but must not be rebuilt and shipped (for example a licence forbids redistributing it) |
 | not shipped | a menu offers it, but the file is not in the tree; for a core, at the folder a device would load it from |
-| closed source, not an emulator, unresolved | from the names map |
+| closed source, not an emulator, unreached, unresolved | from the names map |
 
 The Check workflow appends the report to its run summary. It is not a gate: some gaps are known and listed in the report.
 Regenerate the inventory when spruceOS's emulators change, and commit it with the recipes that close the gaps.

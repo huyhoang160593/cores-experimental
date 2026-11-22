@@ -22,7 +22,7 @@ PLATFORM_DIR = "spruce/scripts/platform"
 RA_BUILDS = ("64-bit", "32-bit")
 STANDARD_LAUNCH = ("standard_launch.sh", "vulkan_launch.sh")  # vulkan_launch sources standard_launch
 ORDER = ("reproduces", "recipe", "base image", "no recipe", "not shipped", "blacklisted", "closed source",
-         "not an emulator", "unresolved")
+         "not an emulator", "unreached", "unresolved")
 
 
 def _git(repo: Path, *args: str, text: bool = True):
@@ -161,9 +161,10 @@ def generate(spruceos: Path, rev: str, names: dict) -> dict:
             "devices": devices(spruceos, commit), "systems": systems, "files": files}
 
 
-NAME_KEYS = {"core", "paths", "base_image", "blacklisted", "closed_source", "not_emulator", "unresolved", "note"}
+NAME_KEYS = {"core", "paths", "base_image", "blacklisted", "closed_source", "not_emulator", "unreached", "unresolved",
+             "note"}
 REASON_KEYS = (("blacklisted", "blacklisted"), ("base_image", "base image"), ("closed_source", "closed source"), ("not_emulator", "not an emulator"),
-               ("unresolved", "unresolved"))
+               ("unreached", "unreached"), ("unresolved", "unresolved"))
 
 
 def check(names: dict, inventory: dict) -> list[str]:
@@ -176,7 +177,7 @@ def check(names: dict, inventory: dict) -> list[str]:
             problems.append(f"emulator-names {name}: unknown keys {sorted(extra)}")
         if not kinds:
             problems.append(f"emulator-names {name}: needs core, paths, base_image, blacklisted, closed_source, "
-                            "not_emulator or unresolved")
+                            "not_emulator, unreached or unresolved")
         if "paths" in entry and not (isinstance(entry["paths"], list) and all(isinstance(p, str) for p in entry["paths"])):
             problems.append(f"emulator-names {name}: paths must be a list of card paths")
     named = {p for entry in names.values() for p in entry.get("paths", [])}
