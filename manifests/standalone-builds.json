@@ -4289,6 +4289,7 @@
         "export SDKPATH=\"$PWD/../../../sdk/\"",
         "grep -q '^#define VERSION_BUILD \"7144\"$' version.h",
         "/opt/aarch64-linux-gnu-7.5.0-linaro/bin/aarch64-linux-gnu-gcc --version | head -1 | grep -qF 'Linaro GCC 7.5-2019.12'",
+        "sed -i 's/ -Wno-stringop-truncation//' Makefile && ! grep -q stringop-truncation Makefile  # GCC 8's option: GCC 7.5 reports it at the first warning, and -Werror stops the build",
         "make -j\"$(nproc)\" BUILD_LINUX_LE_arm=1 NO_STRIP=1 CC='/opt/aarch64-linux-gnu-7.5.0-linaro/bin/aarch64-linux-gnu-gcc --sysroot=/home/raymanfeng/work/a133p/sdk' SDKPATH=\"$SDKPATH\""
       ],
       "output": {
@@ -4452,7 +4453,7 @@
       ]
     },
     "xroar": {
-      "description": "XRoar 1.11 (Dragon/Tandy Color Computer emulator): Emu/COCO/xroar on every 64-bit device, built by hand from the official release tarball, not a fresh checkout (the shipped binary's debug info names /tmp/xroar-1.11/src and /tmp/xroar-1.11/portalib, the tarball's own extracted layout). source pins the author's git (mirrored at stahta01/xroar, its own commit 1:1 with the tarball's configure.ac by blob hash) for provenance; the actual build steps extract the pinned tarball over that checkout so the build sees the release's own pre-generated configure/Makefile.in, not a freshly autoreconf'd one. Plain native ./configure && make, no flags: XRoar's defaults already match what the binary needs (SDL2/ALSA/evdev/GL/libpng/zlib; no GTK, SDL3, PulseAudio, JACK, OSS, libsndfile or TRE), and autoconf's own default CFLAGS (-g -O2, unstripped) matches it being shipped with debug_info. GPL-3.0-or-later (Licenses/xroar/LICENSE.xroar.txt in spruceOS).; without X11, PulseAudio and OSS, as the shipped binary's modules show (alsa, evdev, null, sdl, sdl2, wav), although libsdl2-dev brings their headers",
+      "description": "XRoar 1.11 (Dragon/Tandy Color Computer emulator): Emu/COCO/xroar on every 64-bit device, built by hand from the official release tarball, not a fresh checkout (the shipped binary's debug info names /tmp/xroar-1.11/src and /tmp/xroar-1.11/portalib, the tarball's own extracted layout). source pins the author's git (mirrored at stahta01/xroar, its own commit 1:1 with the tarball's configure.ac by blob hash) for provenance; the actual build steps extract the pinned tarball over that checkout so the build sees the release's own pre-generated configure/Makefile.in, not a freshly autoreconf'd one. SDL2 2.26.5 built into /usr first (Debian's 2.0.9 removed), then plain native ./configure && make, no flags: XRoar's defaults already match what the binary needs (SDL2/ALSA/evdev/GL/libpng/zlib; no GTK, SDL3, PulseAudio, JACK, OSS, libsndfile or TRE), and autoconf's own default CFLAGS (-g -O2, unstripped) matches it being shipped with debug_info. GPL-3.0-or-later (Licenses/xroar/LICENSE.xroar.txt in spruceOS).; without X11, PulseAudio and OSS, as the shipped binary's modules show (alsa, evdev, null, sdl, sdl2, wav), although libsdl2-dev brings their headers",
       "source": {
         "url": "https://github.com/stahta01/xroar.git",
         "commit": "9e929dba135fbdaa7c4e5c58a55729b0b0e272f0",
@@ -4465,6 +4466,11 @@
           "url": "https://www.6809.org.uk/xroar/dl/1.11/xroar-1.11.tar.gz",
           "sha256": "70270805ebd52c0b62237cc2f28b32b5c7df9764d10a7c7190de584cfc6e95af",
           "path": "/tmp/dl/xroar-1.11.tar.gz"
+        },
+        {
+          "url": "https://github.com/libsdl-org/SDL/releases/download/release-2.26.5/SDL2-2.26.5.tar.gz",
+          "sha256": "ad8fea3da1be64c83c45b1d363a6b4ba8fd60f5bde3b23ec73855709ec5eabf7",
+          "path": "/tmp/dl/SDL2-2.26.5.tar.gz"
         }
       ],
       "toolchain": "standalone-xroar",
@@ -4473,6 +4479,11 @@
         "CC": "aarch64-linux-gnu-gcc"
       },
       "steps": [
+        "dpkg --purge libsdl2-dev  # the original machine had SDL2 2.26 in /usr (its debug info: SDL_guid.h, sensor timestamp_us, 2.26's declaration lines)",
+        "mkdir -p /tmp/sdl2 && tar -xzf /tmp/dl/SDL2-2.26.5.tar.gz --strip-components=1 -C /tmp/sdl2",
+        "cd /tmp/sdl2 && ./configure --prefix=/usr >/tmp/sdl2-configure.log && make -j\"$(nproc)\" >/tmp/sdl2-make.log && make install >/dev/null",
+        "! readelf -d /usr/lib/libSDL2-2.0.so.0 | grep -E 'NEEDED.*(pulse|sndfile)'  # loads PulseAudio at run time, as the original's SDL2 did",
+        "cd /tmp/xroar-1.11",
         "tar -xzf /tmp/dl/xroar-1.11.tar.gz --strip-components=1 -C /tmp/xroar-1.11",
         "./configure --without-x --without-pulse --without-oss",
         "make -j \"$(nproc)\""
@@ -4507,9 +4518,6 @@
         "spruceos": "7592638d0",
         "files": {
           "xroar": "58b665c41da16841c0d7993f1e2a9d79ab4f2514ff9d1662a5da7e01ca190c1c"
-        },
-        "differs": {
-          "xroar": "Debian buster's SDL2 links libpulse, and through it libsndfile, so ld exports xroar's own sf_* compat functions; that shifts .dynsym and the code that indexes it. Modules, NEEDED list and section sizes are the same, and the original machine's SDL2 did not link libpulse (run 44434199145)"
         }
       }
     },
@@ -8873,7 +8881,7 @@
           "cores64/gametank_libretro.so": "9c618026c07849c1c4ce757f0e40eff6f11a4ede1bf98c87fe894266c0ddb5cf",
           "cores/gametank_libretro.so": "2ad9f6b77237a91d57f0aedc3bb252ef3253665dd724b270b96ad28dec23829f"
         },
-        "note": "cores/gametank_libretro.so matched byte for byte by CE run 44693373666 (8cd39bd), stripped with zig objcopy --strip-all"
+        "note": "both files matched byte for byte by CE run 44989835863 (7d4d7be), stripped with zig objcopy --strip-all; arm64 with Ubuntu's aarch64 gcc-cross hidden from zig's clang"
       }
     },
     "uae4arm-lakka-rpi3-composite-20240502": {
