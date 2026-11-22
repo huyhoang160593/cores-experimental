@@ -4288,7 +4288,8 @@
         "bash version.sh",
         "export SDKPATH=\"$PWD/../../../sdk/\"",
         "grep -q '^#define VERSION_BUILD \"7144\"$' version.h",
-        "make -j\"$(nproc)\" BUILD_LINUX_LE_arm=1 NO_STRIP=1 CC='/usr/bin/aarch64-linux-gnu-gcc --sysroot=/home/raymanfeng/work/a133p/sdk' SDKPATH=\"$SDKPATH\""
+        "/opt/aarch64-linux-gnu-7.5.0-linaro/bin/aarch64-linux-gnu-gcc --version | head -1 | grep -qF 'Linaro GCC 7.5-2019.12'",
+        "make -j\"$(nproc)\" BUILD_LINUX_LE_arm=1 NO_STRIP=1 CC='/opt/aarch64-linux-gnu-7.5.0-linaro/bin/aarch64-linux-gnu-gcc --sysroot=/home/raymanfeng/work/a133p/sdk' SDKPATH=\"$SDKPATH\""
       ],
       "output": {
         "files": [
@@ -8820,7 +8821,9 @@
       ],
       "steps": [
         "python3 -c 'import sys, tarfile; tarfile.open(sys.argv[1]).extractall(\"/opt\")' /tmp/zig.tar.xz && /opt/zig-x86_64-linux-0.14.1/zig version",
+        "mv /usr/lib/gcc-cross /usr/lib/gcc-cross.hidden  # clang (in zig c++) turns on outline atomics when it finds aarch64 libgcc >= 9.3.1; the CI runner had none",
         "make clean >/dev/null 2>&1; make -j\"$(nproc)\" CXX=\"/opt/zig-x86_64-linux-0.14.1/zig c++ -target aarch64-linux-gnu.2.23 -mcpu=cortex_a53\" && mkdir -p /tmp/arm64 && cp gametank_libretro.so /tmp/arm64/unstripped.so && /opt/zig-x86_64-linux-0.14.1/zig objcopy --strip-all /tmp/arm64/unstripped.so /tmp/arm64/zig-objcopy.so",
+        "mv /usr/lib/gcc-cross.hidden /usr/lib/gcc-cross",
         "aarch64-linux-gnu-strip -o /tmp/arm64/gnu-strip.so /tmp/arm64/unstripped.so",
         "make clean >/dev/null 2>&1; make -j\"$(nproc)\" CXX=\"/opt/zig-x86_64-linux-0.14.1/zig c++ -target arm-linux-gnueabihf.2.23 -mcpu=cortex_a7\" && mkdir -p /tmp/armhf && cp gametank_libretro.so /tmp/armhf/unstripped.so && /opt/zig-x86_64-linux-0.14.1/zig objcopy --strip-all /tmp/armhf/unstripped.so /tmp/armhf/zig-objcopy.so"
       ],
@@ -8870,10 +8873,7 @@
           "cores64/gametank_libretro.so": "9c618026c07849c1c4ce757f0e40eff6f11a4ede1bf98c87fe894266c0ddb5cf",
           "cores/gametank_libretro.so": "2ad9f6b77237a91d57f0aedc3bb252ef3253665dd724b270b96ad28dec23829f"
         },
-        "note": "cores/gametank_libretro.so matched byte for byte by CE run 44693373666 (8cd39bd), stripped with zig objcopy --strip-all",
-        "differs": {
-          "cores64/gametank_libretro.so": "in CE's container zig 0.14.1 builds the arm64 objects with outline atomics and links all of compiler-rt (562 more functions, 499,416 B against 333,416), while the CI's and a local zig build from the same commands do not; the cause is not found (parked 2026-11-20). Its armhf build from the same recipe matches"
-        }
+        "note": "cores/gametank_libretro.so matched byte for byte by CE run 44693373666 (8cd39bd), stripped with zig objcopy --strip-all"
       }
     },
     "uae4arm-lakka-rpi3-composite-20240502": {
