@@ -1152,30 +1152,6 @@
         },
         {
           "diff": "patches/standalone/yabasanshiro/bench-framelimit-env.patch"
-        },
-        {
-          "diff": "patches/standalone/yabasanshiro/default-prefs-env.patch"
-        },
-        {
-          "diff": "patches/standalone/yabasanshiro/analog-unsigned.patch"
-        },
-        {
-          "diff": "patches/standalone/yabasanshiro/3dpad-digital-triggers.patch"
-        },
-        {
-          "diff": "patches/standalone/yabasanshiro/config-dir-env.patch"
-        },
-        {
-          "diff": "patches/standalone/yabasanshiro/state-dir-env.patch"
-        },
-        {
-          "diff": "patches/standalone/yabasanshiro/sigusr2-save-and-quit.patch"
-        },
-        {
-          "diff": "patches/standalone/yabasanshiro/quit-after-save-r2.patch"
-        },
-        {
-          "diff": "patches/standalone/yabasanshiro/safe-teardown.patch"
         }
       ],
       "env": {
@@ -1228,9 +1204,6 @@
           "libs/libpng16.so.16": "14ba485f3a55c36893f372831d0445f78fc64f26073a8d7374dc89ac50b95edc",
           "libs/libz.so.1": "f7421fde8036391750dc2b1dd7299a0a3305a93cb95846fcc381590f565215c1",
           "libs/libboost_filesystem.so.1.71.0": "7009501be2148ef0edb8955c31848082cb3605a232d9bd9678db62d4c5148f79"
-        },
-        "differs": {
-          "yabasanshiro": "matched only as the local research build; on GitHub's runners the executable is 3994816 bytes, not 3990672, the same in cores-experimental run 44444954188 and Cores-spruce's test; cause not found"
         }
       },
       "output": {
@@ -1255,6 +1228,57 @@
           "libs/libboost_filesystem.so.1.71.0": "spruce/flip/lib/libboost_filesystem.so.1.71.0"
         }
       }
+    },
+    "yabasanshiro-arm64-pgo-next": {
+      "extends": "yabasanshiro-arm64-pgo",
+      "description": "yabasanshiro-arm64-pgo plus the Saturn fixes made after spruceOS fcd5aca3d shipped it (2026-10-16/17): a YB_DEFAULT_PREFS defaults file, unsigned analog axes, digital triggers on the 3D pad, config and state directories from the environment, save-and-quit on SIGUSR2, and a teardown that joins the threads before freeing. Same image, flags and profiles; spruce does not ship it yet.",
+      "patches": [
+        {
+          "diff": "patches/standalone/yabasanshiro/fix-libchdr-target-name.patch"
+        },
+        {
+          "diff": "patches/standalone/yabasanshiro/fix-libpng-neon.patch"
+        },
+        {
+          "diff": "patches/standalone/yabasanshiro/fix-stray-makecurrent.patch"
+        },
+        {
+          "diff": "patches/standalone/yabasanshiro/dynarec-fix.patch"
+        },
+        {
+          "diff": "patches/standalone/yabasanshiro/nopragma.patch"
+        },
+        {
+          "diff": "patches/standalone/yabasanshiro/rbg-compute-gles.patch"
+        },
+        {
+          "diff": "patches/standalone/yabasanshiro/bench-framelimit-env.patch"
+        },
+        {
+          "diff": "patches/standalone/yabasanshiro/default-prefs-env.patch"
+        },
+        {
+          "diff": "patches/standalone/yabasanshiro/analog-unsigned.patch"
+        },
+        {
+          "diff": "patches/standalone/yabasanshiro/3dpad-digital-triggers.patch"
+        },
+        {
+          "diff": "patches/standalone/yabasanshiro/config-dir-env.patch"
+        },
+        {
+          "diff": "patches/standalone/yabasanshiro/state-dir-env.patch"
+        },
+        {
+          "diff": "patches/standalone/yabasanshiro/sigusr2-save-and-quit.patch"
+        },
+        {
+          "diff": "patches/standalone/yabasanshiro/quit-after-save-r2.patch"
+        },
+        {
+          "diff": "patches/standalone/yabasanshiro/safe-teardown.patch"
+        }
+      ]
     },
     "yabasanshiro-standalone": {
       "description": "YabaSanshiro standalone, built the way Flycast is (docs/standalone.md): sydarn/yabause a40dace1 (the retro_arena port with the devMiyax dynarec) with the patches spruceOS 4.5.5's build carries (the wrapper's three fixes, the AArch64 dynarec fix without the 2020 -O1 pragma, the compute-shader RBG fix, YB_FRAMELIMIT) and nlohmann/json pinned, built in arm64-standalone with Arm's GNU Toolchain 10.3 and -O3 -flto against SDL2 2.28.5 and focal's arm64 packages. No PGO: yabasanshiro-arm64-pgo's profiles were trained on its own build. Ships Emu/SATURN/yabasanshiro and lib64/ (libpng16, zlib and boost filesystem from focal, which the wrapper bundled too)",
