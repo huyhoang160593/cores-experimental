@@ -4505,7 +4505,8 @@
       "steps": [
         "dpkg --purge libsdl2-dev  # the original machine had SDL2 2.26 in /usr (its debug info: SDL_guid.h, sensor timestamp_us, 2.26's declaration lines)",
         "mkdir -p /tmp/sdl2 && tar -xzf /tmp/dl/SDL2-2.26.5.tar.gz --strip-components=1 -C /tmp/sdl2",
-        "cd /tmp/sdl2 && ./configure --prefix=/usr >/tmp/sdl2-configure.log && make -j\"$(nproc)\" >/tmp/sdl2-make.log && make install >/dev/null",
+        "cd /tmp/sdl2 && ./configure --prefix=/usr --disable-rpath >/tmp/sdl2-configure.log && make -j\"$(nproc)\" >/tmp/sdl2-make.log && make install >/dev/null",
+        "! sdl2-config --libs | grep -q rpath  # spruce's xroar has no RUNPATH",
         "! readelf -d /usr/lib/libSDL2-2.0.so.0 | grep -E 'NEEDED.*(pulse|sndfile)'  # loads PulseAudio at run time, as the original's SDL2 did",
         "cd /tmp/xroar-1.11",
         "tar -xzf /tmp/dl/xroar-1.11.tar.gz --strip-components=1 -C /tmp/xroar-1.11",
