@@ -663,11 +663,10 @@
         "yabasanshiro-standalone-bios",
         "yabasanshiro-standalone-hle"
       ],
-      "status": "recipe",
+      "status": "reproduces",
       "recipes": [
-        "standalone:yabasanshiro-arm64",
         "standalone:yabasanshiro-arm64-pgo",
-        "standalone:yabasanshiro-standalone"
+        "standalone:yabasanshiro-arm64-pgo-next"
       ],
       "families": [
         "ANBERNIC_RGXX",
@@ -677,7 +676,12 @@
         "OAKMOSS_A133P",
         "TRIMUI_A133P",
         "TRIMUI_SMART_PRO_S"
-      ]
+      ],
+      "pin": {
+        "recipe": "standalone:yabasanshiro-arm64-pgo",
+        "url": "https://github.com/sydarn/yabause.git",
+        "commit": "a40dace1ae0af3ebd45848549fdf396f40e3930f"
+      }
     },
     "Emu/SCUMMVM/scummvm_64.7z!scummvm.64": {
       "sha256": "5a2cca5f319b9a249f9aab4456e2dffe1b3264255d397ec502461a3aea67468d",

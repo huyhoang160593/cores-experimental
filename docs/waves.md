@@ -122,9 +122,10 @@ bytes at another path): such a record shows as `not shipped`.
   images), and `cores64/uae4arm` (Lakka v4.x's RPi3-Composite build, rebuilt with Lakka's own build system). Three
   are vendor binaries whose toolchain is not published, so they stay `no recipe`: Miyoo's `OpenBOR_Flip` and A30
   `cores/mupen64plus`, and TrimUI's `cores64/mupen64plus` (spare).
-- Parked, recipe kept: mkxp-z (PR #255's CI) has the same code and ZIPs but differs in about 300 KB of unnamed
-  .rodata. GameTank's arm64 core differs too: in CE's container zig adds outline atomics and all of compiler-rt.
-  Its armhf core matches.
+- Parked, recipe kept: mkxp-z (PR #255's CI) has the same code and ZIPs, but a 6 MB binary blob in `.rodata`
+  (after the Theora decoder's strings, no archive or wasm signature) differs almost throughout (consistent
+  with a heap snapshot taken at build time; unconfirmed). GameTank's arm64 core reproduces since 11-21 (outline atomics came from the
+  image's aarch64 gcc-cross, which clang in zig detects).
 - The 15 third-party core files with a catalog recipe that does not reproduce them carry their provenance too
   (Flycast campaign builds, christianhaitian and Onion prebuilts, KMFDManic's builds, private LLVM builds). One is a
   risk on the device: `cores64/np2kai_libretro.so` needs `GLIBC_2.34`, above the TrimUI devices' 2.33.

@@ -1198,7 +1198,7 @@
       ],
       "shipped": {
         "spruceos": "fcd5aca3d",
-        "note": "spruceOS Development (merged in #1873); built first as t3-o3-lto-fix-nopragma-pgo-all4-boot-rbgfix in the Saturn research record 20261013-1351-saturn-sa-pgo-rbgfix. libboost_filesystem.so.1.71.0 sits in spruce/flip/lib, as for yabasanshiro-arm64",
+        "note": "all four files matched byte for byte by CE run 44992120474 (13459a1), with the 7 patches of the build spruceOS fcd5aca3d took",
         "files": {
           "yabasanshiro": "059cdbbf788ed3015274a3977c083d7aa69537aa4353796a4c230b16cd8c924a",
           "libs/libpng16.so.16": "14ba485f3a55c36893f372831d0445f78fc64f26073a8d7374dc89ac50b95edc",
@@ -4345,12 +4345,14 @@
         "forbidden": []
       },
       "shipped": {
-        "unverified": true,
         "spruceos": "7592638d0",
         "files": {
           "OpenBOR_TrimUI": "01b22813e6aee1d439a6d79c68a97fb367e9182aa317fd36e333c8f379afc120"
         },
-        "note": "spruce also ships Emu/OPENBOR/lib64/libpng12.so.0 beside this binary; this recipe does not build it (no source pinned), so it is listed under needed.device instead"
+        "note": "spruce also ships Emu/OPENBOR/lib64/libpng12.so.0 beside this binary; this recipe does not build it (no source pinned), so it is listed under needed.device instead",
+        "differs": {
+          "OpenBOR_TrimUI": "TrimUI built a locally changed tree: its .rodata has a '%dx%d\\n' format string beside the video-mode strings ('videomodes.pixel == 4', 'nearest'), which b8303cc does not have. Compiler (Linaro GCC 7.5-2019.12), imports, NEEDED and RPATH match; code is 6,792 B smaller (CE run 44990618053), and no CFLAGS variant closes it (verify run 44992128523)"
+        }
       }
     },
     "openbor-new": {
@@ -4543,6 +4545,9 @@
         "spruceos": "7592638d0",
         "files": {
           "xroar": "58b665c41da16841c0d7993f1e2a9d79ab4f2514ff9d1662a5da7e01ca190c1c"
+        },
+        "differs": {
+          "xroar": "one byte of .strtab: the local symbol __PRETTY_FUNCTION__.33467 (ui_sdl2.c's ui_sdl_new) is .33461 here. GCC numbers it by the declarations the file has seen, so the original's ui_sdl2.c saw six more; code, data, debug info and exports are identical (CE run 44992112346, SDL2 2.26.5 with --disable-rpath)"
         }
       }
     },
