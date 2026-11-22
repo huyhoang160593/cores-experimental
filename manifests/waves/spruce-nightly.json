@@ -3,13 +3,13 @@
   "wave": "spruce-nightly",
   "defined_by": {
     "repo": "spruceUI/spruceOS",
-    "ref": "761cf1db167b498fb2351843c5fe1ae1ac9ff48e",
-    "commit": "761cf1db167b498fb2351843c5fe1ae1ac9ff48e",
-    "date": "2026-11-19",
+    "ref": "fbe86ef2bc7ad48602f9a045c2ef7af4308138e9",
+    "commit": "fbe86ef2bc7ad48602f9a045c2ef7af4308138e9",
+    "date": "2026-11-21",
     "nightly": {
-      "tag": "v4.6.1-20261120",
-      "run": 44663068038,
-      "built": "2026-11-20T02:45:40Z"
+      "tag": "v4.6.1-20261122",
+      "run": 44983415480,
+      "built": "2026-11-22T04:04:29Z"
     }
   },
   "files": {
@@ -895,7 +895,7 @@
       ]
     },
     "RetroArch/.retroarch/cores/armnes_arcade_libretro.so": {
-      "sha256": "9ad78131b6f59416e70130c09297b6dfbcd80132fa7a87e68f8d4690e971792d",
+      "sha256": "4499918c76c9aa12626a71f8626b30739e2912ebb23a443502474d561e9c1f3e",
       "kind": "core",
       "names": [
         "armnes_arcade"
@@ -909,7 +909,7 @@
       "spare": true
     },
     "RetroArch/.retroarch/cores/armnes_libretro.so": {
-      "sha256": "a28db4447e47ec47f8cec4c7cd7eb15cf41a397055588341c4bcebc311da1060",
+      "sha256": "3857d3ce593c6531cb3689a887e5aca4404e4fb263fe8abb0efc3e558c5d9c65",
       "kind": "core",
       "names": [
         "armnes"
@@ -1701,8 +1701,10 @@
       "recipes": [
         "mednafen_pcfx"
       ],
-      "families": [],
-      "spare": true
+      "families": [
+        "MIYOO_A30",
+        "MIYOO_MINI_FAMILY"
+      ]
     },
     "RetroArch/.retroarch/cores/mednafen_supafaust_libretro.so": {
       "sha256": "5905469e957a8bc52f1c2f20d0d3a3a83501427985d3c6ffff96b8c86054bd4a",
@@ -2283,7 +2285,7 @@
       ]
     },
     "RetroArch/.retroarch/cores/superwhizkid_libretro.so": {
-      "sha256": "d98ceb9618e192b8c2adf4fbd4975dd9ac5e667eef53d3566e7ae4599ca5a1fa",
+      "sha256": "d1356cb87e598b8f9881f6e7cb68ce22706c4e1f750dc2168a38b2672c9d3c1d",
       "kind": "core",
       "names": [
         "superwhizkid"
@@ -2650,7 +2652,7 @@
       ]
     },
     "RetroArch/.retroarch/cores64/armnes_arcade_libretro.so": {
-      "sha256": "a9919efb58c3319f079d670311e131921f5acb3959207605c4f0409da8f4c087",
+      "sha256": "1234833f6bc67e56ba04106e118f68695bac4c771ad146a1e9050ded99e9b5d4",
       "kind": "core",
       "names": [
         "armnes_arcade"
@@ -2664,7 +2666,7 @@
       "spare": true
     },
     "RetroArch/.retroarch/cores64/armnes_libretro.so": {
-      "sha256": "52953848a6480a6223fbb92bbc01b1d40c6877c02b6205036e2f388df5b75132",
+      "sha256": "8ac42240aa164e050b9c421ba76112745a34c5fb7ae542cb045c2d9862ee81c3",
       "kind": "core",
       "names": [
         "armnes"
@@ -3708,8 +3710,15 @@
       "recipes": [
         "mednafen_pcfx"
       ],
-      "families": [],
-      "spare": true
+      "families": [
+        "ANBERNIC_RGXX",
+        "DARKMOSS",
+        "GKD_PIXEL2",
+        "MIYOO_FLIP",
+        "OAKMOSS_A133P",
+        "TRIMUI_A133P",
+        "TRIMUI_SMART_PRO_S"
+      ]
     },
     "RetroArch/.retroarch/cores64/mednafen_supafaust_libretro.so": {
       "sha256": "62cd3e06002103ac76e223f54755d09fd9dd69e63cd35d3064c82bcf177cca6b",
@@ -4424,7 +4433,7 @@
       }
     },
     "RetroArch/.retroarch/cores64/superwhizkid_libretro.so": {
-      "sha256": "edcacf52c5089ccc7e81e8fbddde481ccc63ba1a4a546cddff0f9b85a4a581a8",
+      "sha256": "280fc1d33b2fb95b0ff33e470bc1e092261a61e5a9679cfc1d42fc0c949c29b1",
       "kind": "core",
       "names": [
         "superwhizkid"

@@ -85,7 +85,8 @@ bytes at another path): such a record shows as `not shipped`.
   `custom`; apps such as vTree are in no wave, so their recipes are. At d7ce3dc52, spruce-nightly has 44 spare
   cores (43 that no menu offers, plus `cores64/mupen64plus`: N64 offers `mupen64plus` only on 32-bit lists), and 7
   folder gaps: `cores/` flycast2021 and flycast2024 (the 32-bit RA Build on the Flip, the XX and dArkMoss), the
-  Mini's puae, km_puae_xtreme_amped and km_mame2003_xtreme, and freej2me_plus in both folders.
+  Mini's puae, km_puae_xtreme_amped and km_mame2003_xtreme, and freej2me_plus in both folders. At fbe86ef2b
+  (2026-11-21) 42 are spare: spruce's new PC-FX system offers both `mednafen_pcfx` cores.
 - A core without a reproducing recipe carries a hand-kept `pin` (`confidence`: `unambiguous`, `likely` or
   `ambiguous`; `verified`) and its `evidence`. A build at the pin that matches makes it `reproduces`. On 11-19
   spruce-nightly had 49 such GCC 9.4 cores, 37 of them from spruceOS 327c258ee (built 2025-05-05/06). Nine pins

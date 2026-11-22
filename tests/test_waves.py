@@ -79,16 +79,18 @@ class WavesTest(unittest.TestCase):
     def test_diff_lists_each_change_once(self):
         old = {"defined_by": {"commit": "a" * 40}, "files": {"f": {"sha256": "1", "status": "recipe"},
                                                              "g": {"sha256": "2", "status": "reproduces"},
-                                                             "h": {"sha256": "3", "status": "recipe"}},
+                                                             "h": {"sha256": "3", "status": "recipe"},
+                                                             "s": {"sha256": "6", "status": "recipe", "spare": True}},
                "records": {"r": {"status": "match"}}}
         new = {"defined_by": {"commit": "b" * 40, "nightly": {"tag": "v4.6.0-20261120"}},
                "files": {"f": {"sha256": "1", "status": "reproduces"}, "g": {"sha256": "5", "status": "reproduces"},
-                         "i": {"sha256": "4", "status": "no recipe"}},
+                         "i": {"sha256": "4", "status": "no recipe"},
+                         "s": {"sha256": "6", "status": "recipe", "families": ["MIYOO_A30"]}},
                "records": {"r": {"status": "replaced"}}}
         self.assertEqual(waves.diff(old, new), [
             "defined by: aaaaaaaaa -> nightly v4.6.0-20261120 (bbbbbbbbb)",
             "~ f: recipe -> reproduces", "~ g: new bytes, still reproduces", "- h (was recipe)", "+ i: no recipe",
-            "record r: match -> replaced"])
+            "~ s: no longer spare (MIYOO_A30)", "record r: match -> replaced"])
         self.assertEqual(waves.diff(new, new), [])
 
 

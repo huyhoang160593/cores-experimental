@@ -214,6 +214,9 @@ def diff(old: dict, new: dict) -> list[str]:
             lines.append(f"~ {path}: {a['status']} -> {b['status']}")
         elif a.get("sha256") != b.get("sha256"):
             lines.append(f"~ {path}: new bytes, still {b['status']}")
+        if a and b and bool(a.get("spare")) != bool(b.get("spare")):
+            lines.append(f"~ {path}: " + ("now spare" if b.get("spare") else
+                                         "no longer spare (" + ", ".join(b.get("families", [])) + ")"))
     before, after = old.get("records", {}), new.get("records", {})
     for name in sorted(set(before) | set(after)):
         a, b = before.get(name, {}).get("status"), after.get(name, {}).get("status")
